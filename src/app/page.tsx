@@ -13,128 +13,158 @@ function formatDate(iso: string) {
 
 export default function Home() {
   const posts = getAllPosts().slice(0, 3);
-  const plays = getAllPlays().slice(0, 5);
+  const plays = getAllPlays().slice(0, 4);
   const games = getAllGames().slice(0, 6);
 
   return (
-    <div className="space-y-12">
-      <section className="relative overflow-hidden rounded-3xl border border-indigo-200/60 bg-white/80 px-8 py-12 shadow-2xl ring-1 ring-indigo-100/70 transition dark:border-indigo-500/30 dark:bg-slate-900/60 dark:ring-indigo-500/20">
-        <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-indigo-400/30 blur-3xl dark:bg-indigo-400/40" aria-hidden />
-        <div className="pointer-events-none absolute -left-24 bottom-[-30%] h-72 w-72 rounded-full bg-pink-400/20 blur-3xl dark:bg-emerald-400/30" aria-hidden />
-        <div className="relative space-y-6">
-          <p className="inline-flex items-center gap-2 rounded-full border border-indigo-200/70 bg-white/80 px-4 py-1 text-sm font-medium text-indigo-700 shadow-sm dark:border-indigo-400/30 dark:bg-slate-900/70 dark:text-indigo-200">
-            🎲 ボードゲームの魅力を深く・広く
-          </p>
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
-            Boardgame Labで、次の一手を探そう
+    <div className="w-full max-w-4xl space-y-16 text-center">
+      <section className="relative isolate flex min-h-[420px] flex-col items-center justify-center rounded-[24px] border border-slate-200/70 bg-white px-10 py-16 text-center shadow-[0_40px_120px_-45px_rgba(148,163,184,0.65)] ring-1 ring-slate-200/50 dark:border-slate-700/60 dark:bg-slate-900/70 dark:ring-slate-800/50">
+        <div className="pointer-events-none absolute -top-32 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-rose-400/30 blur-[120px] dark:bg-rose-500/40" aria-hidden />
+        <div className="pointer-events-none absolute bottom-[-30%] right-[-10%] h-72 w-72 rounded-full bg-indigo-400/25 blur-[120px] dark:bg-indigo-500/30" aria-hidden />
+        <div className="pointer-events-none absolute inset-x-16 top-10 h-px bg-gradient-to-r from-transparent via-slate-300/60 to-transparent dark:via-slate-600/60" aria-hidden />
+        <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-8 text-center">
+          <span className="text-[0.7rem] font-semibold uppercase tracking-[0.45em] text-slate-500 dark:text-slate-300">
+            Special Issue Vol.01
+          </span>
+          <h1 className="text-5xl font-black uppercase leading-none tracking-tight text-slate-900 sm:text-6xl dark:text-white">
+            Sound of Strategy
+            <span className="text-rose-500">.</span>
           </h1>
-          <p className="max-w-2xl text-base text-slate-600 dark:text-slate-300">
-            記事やプレイログ、コレクションをまとめて管理。気になる作品をチェックして、戦術研究やイベント情報まで一気にキャッチアップしましょう。
+          <p className="max-w-2xl text-base text-slate-600 dark:text-slate-200">
+            ボードゲームの盤面からインスピレーションを受けたプレイログとレビューを、音楽雑誌のような軽快なリズムでお届けします。次号のテーマやイベント情報もここからチェック。
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/posts"
-              className="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-600/40 transition hover:-translate-y-0.5 hover:bg-indigo-500"
+              className="inline-flex items-center gap-3 rounded-full bg-rose-500 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-white shadow-lg shadow-rose-500/40 transition hover:-translate-y-0.5 hover:bg-rose-400"
             >
-              最新記事を読む
+              Read Articles
               <span aria-hidden>→</span>
             </Link>
             <Link
               href="/games"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300/70 bg-white/80 px-5 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-500 hover:text-indigo-600 dark:border-slate-700/60 dark:bg-slate-900/70 dark:text-slate-100 dark:hover:border-indigo-400 dark:hover:text-indigo-300"
+              className="inline-flex items-center gap-3 rounded-full border border-slate-400/70 bg-white/80 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-rose-400 hover:text-rose-500 dark:border-slate-600/70 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-rose-400 dark:hover:text-rose-300"
             >
-              コレクションを見る
+              View Collection
             </Link>
+          </div>
+          <div className="grid w-full gap-3 pt-6 text-center sm:grid-cols-3">
+            <div className="flex flex-col items-center gap-1 rounded-xl border border-slate-200/70 bg-white px-5 py-4 text-xs uppercase tracking-[0.35em] text-slate-500 dark:border-slate-700/60 dark:bg-slate-900/60 dark:text-slate-400">
+              <span className="text-[0.6rem] text-rose-500 dark:text-rose-300">Feature</span>
+              最新記事のピックアップ
+            </div>
+            <div className="flex flex-col items-center gap-1 rounded-xl border border-slate-200/70 bg-white px-5 py-4 text-xs uppercase tracking-[0.35em] text-slate-500 dark:border-slate-700/60 dark:bg-slate-900/60 dark:text-slate-400">
+              <span className="text-[0.6rem] text-indigo-500 dark:text-indigo-300">Live</span>
+              プレイセッション速報
+            </div>
+            <div className="flex flex-col items-center gap-1 rounded-xl border border-slate-200/70 bg-white px-5 py-4 text-xs uppercase tracking-[0.35em] text-slate-500 dark:border-slate-700/60 dark:bg-slate-900/60 dark:text-slate-400">
+              <span className="text-[0.6rem] text-teal-500 dark:text-teal-300">Archive</span>
+              コレクションギャラリー
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="grid gap-8 lg:grid-cols-2">
-        <section className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-xl ring-1 ring-slate-200/60 dark:border-slate-700/60 dark:bg-slate-900/60 dark:ring-slate-800/60">
-          <div className="flex items-center justify-between gap-4">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">最新記事</h2>
-            <Link href="/posts" className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-300 dark:hover:text-indigo-200">
-              一覧を見る
+      <section className="space-y-8">
+        <div className="flex flex-col items-center gap-3 text-center">
+          <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-rose-500 dark:text-rose-300">
+            Latest Stories
+          </span>
+          <h2 className="text-3xl font-black uppercase tracking-tight text-slate-900 dark:text-white">
+            最新記事
+          </h2>
+          <Link href="/posts" className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500 underline decoration-dotted underline-offset-4 dark:text-slate-300">
+            一覧を見る
+          </Link>
+        </div>
+        <div className="space-y-4 text-left">
+          {posts.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/posts/${p.slug}`}
+              className="group flex flex-col gap-3 rounded-2xl border border-slate-200/70 bg-white px-6 py-5 shadow-[0_20px_60px_-45px_rgba(148,163,184,0.9)] transition hover:-translate-y-1 hover:border-rose-400/70 hover:shadow-[0_30px_80px_-50px_rgba(244,114,182,0.6)] dark:border-slate-700/60 dark:bg-slate-900/70 dark:hover:border-rose-400/50"
+            >
+              <span className="text-xs font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">
+                {formatDate(p.date)}{p.category ? ` ・ ${p.category}` : ""}
+              </span>
+              <span className="text-2xl font-black tracking-tight text-slate-900 transition group-hover:text-rose-500 dark:text-white dark:group-hover:text-rose-300">
+                {p.title}
+              </span>
+              {p.excerpt ? (
+                <span className="text-sm leading-relaxed text-slate-600 dark:text-slate-200">{p.excerpt}</span>
+              ) : null}
+              {p.tags?.length ? (
+                <span className="text-xs uppercase tracking-[0.35em] text-rose-400 dark:text-rose-300">#{p.tags.slice(0, 3).join(" #")}</span>
+              ) : null}
             </Link>
-          </div>
-          <ul className="mt-6 space-y-4">
-            {posts.map((p) => (
-              <li key={p.slug} className="group rounded-2xl border border-transparent bg-white/40 p-4 transition hover:border-indigo-400/60 hover:shadow-md dark:bg-slate-900/40 dark:hover:border-indigo-400/40">
-                <Link href={`/posts/${p.slug}`} className="flex flex-col gap-1">
-                  <span className="text-base font-semibold text-slate-900 group-hover:text-indigo-600 dark:text-white dark:group-hover:text-indigo-300">
-                    {p.title}
-                  </span>
-                  <span className="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                    {formatDate(p.date)}
-                    {p.category ? ` ・ ${p.category}` : ""}
-                  </span>
-                  {p.excerpt ? (
-                    <span className="text-sm text-slate-600 dark:text-slate-300">{p.excerpt}</span>
-                  ) : null}
-                  {p.tags?.length ? (
-                    <span className="text-xs text-indigo-500 dark:text-indigo-300">#{p.tags.slice(0, 3).join(" #")}</span>
-                  ) : null}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
+          ))}
+        </div>
+      </section>
 
-        <section className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-xl ring-1 ring-slate-200/60 dark:border-slate-700/60 dark:bg-slate-900/60 dark:ring-slate-800/60">
-          <div className="flex items-center justify-between gap-4">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">最近のプレイ</h2>
-            <Link href="/plays" className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-300 dark:hover:text-indigo-200">
-              一覧を見る
+      <section className="space-y-8">
+        <div className="flex flex-col items-center gap-3 text-center">
+          <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-indigo-500 dark:text-indigo-300">
+            Live Session Log
+          </span>
+          <h2 className="text-3xl font-black uppercase tracking-tight text-slate-900 dark:text-white">
+            最近のプレイ
+          </h2>
+          <Link href="/plays" className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500 underline decoration-dotted underline-offset-4 dark:text-slate-300">
+            一覧を見る
+          </Link>
+        </div>
+        <div className="grid gap-4 text-left sm:grid-cols-2">
+          {plays.map((pl) => (
+            <Link
+              key={pl.id}
+              href={`/plays/${pl.id}`}
+              className="group flex flex-col gap-3 rounded-2xl border border-slate-200/70 bg-white px-6 py-5 shadow-[0_20px_60px_-45px_rgba(148,163,184,0.9)] transition hover:-translate-y-1 hover:border-indigo-400/70 hover:shadow-[0_30px_80px_-50px_rgba(129,140,248,0.5)] dark:border-slate-700/60 dark:bg-slate-900/70 dark:hover:border-indigo-400/50"
+            >
+              <span className="text-xs font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">
+                {formatDate(pl.date)}{pl.location ? ` ・ ${pl.location}` : ""}
+              </span>
+              <span className="text-xl font-black tracking-tight text-slate-900 transition group-hover:text-indigo-500 dark:text-white dark:group-hover:text-indigo-300">
+                {pl.gameId}
+              </span>
+              {pl.tags?.length ? (
+                <span className="text-xs uppercase tracking-[0.35em] text-indigo-400 dark:text-indigo-300">#{pl.tags.slice(0, 3).join(" #")}</span>
+              ) : null}
             </Link>
-          </div>
-          <ul className="mt-6 space-y-4">
-            {plays.map((pl) => (
-              <li key={pl.id}>
-                <Link
-                  href={`/plays/${pl.id}`}
-                  className="group flex flex-col gap-1 rounded-2xl border border-transparent bg-white/40 p-4 transition hover:border-emerald-400/50 hover:shadow-md dark:bg-slate-900/40 dark:hover:border-emerald-400/40"
-                >
-                  <span className="text-base font-semibold text-slate-900 group-hover:text-emerald-600 dark:text-white dark:group-hover:text-emerald-300">
-                    {pl.gameId}
-                  </span>
-                  <span className="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                    {formatDate(pl.date)}
-                    {pl.location ? ` ・ ${pl.location}` : ""}
-                  </span>
-                  {pl.tags?.length ? (
-                    <span className="text-xs text-emerald-500 dark:text-emerald-300">#{pl.tags.slice(0, 3).join(" #")}</span>
-                  ) : null}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
+          ))}
+        </div>
+      </section>
 
-      <section className="rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-xl ring-1 ring-slate-200/60 dark:border-slate-700/60 dark:bg-slate-900/60 dark:ring-slate-800/60">
-        <div className="flex items-center justify-between gap-4">
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">コレクション</h2>
-          <Link href="/games" className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-300 dark:hover:text-indigo-200">
+      <section className="space-y-8">
+        <div className="flex flex-col items-center gap-3 text-center">
+          <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-teal-500 dark:text-teal-300">
+            Collection Gallery
+          </span>
+          <h2 className="text-3xl font-black uppercase tracking-tight text-slate-900 dark:text-white">
+            コレクション
+          </h2>
+          <Link href="/games" className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500 underline decoration-dotted underline-offset-4 dark:text-slate-300">
             すべて表示
           </Link>
         </div>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           {games.map((g) => (
             <Link
               key={g.id}
               href={`/games/${g.id}`}
-              className="group relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white/70 p-5 shadow-md transition hover:-translate-y-1 hover:border-indigo-400/60 hover:shadow-lg dark:border-slate-700/70 dark:bg-slate-900/70 dark:hover:border-indigo-400/40"
+              className="group flex flex-col gap-3 rounded-2xl border border-slate-200/70 bg-white px-6 py-6 text-left shadow-[0_20px_60px_-45px_rgba(148,163,184,0.9)] transition hover:-translate-y-1 hover:border-teal-400/70 hover:shadow-[0_30px_80px_-50px_rgba(45,212,191,0.45)] dark:border-slate-700/70 dark:bg-slate-900/70 dark:hover:border-teal-400/50"
             >
-              <span className="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-indigo-400/30 blur-2xl transition group-hover:scale-125 dark:bg-indigo-400/40" aria-hidden />
-              <div className="relative flex flex-col gap-2">
-                <span className="text-base font-semibold text-slate-900 dark:text-white">{g.title}</span>
-                {g.designer ? (
-                  <span className="text-xs text-slate-500 dark:text-slate-400">Designer: {g.designer}</span>
-                ) : null}
-                {g.tags?.length ? (
-                  <span className="text-xs text-indigo-500 dark:text-indigo-300">#{g.tags.slice(0, 3).join(" #")}</span>
-                ) : null}
-              </div>
+              <span className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500 dark:text-slate-300">
+                {g.tags?.length ? g.tags[0] : "Featured"}
+              </span>
+              <span className="text-xl font-black tracking-tight text-slate-900 transition group-hover:text-teal-500 dark:text-white dark:group-hover:text-teal-300">
+                {g.title}
+              </span>
+              {g.designer ? (
+                <span className="text-xs uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">Designer: {g.designer}</span>
+              ) : null}
+              {g.tags?.length ? (
+                <span className="text-xs uppercase tracking-[0.35em] text-teal-400 dark:text-teal-300">#{g.tags.slice(0, 3).join(" #")}</span>
+              ) : null}
             </Link>
           ))}
         </div>

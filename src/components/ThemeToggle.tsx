@@ -42,13 +42,13 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={handleToggle}
-      className="relative flex items-center gap-2 rounded-full border border-slate-300/60 bg-white/80 px-3 py-1.5 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-slate-700/70 dark:bg-slate-900/70 dark:text-slate-100"
+      className="relative flex items-center gap-2 rounded-full border border-slate-900/10 bg-slate-900 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-slate-100 shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl dark:border-white/10 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white"
       aria-label={ariaLabel}
     >
-      <span className="text-base" aria-hidden="true">
+      <span className="text-lg" aria-hidden="true">
         {mounted ? icon : "☀️"}
       </span>
-      <span className="hidden sm:inline">{mounted ? label : "ライトモード"}</span>
+      <span className="hidden sm:inline">{mounted ? label : "ライト"}</span>
     </button>
   );
 }

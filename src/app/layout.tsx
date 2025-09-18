@@ -33,28 +33,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="min-h-dvh bg-slate-50 text-slate-900 transition-colors duration-500 selection:bg-indigo-400/30 selection:text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-        <div className="flex min-h-dvh flex-col">
-          <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-slate-50/70 backdrop-blur supports-[backdrop-filter]:bg-slate-50/50 dark:border-slate-800/60 dark:bg-slate-950/60">
-            <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 py-4 md:gap-6">
-              <Link href="/" className="text-lg font-semibold tracking-tight text-slate-900 transition hover:text-indigo-600 dark:text-white dark:hover:text-indigo-300">
-                Boardgame Lab
-              </Link>
-              <nav className="flex flex-wrap items-center gap-4 text-sm font-medium text-slate-600 dark:text-slate-300">
-                <Link className="relative transition hover:text-indigo-600 dark:hover:text-indigo-300" href="/games">Games</Link>
-                <Link className="relative transition hover:text-indigo-600 dark:hover:text-indigo-300" href="/plays">Plays</Link>
-                <Link className="relative transition hover:text-indigo-600 dark:hover:text-indigo-300" href="/posts">Blog</Link>
-                <Link className="relative transition hover:text-indigo-600 dark:hover:text-indigo-300" href="/events">Events</Link>
-              </nav>
-              <div className="flex items-center gap-3">
-                <ThemeToggle />
+      <body className="min-h-dvh bg-slate-100 text-slate-900 transition-colors duration-500 selection:bg-rose-400/30 selection:text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+        <div className="flex min-h-dvh flex-col items-center justify-center gap-12 px-6 py-12">
+          <header className="w-full max-w-4xl rounded-[24px] border border-slate-200/70 bg-white px-6 py-6 text-center shadow-[0_30px_80px_-60px_rgba(148,163,184,0.8)] dark:border-slate-800/60 dark:bg-slate-900/70">
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold uppercase tracking-[0.32em] text-slate-500 dark:text-slate-300">
+                <Link className="transition hover:text-rose-500 dark:hover:text-rose-300" href="/games">Games</Link>
+                <Link className="transition hover:text-rose-500 dark:hover:text-rose-300" href="/plays">Plays</Link>
+                <Link className="transition hover:text-rose-500 dark:hover:text-rose-300" href="/posts">Blog</Link>
+                <Link className="transition hover:text-rose-500 dark:hover:text-rose-300" href="/events">Events</Link>
               </div>
+              <ThemeToggle />
             </div>
+            <Link href="/" className="mt-6 flex flex-col items-center gap-2 text-2xl font-black uppercase tracking-[0.2em] text-slate-900 transition hover:text-rose-500 dark:text-white dark:hover:text-rose-300">
+              <span className="text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400">Boardgame culture journal</span>
+              Boardgame Lab
+            </Link>
           </header>
-          <main className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col px-6 py-12">
+          <main className="w-full max-w-4xl">
             {children}
           </main>
-          <footer className="mx-auto w-full max-w-5xl px-6 pb-12 text-sm text-slate-600 dark:text-slate-400">
+          <footer className="w-full max-w-4xl text-center text-xs uppercase tracking-[0.35em] text-slate-500 dark:text-slate-400">
             © {new Date().getFullYear()} Boardgame Lab
           </footer>
         </div>
