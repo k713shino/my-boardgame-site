@@ -32,10 +32,18 @@ export type Post = {
   slug: string;
   title: string;
   date: string;
+  category?: string;
   tags?: string[];
   excerpt?: string;
   body?: string;
 };
+
+function normalizeDate(value: unknown): string {
+  if (!value) return "1970-01-01";
+  if (typeof value === "string") return value;
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  return String(value);
+}
 
 const root = process.cwd();
 const CONTENT = path.join(root, "src", "content");
@@ -69,7 +77,12 @@ export function getGameById(id: string): Game | null {
 export function getAllPlays(): Play[] {
   return readMdx("plays").map(({ data, content, filename }) => {
     const id = (data.id as string) ?? path.basename(filename, path.extname(filename));
-    return { ...data, id, body: content } as Play;
+    return {
+      ...data,
+      id,
+      date: normalizeDate(data.date),
+      body: content,
+    } as Play;
   }).sort((a, b) => b.date.localeCompare(a.date));
 }
 export function getPlayById(id: string): Play | null {
@@ -81,8 +94,15 @@ export function getAllPosts(): Post[] {
   return readMdx("posts").map(({ data, content, filename }) => {
     const slug = (data.slug as string) ?? path.basename(filename, path.extname(filename));
     const title = (data.title as string) ?? slug;
-    const date = (data.date as string) ?? "1970-01-01";
-    return { slug, title, date, tags: data.tags as string[] | undefined, body: content } as Post;
+    const date = normalizeDate(data.date);
+    return {
+      slug,
+      title,
+      date,
+      category: data.category as string | undefined,
+      tags: data.tags as string[] | undefined,
+      body: content,
+    } as Post;
   }).sort((a, b) => b.date.localeCompare(a.date));
 }
 export function getPostBySlug(slug: string): Post | null {
