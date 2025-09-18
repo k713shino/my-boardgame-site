@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllPosts, getAllPlays, getAllGames } from "@/lib/content";
+import { fetchRemotePlays } from "@/lib/remote";
 
 function formatDate(iso: string) {
   const date = new Date(iso);
@@ -11,10 +12,56 @@ function formatDate(iso: string) {
   });
 }
 
-export default function Home() {
+function toDateString(value: unknown): string {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  return String(value);
+}
+
+type PlayListItem = {
+  id: string;
+  date: string;
+  gameId: string;
+  location?: string;
+  tags?: string[];
+};
+
+export default async function Home() {
   const posts = getAllPosts().slice(0, 3);
-  const plays = getAllPlays().slice(0, 4);
   const games = getAllGames().slice(0, 6);
+  const localPlays = getAllPlays().map<PlayListItem>(({ id, date, gameId, location, tags }) => ({
+    id,
+    date,
+    gameId,
+    location,
+    tags,
+  }));
+
+  let remotePlays: PlayListItem[] = [];
+  try {
+    const remote = await fetchRemotePlays({ page: 1, size: 50 });
+    remotePlays = remote.items.map((item) => ({
+      id: String(item.id),
+      date: toDateString(item.date),
+      gameId: item.gameId,
+      location: item.location,
+      tags: item.tags,
+    }));
+  } catch (err) {
+    console.warn("Failed to fetch remote plays for home", err);
+  }
+
+  const mergedMap = new Map<string, PlayListItem>();
+  [...localPlays, ...remotePlays].forEach((play) => {
+    if (!play.id) return;
+    mergedMap.set(play.id, play);
+  });
+
+  const plays = Array.from(mergedMap.values())
+    .filter((play) => play.date)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 4);
 
   return (
     <div className="w-full max-w-4xl space-y-16 text-center">

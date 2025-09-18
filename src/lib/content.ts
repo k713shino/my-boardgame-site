@@ -96,14 +96,24 @@ export function getAllPosts(): Post[] {
     const title = (data.title as string) ?? slug;
     const date = normalizeDate(data.date);
     return {
-      slug,
-      title,
-      date,
+      slug, title, date,
       category: data.category as string | undefined,
       tags: data.tags as string[] | undefined,
+      excerpt: data.excerpt as string | undefined,
       body: content,
     } as Post;
   }).sort((a, b) => b.date.localeCompare(a.date));
+}
+
+export function getAllCategories(): string[] {
+  const set = new Set(getAllPosts().map(p => p.category).filter(Boolean) as string[]);
+  return [...set].sort((a,b) => a.localeCompare(b, "ja"));
+}
+
+export function getAllTags(): string[] {
+  const set = new Set<string>();
+  getAllPosts().forEach(p => (p.tags ?? []).forEach(t => set.add(t)));
+  return [...set].sort((a,b) => a.localeCompare(b, "ja"));
 }
 export function getPostBySlug(slug: string): Post | null {
   return getAllPosts().find((p) => p.slug === slug) ?? null;

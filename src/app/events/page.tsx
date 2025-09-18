@@ -7,7 +7,7 @@ export default function EventsPage() {
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLScbW21jm8d8bXNfKu5idCvszoNWuF850v4IxOmukE57lDoF-w/viewform?usp=dialog"
           className="w-full h-[80vh] border rounded"
-          loading="lazy"
+          title="イベント申込フォーム"
         >
           読み込み中…
         </iframe>
