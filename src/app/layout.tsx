@@ -33,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ja" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <link rel="icon" href="/images/icon.svg" type="image/svg+xml"></link>
       </head>
       <body className="min-h-dvh bg-slate-100 text-slate-900 transition-colors duration-500 selection:bg-rose-400/30 selection:text-slate-900 dark:bg-slate-950 dark:text-slate-100">
         <div className="flex min-h-dvh flex-col items-center justify-center gap-12 px-6 py-12">

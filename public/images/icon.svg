@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- サイコロ外枠 -->
+  <rect x="5" y="5" width="90" height="90" rx="15" fill="black" stroke="white" stroke-width="6"/>
+  <!-- 目（5の配置） -->
+  <circle cx="25" cy="25" r="8" fill="white"/>
+  <circle cx="75" cy="25" r="8" fill="white"/>
+  <circle cx="50" cy="50" r="8" fill="white"/>
+  <circle cx="25" cy="75" r="8" fill="white"/>
+  <circle cx="75" cy="75" r="8" fill="white"/>
+</svg>
