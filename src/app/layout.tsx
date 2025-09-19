@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { Analytics } from "@vercel/analytics/next"
 
 const themeScript = `(() => {
   const root = document.documentElement;
