@@ -51,19 +51,106 @@ function normalizeDate(value: unknown): string {
 }
 
 function normalizeTags(value: unknown): string[] {
-  if (!value) return [];
-  if (Array.isArray(value)) {
-    return value
-      .map((v) => (typeof v === "string" ? v : String(v)))
-      .map((v) => v.trim())
+  if (value === undefined || value === null) return [];
+
+  const cleaned = new Set<string>();
+
+  const addString = (input: string) => {
+    const trimmed = input.trim();
+    if (!trimmed) return;
+
+    if ((trimmed.startsWith("[") && trimmed.endsWith("]")) || (trimmed.startsWith("{") && trimmed.endsWith("}"))) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        addValue(parsed);
+        return;
+      } catch {
+        // fall through to manual parsing
+      }
+    }
+
+    const fragments = trimmed
+      .split(/[,、;；|\/／\n\r]+/)
+      .flatMap((segment) => segment.split(/\s+#/))
+      .map((segment) => segment.trim())
       .filter(Boolean);
+
+    if (fragments.length) {
+      fragments.forEach((segment) => {
+        const valueWithoutMarkers = segment
+          .replace(/^[#＃"'`\[\](){}]+/, "")
+          .replace(/["'`\[\](){}]+$/, "")
+          .trim();
+        if (valueWithoutMarkers) cleaned.add(valueWithoutMarkers);
+      });
+      return;
+    }
+
+    const single = trimmed
+      .replace(/^[#＃"'`\[\](){}]+/, "")
+      .replace(/["'`\[\](){}]+$/, "")
+      .trim();
+    if (single) cleaned.add(single);
+  };
+
+  const addValue = (input: unknown) => {
+    if (input === undefined || input === null) return;
+    if (Array.isArray(input)) {
+      input.forEach(addValue);
+      return;
+    }
+    if (input instanceof Set) {
+      (input as Set<unknown>).forEach(addValue);
+      return;
+    }
+    if (typeof input === "string") {
+      addString(input);
+      return;
+    }
+    if (typeof input === "object") {
+      Object.values(input as Record<string, unknown>).forEach(addValue);
+      return;
+    }
+    const coerced = String(input).trim();
+    if (coerced) cleaned.add(coerced);
+  };
+
+  addValue(value);
+
+  return Array.from(cleaned);
+}
+
+function extractTags(record: Record<string, unknown>): string[] {
+  const direct = normalizeTags(record.tags);
+  if (direct.length) return direct;
+
+  const fallbackKeys = [
+    "tag",
+    "タグ",
+    "tagString",
+    "tagsString",
+    "tag_list",
+    "tagList",
+    "labels",
+    "label",
+  ];
+
+  for (const key of fallbackKeys) {
+    if (key in record) {
+      const parsed = normalizeTags(record[key]);
+      if (parsed.length) return parsed;
+    }
   }
-  if (typeof value === "string") {
-    return value
-      .split(/[,、\n]/)
-      .map((v) => v.trim())
-      .filter(Boolean);
+
+  const sequentialKeys = Object.keys(record).filter((key) => /^tag\d+$/i.test(key) || /^tag_\d+$/i.test(key));
+  if (sequentialKeys.length) {
+    const combined = sequentialKeys
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+      .flatMap((key) => normalizeTags(record[key]));
+    const unique = Array.from(new Set(combined));
+    if (unique.length) return unique;
   }
+
   return [];
 }
 
@@ -124,7 +211,10 @@ function normalizeRemotePlay(raw: RawRemotePlay): RemotePlay | null {
     location: typeof record.location === "string" ? record.location : undefined,
     players: normalizePlayers(record.players),
     notes: typeof record.notes === "string" ? record.notes : undefined,
-    tags: normalizeTags(record.tags),
+    tags: (() => {
+      const tags = extractTags(record);
+      return tags.length ? tags : undefined;
+    })(),
   };
 }
 
