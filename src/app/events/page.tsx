@@ -5,7 +5,7 @@ export default function EventsPage() {
       <p>直近のボードゲーム会はこちらからお申込みください。</p>
       <div className="aspect-[4/3] w-full">
         <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLScbW21jm8d8bXNfKu5idCvszoNWuF850v4IxOmukE57lDoF-w/viewform?usp=dialog"
+          src="https://docs.google.com/forms/d/e/1FAIpQLScrZ0LiM1mB6uHHYluQxc2ihKbvJV6qF5SL7kNYqvvZtXQiWw/viewform?usp=dialog"
           className="w-full h-[80vh] border rounded"
           title="イベント申込フォーム"
         >
