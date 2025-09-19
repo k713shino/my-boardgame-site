@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { Analytics } from "@vercel/analytics/next"
 
 const themeScript = `(() => {
   const root = document.documentElement;
@@ -49,7 +49,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
             <Link href="/" className="mt-6 flex flex-col items-center gap-2 text-2xl font-black uppercase tracking-[0.2em] text-slate-900 transition hover:text-rose-500 dark:text-white dark:hover:text-rose-300">
               <span className="text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400">Boardgame culture journal</span>
-              Boardgame Lab
+              <span className="flex items-center gap-4">
+                <Image
+                  src="/images/icon.svg"
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="h-10 w-10 text-rose-500"
+                  aria-hidden
+                  priority
+                />
+                <span>Boardgame Lab</span>
+                <Image
+                  src="/images/icon.svg"
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="h-10 w-10 text-rose-500"
+                  aria-hidden
+                  priority
+                />
+              </span>
             </Link>
           </header>
           <main className="w-full max-w-4xl">
