@@ -11,6 +11,7 @@ export default function NewPlayPage() {
   const [players, setPlayers] = useState<Player[]>([{ name: "" }]);
   const [notes, setNotes] = useState<string>("");
   const [tags, setTags] = useState<string>(""); // カンマ区切り
+  const [image, setImage] = useState<string>(""); // 画像パス or URL
   const [hp, setHp] = useState<string>(""); // ハニーポット
 
   const [status, setStatus] = useState<"idle"|"sending"|"ok"|"error">("idle");
@@ -36,6 +37,7 @@ export default function NewPlayPage() {
           players: players.filter(p => p.name.trim().length),
           notes,
           tags: tags.split(",").map(t => t.trim()).filter(Boolean),
+          image: image.trim() || undefined,
           _hp: hp, // honeypot
         }),
       });
@@ -44,7 +46,7 @@ export default function NewPlayPage() {
         setStatus("ok");
         setMessage("送信しました！");
         // フォーム初期化
-        setDate(""); setGameId(""); setLocation(""); setPlayers([{ name:"" }]); setNotes(""); setTags("");
+        setDate(""); setGameId(""); setLocation(""); setPlayers([{ name:"" }]); setNotes(""); setTags(""); setImage("");
       } else {
         setStatus("error");
         setMessage("送信に失敗しました: " + (json.error ?? "unknown"));
@@ -114,6 +116,17 @@ export default function NewPlayPage() {
           <label htmlFor="play-tags" className="block text-sm font-medium">タグ（カンマ区切り）</label>
           <input id="play-tags" className="w-full border rounded px-3 py-2"
                  value={tags} onChange={(e)=>setTags(e.target.value)} />
+        </div>
+
+        <div>
+          <label htmlFor="play-image" className="block text-sm font-medium">画像パス（例: /images/plays/sample.jpg）</label>
+          <input
+            id="play-image"
+            className="w-full border rounded px-3 py-2"
+            placeholder="/images/plays/..."
+            value={image}
+            onChange={(e)=>setImage(e.target.value)}
+          />
         </div>
 
         <button disabled={status==="sending"} className="px-4 py-2 rounded bg-black text-white">

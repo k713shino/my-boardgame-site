@@ -6,6 +6,7 @@ export type RemotePlay = {
   players?: { name: string; score?: number; win?: boolean }[];
   notes?: string;
   tags?: string[];
+  image?: string;
 };
 
 type RawRemotePlay = {
@@ -16,6 +17,7 @@ type RawRemotePlay = {
   players?: unknown;
   notes?: unknown;
   tags?: unknown;
+  image?: unknown;
 };
 
 function formatLocalDate(date: Date): string {
@@ -215,6 +217,7 @@ function normalizeRemotePlay(raw: RawRemotePlay): RemotePlay | null {
       const tags = extractTags(record);
       return tags.length ? tags : undefined;
     })(),
+    image: typeof record.image === "string" && record.image.trim() ? record.image.trim() : undefined,
   };
 }
 

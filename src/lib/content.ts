@@ -25,6 +25,7 @@ export type Play = {
   players?: { name: string; score?: number; win?: boolean }[];
   notes?: string;
   tags?: string[];
+  image?: string;
   body?: string;
 };
 
@@ -81,6 +82,7 @@ export function getAllPlays(): Play[] {
       ...data,
       id,
       date: normalizeDate(data.date),
+      image: data.image as string | undefined,
       body: content,
     } as Play;
   }).sort((a, b) => b.date.localeCompare(a.date));

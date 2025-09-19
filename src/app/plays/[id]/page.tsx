@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { getPlayById } from "@/lib/content";
 import { fetchRemotePlays, type RemotePlay } from "@/lib/remote";
 
@@ -33,12 +34,25 @@ export default async function PlayDetail({ params }: { params: { id: string } })
   const players = play.players ?? [];
   const rawNotes = "body" in play && typeof play.body === "string" ? play.body : play.notes;
   const notes = typeof rawNotes === "string" ? rawNotes : "";
+  const image = "image" in play ? (play.image as string | undefined) : undefined;
 
   return (
     <article className="prose max-w-none">
       <h1>
         {date} / {gameId}
       </h1>
+      {image ? (
+        <div className="my-6">
+          <Image
+            src={image}
+            alt={`${gameId} session photo`}
+            width={960}
+            height={540}
+            className="h-auto w-full rounded-xl border border-slate-200 shadow-sm"
+            priority
+          />
+        </div>
+      ) : null}
       <ul>
         <li>場所: {location}</li>
         <li>タグ: {tags}</li>
