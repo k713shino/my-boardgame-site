@@ -1,5 +1,5 @@
 ---
-id: The Quest for El Dorado
+id: The_Quest_for_El_Dorado
 title: エルドラドを探して
 designer: Reiner Knizia
 publisher: Ravensburger
