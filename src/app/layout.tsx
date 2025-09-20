@@ -3,6 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { Analytics } from '@vercel/analytics/next';
 
 const themeScript = `(() => {
   const root = document.documentElement;
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             © {new Date().getFullYear()} Boardgame Lab
           </footer>
         </div>
+        <Analytics />
       </body>
     </html>
   );
