@@ -72,9 +72,10 @@ export default async function PlayDetail({ params }: { params: { id: string } })
       {notes ? (
         <>
           <hr />
-          <div>{notes}</div>
+          <div className="whitespace-pre-wrap">{notes}</div>
         </>
       ) : null}
     </article>
   );
 }
+

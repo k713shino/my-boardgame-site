@@ -27,7 +27,9 @@ export default function GameDetail({ params }: { params: { slug: string } }) {
         <li>タグ: {game.tags?.join(", ")}</li>
       </ul>
       <hr />
-      <div>{game.body}</div>
+      <div className="whitespace-pre-wrap">{game.body}</div>
     </article>
   );
 }
+
+

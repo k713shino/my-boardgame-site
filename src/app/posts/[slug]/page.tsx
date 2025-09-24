@@ -12,7 +12,8 @@ export default function PostDetail({ params }: { params: { slug: string } }) {
         {post.date}{post.category ? ` / ${post.category}` : ""}
       </div>
       <hr />
-      <div>{post.body}</div>
+      <div className="whitespace-pre-wrap">{post.body}</div>
     </article>
   );
 }
+

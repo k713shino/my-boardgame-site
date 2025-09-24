@@ -34,3 +34,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Cloudinary integration
+
+1. Create a Cloudinary account and retrieve your cloud_name, api_key, and api_secret.
+2. Add the values to .env.local (CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET). Optionally set CLOUDINARY_UPLOAD_FOLDER.
+3. Restart the dev server so Next.js picks up the environment variables.
+4. Use the form at /plays/new to upload images. Uploaded files return a Cloudinary URL that is saved with the play entry and previewed automatically.
+
+> The /api/upload-image route accepts multipart form data with a file field and streams uploads to Cloudinary using the official SDK.
+

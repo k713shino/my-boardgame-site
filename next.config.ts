@@ -1,16 +1,23 @@
-// next.config.mjs
 import createMDX from '@next/mdx';
+import type { NextConfig } from 'next';
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
 });
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // 必要なら実験フラグ等
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default withMDX({
   ...nextConfig,
-  pageExtensions: ['ts','tsx','md','mdx'],
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
 });
