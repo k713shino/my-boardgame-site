@@ -77,10 +77,36 @@ async function fileExists(filePath: string): Promise<boolean> {
   }
 }
 
-export async function POST(req: Request) {
-  try {
-    const formData = await req.formData();
+function isFileLike(value: unknown): value is Blob & { name?: string } {
+  if (!value) return false;
+  if (typeof value === "string") return false;
+  if (typeof value !== "object") return false;
+  return typeof (value as Blob).arrayBuffer === "function";
+}
 
+function detectFsErrorStatus(error: unknown): number {
+  if (error && typeof error === "object" && "code" in error) {
+    const code = String((error as { code: unknown }).code);
+    if (code === "EROFS" || code === "EACCES") {
+      return 403;
+    }
+  }
+  return 500;
+}
+
+export async function POST(req: Request) {
+  let formData: FormData;
+  try {
+    formData = await req.formData();
+  } catch (error) {
+    console.error("Markdown upload: failed to parse form-data", error);
+    return NextResponse.json<ErrorResponse>(
+      { ok: false, error: "フォームデータを解析できませんでした。multipart/form-data で送信してください。" },
+      { status: 400 },
+    );
+  }
+
+  try {
     const expectedToken = process.env.CONTENT_UPLOAD_TOKEN;
     const providedTokenEntry = formData.get("token");
     const providedToken = typeof providedTokenEntry === "string" ? providedTokenEntry.trim() : "";
@@ -100,15 +126,15 @@ export async function POST(req: Request) {
     }
 
     const fileEntry = formData.get("file");
-    if (!(fileEntry instanceof File)) {
+    if (!isFileLike(fileEntry)) {
       return NextResponse.json<ErrorResponse>({ ok: false, error: "Markdown file is required" }, { status: 400 });
     }
 
-    if (fileEntry.size === 0) {
+    if ("size" in fileEntry && typeof fileEntry.size === "number" && fileEntry.size === 0) {
       return NextResponse.json<ErrorResponse>({ ok: false, error: "File is empty" }, { status: 400 });
     }
 
-    if (fileEntry.size > 512 * 1024) {
+    if ("size" in fileEntry && typeof fileEntry.size === "number" && fileEntry.size > 512 * 1024) {
       return NextResponse.json<ErrorResponse>({ ok: false, error: "File is too large (512KB max)" }, { status: 413 });
     }
 
@@ -131,7 +157,7 @@ export async function POST(req: Request) {
       collectionKey === "posts" ? data.slug : data.id,
       collectionKey === "posts" ? data.id : data.slug,
       data.title,
-      path.parse(fileEntry.name ?? "").name,
+      (fileEntry as { name?: string }).name,
     ]);
 
     if (!entryIdCandidate) {
@@ -143,9 +169,9 @@ export async function POST(req: Request) {
       return NextResponse.json<ErrorResponse>({ ok: false, error: "Entry identifier contains invalid characters" }, { status: 400 });
     }
 
-    const originalExt = path.extname(fileEntry.name ?? "").toLowerCase();
+    const originalName = (fileEntry as { name?: string }).name ?? "";
+    const originalExt = path.extname(originalName).toLowerCase();
     const extension = ALLOWED_EXTENSIONS.has(originalExt) ? originalExt : ".md";
-
     const filename = `${safeBaseName}${extension}`;
 
     const targetDir = path.join(process.cwd(), "src", "content", COLLECTION_DIRS[collectionKey]);
@@ -176,6 +202,8 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error("Markdown upload failed", error);
-    return NextResponse.json<ErrorResponse>({ ok: false, error: "Unexpected server error" }, { status: 500 });
+    const message = error instanceof Error ? error.message : "Unexpected server error";
+    const status = detectFsErrorStatus(error);
+    return NextResponse.json<ErrorResponse>({ ok: false, error: message }, { status });
   }
 }
