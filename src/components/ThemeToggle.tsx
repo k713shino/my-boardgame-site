@@ -10,10 +10,18 @@ function applyTheme(theme: Theme) {
   const root = document.documentElement;
   root.classList.remove("light", "dark");
   root.classList.add(theme);
+  root.dataset.theme = theme;
   try {
     localStorage.setItem(storageKey, theme);
   } catch {
     // ignore write errors (private mode, etc.)
+  }
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set("theme", theme);
+    window.history.replaceState(null, "", url.toString());
+  } catch {
+    // ignore URL update issues (e.g. file protocol)
   }
 }
 
@@ -42,7 +50,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={handleToggle}
-      className="relative flex items-center gap-2 rounded-full border border-slate-900/10 bg-slate-900 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-slate-100 shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl dark:border-white/10 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white"
+      className="theme-toggle relative flex items-center gap-2 rounded-full px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.3em] shadow-lg transition-transform duration-200 hover:-translate-y-0.5"
       aria-label={ariaLabel}
     >
       <span className="text-lg" aria-hidden="true">

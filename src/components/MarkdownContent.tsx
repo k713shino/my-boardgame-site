@@ -10,7 +10,11 @@ type MarkdownContentProps = {
 export default function MarkdownContent({ source, className }: MarkdownContentProps) {
   if (!source) return null;
 
-  const containerClassName = ["prose", "max-w-none", className].filter(Boolean).join(" ") || undefined;
+  const baseClasses = ["prose", "prose-slate", "max-w-none", "dark:prose-invert"];
+  if (className) {
+    baseClasses.push(className);
+  }
+  const containerClassName = baseClasses.join(" ");
 
   return (
     <div className={containerClassName}>

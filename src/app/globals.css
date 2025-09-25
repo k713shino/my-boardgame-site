@@ -1,7 +1,41 @@
 @import "tailwindcss";
 
-:root {
-  color-scheme: light dark;
+html.light {
+  color-scheme: light;
+  --bg-body: #f8fafc;
+  --fg-body: #0f172a;
+  --fg-muted: #475569;
+  --fg-inverse: #f8fafc;
+  --selection-bg: rgba(244, 114, 182, 0.22);
+  --selection-fg: #111827;
+  --surface-primary: rgba(255, 255, 255, 0.92);
+  --surface-border: rgba(148, 163, 184, 0.45);
+  --surface-shadow: 0 30px 80px -60px rgba(148, 163, 184, 0.8);
+  --nav-hover: #f43f5e;
+  --accent-primary: #f43f5e;
+  --toggle-bg: #0f172a;
+  --toggle-bg-hover: #1e293b;
+  --toggle-fg: #f8fafc;
+  --toggle-fg-hover: #e2e8f0;
+}
+
+html.dark {
+  color-scheme: dark;
+  --bg-body: #020617;
+  --fg-body: #e2e8f0;
+  --fg-muted: #cbd5f5;
+  --fg-inverse: #0f172a;
+  --selection-bg: rgba(125, 211, 252, 0.28);
+  --selection-fg: #020617;
+  --surface-primary: rgba(15, 23, 42, 0.85);
+  --surface-border: rgba(71, 85, 105, 0.6);
+  --surface-shadow: 0 30px 80px -60px rgba(15, 23, 42, 0.85);
+  --nav-hover: #f9a8d4;
+  --accent-primary: #f472b6;
+  --toggle-bg: #f8fafc;
+  --toggle-bg-hover: #e2e8f0;
+  --toggle-fg: #0f172a;
+  --toggle-fg-hover: #1f2937;
 }
 
 html {
@@ -14,7 +48,8 @@ body {
   max-width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
-  background: transparent;
+  background: var(--bg-body);
+  color: var(--fg-body);
   font-family: "Noto Sans JP", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -31,25 +66,83 @@ a {
   text-decoration: none;
 }
 
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
+.text-muted {
+  color: var(--fg-muted);
+}
+
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(at 15% 20%, rgba(79, 70, 229, 0.25), transparent 55%),
-    radial-gradient(at 85% 10%, rgba(236, 72, 153, 0.2), transparent 55%),
-    radial-gradient(at 50% 80%, rgba(14, 165, 233, 0.2), transparent 60%),
-    #f8fafc;
   transition: background 0.6s ease, opacity 0.6s ease;
-  opacity: 0.85;
+}
+
+html.light body::before {
+  background:
+    radial-gradient(at 15% 15%, rgba(110, 138, 255, 0.38), transparent 55%),
+    radial-gradient(at 85% 10%, rgba(255, 170, 207, 0.35), transparent 55%),
+    radial-gradient(at 50% 85%, rgba(151, 231, 255, 0.32), transparent 60%),
+    radial-gradient(at 15% 85%, rgba(255, 255, 255, 0.65), transparent 60%),
+    #f4f6ff;
+  opacity: 0.9;
 }
 
 html.dark body::before {
   background:
-    radial-gradient(at 15% 20%, rgba(165, 180, 252, 0.25), transparent 55%),
-    radial-gradient(at 85% 10%, rgba(248, 113, 113, 0.18), transparent 60%),
-    radial-gradient(at 60% 80%, rgba(45, 212, 191, 0.18), transparent 55%),
+    radial-gradient(at 15% 20%, rgba(165, 180, 252, 0.35), transparent 55%),
+    radial-gradient(at 85% 15%, rgba(248, 113, 113, 0.25), transparent 60%),
+    radial-gradient(at 65% 85%, rgba(45, 212, 191, 0.24), transparent 55%),
     #020617;
   opacity: 0.92;
+}
+
+.surface-card {
+  background: var(--surface-primary);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--surface-shadow);
+  backdrop-filter: blur(18px);
+  transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+.nav-link {
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.brand-link:hover {
+  color: var(--nav-hover);
+}
+
+.brand-link {
+  color: var(--fg-body);
+  transition: color 0.2s ease;
+}
+
+.brand-subtitle {
+  color: var(--fg-muted);
+}
+
+.theme-toggle {
+  background: var(--toggle-bg);
+  color: var(--toggle-fg);
+  border: 1px solid var(--surface-border);
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--toggle-bg-hover);
+  color: var(--toggle-fg-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(15, 23, 42, 0.25);
+}
+
+html.dark .theme-toggle:hover {
+  box-shadow: 0 20px 40px -20px rgba(15, 23, 42, 0.6);
 }
