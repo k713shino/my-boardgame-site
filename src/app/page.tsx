@@ -79,7 +79,7 @@ export default async function Home() {
             <span className="text-rose-500">.</span>
           </h1>
           <p className="max-w-2xl text-base text-slate-600 dark:text-slate-200">
-            ボードゲームの盤面からインスピレーションを受けたプレイログとレビューを、音楽雑誌のような軽快なリズムでお届けします。次号のテーマやイベント情報もここからチェック。
+            ボードゲームの盤面からインスピレーションを受けたプレイログとレビューを、軽快なリズムでお届けします。次号のテーマやイベント情報もここからチェック。
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
