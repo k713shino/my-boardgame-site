@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getGameById } from "@/lib/content";
+import MarkdownContent from "@/components/MarkdownContent";
 
 export default function GameDetail({ params }: { params: { slug: string } }) {
   const game = getGameById(params.slug);
   if (!game) return notFound();
   return (
-    <article className="prose max-w-none">
+    <article className="max-w-none">
       <h1>{game.title}</h1>
       {game.image ? (
         <div className="my-6">
@@ -26,8 +27,8 @@ export default function GameDetail({ params }: { params: { slug: string } }) {
         <li>重さ: {game.weight ?? "-"}</li>
         <li>タグ: {game.tags?.join(", ")}</li>
       </ul>
-      <hr />
-      <div className="whitespace-pre-wrap">{game.body}</div>
+      <hr className="my-6" />
+      <MarkdownContent source={game.body} />
     </article>
   );
 }

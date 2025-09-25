@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { CONTENT_WRITE_ROOT } from "@/lib/content";
 
 const COLLECTION_DIRS = {
   posts: "posts",
@@ -174,7 +175,7 @@ export async function POST(req: Request) {
     const extension = ALLOWED_EXTENSIONS.has(originalExt) ? originalExt : ".md";
     const filename = `${safeBaseName}${extension}`;
 
-    const targetDir = path.join(process.cwd(), "src", "content", COLLECTION_DIRS[collectionKey]);
+    const targetDir = path.join(CONTENT_WRITE_ROOT, COLLECTION_DIRS[collectionKey]);
     await ensureDirExists(targetDir);
 
     const targetPath = path.join(targetDir, filename);

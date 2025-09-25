@@ -47,20 +47,42 @@ function normalizeDate(value: unknown): string {
 }
 
 const root = process.cwd();
-const CONTENT = path.join(root, "src", "content");
+
+function resolveContentOverride(): string | null {
+  const override = process.env.CONTENT_BASE_DIR;
+  if (!override) return null;
+  const normalized = override.trim();
+  if (!normalized) return null;
+  return path.isAbsolute(normalized) ? normalized : path.join(root, normalized);
+}
+
+const defaultContentRoot = path.join(root, "src", "content");
+const overrideContentRoot = resolveContentOverride();
+
+export const CONTENT_WRITE_ROOT = overrideContentRoot ?? defaultContentRoot;
+export const CONTENT_READ_ROOTS = overrideContentRoot
+  ? [CONTENT_WRITE_ROOT, defaultContentRoot]
+  : [defaultContentRoot];
 
 function readMdx(dir: string) {
-  const full = path.join(CONTENT, dir);
-  if (!fs.existsSync(full)) return [];
-  return fs
-    .readdirSync(full)
-    .filter((f) => f.endsWith(".md") || f.endsWith(".mdx"))
-    .map((filename) => {
-      const filePath = path.join(full, filename);
-      const raw = fs.readFileSync(filePath, "utf-8");
-      const { data, content } = matter(raw);
-      return { data, content, filename };
-    });
+  const aggregate = new Map<string, { data: matter.GrayMatterFile<string>["data"]; content: string; filename: string }>();
+
+  CONTENT_READ_ROOTS.forEach((rootPath) => {
+    const full = path.join(rootPath, dir);
+    if (!fs.existsSync(full)) return;
+
+    fs.readdirSync(full)
+      .filter((f) => f.endsWith(".md") || f.endsWith(".mdx"))
+      .forEach((filename) => {
+        if (aggregate.has(filename)) return;
+        const filePath = path.join(full, filename);
+        const raw = fs.readFileSync(filePath, "utf-8");
+        const { data, content } = matter(raw);
+        aggregate.set(filename, { data, content, filename });
+      });
+  });
+
+  return Array.from(aggregate.values());
 }
 
 // Games

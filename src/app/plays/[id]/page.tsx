@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getPlayById } from "@/lib/content";
 import { fetchRemotePlays, type RemotePlay } from "@/lib/remote";
+import MarkdownContent from "@/components/MarkdownContent";
 
 function toDateString(value: unknown): string {
   if (!value) return "";
@@ -37,7 +38,7 @@ export default async function PlayDetail({ params }: { params: { id: string } })
   const image = "image" in play ? (play.image as string | undefined) : undefined;
 
   return (
-    <article className="prose max-w-none">
+    <article className="max-w-none">
       <h1>
         {date} / {gameId}
       </h1>
@@ -70,10 +71,10 @@ export default async function PlayDetail({ params }: { params: { id: string } })
         </div>
       ) : null}
       {notes ? (
-        <>
-          <hr />
-          <div className="whitespace-pre-wrap">{notes}</div>
-        </>
+        <div className="mt-6">
+          <hr className="mb-6" />
+          <MarkdownContent source={notes} />
+        </div>
       ) : null}
     </article>
   );
