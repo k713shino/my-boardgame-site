@@ -121,9 +121,13 @@ export default function NewPlayPage() {
   }
 
   return (
-    <div className="max-w-2xl">
-      <h1 className="text-2xl font-bold mb-4">プレイ記録の追加</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="space-y-6">
+      <div className="space-y-3 text-center sm:text-left">
+        <span className="text-xs font-semibold uppercase tracking-[0.28em] text-teal-500 sm:tracking-[0.35em]">Session Entry</span>
+        <h1 className="text-3xl font-black tracking-tight text-[color:var(--fg-body)]">プレイ記録の追加</h1>
+        <p className="text-sm text-muted sm:text-base">プレイ内容を記録してコミュニティと共有しましょう。</p>
+      </div>
+      <form onSubmit={handleSubmit} className="surface-card mx-auto max-w-2xl space-y-6 rounded-2xl px-5 py-5 sm:px-6 sm:py-6">
         <div className="hidden">
           <label htmlFor="honeypot">このフィールドに入力しないでください</label>
           <input id="honeypot" value={hp} onChange={(event) => setHp(event.target.value)} />
@@ -137,7 +141,7 @@ export default function NewPlayPage() {
             id="play-date"
             required
             type="date"
-            className="w-full border rounded px-3 py-2"
+            className="mt-1 w-full rounded-xl border border-slate-300/60 bg-white/80 px-3 py-2 text-sm shadow-sm focus:border-teal-400 focus:outline-none focus:ring-0 dark:border-slate-600/60 dark:bg-slate-900/70 dark:text-slate-100"
             value={date}
             onChange={(event) => setDate(event.target.value)}
           />
@@ -150,7 +154,7 @@ export default function NewPlayPage() {
           <input
             id="play-game"
             required
-            className="w-full border rounded px-3 py-2"
+            className="mt-1 w-full rounded-xl border border-slate-300/60 bg-white/80 px-3 py-2 text-sm shadow-sm focus:border-teal-400 focus:outline-none focus:ring-0 dark:border-slate-600/60 dark:bg-slate-900/70 dark:text-slate-100"
             value={gameId}
             onChange={(event) => setGameId(event.target.value)}
           />
@@ -162,7 +166,7 @@ export default function NewPlayPage() {
           </label>
           <input
             id="play-location"
-            className="w-full border rounded px-3 py-2"
+            className="mt-1 w-full rounded-xl border border-slate-300/60 bg-white/80 px-3 py-2 text-sm shadow-sm focus:border-teal-400 focus:outline-none focus:ring-0 dark:border-slate-600/60 dark:bg-slate-900/70 dark:text-slate-100"
             value={location}
             onChange={(event) => setLocation(event.target.value)}
           />
@@ -171,14 +175,14 @@ export default function NewPlayPage() {
         <div className="space-y-2">
           <div className="text-sm font-medium">プレイヤー</div>
           {players.map((player, index) => (
-            <div key={index} className="grid grid-cols-12 gap-2 items-center">
+            <div key={index} className="flex flex-col gap-2 rounded-xl border border-slate-200/60 bg-white/80 p-3 shadow-sm sm:grid sm:grid-cols-12 sm:items-center sm:gap-3 dark:border-slate-700/60 dark:bg-slate-900/60">
               <label htmlFor={`player-${index}-name`} className="sr-only">
                 プレイヤー名 {index + 1}
               </label>
               <input
                 id={`player-${index}-name`}
                 placeholder="名前"
-                className="col-span-5 border rounded px-2 py-1"
+                className="w-full rounded-xl border border-slate-300/60 bg-white/80 px-3 py-2 text-sm shadow-sm focus:border-teal-400 focus:outline-none focus:ring-0 dark:border-slate-600/60 dark:bg-slate-900/70 dark:text-slate-100 sm:col-span-5"
                 value={player.name}
                 onChange={(event) => updatePlayer(index, { name: event.target.value })}
               />
@@ -189,7 +193,7 @@ export default function NewPlayPage() {
                 id={`player-${index}-score`}
                 placeholder="スコア"
                 type="number"
-                className="col-span-3 border rounded px-2 py-1"
+                className="w-full rounded-xl border border-slate-300/60 bg-white/80 px-3 py-2 text-sm shadow-sm focus:border-teal-400 focus:outline-none focus:ring-0 dark:border-slate-600/60 dark:bg-slate-900/70 dark:text-slate-100 sm:col-span-3"
                 value={player.score ?? ""}
                 onChange={(event) =>
                   updatePlayer(index, {
@@ -197,7 +201,7 @@ export default function NewPlayPage() {
                   })
                 }
               />
-              <label className="col-span-2 flex items-center gap-1 text-sm">
+              <label className="flex items-center gap-1 text-sm sm:col-span-2">
                 <input
                   type="checkbox"
                   checked={player.win ?? false}
@@ -208,13 +212,13 @@ export default function NewPlayPage() {
               <button
                 type="button"
                 onClick={() => removePlayer(index)}
-                className="col-span-2 text-sm underline"
+                className="text-sm font-semibold text-rose-500 underline underline-offset-4 transition hover:text-rose-400 sm:col-span-2"
               >
                 削除
               </button>
             </div>
           ))}
-          <button type="button" onClick={addPlayer} className="text-sm underline">
+          <button type="button" onClick={addPlayer} className="text-sm font-semibold text-teal-500 underline underline-offset-4 transition hover:text-teal-400">
             + 追加
           </button>
         </div>
@@ -225,7 +229,7 @@ export default function NewPlayPage() {
           </label>
           <textarea
             id="play-notes"
-            className="w-full border rounded px-3 py-2 h-24"
+            className="mt-1 h-32 w-full rounded-xl border border-slate-300/60 bg-white/80 px-3 py-3 text-sm shadow-sm focus:border-teal-400 focus:outline-none focus:ring-0 dark:border-slate-600/60 dark:bg-slate-900/70 dark:text-slate-100"
             value={notes}
             onChange={(event) => setNotes(event.target.value)}
           />
@@ -237,7 +241,7 @@ export default function NewPlayPage() {
           </label>
           <input
             id="play-tags"
-            className="w-full border rounded px-3 py-2"
+            className="mt-1 w-full rounded-xl border border-slate-300/60 bg-white/80 px-3 py-2 text-sm shadow-sm focus:border-teal-400 focus:outline-none focus:ring-0 dark:border-slate-600/60 dark:bg-slate-900/70 dark:text-slate-100"
             value={tags}
             onChange={(event) => setTags(event.target.value)}
           />
@@ -253,7 +257,7 @@ export default function NewPlayPage() {
               ref={fileInputRef}
               type="file"
               accept="image/*"
-              className="w-full border rounded px-3 py-2"
+              className="mt-1 w-full rounded-xl border border-slate-300/60 bg-white/80 px-3 py-2 text-sm shadow-sm focus:border-teal-400 focus:outline-none focus:ring-0 dark:border-slate-600/60 dark:bg-slate-900/70 dark:text-slate-100"
               onChange={handleImageFileChange}
             />
             {imageUploadMessage ? (
@@ -278,7 +282,7 @@ export default function NewPlayPage() {
             <div className="flex gap-2">
               <input
                 id="play-image"
-                className="flex-1 border rounded px-3 py-2"
+                className="flex-1 rounded-xl border border-slate-300/60 bg-white/80 px-3 py-2 text-sm shadow-sm focus:border-teal-400 focus:outline-none focus:ring-0 dark:border-slate-600/60 dark:bg-slate-900/70 dark:text-slate-100"
                 placeholder="https://res.cloudinary.com/..."
                 value={image}
                 onChange={(event) => setImage(event.target.value)}
@@ -287,7 +291,7 @@ export default function NewPlayPage() {
                 <button
                   type="button"
                   onClick={clearImage}
-                  className="whitespace-nowrap rounded border px-3 py-2 text-sm"
+                  className="whitespace-nowrap rounded-full border border-slate-300/60 px-3 py-2 text-sm font-semibold text-slate-600 transition hover:border-teal-400 hover:text-teal-500 dark:border-slate-600/60 dark:text-slate-200"
                 >
                   クリア
                 </button>
@@ -314,7 +318,7 @@ export default function NewPlayPage() {
 
         <button
           disabled={status === "sending" || imageUploadStatus === "uploading"}
-          className="px-4 py-2 rounded bg-black text-white disabled:opacity-60"
+          className="inline-flex items-center justify-center rounded-full bg-teal-500 px-5 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:bg-teal-400 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === "sending" ? "送信中..." : "送信"}
         </button>

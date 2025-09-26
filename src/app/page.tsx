@@ -65,8 +65,8 @@ export default async function Home() {
     .slice(0, 4);
 
   return (
-    <div className="w-full max-w-4xl space-y-16 text-center">
-      <section className="surface-card relative isolate flex min-h-[420px] flex-col items-center justify-center rounded-[24px] px-10 py-16 text-center ring-1 ring-slate-200/40 dark:ring-slate-800/40">
+    <div className="w-full space-y-12 sm:space-y-16">
+      <section className="surface-card relative isolate flex flex-col items-center gap-8 justify-center overflow-hidden rounded-[24px] px-6 py-12 sm:px-10 sm:py-16 text-center ring-1 ring-slate-200/40 dark:ring-slate-800/40">
         <div className="pointer-events-none absolute -top-32 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-rose-400/30 blur-[120px] dark:bg-rose-500/40" aria-hidden />
         <div className="pointer-events-none absolute bottom-[-30%] right-[-10%] h-72 w-72 rounded-full bg-indigo-400/25 blur-[120px] dark:bg-indigo-500/30" aria-hidden />
         <div className="pointer-events-none absolute inset-x-16 top-10 h-px bg-gradient-to-r from-transparent via-slate-300/50 to-transparent dark:via-slate-600/50" aria-hidden />
@@ -74,38 +74,38 @@ export default async function Home() {
           <span className="text-[0.7rem] font-semibold uppercase tracking-[0.45em] text-muted">
             Special Issue Vol.01
           </span>
-          <h1 className="text-5xl font-black uppercase leading-none tracking-tight text-[color:var(--fg-body)] sm:text-6xl">
+          <h1 className="text-4xl font-black uppercase leading-tight tracking-tight text-[color:var(--fg-body)] sm:text-6xl">
             Sound of Strategy
             <span className="text-rose-500">.</span>
           </h1>
-          <p className="max-w-2xl text-base text-muted">
+          <p className="max-w-2xl text-sm text-muted sm:text-base">
             ボードゲームの盤面からインスピレーションを受けたプレイログとレビューを、軽快なリズムでお届けします。次号のテーマやイベント情報もここからチェック。
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
             <Link
               href="/posts"
-              className="inline-flex items-center gap-3 rounded-full bg-rose-500 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-white shadow-lg shadow-rose-500/40 transition hover:-translate-y-0.5 hover:bg-rose-400"
+              className="inline-flex w-full items-center justify-center gap-3 sm:w-auto rounded-full bg-rose-500 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-white shadow-lg shadow-rose-500/40 transition hover:-translate-y-0.5 hover:bg-rose-400"
             >
               Read Articles
               <span aria-hidden>→</span>
             </Link>
             <Link
               href="/games"
-              className="inline-flex items-center gap-3 rounded-full border border-slate-400/70 bg-white/80 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-rose-400 hover:text-rose-500 dark:border-slate-600/70 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-rose-400 dark:hover:text-rose-300"
+              className="inline-flex w-full items-center justify-center gap-3 sm:w-auto rounded-full border border-slate-400/70 bg-white/80 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-rose-400 hover:text-rose-500 dark:border-slate-600/70 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-rose-400 dark:hover:text-rose-300"
             >
               View Collection
             </Link>
           </div>
           <div className="grid w-full gap-3 pt-6 text-center sm:grid-cols-3">
-            <div className="surface-card flex flex-col items-center gap-1 rounded-xl px-5 py-4 text-xs uppercase tracking-[0.35em] text-muted">
+            <div className="surface-card flex flex-col items-center gap-1 rounded-xl px-5 py-4 text-xs uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted">
               <span className="text-[0.6rem] text-rose-500">Feature</span>
               最新記事のピックアップ
             </div>
-            <div className="surface-card flex flex-col items-center gap-1 rounded-xl px-5 py-4 text-xs uppercase tracking-[0.35em] text-muted">
+            <div className="surface-card flex flex-col items-center gap-1 rounded-xl px-5 py-4 text-xs uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted">
               <span className="text-[0.6rem] text-indigo-500">Live</span>
               プレイセッション速報
             </div>
-            <div className="surface-card flex flex-col items-center gap-1 rounded-xl px-5 py-4 text-xs uppercase tracking-[0.35em] text-muted">
+            <div className="surface-card flex flex-col items-center gap-1 rounded-xl px-5 py-4 text-xs uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted">
               <span className="text-[0.6rem] text-teal-500">Archive</span>
               コレクションギャラリー
             </div>
@@ -114,14 +114,14 @@ export default async function Home() {
       </section>
 
       <section className="space-y-8">
-        <div className="flex flex-col items-center gap-3 text-center">
+        <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
           <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-rose-500">
             Latest Stories
           </span>
           <h2 className="text-3xl font-black uppercase tracking-tight text-[color:var(--fg-body)]">
             最新記事
           </h2>
-          <Link href="/posts" className="text-xs font-semibold uppercase tracking-[0.35em] text-muted underline decoration-dotted underline-offset-4">
+          <Link href="/posts" className="text-xs font-semibold uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted underline decoration-dotted underline-offset-4">
             一覧を見る
           </Link>
         </div>
@@ -130,17 +130,17 @@ export default async function Home() {
             <Link
               key={p.slug}
               href={`/posts/${p.slug}`}
-              className="group surface-card flex flex-col gap-3 rounded-2xl px-6 py-5 transition hover:-translate-y-1 hover:border-rose-400/70 hover:shadow-[0_30px_80px_-50px_rgba(244,114,182,0.6)]"
+              className="group surface-card flex flex-col gap-3 rounded-2xl px-5 py-5 sm:px-6 sm:py-6 transition hover:-translate-y-1 hover:border-rose-400/70 hover:shadow-[0_30px_80px_-50px_rgba(244,114,182,0.6)]"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.4em] text-muted">
+              <span className="text-xs font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-muted">
                 {formatDate(p.date)}{p.category ? ` ・ ${p.category}` : ""}
               </span>
-              <span className="text-2xl font-black tracking-tight text-[color:var(--fg-body)] transition group-hover:text-rose-500">
+              <span className="text-xl font-black tracking-tight sm:text-2xl text-[color:var(--fg-body)] transition group-hover:text-rose-500">
                 {p.title}
               </span>
               {p.excerpt ? <span className="text-sm leading-relaxed text-muted">{p.excerpt}</span> : null}
               {p.tags?.length ? (
-                <span className="text-xs uppercase tracking-[0.35em] text-rose-400">#{p.tags.slice(0, 3).join(" #")}</span>
+                <span className="text-xs uppercase tracking-[0.28em] sm:tracking-[0.35em] text-rose-400">#{p.tags.slice(0, 3).join(" #")}</span>
               ) : null}
             </Link>
           ))}
@@ -148,14 +148,14 @@ export default async function Home() {
       </section>
 
       <section className="space-y-8">
-        <div className="flex flex-col items-center gap-3 text-center">
+        <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
           <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-indigo-500">
             Live Session Log
           </span>
           <h2 className="text-3xl font-black uppercase tracking-tight text-[color:var(--fg-body)]">
             最近のプレイ
           </h2>
-          <Link href="/plays" className="text-xs font-semibold uppercase tracking-[0.35em] text-muted underline decoration-dotted underline-offset-4">
+          <Link href="/plays" className="text-xs font-semibold uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted underline decoration-dotted underline-offset-4">
             一覧を見る
           </Link>
         </div>
@@ -164,16 +164,16 @@ export default async function Home() {
             <Link
               key={pl.id}
               href={`/plays/${pl.id}`}
-              className="group surface-card flex flex-col gap-3 rounded-2xl px-6 py-5 transition hover:-translate-y-1 hover:border-indigo-400/70 hover:shadow-[0_30px_80px_-50px_rgba(129,140,248,0.5)]"
+              className="group surface-card flex flex-col gap-3 rounded-2xl px-5 py-5 sm:px-6 sm:py-6 transition hover:-translate-y-1 hover:border-indigo-400/70 hover:shadow-[0_30px_80px_-50px_rgba(129,140,248,0.5)]"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.4em] text-muted">
+              <span className="text-xs font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-muted">
                 {formatDate(pl.date)}{pl.location ? ` ・ ${pl.location}` : ""}
               </span>
               <span className="text-xl font-black tracking-tight text-[color:var(--fg-body)] transition group-hover:text-indigo-500">
                 {pl.gameId}
               </span>
               {pl.tags?.length ? (
-                <span className="text-xs uppercase tracking-[0.35em] text-indigo-400">#{pl.tags.slice(0, 3).join(" #")}</span>
+                <span className="text-xs uppercase tracking-[0.28em] sm:tracking-[0.35em] text-indigo-400">#{pl.tags.slice(0, 3).join(" #")}</span>
               ) : null}
             </Link>
           ))}
@@ -181,14 +181,14 @@ export default async function Home() {
       </section>
 
       <section className="space-y-8">
-        <div className="flex flex-col items-center gap-3 text-center">
+        <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
           <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-teal-500">
             Collection Gallery
           </span>
           <h2 className="text-3xl font-black uppercase tracking-tight text-[color:var(--fg-body)]">
             コレクション
           </h2>
-          <Link href="/games" className="text-xs font-semibold uppercase tracking-[0.35em] text-muted underline decoration-dotted underline-offset-4">
+          <Link href="/games" className="text-xs font-semibold uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted underline decoration-dotted underline-offset-4">
             すべて表示
           </Link>
         </div>
@@ -199,7 +199,7 @@ export default async function Home() {
               href={`/games/${g.id}`}
               className="group surface-card flex flex-col gap-3 rounded-2xl px-6 py-6 text-left transition hover:-translate-y-1 hover:border-teal-400/70 hover:shadow-[0_30px_80px_-50px_rgba(45,212,191,0.45)]"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.35em] text-muted">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted">
                 {g.tags?.length ? g.tags[0] : "Featured"}
               </span>
               <span className="text-xl font-black tracking-tight text-[color:var(--fg-body)] transition group-hover:text-teal-500">
@@ -209,7 +209,7 @@ export default async function Home() {
                 <span className="text-xs uppercase tracking-[0.3em] text-muted">Designer: {g.designer}</span>
               ) : null}
               {g.tags?.length ? (
-                <span className="text-xs uppercase tracking-[0.35em] text-teal-400">#{g.tags.slice(0, 3).join(" #")}</span>
+                <span className="text-xs uppercase tracking-[0.28em] sm:tracking-[0.35em] text-teal-400">#{g.tags.slice(0, 3).join(" #")}</span>
               ) : null}
             </Link>
           ))}
