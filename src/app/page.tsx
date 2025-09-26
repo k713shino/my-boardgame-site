@@ -114,7 +114,7 @@ export default async function Home() {
       </section>
 
       <section className="space-y-8">
-        <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
+        <div className="flex flex-col items-center gap-3 text-center">
           <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-rose-500">
             Latest Stories
           </span>
@@ -148,7 +148,7 @@ export default async function Home() {
       </section>
 
       <section className="space-y-8">
-        <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
+        <div className="flex flex-col items-center gap-3 text-center">
           <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-indigo-500">
             Live Session Log
           </span>
@@ -181,7 +181,7 @@ export default async function Home() {
       </section>
 
       <section className="space-y-8">
-        <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
+        <div className="flex flex-col items-center gap-3 text-center">
           <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-teal-500">
             Collection Gallery
           </span>
