@@ -5,10 +5,10 @@ designer: KTR
 publisher: Giant Hobby
 minPlayers: 2
 maxPlayers: 5
-playTime: 35
-weight: 2.2
+playTime: 30
+weight: 1.78
 tags: [協力, ダイスゲーム, RPG, ファンタジー]
-bggId: 0
+bggId: 169513
 image: /images/games/dorasure.jpg
 ---
 力を合わせて邪悪なドラゴンを倒せ！協力型ロールプレイングダイスゲーム。
