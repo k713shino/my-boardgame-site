@@ -106,6 +106,7 @@ html.dark body::before {
   background: var(--surface-primary);
   border: 1px solid var(--surface-border);
   box-shadow: var(--surface-shadow);
+  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
 }
