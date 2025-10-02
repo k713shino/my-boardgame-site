@@ -34,7 +34,7 @@ const themeScript = [
 ].join("\n");
 
 export const metadata: Metadata = {
-  title: "Boardgame Lab",
+  title: "Dice Journal",
   description: "ボードゲームの記録・レビュー・イベント告知",
 };
 
@@ -52,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </main>
           <footer className="w-full max-w-4xl text-center text-xs uppercase tracking-[0.2em] text-muted sm:tracking-[0.35em]">
-            © {new Date().getFullYear()} Boardgame Lab
+            © {new Date().getFullYear()} Dice Journal
           </footer>
         </div>
         <Analytics />

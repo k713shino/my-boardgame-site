@@ -97,7 +97,7 @@ export function SiteHeader() {
                 aria-hidden
                 priority
               />
-              <span>Boardgame Lab</span>
+              <span>Dice Journal</span>
               <Image
                 src="/images/icon.svg"
                 alt=""
