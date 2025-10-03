@@ -147,3 +147,31 @@ html.dark body::before {
 html.dark .theme-toggle:hover {
   box-shadow: 0 20px 40px -20px rgba(15, 23, 42, 0.6);
 }
+
+/* MDX content links */
+.prose a,
+article a {
+  color: #3b82f6;
+  text-decoration: underline;
+  text-decoration-color: rgba(59, 130, 246, 0.3);
+  text-underline-offset: 2px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.prose a:hover,
+article a:hover {
+  color: #2563eb;
+  text-decoration-color: rgba(37, 99, 235, 0.6);
+}
+
+html.dark .prose a,
+html.dark article a {
+  color: #60a5fa;
+  text-decoration-color: rgba(96, 165, 250, 0.3);
+}
+
+html.dark .prose a:hover,
+html.dark article a:hover {
+  color: #93c5fd;
+  text-decoration-color: rgba(147, 197, 253, 0.6);
+}
