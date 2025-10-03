@@ -115,7 +115,7 @@ export function SiteHeader() {
               type="button"
               onClick={() => setMenuOpen((prev) => !prev)}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300/70 bg-white/90 text-lg text-slate-600 shadow-sm transition hover:border-rose-400 hover:text-rose-500 dark:border-slate-600/70 dark:bg-slate-900/70 dark:text-slate-200 sm:hidden"
-              aria-expanded={menuOpen ? "true" : "false"}
+              aria-expanded={menuOpen}
               aria-controls="global-nav"
               aria-label="メニュー"
             >
