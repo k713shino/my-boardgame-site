@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/lib/content";
+import { getPostBySlug, getAllPosts } from "@/lib/content";
 import MarkdownContent from "@/components/MarkdownContent";
 
 function formatDate(iso: string) {
@@ -12,6 +12,13 @@ function formatDate(iso: string) {
     month: "short",
     day: "numeric",
   });
+}
+
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 export default function PostDetail({ params }: { params: { slug: string } }) {

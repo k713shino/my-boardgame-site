@@ -1,7 +1,14 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getGameById } from "@/lib/content";
+import { getGameById, getAllGames } from "@/lib/content";
 import MarkdownContent from "@/components/MarkdownContent";
+
+export async function generateStaticParams() {
+  const games = getAllGames();
+  return games.map((game) => ({
+    slug: game.id,
+  }));
+}
 
 function formatPlayers(min?: number | null, max?: number | null) {
   if (min && max) return min + "–" + max + "人";

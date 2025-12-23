@@ -1,8 +1,15 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getPlayById } from "@/lib/content";
+import { getPlayById, getAllPlays } from "@/lib/content";
 import { fetchRemotePlays, type RemotePlay } from "@/lib/remote";
 import MarkdownContent from "@/components/MarkdownContent";
+
+export async function generateStaticParams() {
+  const localPlays = getAllPlays();
+  return localPlays.map((play) => ({
+    id: play.id,
+  }));
+}
 
 function toDateString(value: unknown): string {
   if (!value) return "";
