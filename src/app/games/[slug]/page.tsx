@@ -27,8 +27,9 @@ function formatWeight(weight?: number | null) {
   return String(weight);
 }
 
-export default function GameDetail({ params }: { params: { slug: string } }) {
-  const game = getGameById(params.slug);
+export default async function GameDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const game = getGameById(slug);
   if (!game) return notFound();
 
   const tags = Array.isArray(game.tags) ? game.tags : [];

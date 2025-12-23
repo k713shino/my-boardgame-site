@@ -21,8 +21,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function PostDetail({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default async function PostDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) return notFound();
 
   const category = post.category ? " / " + post.category : "";
