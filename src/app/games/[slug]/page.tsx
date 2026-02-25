@@ -1,7 +1,45 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Image from "next/image";
-import { getGameById } from "@/lib/content";
+import { getGameById, getAllGames } from "@/lib/content";
 import MarkdownContent from "@/components/MarkdownContent";
+
+const BASE_URL = "https://my-boardgame-site.vercel.app";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const game = getGameById(slug);
+  if (!game) return {};
+  const description = `${game.title}のゲーム情報・レビュー。霧島市のボードゲームサークル「エイトマーリン」による紹介。`;
+  return {
+    title: game.title,
+    description,
+    openGraph: {
+      title: `${game.title} | Dice Journal`,
+      description,
+      type: "article",
+      url: `${BASE_URL}/games/${slug}`,
+      locale: "ja_JP",
+      ...(game.image ? { images: [{ url: game.image, alt: game.title }] } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: game.title,
+      description,
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const games = getAllGames();
+  return games.map((game) => ({
+    slug: game.id,
+  }));
+}
 
 function formatPlayers(min?: number | null, max?: number | null) {
   if (min && max) return min + "–" + max + "人";
@@ -20,8 +58,9 @@ function formatWeight(weight?: number | null) {
   return String(weight);
 }
 
-export default function GameDetail({ params }: { params: { slug: string } }) {
-  const game = getGameById(params.slug);
+export default async function GameDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const game = getGameById(slug);
   if (!game) return notFound();
 
   const tags = Array.isArray(game.tags) ? game.tags : [];

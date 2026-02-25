@@ -33,9 +33,35 @@ const themeScript = [
   "})();",
 ].join("\n");
 
+const BASE_URL = "https://my-boardgame-site.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Dice Journal",
-  description: "ボードゲームの記録・レビュー・イベント告知",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "Dice Journal | 霧島市発のボードゲーム情報メディア",
+    template: "%s | Dice Journal",
+  },
+  description:
+    "鹿児島県霧島市を拠点にしたボードゲームカルチャーメディア。ゲームレビュー・プレイログ・地域イベント情報を発信しています。",
+  keywords: ["ボードゲーム", "霧島市", "鹿児島", "ボドゲ", "エイトマーリン", "ボードゲーム会"],
+  openGraph: {
+    title: "Dice Journal | 霧島市発のボードゲーム情報メディア",
+    description:
+      "鹿児島県霧島市を拠点にしたボードゲームカルチャーメディア。ゲームレビュー・プレイログ・地域イベント情報を発信しています。",
+    url: BASE_URL,
+    siteName: "Dice Journal",
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dice Journal | 霧島市発のボードゲーム情報メディア",
+    description: "鹿児島県霧島市のボードゲーム情報メディア",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -51,8 +77,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="w-full max-w-4xl">
             {children}
           </main>
-          <footer className="w-full max-w-4xl text-center text-xs uppercase tracking-[0.2em] text-muted sm:tracking-[0.35em]">
-            © {new Date().getFullYear()} Dice Journal
+          <footer className="w-full max-w-4xl space-y-4 text-center text-xs text-muted">
+            <div className="border-t border-slate-200 pt-4 dark:border-slate-700">
+              <p className="mb-2 uppercase tracking-[0.2em] sm:tracking-[0.35em]">関連サービス</p>
+              <a
+                href="https://paintingdayfinder.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 rounded-full border border-slate-200 px-3 py-1 text-[0.7rem] font-medium tracking-wide transition-colors hover:border-slate-400 hover:text-slate-700 dark:border-slate-600 dark:hover:border-slate-400 dark:hover:text-slate-300"
+              >
+                🎨 塗装日和 — 模型塗装の最適日チェッカー
+              </a>
+            </div>
+            <p className="uppercase tracking-[0.2em] sm:tracking-[0.35em]">
+              © {new Date().getFullYear()} Dice Journal
+            </p>
           </footer>
         </div>
         <Analytics />

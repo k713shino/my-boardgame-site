@@ -1,6 +1,37 @@
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/lib/content";
+import type { Metadata } from "next";
+import { getPostBySlug, getAllPosts } from "@/lib/content";
 import MarkdownContent from "@/components/MarkdownContent";
+
+const BASE_URL = "https://my-boardgame-site.vercel.app";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  if (!post) return {};
+  const description = post.excerpt ?? post.title;
+  return {
+    title: post.title,
+    description,
+    openGraph: {
+      title: post.title + " | Dice Journal",
+      description,
+      type: "article",
+      publishedTime: post.date,
+      url: `${BASE_URL}/posts/${slug}`,
+      locale: "ja_JP",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+    },
+  };
+}
 
 function formatDate(iso: string) {
   if (!iso) return "";
@@ -14,8 +45,16 @@ function formatDate(iso: string) {
   });
 }
 
-export default function PostDetail({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export default async function PostDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) return notFound();
 
   const category = post.category ? " / " + post.category : "";
