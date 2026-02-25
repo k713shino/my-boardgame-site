@@ -175,3 +175,64 @@ html.dark article a:hover {
   color: #93c5fd;
   text-decoration-color: rgba(147, 197, 253, 0.6);
 }
+
+/* Markdown typography reset for content rendered via react-markdown */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.prose h1 {
+  font-size: 2rem;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+}
+
+.prose p {
+  margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
+  line-height: 1.9;
+}
+
+.prose ul,
+.prose ol {
+  margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
+  padding-left: 1.5rem;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: 0.4rem;
+}
+
+.prose hr {
+  margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
+  border: 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.prose strong {
+  font-weight: 700;
+}
