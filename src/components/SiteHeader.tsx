@@ -17,6 +17,7 @@ const NAV_LINKS: NavLink[] = [
   { href: "/posts", label: "Blog" },
   { href: "/events", label: "Events" },
   { href: "/survey", label: "Survey" },
+  { href: "/wh40k", label: "WH40K" },
 ];
 
 export function SiteHeader() {

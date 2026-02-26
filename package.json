@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:wh40k": "node scripts/parse-bsdata.mjs"
   },
   "dependencies": {
     "@next/mdx": "^16.0.7",
@@ -31,6 +32,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
+    "fast-xml-parser": "^4.5.3",
     "tailwindcss": "^4.1.13",
     "typescript": "^5"
   }
