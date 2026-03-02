@@ -12261,7 +12261,7 @@
           "Skarbrand",
           "Khorne non-Battleline"
         ],
-        "nameJa": "カランド"
+        "nameJa": "スカーブランド"
       },
       {
         "id": "bloodthirster",
@@ -12279,7 +12279,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "オオイテル"
+        "nameJa": "ブラッドサースター"
       },
       {
         "id": "skulltaker",
@@ -12296,7 +12296,7 @@
           "Skulltaker",
           "Khorne non-Battleline"
         ],
-        "nameJa": "クッタケル"
+        "nameJa": "スカルテイカー"
       },
       {
         "id": "bloodmaster",
@@ -12313,7 +12313,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "オオマテル"
+        "nameJa": "ブラッドマスター"
       },
       {
         "id": "skullmaster",
@@ -12330,7 +12330,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "クッマテル"
+        "nameJa": "スカルマスター"
       },
       {
         "id": "rendmaster_on_blood_throne",
@@ -12347,7 +12347,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "レンマテル オン オオド ロネ"
+        "nameJa": "レンドマスター（ブラッドスローン騎乗）"
       },
       {
         "id": "karanak",
@@ -12364,7 +12364,7 @@
           "Karanak",
           "Khorne non-Battleline"
         ],
-        "nameJa": "カラナク"
+        "nameJa": "カラナック"
       },
       {
         "id": "bloodletters",
@@ -12381,7 +12381,7 @@
           "Khorne Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "オオエッテス"
+        "nameJa": "ブラッドレター"
       },
       {
         "id": "bloodcrushers",
@@ -12397,7 +12397,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "オオルヘス"
+        "nameJa": "ブラッドクラッシャー"
       },
       {
         "id": "flesh_hounds",
@@ -12413,7 +12413,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "エフ ホウンス"
+        "nameJa": "フレッシュハウンド"
       },
       {
         "id": "skull_cannon",
@@ -12429,7 +12429,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "クッル カンノン"
+        "nameJa": "スカルキャノン"
       },
       {
         "id": "skull_altar",
@@ -12445,7 +12445,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "クッル アタル"
+        "nameJa": "スカルアルター"
       },
       {
         "id": "be_lakor",
@@ -12464,7 +12464,7 @@
           "Shadow Legion",
           "Undivided"
         ],
-        "nameJa": "ベアコル"
+        "nameJa": "ベ＝ラコール"
       },
       {
         "id": "khorne_soul_grinder",
@@ -12481,7 +12481,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ホネ ソウル リンデル"
+        "nameJa": "コーン・ソウルグラインダー"
       },
       {
         "id": "tzeentch_soul_grinder",
@@ -12498,7 +12498,7 @@
           "Tzeentch non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ゼエンフ ソウル リンデル"
+        "nameJa": "ティーンチ・ソウルグラインダー"
       },
       {
         "id": "nurgle_soul_grinder",
@@ -12515,7 +12515,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ヌエ ソウル リンデル"
+        "nameJa": "ナグール・ソウルグラインダー"
       },
       {
         "id": "slaanesh_soul_grinder",
@@ -12532,7 +12532,7 @@
           "Slaanesh non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "アアネフ ソウル リンデル"
+        "nameJa": "スラーネッシュ・ソウルグラインダー"
       },
       {
         "id": "daemon_prince_of_chaos",
@@ -12546,7 +12546,7 @@
           "Daemon",
           "Daemon Prince of Chaos"
         ],
-        "nameJa": "デーモン・プリンス オヴ ケイオス"
+        "nameJa": "ディーモンプリンス・オヴ・ケイオス"
       },
       {
         "id": "daemon_prince_of_chaos_with_wings",
@@ -12561,7 +12561,7 @@
           "Daemon Prince of Chaos with wings",
           "Fly"
         ],
-        "nameJa": "デーモン・プリンス オヴ ケイオス 翼付き"
+        "nameJa": "ディーモンプリンス・オヴ・ケイオス（翼装備）"
       },
       {
         "id": "kairos_fateweaver",
@@ -12580,7 +12580,7 @@
           "Kairos Fateweaver",
           "Tzeentch non-Battleline"
         ],
-        "nameJa": "カイロス ファテエアヴェル"
+        "nameJa": "カイロス・フェイトウィーヴァー"
       },
       {
         "id": "lord_of_change",
@@ -12599,7 +12599,7 @@
           "Tzeentch non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "オド オヴ ハンエ"
+        "nameJa": "ロード・オヴ・チェンジ"
       },
       {
         "id": "the_changeling",
@@ -12617,7 +12617,7 @@
           "The Changeling",
           "Tzeentch non-Battleline"
         ],
-        "nameJa": "ザ ハンエイング"
+        "nameJa": "ザ・チェンリング"
       },
       {
         "id": "fateskimmer",
@@ -12636,7 +12636,7 @@
           "Tzeentch non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ファテキッメル"
+        "nameJa": "フェイトスキマー"
       },
       {
         "id": "fluxmaster",
@@ -12655,7 +12655,7 @@
           "Tzeentch non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ウマテル"
+        "nameJa": "フラックスマスター"
       },
       {
         "id": "the_blue_scribes",
@@ -12673,7 +12673,7 @@
           "The Blue Scribes",
           "Tzeentch non-Battleline"
         ],
-        "nameJa": "ザ ウエ リベス"
+        "nameJa": "ザ・ブルー・スクライブ"
       },
       {
         "id": "changecaster",
@@ -12691,7 +12691,7 @@
           "Tzeentch non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ハンエカテル"
+        "nameJa": "チェンジキャスター"
       },
       {
         "id": "blue_horrors",
@@ -12707,7 +12707,7 @@
           "Tzeentch Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ウエ ホッロス"
+        "nameJa": "ブルーホラー"
       },
       {
         "id": "pink_horrors",
@@ -12723,7 +12723,7 @@
           "Tzeentch Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ピンク ホッロス"
+        "nameJa": "ピンクホラー"
       },
       {
         "id": "flamers",
@@ -12758,7 +12758,7 @@
           "Tzeentch non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "エサテド アメル"
+        "nameJa": "エグザルテッド・フレイマー"
       },
       {
         "id": "screamers",
@@ -12775,7 +12775,7 @@
           "Tzeentch non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "レアメス"
+        "nameJa": "スクリーマー"
       },
       {
         "id": "burning_chariot",
@@ -12792,7 +12792,7 @@
           "Tzeentch non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ブニング ハリオト"
+        "nameJa": "バーニングチャリオット"
       },
       {
         "id": "rotigus",
@@ -12810,7 +12810,7 @@
           "Rotigus",
           "Nurgle non-Battleline"
         ],
-        "nameJa": "ロイグス"
+        "nameJa": "ロッティガス"
       },
       {
         "id": "great_unclean_one",
@@ -12828,7 +12828,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "レアト ウンエアン オネ"
+        "nameJa": "グレート・アンクリーン・ワン"
       },
       {
         "id": "poxbringer",
@@ -12846,7 +12846,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ポリンエル"
+        "nameJa": "ポクスブリンガー"
       },
       {
         "id": "spoilpox_scrivener",
@@ -12863,7 +12863,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ポイポス リヴェネル"
+        "nameJa": "スポイルポクス・スクリヴナー"
       },
       {
         "id": "epidemius",
@@ -12897,7 +12897,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "オッピイ ビエピペル"
+        "nameJa": "スロッピティ・バイルパイパー"
       },
       {
         "id": "horticulous_slimux",
@@ -12914,7 +12914,7 @@
           "Horticulous Slimux",
           "Nurgle non-Battleline"
         ],
-        "nameJa": "ホイクオウス イムス"
+        "nameJa": "ホーティキュラス・スライマックス"
       },
       {
         "id": "plaguebearers",
@@ -12931,7 +12931,7 @@
           "Nurgle Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "アグエベアレス"
+        "nameJa": "プレーグベアラー"
       },
       {
         "id": "nurglings",
@@ -12948,7 +12948,7 @@
           "Nurgle Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ヌインス"
+        "nameJa": "ナーグリング"
       },
       {
         "id": "beast_of_nurgle",
@@ -12956,7 +12956,7 @@
         "pts": 65,
         "role": "Other",
         "categories": [],
-        "nameJa": "ベアト オヴ ヌエ"
+        "nameJa": "ビースト・オヴ・ナグール"
       },
       {
         "id": "plague_drones",
@@ -12973,7 +12973,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "アグエ ロネス"
+        "nameJa": "プレーグドローン"
       },
       {
         "id": "feculent_gnarlmaw",
@@ -12989,7 +12989,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "フェクエント ナマウ"
+        "nameJa": "穢らわしき洞樹？"
       },
       {
         "id": "shalaxi_helbane",
@@ -13007,7 +13007,7 @@
           "Shalaxi Helbane",
           "Slaanesh non-Battleline"
         ],
-        "nameJa": "シャアイ ヘバネ"
+        "nameJa": "シャラクシィ・ヘルベイン"
       },
       {
         "id": "keeper_of_secrets",
@@ -13025,7 +13025,7 @@
           "Slaanesh non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ケエペル オヴ セレス"
+        "nameJa": "キーパー・オヴ・シークレット"
       },
       {
         "id": "infernal_enrapturess",
@@ -13042,7 +13042,7 @@
           "Slaanesh non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "インフェナル エンラハッス"
+        "nameJa": "インファーナル・エンラプチュレス"
       },
       {
         "id": "the_masque_of_slaanesh",
@@ -13060,7 +13060,7 @@
           "The Masque of Slaanesh",
           "Slaanesh non-Battleline"
         ],
-        "nameJa": "ザ マエ オヴ アアネフ"
+        "nameJa": "ザ・マスク・オヴ・スラーネッシュ"
       },
       {
         "id": "syll_esske",
@@ -13078,7 +13078,7 @@
           "Syll'esske",
           "Slaanesh non-Battleline"
         ],
-        "nameJa": "ッエッケ"
+        "nameJa": "シィル＝エスキ"
       },
       {
         "id": "contorted_epitome",
@@ -13095,7 +13095,7 @@
           "Slaanesh non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "コントテド エピトメ"
+        "nameJa": "コントーテッド・エピトミ"
       },
       {
         "id": "tormentbringer",
@@ -13113,7 +13113,7 @@
           "Slaanesh non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "トメンリンエル"
+        "nameJa": "トーメントブリンガー"
       },
       {
         "id": "tranceweaver",
@@ -13131,7 +13131,7 @@
           "Slaanesh non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ランセエアヴェル"
+        "nameJa": "トランウィーヴァー"
       },
       {
         "id": "daemonettes",
@@ -13148,7 +13148,7 @@
           "Slaanesh Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ダエモネッテス"
+        "nameJa": "デーモネット"
       },
       {
         "id": "fiends",
@@ -13164,7 +13164,7 @@
           "Slaanesh non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "フィエンス"
+        "nameJa": "フィーンド"
       },
       {
         "id": "seekers",
@@ -13180,7 +13180,7 @@
           "Slaanesh non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "セエケス"
+        "nameJa": "シーカー"
       },
       {
         "id": "hellflayer",
@@ -13188,7 +13188,7 @@
         "pts": 80,
         "role": "Other",
         "categories": [],
-        "nameJa": "ヘッアエル"
+        "nameJa": "ヘルフレイヤー"
       },
       {
         "id": "seeker_chariot",
@@ -13196,10 +13196,10 @@
         "pts": 65,
         "role": "Other",
         "categories": [],
-        "nameJa": "セエケル ハリオト"
+        "nameJa": "シーカー・チャリオット"
       }
     ],
-    "nameJa": "ケイオス ダエモンス"
+    "nameJa": "ケイオス・ディーモン"
   },
   "chaos_knights": {
     "id": "chaos_knights",
