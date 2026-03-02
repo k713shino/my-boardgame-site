@@ -9915,7 +9915,7 @@
           "Infantry",
           "Non-Kroot"
         ],
-        "nameJa": "ダリデル"
+        "nameJa": "ダークストライダー"
       },
       {
         "id": "strike_team",
@@ -9931,7 +9931,7 @@
           "Strike Team",
           "Non-Kroot"
         ],
-        "nameJa": "リケ テアム"
+        "nameJa": "ストライクチーム"
       },
       {
         "id": "breacher_team",
@@ -9947,7 +9947,7 @@
           "Breacher Team",
           "Non-Kroot"
         ],
-        "nameJa": "レアヘル テアム"
+        "nameJa": "ブリーチャーチーム"
       },
       {
         "id": "kroot_carnivores",
@@ -9960,7 +9960,7 @@
           "Kroot",
           "Carnivores"
         ],
-        "nameJa": "ロオト カニヴォレス"
+        "nameJa": "クルート・カーニヴォア"
       },
       {
         "id": "krootox_riders",
@@ -9973,7 +9973,7 @@
           "Krootox Riders",
           "Grenades"
         ],
-        "nameJa": "ロオトス リデス"
+        "nameJa": "クルートックス・ライダー"
       },
       {
         "id": "stealth_battlesuits",
@@ -9989,7 +9989,7 @@
           "Markerlight",
           "Non-Kroot"
         ],
-        "nameJa": "テアス バッエスイス"
+        "nameJa": "ステルス・バトルスーツ"
       },
       {
         "id": "ghostkeel_battlesuit",
@@ -10005,7 +10005,7 @@
           "Ghostkeel",
           "Non-Kroot"
         ],
-        "nameJa": "ホケエル バトルスーツ"
+        "nameJa": "ゴーストキール・バトルスーツ"
       },
       {
         "id": "firesight_team",
@@ -10019,7 +10019,7 @@
           "Firesight Team",
           "Non-Kroot"
         ],
-        "nameJa": "フィレイト テアム"
+        "nameJa": "ファイアサイト・チーム"
       },
       {
         "id": "pathfinder_team",
@@ -10033,7 +10033,7 @@
           "Pathfinder Team",
           "Non-Kroot"
         ],
-        "nameJa": "パフィンデル テアム"
+        "nameJa": "パスファインダー・チーム"
       },
       {
         "id": "piranhas",
@@ -10041,7 +10041,7 @@
         "pts": 60,
         "role": "Other",
         "categories": [],
-        "nameJa": "ピランハス"
+        "nameJa": "ピラニア"
       },
       {
         "id": "vespid_stingwings",
@@ -10054,7 +10054,7 @@
           "Vespid Stingwings",
           "Non-Kroot"
         ],
-        "nameJa": "ヴェピド インインス"
+        "nameJa": "ヴェスピッド・スティングウィング"
       },
       {
         "id": "kroot_hounds",
@@ -10066,7 +10066,7 @@
           "Kroot",
           "Hounds"
         ],
-        "nameJa": "ロオト ホウンス"
+        "nameJa": "クルート・ハウンズ"
       },
       {
         "id": "broadside_battlesuits",
@@ -10080,7 +10080,7 @@
           "Broadside",
           "Non-Kroot"
         ],
-        "nameJa": "ロアイデ バッエスイス"
+        "nameJa": "ブロードサイド・バトルスーツ"
       },
       {
         "id": "riptide_battlesuit",
@@ -10095,7 +10095,7 @@
           "Riptide",
           "Non-Kroot"
         ],
-        "nameJa": "リイデ バトルスーツ"
+        "nameJa": "リップタイド・バトルスーツ"
       },
       {
         "id": "hammerhead_gunship",
@@ -10108,7 +10108,7 @@
           "Hammerhead Gunship",
           "Non-Kroot"
         ],
-        "nameJa": "ハッメヘアド ガンシップ"
+        "nameJa": "ハンマーヘッド・ガンシップ"
       },
       {
         "id": "sky_ray_gunship",
@@ -10137,7 +10137,7 @@
           "Devilfish",
           "Non-Kroot"
         ],
-        "nameJa": "デヴィフィフ"
+        "nameJa": "デビルフィッシュ"
       },
       {
         "id": "razorshark_strike_fighter",
@@ -10151,7 +10151,7 @@
           "Razorshark Strike Fighter",
           "Non-Kroot"
         ],
-        "nameJa": "ラゾシャク リケ フィテル"
+        "nameJa": "レイザーシャーク・ストライクファイター"
       },
       {
         "id": "sun_shark_bomber",
@@ -10165,7 +10165,7 @@
           "Sun Shark Bomber",
           "Non-Kroot"
         ],
-        "nameJa": "スン シャーク ボベル"
+        "nameJa": "サンシャーク・ボンバー"
       },
       {
         "id": "tidewall_shieldline",
@@ -10180,7 +10180,7 @@
           "Tidewall Shieldline",
           "Non-Kroot"
         ],
-        "nameJa": "イデワッル シエイネ"
+        "nameJa": "タイドウォール・シールドライン"
       },
       {
         "id": "tidewall_droneport",
@@ -10195,7 +10195,7 @@
           "Tidewall Droneport",
           "Non-Kroot"
         ],
-        "nameJa": "イデワッル ロネポト"
+        "nameJa": "タイドウォール・ドローンポート"
       },
       {
         "id": "tidewall_gunrig",
@@ -10210,7 +10210,7 @@
           "Tidewall Gunrig",
           "Non-Kroot"
         ],
-        "nameJa": "イデワッル グンリグ"
+        "nameJa": "タイドウォール・ガンリグ"
       },
       {
         "id": "stormsurge",
@@ -10238,7 +10238,7 @@
           "Kroot",
           "Farstalkers"
         ],
-        "nameJa": "ロオト ファタケス"
+        "nameJa": "クルート・ファーストーカー"
       },
       {
         "id": "ta_unar_supremacy_armour",
@@ -10253,7 +10253,7 @@
           "Ta'unar Supremacy Armour",
           "Non-Kroot"
         ],
-        "nameJa": "タウナル スレマイ アモウル"
+        "nameJa": "タウナー・シュプレマシー・アーマー"
       },
       {
         "id": "tiger_shark",
@@ -10267,7 +10267,7 @@
           "Tiger Shark",
           "Non-Kroot"
         ],
-        "nameJa": "タイガー シャーク"
+        "nameJa": "タイガーシャーク"
       },
       {
         "id": "ax_1_0_tiger_shark",
@@ -10281,7 +10281,7 @@
           "AX-1-0 Tiger Shark",
           "Non-Kroot"
         ],
-        "nameJa": "エーエックス・1・0 タイガーシャーク"
+        "nameJa": "AX-1-0 タイガーシャーク"
       },
       {
         "id": "manta",
@@ -10306,7 +10306,7 @@
         "pts": 55,
         "role": "Other",
         "categories": [],
-        "nameJa": "エックスブイ9 ハザード・バトルスーツ"
+        "nameJa": "XV9 ハザード・バトルスーツ"
       },
       {
         "id": "crisis_sunforge_battlesuits",
@@ -10322,7 +10322,7 @@
           "Sunforge",
           "Non-Kroot"
         ],
-        "nameJa": "リイス スンフォエ バッエスイス"
+        "nameJa": "クライシス・サンフォージ・バトルスーツ"
       },
       {
         "id": "crisis_fireknife_battlesuits",
@@ -10338,7 +10338,7 @@
           "Fireknife",
           "Non-Kroot"
         ],
-        "nameJa": "リイス フィレニフェ バッエスイス"
+        "nameJa": "クライシス・ファイアナイフ・バトルスーツ"
       },
       {
         "id": "crisis_starscythe_battlesuits",
@@ -10354,7 +10354,7 @@
           "Starscythe",
           "Non-Kroot"
         ],
-        "nameJa": "リイス タッセ バッエスイス"
+        "nameJa": "クライシス・スターサイズ・バトルスーツ"
       },
       {
         "id": "kroot_trail_shaper",
@@ -10368,7 +10368,7 @@
           "Shaper",
           "Trail Shaper"
         ],
-        "nameJa": "ロオト ライル シャペル"
+        "nameJa": "クルート・トレイルシェイパー"
       },
       {
         "id": "kroot_war_shaper",
@@ -10382,7 +10382,7 @@
           "Shaper",
           "War Shaper"
         ],
-        "nameJa": "ロオト ワル シャペル"
+        "nameJa": "クルート・ウォーシェイパー"
       },
       {
         "id": "kroot_flesh_shaper",
@@ -10396,7 +10396,7 @@
           "Shaper",
           "Flesh Shaper"
         ],
-        "nameJa": "ロオト エフ シャペル"
+        "nameJa": "クルート・フレッシュシェイパー"
       },
       {
         "id": "kroot_lone_spear",
@@ -10409,7 +10409,7 @@
           "Kroot",
           "Lone-spear"
         ],
-        "nameJa": "ロオト オネ・ペアル"
+        "nameJa": "クルート・ローンスピア"
       },
       {
         "id": "krootox_rampagers",
@@ -10422,10 +10422,10 @@
           "Kroot",
           "Krootox Rampagers"
         ],
-        "nameJa": "ロオトス ラパエス"
+        "nameJa": "クルートックス・ランペイジャー"
       }
     ],
-    "nameJa": "タウ エピレ"
+    "nameJa": "タウ エンパイア"
   },
   "tyranids": {
     "id": "tyranids",
@@ -10445,7 +10445,7 @@
           "Tervigon",
           "Synapse"
         ],
-        "nameJa": "テヴィゴン"
+        "nameJa": "ターヴィゴン"
       },
       {
         "id": "the_swarmlord",
@@ -10462,7 +10462,7 @@
           "Psyker",
           "Hive Tyrant"
         ],
-        "nameJa": "ザ ワオド"
+        "nameJa": "スウォームロード"
       },
       {
         "id": "broodlord",
@@ -10478,7 +10478,7 @@
           "Vanguard Invader",
           "Synapse"
         ],
-        "nameJa": "ロオオド"
+        "nameJa": "ブルードロード"
       },
       {
         "id": "old_one_eye",
@@ -10492,7 +10492,7 @@
           "Great Devourer",
           "Old One Eye"
         ],
-        "nameJa": "オド オネ エエ"
+        "nameJa": "オールド・ワン・アイ"
       },
       {
         "id": "tyranid_warriors_with_ranged_bio_weapons",
@@ -10505,7 +10505,7 @@
           "Synapse",
           "Great Devourer"
         ],
-        "nameJa": "ラニド ワッリオス ウィズ ランエド ビオ・エアポンス"
+        "nameJa": "ティラニッド・ウォーリアー（射撃用バイオウェポン装備）"
       },
       {
         "id": "tyranid_warriors_with_melee_bio_weapons",
@@ -10519,7 +10519,7 @@
           "Synapse",
           "Tyranid Warriors"
         ],
-        "nameJa": "ラニド ワッリオス ウィズ メエエ ビオ・エアポンス"
+        "nameJa": "ティラニッド・ウォーリアー（白兵戦用バイオウェポン装備）"
       },
       {
         "id": "termagants",
@@ -10533,7 +10533,7 @@
           "Endless Multitude",
           "Termagants"
         ],
-        "nameJa": "テマガンス"
+        "nameJa": "ターマゴント"
       },
       {
         "id": "hormagaunts",
@@ -10547,7 +10547,7 @@
           "Endless Multitude",
           "Hormagaunts"
         ],
-        "nameJa": "ホマガウンス"
+        "nameJa": "ホーマゴント"
       },
       {
         "id": "toxicrene",
@@ -10559,7 +10559,7 @@
           "Great Devourer",
           "Toxicrene"
         ],
-        "nameJa": "トイレネ"
+        "nameJa": "トキシクレイン"
       },
       {
         "id": "tyrant_guard",
@@ -10571,7 +10571,7 @@
           "Great Devourer",
           "Tyrant Guard"
         ],
-        "nameJa": "ラント ガード"
+        "nameJa": "タイラントガード"
       },
       {
         "id": "neurotyrant",
@@ -10587,7 +10587,7 @@
           "Neurotyrant",
           "Synapse"
         ],
-        "nameJa": "ネウロラント"
+        "nameJa": "ニューロタイラント"
       },
       {
         "id": "maleceptor",
@@ -10601,7 +10601,7 @@
           "Malceptor",
           "Synapse"
         ],
-        "nameJa": "マエセトル"
+        "nameJa": "マレセプター"
       },
       {
         "id": "pyrovores",
@@ -10614,7 +10614,7 @@
           "Great Devourer",
           "Harvester"
         ],
-        "nameJa": "ロヴォレス"
+        "nameJa": "パイロヴォア"
       },
       {
         "id": "haruspex",
@@ -10627,7 +10627,7 @@
           "Haruspex",
           "Harvester"
         ],
-        "nameJa": "ハルペス"
+        "nameJa": "ハルスペックス"
       },
       {
         "id": "venomthropes",
@@ -10640,7 +10640,7 @@
           "Venomthropes",
           "Great Devourer"
         ],
-        "nameJa": "ヴェノロペス"
+        "nameJa": "ヴェノムスロープ"
       },
       {
         "id": "neurogaunts",
@@ -10653,7 +10653,7 @@
           "Neurogaunts",
           "Endless Multitude"
         ],
-        "nameJa": "ネウロガウンス"
+        "nameJa": "ニューロゴーント"
       },
       {
         "id": "zoanthropes",
@@ -10668,7 +10668,7 @@
           "Zoanthropes",
           "Synapse"
         ],
-        "nameJa": "ゾアンロペス"
+        "nameJa": "ゾアンスロープ"
       },
       {
         "id": "mucolid_spore",
@@ -10676,7 +10676,7 @@
         "pts": 30,
         "role": "Other",
         "categories": [],
-        "nameJa": "ムコイド ポレ"
+        "nameJa": "ミューコリッド・スポア"
       },
       {
         "id": "spore_mines",
@@ -10689,7 +10689,7 @@
           "Fly",
           "Great Devourer"
         ],
-        "nameJa": "ポレ ミネス"
+        "nameJa": "スポアマイン"
       },
       {
         "id": "exocrine",
@@ -10701,7 +10701,7 @@
           "Great Devourer",
           "Exocrine"
         ],
-        "nameJa": "エソリネ"
+        "nameJa": "エグゾクライン"
       },
       {
         "id": "biovore",
@@ -10709,7 +10709,7 @@
         "pts": 50,
         "role": "Other",
         "categories": [],
-        "nameJa": "ビオヴォレ"
+        "nameJa": "バイオヴォア"
       },
       {
         "id": "carnifex",
@@ -10717,7 +10717,7 @@
         "pts": 90,
         "role": "Other",
         "categories": [],
-        "nameJa": "カニフェス"
+        "nameJa": "カーニフェックス"
       },
       {
         "id": "screamer_killer",
@@ -10729,7 +10729,7 @@
           "Great Devourer",
           "Screamer-killer"
         ],
-        "nameJa": "レアメル・キッエル"
+        "nameJa": "スクリーマーキラー"
       },
       {
         "id": "hive_guard",
@@ -10741,7 +10741,7 @@
           "Great Devourer",
           "Hive Guard"
         ],
-        "nameJa": "ヒヴェ ガード"
+        "nameJa": "ハイヴガード"
       },
       {
         "id": "tyrannofex",
@@ -10753,7 +10753,7 @@
           "Great Devourer",
           "Tyrannofex"
         ],
-        "nameJa": "ランノフェス"
+        "nameJa": "ティラノフェックス"
       },
       {
         "id": "hive_crone",
@@ -10768,7 +10768,7 @@
           "Hive Crone",
           "Vanguard Invader"
         ],
-        "nameJa": "ヒヴェ ロネ"
+        "nameJa": "ハイブクロン"
       },
       {
         "id": "harpy",
@@ -10783,7 +10783,7 @@
           "Great Devourer",
           "Vanguard Invader"
         ],
-        "nameJa": "ハイ"
+        "nameJa": "ハーピー"
       },
       {
         "id": "sporocyst",
@@ -10795,7 +10795,7 @@
           "Sporocyst",
           "Great Devourer"
         ],
-        "nameJa": "スポロサイト"
+        "nameJa": "スポロシスト"
       },
       {
         "id": "psychophage",
@@ -10809,7 +10809,7 @@
           "Harvester",
           "Smoke"
         ],
-        "nameJa": "ホファエ"
+        "nameJa": "サイコファージ"
       },
       {
         "id": "barbgaunts",
@@ -10821,7 +10821,7 @@
           "Infantry",
           "Great Devourer"
         ],
-        "nameJa": "バガウンス"
+        "nameJa": "バーブゴント"
       },
       {
         "id": "harridan",
@@ -10837,7 +10837,7 @@
           "Great Devourer",
           "Harridan"
         ],
-        "nameJa": "ハッリダン"
+        "nameJa": "ハリダン"
       },
       {
         "id": "hierophant",
@@ -10852,7 +10852,7 @@
           "Great Devourer",
           "Hierophant"
         ],
-        "nameJa": "ヒエロファント"
+        "nameJa": "ハイエロファント"
       },
       {
         "id": "genestealers",
@@ -10865,7 +10865,7 @@
           "Genestealers",
           "Vanguard Invader"
         ],
-        "nameJa": "エネテアエス"
+        "nameJa": "ジーンスティーラー"
       },
       {
         "id": "norn_assimilator",
@@ -10879,7 +10879,7 @@
           "Norn Assimilator",
           "Harvester"
         ],
-        "nameJa": "ノン アッイミアトル"
+        "nameJa": "ノルン・アシミレイター"
       },
       {
         "id": "norn_emissary",
@@ -10893,7 +10893,7 @@
           "Synapse",
           "Norn Emissary"
         ],
-        "nameJa": "ノン エミッサイ"
+        "nameJa": "ノルン・エミッサリー"
       },
       {
         "id": "hive_tyrant",
@@ -10908,10 +10908,10 @@
           "Great Devourer",
           "Synapse"
         ],
-        "nameJa": "ヒヴェ ラント"
+        "nameJa": "ハイヴタイラント"
       }
     ],
-    "nameJa": "ラニス"
+    "nameJa": "ティラニッド"
   },
   "aeldari__craftworlds_": {
     "id": "aeldari__craftworlds_",
@@ -10933,7 +10933,7 @@
           "Grenades",
           "Aspect Warrior"
         ],
-        "nameJa": "アスメン"
+        "nameJa": "アシュルメン"
       },
       {
         "id": "autarch",
@@ -10948,7 +10948,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "アウタフ"
+        "nameJa": "アウターク"
       },
       {
         "id": "autarch_wayleaper",
@@ -10965,7 +10965,7 @@
           "Jump Pack",
           "Ynnari"
         ],
-        "nameJa": "アウタフ ワエアペル"
+        "nameJa": "アウターク・ウェイリーパー"
       },
       {
         "id": "avatar_of_khaine",
@@ -10980,7 +10980,7 @@
           "Avatar of Khaine",
           "Aeldari"
         ],
-        "nameJa": "アヴァタル オヴ ハイネ"
+        "nameJa": "アヴァター・オヴ・カイン"
       },
       {
         "id": "baharroth",
@@ -10999,7 +10999,7 @@
           "Aeldari",
           "Jump Pack"
         ],
-        "nameJa": "バハッロス"
+        "nameJa": "バハロス"
       },
       {
         "id": "corsair_voidreavers",
@@ -11016,7 +11016,7 @@
           "Ynnari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "コサイル ヴォイレアヴェス"
+        "nameJa": "コルセア・ヴォイドリーヴァー"
       },
       {
         "id": "corsair_voidscarred",
@@ -11032,7 +11032,7 @@
           "Ynnari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "コサイル ヴォイカッレド"
+        "nameJa": "コルセア・ヴォイドスカー"
       },
       {
         "id": "crimson_hunter",
@@ -11048,7 +11048,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "リソン ウンテル"
+        "nameJa": "クリムゾン・ハンター"
       },
       {
         "id": "dark_reapers",
@@ -11062,7 +11062,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ダク レアペス"
+        "nameJa": "ダーク・リーパー"
       },
       {
         "id": "dire_avengers",
@@ -11077,7 +11077,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "イレ アヴェンエス"
+        "nameJa": "ダイア・アヴェンジャー"
       },
       {
         "id": "eldrad_ulthran",
@@ -11093,7 +11093,7 @@
           "Eldrad Ultran",
           "Aeldari"
         ],
-        "nameJa": "エラド ウラン"
+        "nameJa": "エルドラド・ウルスラーン"
       },
       {
         "id": "falcon",
@@ -11108,7 +11108,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ファコン"
+        "nameJa": "ファルコン"
       },
       {
         "id": "farseer",
@@ -11123,7 +11123,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ファセエル"
+        "nameJa": "ファーシーア"
       },
       {
         "id": "farseer_skyrunner",
@@ -11140,7 +11140,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ファセエル ルンネル"
+        "nameJa": "ファーシーア・スカイランナー"
       },
       {
         "id": "fire_dragons",
@@ -11155,7 +11155,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "フィレ ラゴンス"
+        "nameJa": "ファイア・ドラゴン"
       },
       {
         "id": "fire_prism",
@@ -11169,7 +11169,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "フィレ リム"
+        "nameJa": "ファイア・プリズム"
       },
       {
         "id": "fuegan",
@@ -11186,7 +11186,7 @@
           "Aspect Warrior",
           "Grenades"
         ],
-        "nameJa": "フエガン"
+        "nameJa": "フューガン"
       },
       {
         "id": "guardian_defenders",
@@ -11202,7 +11202,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "グアイアン デフェンデス"
+        "nameJa": "ガーディアン・ティフェンダー"
       },
       {
         "id": "hemlock_wraithfighter",
@@ -11219,7 +11219,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ヘオック ライフィテル"
+        "nameJa": "ヘムロック・レイスファイター"
       },
       {
         "id": "howling_banshees",
@@ -11232,7 +11232,7 @@
           "Ynnari",
           "Aspect Warrior"
         ],
-        "nameJa": "ホイング バンヘエス"
+        "nameJa": "ハウリング・バンシー"
       },
       {
         "id": "jain_zar",
@@ -11248,7 +11248,7 @@
           "Aeldari",
           "Aspect Warrior"
         ],
-        "nameJa": "ジャイン ザル"
+        "nameJa": "ジェイン・ザール"
       },
       {
         "id": "maugan_ra",
@@ -11264,7 +11264,7 @@
           "Aeldari",
           "Aspect Warrior"
         ],
-        "nameJa": "マウガン ラ"
+        "nameJa": "モウガン・ラー"
       },
       {
         "id": "night_spinner",
@@ -11277,7 +11277,7 @@
           "Night Spinner",
           "Aeldari"
         ],
-        "nameJa": "ニト ピンネル"
+        "nameJa": "ナイトスピナー"
       },
       {
         "id": "rangers",
@@ -11290,7 +11290,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ランエス"
+        "nameJa": "レンジャー"
       },
       {
         "id": "shining_spears",
@@ -11305,7 +11305,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "シニング ペアス"
+        "nameJa": "シャイニング・スピアー"
       },
       {
         "id": "shroud_runners",
@@ -11319,7 +11319,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ロウド ルンネス"
+        "nameJa": "シュラウドランナー"
       },
       {
         "id": "spiritseer",
@@ -11334,7 +11334,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ピリツェエル"
+        "nameJa": "スピリットシーア"
       },
       {
         "id": "storm_guardians",
@@ -11350,7 +11350,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "トム グアイアンス"
+        "nameJa": "ストーム・ガーディアン"
       },
       {
         "id": "striking_scorpions",
@@ -11364,7 +11364,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "リキング コピオンス"
+        "nameJa": "ストライキング・スコーピオン"
       },
       {
         "id": "d_cannon_platform",
@@ -11378,7 +11378,7 @@
           "D-Cannon Platform",
           "Ynnari"
         ],
-        "nameJa": "ディー・キャノン・プラットフォーム"
+        "nameJa": "Dキャノン・プラットフォーム"
       },
       {
         "id": "swooping_hawks",
@@ -11395,7 +11395,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "スウーピング・ホークス"
+        "nameJa": "スウィーピング・ホーク"
       },
       {
         "id": "the_visarch",
@@ -11409,7 +11409,7 @@
           "Character",
           "Aeldari"
         ],
-        "nameJa": "ザ ヴィサフ"
+        "nameJa": "ヴィスアーク"
       },
       {
         "id": "the_yncarne",
@@ -11426,7 +11426,7 @@
           "Daemon",
           "Aeldari"
         ],
-        "nameJa": "ザ ンカネ"
+        "nameJa": "インカーネ"
       },
       {
         "id": "warlock",
@@ -11441,7 +11441,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ワオック"
+        "nameJa": "ウォーロック"
       },
       {
         "id": "warlock_conclave",
@@ -11456,7 +11456,7 @@
           "Warlock",
           "Ynnari"
         ],
-        "nameJa": "ワオック コンアヴェ"
+        "nameJa": "ウォーロック"
       },
       {
         "id": "warp_spiders",
@@ -11472,7 +11472,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "ワプ ピデス"
+        "nameJa": "ワープ・スパイダー"
       },
       {
         "id": "wave_serpent",
@@ -11488,7 +11488,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ワヴェ セペント"
+        "nameJa": "ウェイヴ・サーペント"
       },
       {
         "id": "windriders",
@@ -11502,7 +11502,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "インリデス"
+        "nameJa": "ウインドライダー"
       },
       {
         "id": "wraithknight",
@@ -11519,7 +11519,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ライニト"
+        "nameJa": "レイスナイト"
       },
       {
         "id": "wraithlord",
@@ -11534,7 +11534,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ライオド"
+        "nameJa": "レイスロード"
       },
       {
         "id": "wraithguard",
@@ -11548,7 +11548,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ライグアド"
+        "nameJa": "レイスガード"
       },
       {
         "id": "yvraine",
@@ -11563,7 +11563,7 @@
           "Psyker",
           "Aeldari"
         ],
-        "nameJa": "イヴレイン"
+        "nameJa": "イヴライネ"
       },
       {
         "id": "wraithblades",
@@ -11577,7 +11577,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ライアデス"
+        "nameJa": "レイスブレイド"
       },
       {
         "id": "shadow_spectre_exarch",
@@ -11585,7 +11585,7 @@
         "pts": 30,
         "role": "Other",
         "categories": [],
-        "nameJa": "シャドウ ペレ エサフ"
+        "nameJa": "シャドウスペクター・エクサーチ"
       },
       {
         "id": "phantom_titan",
@@ -11601,7 +11601,7 @@
           "Aeldari",
           "Wraith Construct"
         ],
-        "nameJa": "ファントム イタン"
+        "nameJa": "ファントムタイタン"
       },
       {
         "id": "revenant_titan",
@@ -11618,7 +11618,7 @@
           "Wraith Construct",
           "Aeldari"
         ],
-        "nameJa": "レヴェナント イタン"
+        "nameJa": "レヴェナントタイタン"
       },
       {
         "id": "warlock_skyrunners",
@@ -11634,7 +11634,7 @@
           "Fly",
           "Ynnari"
         ],
-        "nameJa": "ワオック ルンネス"
+        "nameJa": "ウォーロック・スカイランナー"
       },
       {
         "id": "ynnari_archon",
@@ -11647,7 +11647,7 @@
           "Aeldari",
           "Archon"
         ],
-        "nameJa": "ンナリ アーコン"
+        "nameJa": "インナーリ・アーコン"
       },
       {
         "id": "lhykhis",
@@ -11673,7 +11673,7 @@
         "pts": 85,
         "role": "Other",
         "categories": [],
-        "nameJa": "ワル ワケル"
+        "nameJa": "ウォーウォーカー"
       },
       {
         "id": "shadow_weaver_platform",
@@ -11687,7 +11687,7 @@
           "Shadow Weaver Platform",
           "Ynnari"
         ],
-        "nameJa": "シャドウ エアヴェル プラットフォーム"
+        "nameJa": "シャドウウィーヴァー・プラットフォーム"
       },
       {
         "id": "vibro_cannon_platform",
@@ -11701,7 +11701,7 @@
           "Vibro Cannon Platform",
           "Ynnari"
         ],
-        "nameJa": "ヴィロ カンノン プラットフォーム"
+        "nameJa": "ヴィブロキャノン・プラットフォーム"
       },
       {
         "id": "vyper",
@@ -11709,7 +11709,7 @@
         "pts": 75,
         "role": "Other",
         "categories": [],
-        "nameJa": "ペル"
+        "nameJa": "ヴァイパー"
       },
       {
         "id": "wraithknight_with_ghostglaive",
@@ -11726,7 +11726,7 @@
           "Wraithknight with Ghostglaive",
           "Ynnari"
         ],
-        "nameJa": "ライニト ウィズ ホアイヴェ"
+        "nameJa": "レイスナイト（ゴーストグレイブ装備）"
       },
       {
         "id": "ynnari_succubus",
@@ -11739,7 +11739,7 @@
           "Character",
           "Infantry"
         ],
-        "nameJa": "ンナリ スックブス"
+        "nameJa": "インナーリ・サキュバス"
       },
       {
         "id": "ynnari_kabalite_warriors",
@@ -11752,7 +11752,7 @@
           "Battleline",
           "Infantry"
         ],
-        "nameJa": "ンナリ カバイテ ワッリオス"
+        "nameJa": "インナーリ・カバライト・ウォリアー"
       },
       {
         "id": "ynnari_wyches",
@@ -11766,7 +11766,7 @@
           "Infantry",
           "Grenades"
         ],
-        "nameJa": "ンナリ ワイチズ"
+        "nameJa": "インナーリ・ウィッチ"
       },
       {
         "id": "ynnari_incubi",
@@ -11778,7 +11778,7 @@
           "Aeldari",
           "Infantry"
         ],
-        "nameJa": "ンナリ インクビ"
+        "nameJa": "インナーリ・インキュバス"
       },
       {
         "id": "ynnari_reavers",
@@ -11791,7 +11791,7 @@
           "Fly",
           "Mounted"
         ],
-        "nameJa": "ンナリ レアヴェス"
+        "nameJa": "インナーリ・リーヴァー"
       },
       {
         "id": "ynnari_raider",
@@ -11806,7 +11806,7 @@
           "Vehicle",
           "Transport"
         ],
-        "nameJa": "ンナリ ライデル"
+        "nameJa": "インナーリ・レイダー"
       },
       {
         "id": "ynnari_venom",
@@ -11821,7 +11821,7 @@
           "Transport",
           "Vehicle"
         ],
-        "nameJa": "ンナリ ヴェノム"
+        "nameJa": "インナーリ・ヴェノム"
       },
       {
         "id": "prince_yriel",
@@ -11836,7 +11836,7 @@
           "Aeldari",
           "Anhrathe"
         ],
-        "nameJa": "プリンス リエル"
+        "nameJa": "プリンス・イリエル"
       },
       {
         "id": "kharseth",
@@ -11860,7 +11860,7 @@
         "pts": 75,
         "role": "Other",
         "categories": [],
-        "nameJa": "タファング"
+        "nameJa": "スターファング"
       },
       {
         "id": "corsair_skyreavers",
@@ -11876,10 +11876,10 @@
           "Grenades",
           "Corsair Skyreavers"
         ],
-        "nameJa": "コサイル レアヴェス"
+        "nameJa": "コルセア・スカイリーヴァー"
       }
     ],
-    "nameJa": "アエダリ (ラヲス)"
+    "nameJa": "アエルダリ (クラフトワールド)"
   },
   "drukhari": {
     "id": "drukhari",
@@ -11927,7 +11927,7 @@
           "Character",
           "Blades for Hire"
         ],
-        "nameJa": "ドゥラザール"
+        "nameJa": "ドラツァール"
       },
       {
         "id": "haemonculus",
@@ -11941,7 +11941,7 @@
           "Character",
           "Infantry"
         ],
-        "nameJa": "ハエモンクウス"
+        "nameJa": "ハモンキュラス"
       },
       {
         "id": "hellions",
@@ -11955,7 +11955,7 @@
           "Mounted",
           "Fly"
         ],
-        "nameJa": "ヘッイオンス"
+        "nameJa": "ヘリオン"
       },
       {
         "id": "incubi",
@@ -11968,7 +11968,7 @@
           "Infantry",
           "Blades for Hire"
         ],
-        "nameJa": "インクビ"
+        "nameJa": "インキュバス"
       },
       {
         "id": "kabalite_warriors",
@@ -11982,7 +11982,7 @@
           "Battleline",
           "Infantry"
         ],
-        "nameJa": "カバイテ ワッリオス"
+        "nameJa": "カバライト・ウォリアー"
       },
       {
         "id": "lelith_hesperax",
@@ -11998,7 +11998,7 @@
           "Character",
           "Infantry"
         ],
-        "nameJa": "エイス ヘペラス"
+        "nameJa": "リリス・ヘスペラックス"
       },
       {
         "id": "mandrakes",
@@ -12011,7 +12011,7 @@
           "Infantry",
           "Blades for Hire"
         ],
-        "nameJa": "マンラケス"
+        "nameJa": "マンドレイク"
       },
       {
         "id": "raider",
@@ -12026,7 +12026,7 @@
           "Vehicle",
           "Transport"
         ],
-        "nameJa": "ライデル"
+        "nameJa": "レイダー"
       },
       {
         "id": "ravager",
@@ -12040,7 +12040,7 @@
           "Fly",
           "Vehicle"
         ],
-        "nameJa": "ラヴァエル"
+        "nameJa": "ラヴェイジャー"
       },
       {
         "id": "razorwing_jetfighter",
@@ -12054,7 +12054,7 @@
           "Vehicle",
           "Fly"
         ],
-        "nameJa": "ラゾイング エフィテル"
+        "nameJa": "レイザーウィング・ジェットファイター"
       },
       {
         "id": "reavers",
@@ -12068,7 +12068,7 @@
           "Fly",
           "Mounted"
         ],
-        "nameJa": "レアヴェス"
+        "nameJa": "リーヴァー"
       },
       {
         "id": "scourges_with_heavy_weapons",
@@ -12085,7 +12085,7 @@
           "Blades for Hire",
           "Scourges with Heavy Weapons"
         ],
-        "nameJa": "コウエス ウィズ ヘアイ エアポンス"
+        "nameJa": "スカージ（ヘヴィウェポン装備）"
       },
       {
         "id": "succubus",
@@ -12099,7 +12099,7 @@
           "Character",
           "Infantry"
         ],
-        "nameJa": "スックブス"
+        "nameJa": "サキュバス"
       },
       {
         "id": "talos",
@@ -12113,7 +12113,7 @@
           "Monster",
           "Fly"
         ],
-        "nameJa": "タオス"
+        "nameJa": "タロス"
       },
       {
         "id": "venom",
@@ -12142,7 +12142,7 @@
           "Vehicle",
           "Fly"
         ],
-        "nameJa": "ヴォイラヴェン ボベル"
+        "nameJa": "ヴォイドレイヴン・ボマー"
       },
       {
         "id": "wracks",
@@ -12156,7 +12156,7 @@
           "Battleline",
           "Infantry"
         ],
-        "nameJa": "ラックス"
+        "nameJa": "ラック"
       },
       {
         "id": "wyches",
@@ -12171,7 +12171,7 @@
           "Infantry",
           "Grenades"
         ],
-        "nameJa": "ワイチズ"
+        "nameJa": "ウィッチ"
       },
       {
         "id": "shadow_spectre_exarch",
@@ -12179,7 +12179,7 @@
         "pts": 30,
         "role": "Other",
         "categories": [],
-        "nameJa": "シャドウ ペレ エサフ"
+        "nameJa": "シャドウスペクター・エクサーチ"
       },
       {
         "id": "war_walker",
@@ -12187,7 +12187,7 @@
         "pts": 85,
         "role": "Other",
         "categories": [],
-        "nameJa": "ワル ワケル"
+        "nameJa": "ウォー・ウォーカー"
       },
       {
         "id": "vyper",
@@ -12195,7 +12195,7 @@
         "pts": 75,
         "role": "Other",
         "categories": [],
-        "nameJa": "ペル"
+        "nameJa": "ヴァイパー"
       },
       {
         "id": "lady_malys",
@@ -12211,7 +12211,7 @@
           "Epic Hero",
           "Lady Malys"
         ],
-        "nameJa": "アイ マス"
+        "nameJa": "レディ・マリス"
       },
       {
         "id": "scourges_with_shardcarbines",
@@ -12228,7 +12228,7 @@
           "Blades for Hire",
           "Scourges with Shardcarbines"
         ],
-        "nameJa": "コウエス ウィズ シャカビネス"
+        "nameJa": "スカージ（シャードカービン装備）"
       },
       {
         "id": "starfang",
@@ -12236,10 +12236,10 @@
         "pts": 75,
         "role": "Other",
         "categories": [],
-        "nameJa": "タファング"
+        "nameJa": "スターファング"
       }
     ],
-    "nameJa": "ルハリ"
+    "nameJa": "デュカーリ"
   },
   "chaos_daemons": {
     "id": "chaos_daemons",
