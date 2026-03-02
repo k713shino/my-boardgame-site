@@ -130,6 +130,7 @@ function parseCat(filepath) {
       results.push({
         id: slugify(name),
         name,
+        nameJa: "",
         pts,
         role: getRole(cats),
         categories: cats,
@@ -177,7 +178,13 @@ for (const filename of catFiles.sort()) {
   if (!deduped.length) continue;
 
   const factionId = slugify(info.name);
-  output[factionId] = { id: factionId, name: info.name, group: info.group, units: deduped };
+  output[factionId] = {
+    id: factionId,
+    name: info.name,
+    nameJa: "",
+    group: info.group,
+    units: deduped,
+  };
   console.log(`✓ ${info.name}: ${deduped.length} units`);
 }
 

@@ -7,7 +7,11 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "generate:wh40k": "node scripts/parse-bsdata.mjs"
+    "generate:wh40k": "node scripts/parse-bsdata.mjs",
+    "wh40k:extract-names": "node scripts/extract-wh40k-unit-names.mjs",
+    "wh40k:add-name-ja": "node scripts/add-wh40k-name-ja.mjs",
+    "wh40k:generate-name-ja": "node scripts/generate-wh40k-name-ja.mjs",
+    "wh40k:audit-name-ja": "node scripts/audit-wh40k-name-ja.mjs"
   },
   "dependencies": {
     "@next/mdx": "^16.0.7",

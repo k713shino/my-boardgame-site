@@ -236,3 +236,39 @@ html.dark article a:hover {
 .prose strong {
   font-weight: 700;
 }
+
+/* PointBar */
+.point-bar {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background: transparent;
+}
+.point-bar::-webkit-progress-bar {
+  background: transparent;
+  border-radius: 9999px;
+}
+.point-bar::-webkit-progress-value {
+  border-radius: 9999px;
+  transition: width 300ms ease;
+}
+.point-bar::-moz-progress-bar {
+  border-radius: 9999px;
+  transition: width 300ms ease;
+}
+.point-bar--normal::-webkit-progress-value,
+.point-bar--normal::-moz-progress-bar {
+  background: linear-gradient(to right, #0ea5e9, #6366f1);
+}
+.point-bar--warning::-webkit-progress-value,
+.point-bar--warning::-moz-progress-bar {
+  background: linear-gradient(to right, #fbbf24, #f97316);
+}
+.point-bar--danger::-webkit-progress-value,
+.point-bar--danger::-moz-progress-bar {
+  background: linear-gradient(to right, #ef4444, #e11d48);
+}

@@ -68,6 +68,10 @@ function roleActiveBg(role: UnitRole): string {
   return map[role];
 }
 
+function displayName(name: string, nameJa: string): string {
+  return nameJa.trim() ? `${name} / ${nameJa}` : name;
+}
+
 // ─── sub-components ───────────────────────────────────────────────────────────
 
 function PointBar({ used, limit }: { used: number; limit: number }) {
@@ -75,11 +79,11 @@ function PointBar({ used, limit }: { used: number; limit: number }) {
   const isOver = used > limit;
   const remaining = limit - used;
 
-  const barClass = isOver
-    ? "bg-gradient-to-r from-red-500 to-rose-600"
+  const barStateClass = isOver
+    ? "point-bar--danger"
     : pct > 90
-    ? "bg-gradient-to-r from-amber-400 to-orange-500"
-    : "bg-gradient-to-r from-sky-500 to-indigo-500";
+    ? "point-bar--warning"
+    : "point-bar--normal";
 
   return (
     <div className="space-y-1.5">
@@ -92,9 +96,11 @@ function PointBar({ used, limit }: { used: number; limit: number }) {
         </span>
       </div>
       <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
-        <div
-          className={`h-full rounded-full transition-all duration-300 ${barClass}`}
-          style={{ width: `${pct}%` }}
+        <progress
+          value={pct}
+          max={100}
+          aria-label={`${used}pt / ${limit}pt`}
+          className={`point-bar ${barStateClass}`}
         />
       </div>
     </div>
@@ -136,6 +142,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
         const q = search.toLowerCase();
         return (
           u.name.toLowerCase().includes(q) ||
+          u.nameJa.toLowerCase().includes(q) ||
           u.categories.some((c) => c.toLowerCase().includes(q))
         );
       }
@@ -236,7 +243,9 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
       const units = rosterByRole[role];
       if (!units.length) continue;
       lines.push(`【${role}】`);
-      for (const u of units) lines.push(`  ・${u.name}  ${u.rosterPts}pt`);
+      for (const u of units) {
+        lines.push(`  ・${displayName(u.name, u.nameJa)}  ${u.rosterPts}pt`);
+      }
     }
     lines.push("", `合計: ${totalPts}pt / ${pointLimit}pt`);
     lines.push(
@@ -278,6 +287,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
               <select
                 value={pointLimit}
                 onChange={(e) => setPointLimit(Number(e.target.value))}
+                aria-label="ポイント上限"
                 className="rounded-full border border-slate-300/70 bg-white/80 px-3 py-1 text-xs font-bold text-slate-700 shadow-sm transition hover:border-rose-400 dark:border-slate-600/70 dark:bg-slate-900/70 dark:text-slate-200"
               >
                 {POINT_LIMITS.map((p) => (
@@ -293,7 +303,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
               <span
                 className={`rounded-full px-3 py-1 text-[0.65rem] font-bold uppercase tracking-widest ${GROUP_BADGE[selectedFaction.group]}`}
               >
-                {selectedFaction.name}
+                {displayName(selectedFaction.name, selectedFaction.nameJa)}
               </span>
             )}
           </div>
@@ -355,7 +365,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                       }`}
                     >
                       <span className="text-sm font-bold tracking-tight">
-                        {f.name}
+                        {displayName(f.name, f.nameJa)}
                       </span>
                       <span className="text-xs text-muted">{f.units.length}</span>
                     </button>
@@ -383,6 +393,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                 <input
                   type="text"
                   placeholder="🔍 ユニット名・キーワード検索…"
+                  aria-label="ユニット名・キーワード検索"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="flex-1 rounded-full border border-slate-300/60 bg-transparent px-3 py-1.5 text-xs outline-none placeholder:text-muted focus:border-rose-400/70 dark:border-slate-600/60"
@@ -392,6 +403,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                   onChange={(e) =>
                     setFilterRole(e.target.value as UnitRole | "ALL")
                   }
+                  aria-label="ロールフィルター"
                   className="rounded-full border border-slate-300/60 bg-white/80 px-3 py-1.5 text-xs dark:border-slate-600/60 dark:bg-slate-900/70"
                 >
                   <option value="ALL">全ロール</option>
@@ -449,6 +461,11 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                                   }`}
                                 >
                                   {unit.name}
+                                  {unit.nameJa.trim() && (
+                                    <span className="ml-1 text-[0.65rem] font-medium text-muted">
+                                      / {unit.nameJa}
+                                    </span>
+                                  )}
                                 </div>
                                 <div className="mt-0.5 flex flex-wrap gap-1">
                                   {unit.categories
@@ -552,7 +569,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                       >
                         <div className="flex-1 min-w-0">
                           <p className="truncate text-xs font-semibold">
-                            {u.name}
+                            {displayName(u.name, u.nameJa)}
                           </p>
                         </div>
 
@@ -560,6 +577,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                         {editingId === u.rosterId ? (
                           <input
                             autoFocus
+                            aria-label={`${displayName(u.name, u.nameJa)}のポイント`}
                             value={editVal}
                             onChange={(e) => setEditVal(e.target.value)}
                             onBlur={() => commitEdit(u.rosterId)}

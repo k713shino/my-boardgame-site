@@ -4,6 +4,7 @@ export type FactionGroup = "Imperium" | "Chaos" | "Xenos";
 export interface Unit {
   id: string;
   name: string;
+  nameJa: string;
   pts: number;
   role: UnitRole;
   categories: string[];
@@ -12,6 +13,7 @@ export interface Unit {
 export interface Faction {
   id: string;
   name: string;
+  nameJa: string;
   group: FactionGroup;
   units: Unit[];
 }
