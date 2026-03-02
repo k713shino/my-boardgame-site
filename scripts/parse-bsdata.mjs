@@ -14,7 +14,7 @@
  * npm run generate:wh40k は package.json の scripts に追加済み。
  */
 
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from "fs";
 import { join, basename } from "path";
 
 // ─── fast-xml-parser は devDependency として必要 ────────────────────────────
@@ -49,7 +49,7 @@ const FACTION_MAP = {
   "Imperium - Adepta Sororitas": { name: "Adepta Sororitas",      group: "Imperium", libMode: null },
   "Imperium - Adeptus Custodes": { name: "Adeptus Custodes",      group: "Imperium", libMode: null },
   "Imperium - Adeptus Mechanicus":{ name: "Adeptus Mechanicus",   group: "Imperium", libMode: null },
-  "Imperium - Astra Militarum":  { name: "Astra Militarum",       group: "Imperium", libMode: null },
+  "Imperium - Astra Militarum - Library": { name: "Astra Militarum", group: "Imperium", libMode: null },
   "Imperium - Black Templars":   { name: "Black Templars",        group: "Imperium", libMode: null },
   "Imperium - Blood Angels":     { name: "Blood Angels",          group: "Imperium", libMode: null },
   "Imperium - Dark Angels":      { name: "Dark Angels",           group: "Imperium", libMode: null },
@@ -130,7 +130,6 @@ function parseCat(filepath) {
       results.push({
         id: slugify(name),
         name,
-        nameJa: "",
         pts,
         role: getRole(cats),
         categories: cats,
@@ -142,10 +141,39 @@ function parseCat(filepath) {
   return results;
 }
 
+// ─── 既存JSONから日本語訳を退避 ───────────────────────────────────────────────
+//
+// npm run generate:wh40k を実行するたびに手動翻訳が消えないよう、
+// 上書き前に既存ファイルから nameJa を回収して Map に保持する。
+// パース後、同名ユニット／種族に自動復元する。
+
+/** ユニット英語名 → nameJa */
+const savedUnitJa = new Map();
+/** 種族ID → nameJa */
+const savedFactionJa = new Map();
+
+if (existsSync(OUTPUT_PATH)) {
+  try {
+    const existing = JSON.parse(readFileSync(OUTPUT_PATH, "utf-8"));
+    for (const faction of Object.values(existing)) {
+      if (faction.nameJa) savedFactionJa.set(faction.id, faction.nameJa);
+      for (const unit of faction.units ?? []) {
+        if (unit.name && unit.nameJa) savedUnitJa.set(unit.name, unit.nameJa);
+      }
+    }
+    console.log(`📖 既存訳を読み込み: 種族 ${savedFactionJa.size}件 / ユニット ${savedUnitJa.size}件\n`);
+  } catch (e) {
+    console.warn("⚠️ 既存JSONの読み込み失敗。翻訳は引き継がれません:", e.message);
+  }
+}
+
 // ─── メイン ───────────────────────────────────────────────────────────────────
 
 const output = {};
 const catFiles = readdirSync(BSDATA_DIR).filter((f) => f.endsWith(".cat"));
+
+// nameJa 未設定の新規ユニットを収集（実行後にレポートする）
+const untranslated = [];
 
 for (const filename of catFiles.sort()) {
   const key = filename.replace(/\.cat$/, "");
@@ -177,19 +205,41 @@ for (const filename of catFiles.sort()) {
 
   if (!deduped.length) continue;
 
+  // nameJa を復元 ─────────────────────────────────────────────────────────────
+  for (const u of deduped) {
+    u.nameJa = savedUnitJa.get(u.name) ?? "";
+    if (!u.nameJa) untranslated.push({ faction: info.name, name: u.name });
+  }
+
   const factionId = slugify(info.name);
   output[factionId] = {
     id: factionId,
     name: info.name,
-    nameJa: "",
+    nameJa: savedFactionJa.get(factionId) ?? "",
     group: info.group,
     units: deduped,
   };
-  console.log(`✓ ${info.name}: ${deduped.length} units`);
+
+  const restoredCount = deduped.filter((u) => u.nameJa).length;
+  const missingCount  = deduped.length - restoredCount;
+  const missingLabel  = missingCount > 0 ? `  ⚠️ 未翻訳 ${missingCount}件` : "";
+  console.log(`✓ ${info.name}: ${deduped.length} units  (訳復元 ${restoredCount})${missingLabel}`);
 }
 
 console.log(`\nTotal factions: ${Object.keys(output).length}`);
 console.log(`Total units: ${Object.values(output).reduce((s, f) => s + f.units.length, 0)}`);
+
+// 未翻訳ユニットのレポート ─────────────────────────────────────────────────────
+if (untranslated.length > 0) {
+  console.log(`\n📝 nameJa 未設定ユニット (${untranslated.length}件) — JSON に追記してください:`);
+  let cur = "";
+  for (const { faction, name } of untranslated) {
+    if (faction !== cur) { cur = faction; console.log(`  【${faction}】`); }
+    console.log(`    "${name}": ""`);
+  }
+} else {
+  console.log("\n✅ 全ユニットの nameJa が設定済みです！");
+}
 
 mkdirSync(join(process.cwd(), "src", "data"), { recursive: true });
 writeFileSync(OUTPUT_PATH, JSON.stringify(output, null, 2), "utf-8");
