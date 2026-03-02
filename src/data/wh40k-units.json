@@ -13218,7 +13218,7 @@
           "War Dog",
           "Executioner"
         ],
-        "nameJa": "ワル ドグ エセクショネル"
+        "nameJa": "ウォードッグ・エクスキューショナー"
       },
       {
         "id": "war_dog_stalker",
@@ -13232,7 +13232,7 @@
           "War Dog",
           "Stalker"
         ],
-        "nameJa": "ワル ドグ タケル"
+        "nameJa": "ウォードッグ・ストーカー"
       },
       {
         "id": "war_dog_karnivore",
@@ -13246,7 +13246,7 @@
           "War Dog",
           "Karnivore"
         ],
-        "nameJa": "ワル ドグ カニヴォレ"
+        "nameJa": "ウォードッグ・カーニヴォア"
       },
       {
         "id": "war_dog_brigand",
@@ -13260,7 +13260,7 @@
           "War Dog",
           "Brigand"
         ],
-        "nameJa": "ワル ドグ リガンド"
+        "nameJa": "ウォードッグ・ブリガンド"
       },
       {
         "id": "war_dog_huntsman",
@@ -13274,7 +13274,7 @@
           "War Dog",
           "Huntsman"
         ],
-        "nameJa": "ワル ドグ ウンマン"
+        "nameJa": "ウォードッグ・ハンツマン"
       },
       {
         "id": "knight_despoiler",
@@ -13292,7 +13292,7 @@
           "Knight Despoiler",
           "Knight Character"
         ],
-        "nameJa": "ニト デポイエル"
+        "nameJa": "ナイト・ディスポイラー"
       },
       {
         "id": "knight_desecrator",
@@ -13310,7 +13310,7 @@
           "Knight Desecrator",
           "Knight Character"
         ],
-        "nameJa": "ニト デセラトル"
+        "nameJa": "ナイト・ディセクレイター"
       },
       {
         "id": "knight_rampager",
@@ -13328,7 +13328,7 @@
           "Knight Rampager",
           "Knight Character"
         ],
-        "nameJa": "ニト ラパエル"
+        "nameJa": "ナイト・ランペイジャー"
       },
       {
         "id": "knight_abominant",
@@ -13347,7 +13347,7 @@
           "Psyker",
           "Knight Character"
         ],
-        "nameJa": "ニト アボミナント"
+        "nameJa": "ナイト・アボミナント"
       },
       {
         "id": "knight_tyrant",
@@ -13364,7 +13364,7 @@
           "Knight Tyrant",
           "Knight Character"
         ],
-        "nameJa": "ニト ラント"
+        "nameJa": "ナイト・タイラント"
       },
       {
         "id": "chaos_acastus_knight_asterius",
@@ -13380,7 +13380,7 @@
           "Acastus",
           "Knight Asterius"
         ],
-        "nameJa": "ケイオス アカウス ニト アテリウス"
+        "nameJa": "ケイオス・アカストゥス・ナイト・アステリウス"
       },
       {
         "id": "chaos_acastus_knight_porphyrion",
@@ -13396,7 +13396,7 @@
           "Acastus",
           "Knight Porphyrion"
         ],
-        "nameJa": "ケイオス アカウス ニト ポリオン"
+        "nameJa": "ケイオス・アカストゥス・ナイト・ポルフィリオン"
       },
       {
         "id": "chaos_cerastus_knight_lancer",
@@ -13414,7 +13414,7 @@
           "Knight Lancer",
           "Knight Character"
         ],
-        "nameJa": "ケイオス セラウス ニト アンセル"
+        "nameJa": "ケイオス・セラストゥス・ナイト・ランサー"
       },
       {
         "id": "chaos_cerastus_knight_castigator",
@@ -13432,7 +13432,7 @@
           "Knight Castigator",
           "Knight Character"
         ],
-        "nameJa": "ケイオス セラウス ニト カイガトル"
+        "nameJa": "ケイオス・セラストゥス・ナイト・キャスティゲイター"
       },
       {
         "id": "chaos_cerastus_knight_acheron",
@@ -13449,7 +13449,7 @@
           "Knight Acheron",
           "Knight Character"
         ],
-        "nameJa": "ケイオス セラウス ニト アヘロン"
+        "nameJa": "ケイオス・セラストゥス・ナイト・アケロン"
       },
       {
         "id": "chaos_cerastus_knight_atrapos",
@@ -13467,7 +13467,7 @@
           "Knight Atrapos",
           "Knight Character"
         ],
-        "nameJa": "ケイオス セラウス ニト アラポス"
+        "nameJa": "ケイオス・セラストゥス・ナイト・アトラポス"
       },
       {
         "id": "chaos_questoris_knight_magaera",
@@ -13485,7 +13485,7 @@
           "Knight Magaera",
           "Knight Character"
         ],
-        "nameJa": "ケイオス エトリス ニト マガエラ"
+        "nameJa": "ケイオス・クエストリス・ナイト・マガエラ"
       },
       {
         "id": "chaos_questoris_knight_styrix",
@@ -13503,7 +13503,7 @@
           "Knight Styrix",
           "Knight Character"
         ],
-        "nameJa": "ケイオス エトリス ニト リス"
+        "nameJa": "ケイオス・クエストリス・ナイト・スティリックス"
       },
       {
         "id": "war_dog_moirax",
@@ -13517,7 +13517,7 @@
           "War Dog",
           "Moirax"
         ],
-        "nameJa": "ワル ドグ モイラス"
+        "nameJa": "ウォードッグ・モイラックス"
       },
       {
         "id": "knight_ruinator",
@@ -13535,10 +13535,10 @@
           "Knight Ruinator",
           "Knight Character"
         ],
-        "nameJa": "ニト ルイナトル"
+        "nameJa": "ナイト・ルイネイター"
       }
     ],
-    "nameJa": "ケイオス ナイト"
+    "nameJa": "ケイオスナイト"
   },
   "imperial_knights": {
     "id": "imperial_knights",
@@ -13555,7 +13555,7 @@
           "Character",
           "Imperium"
         ],
-        "nameJa": "カニス レス"
+        "nameJa": "カニス・レックス"
       },
       {
         "id": "armiger_warglaive",
@@ -13569,7 +13569,7 @@
           "Warglaive",
           "Armiger"
         ],
-        "nameJa": "アミエル ワアイヴェ"
+        "nameJa": "アーミジャー・ウォーグレイヴ"
       },
       {
         "id": "armiger_helverin",
@@ -13583,7 +13583,7 @@
           "Helverin",
           "Armiger"
         ],
-        "nameJa": "アミエル ヘヴェリン"
+        "nameJa": "アーミジャー・ヘルヴェリン"
       },
       {
         "id": "knight_paladin",
@@ -13600,7 +13600,7 @@
           "Knight Paladin",
           "Questoris"
         ],
-        "nameJa": "ニト パアイン"
+        "nameJa": "ナイト・パラディン"
       },
       {
         "id": "knight_errant",
@@ -13617,7 +13617,7 @@
           "Knight Errant",
           "Questoris"
         ],
-        "nameJa": "ニト エッラント"
+        "nameJa": "ナイト・エラント"
       },
       {
         "id": "knight_gallant",
@@ -13634,7 +13634,7 @@
           "Knight Gallant",
           "Questoris"
         ],
-        "nameJa": "ニト ガッアント"
+        "nameJa": "ナイト・ギャラント"
       },
       {
         "id": "knight_warden",
@@ -13651,7 +13651,7 @@
           "Knight Warden",
           "Questoris"
         ],
-        "nameJa": "ニト ワデン"
+        "nameJa": "ナイト・ウォーデン"
       },
       {
         "id": "knight_crusader",
@@ -13668,7 +13668,7 @@
           "Knight Crusader",
           "Questoris"
         ],
-        "nameJa": "ニト ルサデル"
+        "nameJa": "ナイト・クルセイダー"
       },
       {
         "id": "knight_preceptor",
@@ -13685,7 +13685,7 @@
           "Knight Preceptor",
           "Questoris"
         ],
-        "nameJa": "ニト レセトル"
+        "nameJa": "ナイト・プレセプター"
       },
       {
         "id": "knight_castellan",
@@ -13702,7 +13702,7 @@
           "Knight Castellan",
           "Dominus"
         ],
-        "nameJa": "ニト カテッアン"
+        "nameJa": "ナイト・キャスティラン"
       },
       {
         "id": "knight_valiant",
@@ -13719,7 +13719,7 @@
           "Knight Valiant",
           "Dominus"
         ],
-        "nameJa": "ニト ヴァイアント"
+        "nameJa": "ナイト・ヴァリアント"
       },
       {
         "id": "acastus_knight_asterius",
@@ -13735,7 +13735,7 @@
           "Knight Asterius",
           "Acastus"
         ],
-        "nameJa": "アカウス ニト アテリウス"
+        "nameJa": "アカストゥス・ナイト・アステリウス"
       },
       {
         "id": "acastus_knight_porphyrion",
@@ -13751,7 +13751,7 @@
           "Acastus",
           "Knight Porphyrion"
         ],
-        "nameJa": "アカウス ニト ポリオン"
+        "nameJa": "アカストゥス・ナイト・ポルフィリオン"
       },
       {
         "id": "cerastus_knight_lancer",
@@ -13768,7 +13768,7 @@
           "Knight Lancer",
           "Cerastus"
         ],
-        "nameJa": "セラウス ニト アンセル"
+        "nameJa": "セラストゥス・ナイト・ランサー"
       },
       {
         "id": "cerastus_knight_castigator",
@@ -13785,7 +13785,7 @@
           "Cerastus",
           "Knight Castigator"
         ],
-        "nameJa": "セラウス ニト カイガトル"
+        "nameJa": "セラストゥス・ナイト・キャスティゲイター"
       },
       {
         "id": "cerastus_knight_acheron",
@@ -13802,7 +13802,7 @@
           "Cerastus",
           "Knight Acheron"
         ],
-        "nameJa": "セラウス ニト アヘロン"
+        "nameJa": "セラストゥス・ナイト・アケロン"
       },
       {
         "id": "cerastus_knight_atrapos",
@@ -13819,7 +13819,7 @@
           "Cerastus",
           "Knight Atrapos"
         ],
-        "nameJa": "セラウス ニト アラポス"
+        "nameJa": "セラストゥス・ナイト・アトラポス"
       },
       {
         "id": "questoris_knight_magaera",
@@ -13836,7 +13836,7 @@
           "Questoris",
           "Knight Magaera"
         ],
-        "nameJa": "エトリス ニト マガエラ"
+        "nameJa": "エトリス・ナイト・マガエラ"
       },
       {
         "id": "questoris_knight_styrix",
@@ -13853,7 +13853,7 @@
           "Questoris",
           "Knight Styrix"
         ],
-        "nameJa": "エトリス ニト リス"
+        "nameJa": "クエストリス・ナイト・スティリックス"
       },
       {
         "id": "armiger_moirax",
@@ -13867,7 +13867,7 @@
           "Armiger",
           "Moirax"
         ],
-        "nameJa": "アミエル モイラス"
+        "nameJa": "アーミジャー・モイラックス"
       },
       {
         "id": "knight_defender",
@@ -13884,9 +13884,9 @@
           "Questoris",
           "Knight Defender"
         ],
-        "nameJa": "ニト デフェンデル"
+        "nameJa": "ナイト・デフェンダー"
       }
     ],
-    "nameJa": "インペリアル・ナイト"
+    "nameJa": "インペリアルナイト"
   }
 }
