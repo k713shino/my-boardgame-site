@@ -35,6 +35,64 @@ const NOTABLE_CATS = [
   "Aspect Warrior","Phoenix Lord","Primarch","Daemon","Titanic","Jump Pack",
 ];
 
+// ─── Wahapedia リンク ──────────────────────────────────────────────────────────
+
+/** 種族ID → Wahapedia の faction スラグ */
+const WAHAPEDIA_SLUG: Record<string, string> = {
+  aeldari__craftworlds_:  "aeldari",
+  drukhari:               "drukhari",
+  chaos_space_marines:    "chaos-space-marines",
+  death_guard:            "death-guard",
+  emperor_s_children:     "emperors-children",
+  thousand_sons:          "thousand-sons",
+  world_eaters:           "world-eaters",
+  chaos_daemons:          "chaos-daemons",
+  chaos_knights:          "chaos-knights",
+  genestealer_cults:      "genestealer-cults",
+  adepta_sororitas:       "adepta-sororitas",
+  adeptus_custodes:       "adeptus-custodes",
+  adeptus_mechanicus:     "adeptus-mechanicus",
+  astra_militarum:        "astra-militarum",
+  agents_of_the_imperium: "agents-of-the-imperium",
+  black_templars:         "black-templars",
+  blood_angels:           "blood-angels",
+  dark_angels:            "dark-angels",
+  deathwatch:             "deathwatch",
+  grey_knights:           "grey-knights",
+  imperial_fists:         "imperial-fists",
+  imperial_knights:       "imperial-knights",
+  iron_hands:             "iron-hands",
+  raven_guard:            "raven-guard",
+  salamanders:            "salamanders",
+  space_marines:          "space-marines",
+  space_wolves:           "space-wolves",
+  ultramarines:           "ultramarines",
+  white_scars:            "white-scars",
+  leagues_of_votann:      "leagues-of-votann",
+  necrons:                "necrons",
+  orks:                   "orks",
+  t_au_empire:            "tau-empire",
+  tyranids:               "tyranids",
+};
+
+/**
+ * ユニット名を Wahapedia URL スラグに変換する。
+ * 例: "Farseer Skyrunner" → "Farseer-Skyrunner"
+ *     "Gaunt's Ghosts"    → "Gaunts-Ghosts"
+ */
+function toWahapediaUnitSlug(name: string): string {
+  return name
+    .replace(/['']/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/[^a-zA-Z0-9-]/g, "");
+}
+
+function wahapediaUrl(factionId: string, unitName: string): string | null {
+  const slug = WAHAPEDIA_SLUG[factionId];
+  if (!slug) return null;
+  return `https://wahapedia.ru/wh40k10ed/factions/${slug}/${toWahapediaUnitSlug(unitName)}`;
+}
+
 // ─── helpers ──────────────────────────────────────────────────────────────────
 
 function roleBorderClass(role: UnitRole): string {
@@ -68,10 +126,6 @@ function roleActiveBg(role: UnitRole): string {
   return map[role];
 }
 
-function displayName(name: string, nameJa: string): string {
-  return nameJa.trim() ? `${name} / ${nameJa}` : name;
-}
-
 // ─── sub-components ───────────────────────────────────────────────────────────
 
 function PointBar({ used, limit }: { used: number; limit: number }) {
@@ -79,11 +133,11 @@ function PointBar({ used, limit }: { used: number; limit: number }) {
   const isOver = used > limit;
   const remaining = limit - used;
 
-  const barStateClass = isOver
-    ? "point-bar--danger"
+  const barClass = isOver
+    ? "bg-gradient-to-r from-red-500 to-rose-600"
     : pct > 90
-    ? "point-bar--warning"
-    : "point-bar--normal";
+    ? "bg-gradient-to-r from-amber-400 to-orange-500"
+    : "bg-gradient-to-r from-sky-500 to-indigo-500";
 
   return (
     <div className="space-y-1.5">
@@ -96,11 +150,9 @@ function PointBar({ used, limit }: { used: number; limit: number }) {
         </span>
       </div>
       <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
-        <progress
-          value={pct}
-          max={100}
-          aria-label={`${used}pt / ${limit}pt`}
-          className={`point-bar ${barStateClass}`}
+        <div
+          className={`h-full rounded-full transition-all duration-300 ${barClass}`}
+          style={{ width: `${pct}%` }}
         />
       </div>
     </div>
@@ -142,7 +194,6 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
         const q = search.toLowerCase();
         return (
           u.name.toLowerCase().includes(q) ||
-          u.nameJa.toLowerCase().includes(q) ||
           u.categories.some((c) => c.toLowerCase().includes(q))
         );
       }
@@ -243,9 +294,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
       const units = rosterByRole[role];
       if (!units.length) continue;
       lines.push(`【${role}】`);
-      for (const u of units) {
-        lines.push(`  ・${displayName(u.name, u.nameJa)}  ${u.rosterPts}pt`);
-      }
+      for (const u of units) lines.push(`  ・${u.name}  ${u.rosterPts}pt`);
     }
     lines.push("", `合計: ${totalPts}pt / ${pointLimit}pt`);
     lines.push(
@@ -287,7 +336,6 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
               <select
                 value={pointLimit}
                 onChange={(e) => setPointLimit(Number(e.target.value))}
-                aria-label="ポイント上限"
                 className="rounded-full border border-slate-300/70 bg-white/80 px-3 py-1 text-xs font-bold text-slate-700 shadow-sm transition hover:border-rose-400 dark:border-slate-600/70 dark:bg-slate-900/70 dark:text-slate-200"
               >
                 {POINT_LIMITS.map((p) => (
@@ -303,7 +351,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
               <span
                 className={`rounded-full px-3 py-1 text-[0.65rem] font-bold uppercase tracking-widest ${GROUP_BADGE[selectedFaction.group]}`}
               >
-                {displayName(selectedFaction.name, selectedFaction.nameJa)}
+                {selectedFaction.name}
               </span>
             )}
           </div>
@@ -365,7 +413,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                       }`}
                     >
                       <span className="text-sm font-bold tracking-tight">
-                        {displayName(f.name, f.nameJa)}
+                        {f.name}
                       </span>
                       <span className="text-xs text-muted">{f.units.length}</span>
                     </button>
@@ -393,7 +441,6 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                 <input
                   type="text"
                   placeholder="🔍 ユニット名・キーワード検索…"
-                  aria-label="ユニット名・キーワード検索"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="flex-1 rounded-full border border-slate-300/60 bg-transparent px-3 py-1.5 text-xs outline-none placeholder:text-muted focus:border-rose-400/70 dark:border-slate-600/60"
@@ -403,7 +450,6 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                   onChange={(e) =>
                     setFilterRole(e.target.value as UnitRole | "ALL")
                   }
-                  aria-label="ロールフィルター"
                   className="rounded-full border border-slate-300/60 bg-white/80 px-3 py-1.5 text-xs dark:border-slate-600/60 dark:bg-slate-900/70"
                 >
                   <option value="ALL">全ロール</option>
@@ -461,11 +507,6 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                                   }`}
                                 >
                                   {unit.name}
-                                  {unit.nameJa.trim() && (
-                                    <span className="ml-1 text-[0.65rem] font-medium text-muted">
-                                      / {unit.nameJa}
-                                    </span>
-                                  )}
                                 </div>
                                 <div className="mt-0.5 flex flex-wrap gap-1">
                                   {unit.categories
@@ -490,7 +531,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                               </span>
                             </button>
 
-                            {/* Count controls */}
+                            {/* Count controls + Wahapedia link */}
                             <div className="flex shrink-0 items-center gap-0.5 pr-2">
                               {active && (
                                 <>
@@ -519,6 +560,19 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                               >
                                 ＋
                               </button>
+                              {/* Wahapedia datasheet link */}
+                              {selectedFactionId && wahapediaUrl(selectedFactionId, unit.name) && (
+                                <a
+                                  href={wahapediaUrl(selectedFactionId, unit.name)!}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  title="Wahapedia でデータシートを見る"
+                                  className="flex h-5 w-5 items-center justify-center rounded-full text-[0.65rem] text-muted transition hover:text-sky-500"
+                                >
+                                  📖
+                                </a>
+                              )}
                             </div>
                           </div>
                         );
@@ -569,15 +623,27 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                       >
                         <div className="flex-1 min-w-0">
                           <p className="truncate text-xs font-semibold">
-                            {displayName(u.name, u.nameJa)}
+                            {u.name}
                           </p>
                         </div>
+
+                        {/* Wahapedia link */}
+                        {selectedFactionId && wahapediaUrl(selectedFactionId, u.name) && (
+                          <a
+                            href={wahapediaUrl(selectedFactionId, u.name)!}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Wahapedia でデータシートを見る"
+                            className="shrink-0 text-[0.7rem] text-muted transition hover:text-sky-500"
+                          >
+                            📖
+                          </a>
+                        )}
 
                         {/* Pts editor */}
                         {editingId === u.rosterId ? (
                           <input
                             autoFocus
-                            aria-label={`${displayName(u.name, u.nameJa)}のポイント`}
                             value={editVal}
                             onChange={(e) => setEditVal(e.target.value)}
                             onBlur={() => commitEdit(u.rosterId)}
