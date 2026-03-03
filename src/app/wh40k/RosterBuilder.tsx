@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useId } from "react";
 import type { Faction, RosterUnit, UnitRole, FactionGroup } from "./types";
 
 // ─── constants ────────────────────────────────────────────────────────────────
@@ -39,8 +39,11 @@ const NOTABLE_CATS = [
 
 /** 種族ID → Wahapedia の faction スラグ */
 const WAHAPEDIA_SLUG: Record<string, string> = {
-  aeldari__craftworlds_:  "aeldari",
+  // Aeldari
+  aeldari_craftworlds:    "aeldari",
   drukhari:               "drukhari",
+  ynnari:                 "ynnari",
+  // Chaos
   chaos_space_marines:    "chaos-space-marines",
   death_guard:            "death-guard",
   emperor_s_children:     "emperors-children",
@@ -48,7 +51,14 @@ const WAHAPEDIA_SLUG: Record<string, string> = {
   world_eaters:           "world-eaters",
   chaos_daemons:          "chaos-daemons",
   chaos_knights:          "chaos-knights",
+  // Xenos
   genestealer_cults:      "genestealer-cults",
+  leagues_of_votann:      "leagues-of-votann",
+  necrons:                "necrons",
+  orks:                   "orks",
+  t_au_empire:            "tau-empire",
+  tyranids:               "tyranids",
+  // Imperium
   adepta_sororitas:       "adepta-sororitas",
   adeptus_custodes:       "adeptus-custodes",
   adeptus_mechanicus:     "adeptus-mechanicus",
@@ -68,11 +78,6 @@ const WAHAPEDIA_SLUG: Record<string, string> = {
   space_wolves:           "space-wolves",
   ultramarines:           "ultramarines",
   white_scars:            "white-scars",
-  leagues_of_votann:      "leagues-of-votann",
-  necrons:                "necrons",
-  orks:                   "orks",
-  t_au_empire:            "tau-empire",
-  tyranids:               "tyranids",
 };
 
 /**
@@ -129,6 +134,7 @@ function roleActiveBg(role: UnitRole): string {
 // ─── sub-components ───────────────────────────────────────────────────────────
 
 function PointBar({ used, limit }: { used: number; limit: number }) {
+  const uid = useId();
   const pct = Math.min(100, (used / limit) * 100);
   const isOver = used > limit;
   const remaining = limit - used;
@@ -150,9 +156,11 @@ function PointBar({ used, limit }: { used: number; limit: number }) {
         </span>
       </div>
       <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+        {/* eslint-disable-next-line react/no-danger */}
+        <style>{`[data-bar-id="${uid}"] { width: ${pct}% }`}</style>
         <div
+          data-bar-id={uid}
           className={`h-full rounded-full transition-all duration-300 ${barClass}`}
-          style={{ width: `${pct}%` }}
         />
       </div>
     </div>
@@ -412,15 +420,10 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                           : ""
                       }`}
                     >
-                      <div className="min-w-0">
-                        <span className="text-sm font-bold tracking-tight">
-                          {f.name}
-                        </span>
-                        {f.nameJa && (
-                          <p className="truncate text-[0.65rem] text-muted">{f.nameJa}</p>
-                        )}
-                      </div>
-                      <span className="ml-2 shrink-0 text-xs text-muted">{f.units.length}</span>
+                      <span className="text-sm font-bold tracking-tight">
+                        {f.name}
+                      </span>
+                      <span className="text-xs text-muted">{f.units.length}</span>
                     </button>
                   ))}
                 </div>
@@ -445,12 +448,14 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
               <div className="surface-card flex flex-col gap-2 rounded-2xl px-4 py-3 sm:flex-row sm:items-center">
                 <input
                   type="text"
+                  aria-label="ユニット名・キーワード検索"
                   placeholder="🔍 ユニット名・キーワード検索…"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="flex-1 rounded-full border border-slate-300/60 bg-transparent px-3 py-1.5 text-xs outline-none placeholder:text-muted focus:border-rose-400/70 dark:border-slate-600/60"
                 />
                 <select
+                  aria-label="ロールでフィルター"
                   value={filterRole}
                   onChange={(e) =>
                     setFilterRole(e.target.value as UnitRole | "ALL")
@@ -488,6 +493,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                       {units.map((unit) => {
                         const count = countInRoster(unit.id);
                         const active = count > 0;
+                        const wUrl = selectedFactionId ? wahapediaUrl(selectedFactionId, unit.name) : null;
                         return (
                           <div
                             key={unit.id}
@@ -497,59 +503,46 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                                 : "surface-card border-transparent"
                             }`}
                           >
-                            {/* Main info — click to add */}
-                            <button
-                              onClick={() => addUnit(unit)}
-                              className="flex min-w-0 flex-1 items-center gap-0 px-4 py-2.5 text-left"
-                              title="クリックで追加"
-                            >
-                              <div className="min-w-0 flex-1">
-                                <div
-                                  className={`truncate text-xs font-semibold ${
-                                    active
-                                      ? roleTextClass(role)
-                                      : "text-[color:var(--fg-body)]"
+                            {/* ユニット名（Wahapedia リンク）+ カテゴリ */}
+                            <div className="min-w-0 flex-1 px-4 py-2.5">
+                              {wUrl ? (
+                                <a
+                                  href={wUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={`block truncate text-xs font-semibold underline decoration-dotted underline-offset-2 transition hover:opacity-70 ${
+                                    active ? roleTextClass(role) : "text-[color:var(--fg-body)]"
                                   }`}
+                                  title="Wahapedia でデータシートを見る"
                                 >
                                   {unit.name}
-                                </div>
-                                {unit.nameJa && (
-                                  <div className="truncate text-[0.6rem] text-muted">
-                                    {unit.nameJa}
-                                  </div>
-                                )}
-                                <div className="mt-0.5 flex flex-wrap gap-1">
-                                  {unit.categories
-                                    .filter((c) => NOTABLE_CATS.includes(c))
-                                    .slice(0, 3)
-                                    .map((c) => (
-                                      <span
-                                        key={c}
-                                        className="text-[0.6rem] text-muted"
-                                      >
-                                        {c}
-                                      </span>
-                                    ))}
-                                </div>
+                                </a>
+                              ) : (
+                                <span className={`block truncate text-xs font-semibold ${
+                                  active ? roleTextClass(role) : "text-[color:var(--fg-body)]"
+                                }`}>
+                                  {unit.name}
+                                </span>
+                              )}
+                              <div className="mt-0.5 flex flex-wrap gap-1">
+                                {unit.categories
+                                  .filter((c) => NOTABLE_CATS.includes(c))
+                                  .slice(0, 3)
+                                  .map((c) => (
+                                    <span key={c} className="text-[0.6rem] text-muted">
+                                      {c}
+                                    </span>
+                                  ))}
                               </div>
-                              <span
-                                className={`ml-3 shrink-0 text-xs font-bold ${
-                                  active ? roleTextClass(role) : "text-muted"
-                                }`}
-                              >
+                            </div>
+
+                            {/* ポイント + 個数コントロール */}
+                            <div className="flex shrink-0 items-center gap-1 pr-3">
+                              <span className={`text-xs font-bold ${active ? roleTextClass(role) : "text-muted"}`}>
                                 {unit.pts}pt
                               </span>
-                            </button>
-
-                            {/* Count controls + Wahapedia link */}
-                            <div className="flex shrink-0 items-center gap-0.5 pr-2">
                               {active && (
                                 <>
-                                  <span
-                                    className={`min-w-[1.25rem] text-center text-xs font-black ${roleTextClass(role)}`}
-                                  >
-                                    {count}
-                                  </span>
                                   <button
                                     onClick={() => removeOneUnit(unit.id)}
                                     className="flex h-5 w-5 items-center justify-center rounded-full text-[0.7rem] text-muted transition hover:bg-red-500/10 hover:text-red-400"
@@ -557,32 +550,22 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                                   >
                                     −
                                   </button>
+                                  <span className={`min-w-[1rem] text-center text-xs font-black ${roleTextClass(role)}`}>
+                                    {count}
+                                  </span>
                                 </>
                               )}
                               <button
                                 onClick={() => addUnit(unit)}
-                                className={`flex h-5 w-5 items-center justify-center rounded-full text-[0.7rem] transition ${
+                                className={`flex h-5 w-5 items-center justify-center rounded-full text-[0.7rem] font-bold transition ${
                                   active
                                     ? `${roleTextClass(role)} hover:opacity-70`
                                     : "text-muted hover:text-[color:var(--fg-body)]"
                                 }`}
-                                title="1つ追加"
+                                title="ロスターに追加"
                               >
                                 ＋
                               </button>
-                              {/* Wahapedia datasheet link */}
-                              {selectedFactionId && wahapediaUrl(selectedFactionId, unit.name) && (
-                                <a
-                                  href={wahapediaUrl(selectedFactionId, unit.name)!}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={(e) => e.stopPropagation()}
-                                  title="Wahapedia でデータシートを見る"
-                                  className="flex h-5 w-5 items-center justify-center rounded-full text-[0.65rem] text-muted transition hover:text-sky-500"
-                                >
-                                  📖
-                                </a>
-                              )}
                             </div>
                           </div>
                         );
@@ -635,11 +618,6 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                           <p className="truncate text-xs font-semibold">
                             {u.name}
                           </p>
-                          {u.nameJa && (
-                            <p className="truncate text-[0.6rem] text-muted">
-                              {u.nameJa}
-                            </p>
-                          )}
                         </div>
 
                         {/* Wahapedia link */}
