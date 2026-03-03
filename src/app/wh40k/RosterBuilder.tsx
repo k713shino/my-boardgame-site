@@ -420,10 +420,15 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                           : ""
                       }`}
                     >
-                      <span className="text-sm font-bold tracking-tight">
-                        {f.name}
-                      </span>
-                      <span className="text-xs text-muted">{f.units.length}</span>
+                      <div className="min-w-0">
+                        <span className="text-sm font-bold tracking-tight">
+                          {f.name}
+                        </span>
+                        {f.nameJa && (
+                          <p className="truncate text-[0.65rem] text-muted">{f.nameJa}</p>
+                        )}
+                      </div>
+                      <span className="ml-2 shrink-0 text-xs text-muted">{f.units.length}</span>
                     </button>
                   ))}
                 </div>
@@ -524,6 +529,11 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                                   {unit.name}
                                 </span>
                               )}
+                              {unit.nameJa && (
+                                <div className="truncate text-[0.6rem] text-muted">
+                                  {unit.nameJa}
+                                </div>
+                              )}
                               <div className="mt-0.5 flex flex-wrap gap-1">
                                 {unit.categories
                                   .filter((c) => NOTABLE_CATS.includes(c))
@@ -618,6 +628,11 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                           <p className="truncate text-xs font-semibold">
                             {u.name}
                           </p>
+                          {u.nameJa && (
+                            <p className="truncate text-[0.6rem] text-muted">
+                              {u.nameJa}
+                            </p>
+                          )}
                         </div>
 
                         {/* Wahapedia link */}
@@ -637,6 +652,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                         {editingId === u.rosterId ? (
                           <input
                             autoFocus
+                            aria-label={`${u.name} のポイント数`}
                             value={editVal}
                             onChange={(e) => setEditVal(e.target.value)}
                             onBlur={() => commitEdit(u.rosterId)}
