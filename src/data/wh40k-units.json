@@ -8460,7 +8460,7 @@
           "Vindicare Assassin",
           "Officio Assassinorum"
         ],
-        "nameJa": ""
+        "nameJa": "ヴィンディケイア・アサシン"
       },
       {
         "id": "culexus_assassin",
@@ -8476,7 +8476,7 @@
           "Culexus Assassin",
           "Officio Assassinorum"
         ],
-        "nameJa": ""
+        "nameJa": "キュレクサス・アサシン"
       },
       {
         "id": "eversor_assassin",
@@ -8492,7 +8492,7 @@
           "Eversor Assassin",
           "Officio Assassinorum"
         ],
-        "nameJa": ""
+        "nameJa": "エヴァーサー・アサシン"
       },
       {
         "id": "callidus_assassin",
@@ -8507,7 +8507,7 @@
           "Callidus Assassin",
           "Officio Assassinorum"
         ],
-        "nameJa": ""
+        "nameJa": "キャリダス・アサシン"
       },
       {
         "id": "rogue_trader_entourage",
@@ -8523,7 +8523,7 @@
           "Voidfarers",
           "Voidfarer Character"
         ],
-        "nameJa": ""
+        "nameJa": "ローグ・トレーダー・アントラージュ"
       },
       {
         "id": "voidsmen_at_arms",
@@ -8538,7 +8538,7 @@
           "Voidsmen-at-Arms",
           "Voidfarers"
         ],
-        "nameJa": ""
+        "nameJa": "ヴォイズマン・アット・アームズ"
       },
       {
         "id": "imperial_navy_breachers",
@@ -8554,7 +8554,7 @@
           "Battleline",
           "Voidfarers"
         ],
-        "nameJa": ""
+        "nameJa": "インペリアル・ネイビー・ブリーチャー"
       },
       {
         "id": "subductor_squad",
@@ -8569,7 +8569,7 @@
           "Subductor Squad",
           "Adeptus Arbites"
         ],
-        "nameJa": ""
+        "nameJa": "サブダクター・スカッド"
       },
       {
         "id": "exaction_squad",
@@ -8584,7 +8584,7 @@
           "Exaction Squad",
           "Adeptus Arbites"
         ],
-        "nameJa": ""
+        "nameJa": "エグザクション・スカッド"
       },
       {
         "id": "vigilant_squad",
@@ -8600,7 +8600,7 @@
           "Vigilant Squad",
           "Adeptus Arbites"
         ],
-        "nameJa": ""
+        "nameJa": "ヴィジラント・スカッド"
       },
       {
         "id": "inquisitor_draxus",
@@ -8618,7 +8618,7 @@
           "Draxus",
           "Ordo Xenos"
         ],
-        "nameJa": ""
+        "nameJa": "異端審問官ドラクサス"
       },
       {
         "id": "inquisitor_coteaz",
@@ -8635,7 +8635,7 @@
           "Coteaz",
           "Ordo Malleus"
         ],
-        "nameJa": ""
+        "nameJa": "異端審問官コテアズ"
       },
       {
         "id": "inquisitor_greyfax",
@@ -8653,7 +8653,7 @@
           "Greyfax",
           "Ordo Hereticus"
         ],
-        "nameJa": ""
+        "nameJa": "異端審問官グレイファクス"
       },
       {
         "id": "inquisitor",
@@ -8667,7 +8667,7 @@
           "Imperium",
           "Inquisitor"
         ],
-        "nameJa": ""
+        "nameJa": "インクィジター"
       },
       {
         "id": "navigator",
@@ -8683,7 +8683,7 @@
           "Navigator",
           "Voidfarer Character"
         ],
-        "nameJa": ""
+        "nameJa": "ナヴィゲイター"
       },
       {
         "id": "ministorum_priest",
@@ -8711,7 +8711,7 @@
           "Retinue",
           "Inquisitorial Agents"
         ],
-        "nameJa": ""
+        "nameJa": "インクィジトリアル・エージェント"
       },
       {
         "id": "grey_knights_terminator_squad",
@@ -8728,7 +8728,7 @@
           "Requisitioned",
           "Grey Knights Terminator Squad"
         ],
-        "nameJa": ""
+        "nameJa": "グレイナイト・ターミネイター・スカッド"
       },
       {
         "id": "inquisitorial_chimera",
@@ -8742,7 +8742,7 @@
           "Imperium",
           "Inquisitorial Chimera"
         ],
-        "nameJa": ""
+        "nameJa": "インクィジトリアル・キメラ"
       },
       {
         "id": "imperial_rhino",
@@ -8756,7 +8756,7 @@
           "Imperium",
           "Imperial Rhino"
         ],
-        "nameJa": ""
+        "nameJa": "イペリアル・ライノ"
       },
       {
         "id": "sisters_of_battle_squad",
@@ -8771,7 +8771,7 @@
           "Sisters of Battle Squad",
           "Requisitioned"
         ],
-        "nameJa": ""
+        "nameJa": "シスター・オヴ・バトル・スカッド"
       },
       {
         "id": "sisters_of_battle_immolator",
@@ -8786,7 +8786,7 @@
           "Ordo Hereticus",
           "Sisters of Battle Immolator"
         ],
-        "nameJa": ""
+        "nameJa": "シスター・オヴ・バトル・イモレーター"
       },
       {
         "id": "corvus_blackstar",
@@ -8821,7 +8821,7 @@
           "Deathwatch",
           "Kill Team"
         ],
-        "nameJa": ""
+        "nameJa": "デスウォッチ・キルチーム"
       },
       {
         "id": "watch_captain_artemis",
@@ -8886,7 +8886,7 @@
           "Retinue",
           "Ordo Xenos"
         ],
-        "nameJa": ""
+        "nameJa": "アクィラ・キルチーム"
       }
     ]
   },
@@ -11551,7 +11551,7 @@
   "iron_hands": {
     "id": "iron_hands",
     "name": "Iron Hands",
-    "nameJa": "",
+    "nameJa": "アイアンハンド",
     "group": "Imperium",
     "units": [
       {
@@ -11567,7 +11567,7 @@
           "Gravis",
           "Iron Father Ferrios"
         ],
-        "nameJa": ""
+        "nameJa": "鋼鉄の父フェイロス"
       },
       {
         "id": "caanok_var",
@@ -11583,14 +11583,14 @@
           "Captain",
           "Caanok Var"
         ],
-        "nameJa": ""
+        "nameJa": "カーノク・ヴァール"
       }
     ]
   },
   "raven_guard": {
     "id": "raven_guard",
     "name": "Raven Guard",
-    "nameJa": "",
+    "nameJa": "レイヴンガード",
     "group": "Imperium",
     "units": [
       {
@@ -11609,7 +11609,7 @@
           "Kayvaan Shrike",
           "Phobos"
         ],
-        "nameJa": ""
+        "nameJa": "ケイヴァーン・シュライク"
       },
       {
         "id": "aethon_shaan",
@@ -11627,14 +11627,14 @@
           "Chapter Master",
           "Aethon Shaan"
         ],
-        "nameJa": ""
+        "nameJa": "アーソン・シャーン"
       }
     ]
   },
   "salamanders": {
     "id": "salamanders",
     "name": "Salamanders",
-    "nameJa": "",
+    "nameJa": "サラマンダー",
     "group": "Imperium",
     "units": [
       {
@@ -11651,7 +11651,7 @@
           "Imperium",
           "Tacticus"
         ],
-        "nameJa": ""
+        "nameJa": "アドラックス・アガトーン"
       },
       {
         "id": "vulkan_he_stan",
@@ -11668,7 +11668,7 @@
           "Vulkan He'stan",
           "Tacticus"
         ],
-        "nameJa": ""
+        "nameJa": "ヴァルカン・ヘスタン"
       }
     ]
   },
@@ -13307,7 +13307,7 @@
   "white_scars": {
     "id": "white_scars",
     "name": "White Scars",
-    "nameJa": "",
+    "nameJa": "ホワイトスカー",
     "group": "Imperium",
     "units": [
       {
@@ -13324,7 +13324,7 @@
           "Kor'sarro Khan",
           "Tacticus"
         ],
-        "nameJa": ""
+        "nameJa": "狩猟長 コルッサーロ・ハーン"
       },
       {
         "id": "suboden_khan",
@@ -13340,7 +13340,7 @@
           "Captain",
           "Suboden Khan"
         ],
-        "nameJa": ""
+        "nameJa": "スボデン・ハーン"
       }
     ]
   },
@@ -13546,7 +13546,7 @@
           "Infantry",
           "Arkanyst Evaluator"
         ],
-        "nameJa": ""
+        "nameJa": "ーカニスト・エヴァリュエイター"
       },
       {
         "id": "kapricus_carrier",
