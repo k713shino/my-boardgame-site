@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
@@ -30,6 +31,20 @@ export default function MarkdownContent({ source, className }: MarkdownContentPr
                 target={isLocal ? undefined : "_blank"}
                 rel={isLocal ? undefined : "noreferrer"}
               />
+            );
+          },
+          img: ({ src, alt }) => {
+            if (!src) return null;
+            return (
+              <span className="block my-4">
+                <Image
+                  src={src}
+                  alt={alt ?? ""}
+                  width={960}
+                  height={540}
+                  className="rounded-xl w-full h-auto object-cover"
+                />
+              </span>
             );
           },
         }}
