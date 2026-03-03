@@ -453,7 +453,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "スカイウィーヴァー"
+        "nameJa": "スカイウィーバー"
       },
       {
         "id": "solitaire",
@@ -469,7 +469,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "ソリテア"
+        "nameJa": "ソリティア"
       },
       {
         "id": "spiritseer",
@@ -639,7 +639,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "ヴォイドウィーヴァー"
+        "nameJa": "ヴォイドウィーバー"
       },
       {
         "id": "warlock",
@@ -669,7 +669,7 @@
           "Warlock",
           "Ynnari"
         ],
-        "nameJa": "ウォーロック"
+        "nameJa": "ウォーロック・コンクラーベ"
       },
       {
         "id": "warp_spiders",
@@ -1378,6 +1378,1499 @@
           "Corsair Skyreavers"
         ],
         "nameJa": "コルセア・スカイリーヴァー"
+      }
+    ]
+  },
+  "drukhari": {
+    "id": "drukhari",
+    "name": "Drukhari",
+    "nameJa": "",
+    "group": "Xenos",
+    "units": [
+      {
+        "id": "archon",
+        "name": "Archon",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Kabal",
+          "Aeldari",
+          "Archon"
+        ],
+        "nameJa": "アーコン"
+      },
+      {
+        "id": "cronos",
+        "name": "Cronos",
+        "pts": 55,
+        "role": "Heavy",
+        "categories": [
+          "Cronos",
+          "Aeldari",
+          "Haemonculus Covens",
+          "Monster",
+          "Fly"
+        ],
+        "nameJa": "クロノス"
+      },
+      {
+        "id": "drazhar",
+        "name": "Drazhar",
+        "pts": 85,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Drazhar",
+          "Aeldari",
+          "Infantry",
+          "Character",
+          "Blades for Hire"
+        ],
+        "nameJa": "ドラツァール"
+      },
+      {
+        "id": "haemonculus",
+        "name": "Haemonculus",
+        "pts": 70,
+        "role": "HQ",
+        "categories": [
+          "Haemonculus",
+          "Haemonculus Covens",
+          "Aeldari",
+          "Character",
+          "Infantry"
+        ],
+        "nameJa": "ハモンキュラス"
+      },
+      {
+        "id": "hellions",
+        "name": "Hellions",
+        "pts": 85,
+        "role": "Other",
+        "categories": [
+          "Hellions",
+          "Aeldari",
+          "Wych Cult",
+          "Mounted",
+          "Fly"
+        ],
+        "nameJa": "ヘリオン"
+      },
+      {
+        "id": "incubi",
+        "name": "Incubi",
+        "pts": 90,
+        "role": "Other",
+        "categories": [
+          "Incubi",
+          "Aeldari",
+          "Infantry",
+          "Blades for Hire"
+        ],
+        "nameJa": "インキュバス"
+      },
+      {
+        "id": "kabalite_warriors",
+        "name": "Kabalite Warriors",
+        "pts": 115,
+        "role": "Battleline",
+        "categories": [
+          "Kabalite Warriors",
+          "Aeldari",
+          "Kabal",
+          "Battleline",
+          "Infantry"
+        ],
+        "nameJa": "カバライト・ウォリアー"
+      },
+      {
+        "id": "lelith_hesperax",
+        "name": "Lelith Hesperax",
+        "pts": 85,
+        "role": "HQ",
+        "categories": [
+          "Lelith Hesperax",
+          "Aeldari",
+          "Wych Cult",
+          "Succubus",
+          "Epic Hero",
+          "Character",
+          "Infantry"
+        ],
+        "nameJa": "リリス・ヘスペラックス"
+      },
+      {
+        "id": "mandrakes",
+        "name": "Mandrakes",
+        "pts": 75,
+        "role": "Other",
+        "categories": [
+          "Mandrakes",
+          "Aeldari",
+          "Infantry",
+          "Blades for Hire"
+        ],
+        "nameJa": "マンドレイク"
+      },
+      {
+        "id": "raider",
+        "name": "Raider",
+        "pts": 85,
+        "role": "Transport",
+        "categories": [
+          "Raider",
+          "Aeldari",
+          "Dedicated Transport",
+          "Fly",
+          "Vehicle",
+          "Transport"
+        ],
+        "nameJa": "レイダー"
+      },
+      {
+        "id": "ravager",
+        "name": "Ravager",
+        "pts": 110,
+        "role": "Heavy",
+        "categories": [
+          "Ravager",
+          "Aeldari",
+          "Kabal",
+          "Fly",
+          "Vehicle"
+        ],
+        "nameJa": "ラヴェイジャー"
+      },
+      {
+        "id": "razorwing_jetfighter",
+        "name": "Razorwing Jetfighter",
+        "pts": 170,
+        "role": "Heavy",
+        "categories": [
+          "Razorwing Jetfighter",
+          "Aeldari",
+          "Aircraft",
+          "Vehicle",
+          "Fly"
+        ],
+        "nameJa": "レイザーウィング・ジェットファイター"
+      },
+      {
+        "id": "reavers",
+        "name": "Reavers",
+        "pts": 70,
+        "role": "Other",
+        "categories": [
+          "Reavers",
+          "Wych Cult",
+          "Aeldari",
+          "Fly",
+          "Mounted"
+        ],
+        "nameJa": "リーヴァー"
+      },
+      {
+        "id": "scourges_with_heavy_weapons",
+        "name": "Scourges with Heavy Weapons",
+        "pts": 130,
+        "role": "Other",
+        "categories": [
+          "Scourges",
+          "Aeldari",
+          "Fly",
+          "Grenades",
+          "Infantry",
+          "Jump Pack",
+          "Blades for Hire",
+          "Scourges with Heavy Weapons"
+        ],
+        "nameJa": "スカージ（ヘヴィウェポン装備）"
+      },
+      {
+        "id": "succubus",
+        "name": "Succubus",
+        "pts": 50,
+        "role": "HQ",
+        "categories": [
+          "Succubus",
+          "Wych Cult",
+          "Aeldari",
+          "Character",
+          "Infantry"
+        ],
+        "nameJa": "サキュバス"
+      },
+      {
+        "id": "talos",
+        "name": "Talos",
+        "pts": 80,
+        "role": "Heavy",
+        "categories": [
+          "Talos",
+          "Aeldari",
+          "Haemonculus Covens",
+          "Monster",
+          "Fly"
+        ],
+        "nameJa": "タロス"
+      },
+      {
+        "id": "venom",
+        "name": "Venom",
+        "pts": 70,
+        "role": "Transport",
+        "categories": [
+          "Venom",
+          "Aeldari",
+          "Fly",
+          "Dedicated Transport",
+          "Transport",
+          "Vehicle"
+        ],
+        "nameJa": "ヴェノム"
+      },
+      {
+        "id": "voidraven_bomber",
+        "name": "Voidraven Bomber",
+        "pts": 245,
+        "role": "Heavy",
+        "categories": [
+          "Voidraven",
+          "Aeldari",
+          "Aircraft",
+          "Vehicle",
+          "Fly"
+        ],
+        "nameJa": "ヴォイドレイヴン・ボマー"
+      },
+      {
+        "id": "wracks",
+        "name": "Wracks",
+        "pts": 65,
+        "role": "Battleline",
+        "categories": [
+          "Wracks",
+          "Haemonculus Covens",
+          "Aeldari",
+          "Battleline",
+          "Infantry"
+        ],
+        "nameJa": "ラック"
+      },
+      {
+        "id": "wyches",
+        "name": "Wyches",
+        "pts": 90,
+        "role": "Battleline",
+        "categories": [
+          "Wyches",
+          "Wych Cult",
+          "Aeldari",
+          "Battleline",
+          "Infantry",
+          "Grenades"
+        ],
+        "nameJa": "ウィッチ"
+      },
+      {
+        "id": "corsair_voidreavers",
+        "name": "Corsair Voidreavers",
+        "pts": 65,
+        "role": "Battleline",
+        "categories": [
+          "Infantry",
+          "Battleline",
+          "Grenades",
+          "Anhrathe",
+          "Corsair Voidreavers",
+          "Aeldari",
+          "Ynnari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "コルセア・ヴォイドリーヴァー"
+      },
+      {
+        "id": "corsair_voidscarred",
+        "name": "Corsair Voidscarred",
+        "pts": 80,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Anhrathe",
+          "Corsair Voidscarred",
+          "Grenades",
+          "Aeldari",
+          "Ynnari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "コルセア・ヴォイドスカー"
+      },
+      {
+        "id": "death_jester",
+        "name": "Death Jester",
+        "pts": 90,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Death Jester",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "デス・ジェスター"
+      },
+      {
+        "id": "solitaire",
+        "name": "Solitaire",
+        "pts": 115,
+        "role": "HQ",
+        "categories": [
+          "Solitaire",
+          "Character",
+          "Epic Hero",
+          "Infantry",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "ソリティア"
+      },
+      {
+        "id": "shadowseer",
+        "name": "Shadowseer",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Shadowseer",
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Psyker",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "シャドウシーア"
+      },
+      {
+        "id": "skyweavers",
+        "name": "Skyweavers",
+        "pts": 95,
+        "role": "Other",
+        "categories": [
+          "Skyweavers",
+          "Fly",
+          "Mounted",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "スカイウィーバー"
+      },
+      {
+        "id": "starweaver",
+        "name": "Starweaver",
+        "pts": 80,
+        "role": "Transport",
+        "categories": [
+          "Star Weaver",
+          "Dedicated Transport",
+          "Fly",
+          "Vehicle",
+          "Transport",
+          "Aeldari",
+          "Harlequin Allies",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "スターウィーヴァー"
+      },
+      {
+        "id": "voidweaver",
+        "name": "Voidweaver",
+        "pts": 125,
+        "role": "Heavy",
+        "categories": [
+          "Voidweaver",
+          "Fly",
+          "Vehicle",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "ヴォイドウィーバー"
+      },
+      {
+        "id": "troupe",
+        "name": "Troupe",
+        "pts": 85,
+        "role": "Other",
+        "categories": [
+          "Troupe",
+          "Infantry",
+          "Grenades",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "トゥループ"
+      },
+      {
+        "id": "troupe_master",
+        "name": "Troupe Master",
+        "pts": 75,
+        "role": "HQ",
+        "categories": [
+          "Troupe Master",
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "トゥループ・マスター"
+      },
+      {
+        "id": "lady_malys",
+        "name": "Lady Malys",
+        "pts": 100,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Kabal",
+          "Character",
+          "Aeldari",
+          "Archon",
+          "Epic Hero",
+          "Lady Malys"
+        ],
+        "nameJa": "レディ・マリス"
+      },
+      {
+        "id": "scourges_with_shardcarbines",
+        "name": "Scourges with Shardcarbines",
+        "pts": 80,
+        "role": "Other",
+        "categories": [
+          "Scourges",
+          "Aeldari",
+          "Fly",
+          "Grenades",
+          "Infantry",
+          "Jump Pack",
+          "Blades for Hire",
+          "Scourges with Shardcarbines"
+        ],
+        "nameJa": "スカージ（シャードカービン装備）"
+      },
+      {
+        "id": "corsair_skyreavers",
+        "name": "Corsair Skyreavers",
+        "pts": 75,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Aeldari",
+          "Anhrathe",
+          "Jump Pack",
+          "Fly",
+          "Grenades",
+          "Corsair Skyreavers"
+        ],
+        "nameJa": "コルセア・スカイリーヴァー"
+      },
+      {
+        "id": "prince_yriel",
+        "name": "Prince Yriel",
+        "pts": 95,
+        "role": "HQ",
+        "categories": [
+          "Prince Yriel",
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Aeldari",
+          "Anhrathe"
+        ],
+        "nameJa": "プリンス・イリエル"
+      },
+      {
+        "id": "kharseth",
+        "name": "Kharseth",
+        "pts": 95,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Aeldari",
+          "Character",
+          "Epic Hero",
+          "Psyker",
+          "Anhrathe",
+          "Kharseth"
+        ],
+        "nameJa": "カーセス"
+      }
+    ]
+  },
+  "ynnari": {
+    "id": "ynnari",
+    "name": "Ynnari",
+    "nameJa": "",
+    "group": "Xenos",
+    "units": [
+      {
+        "id": "yvraine",
+        "name": "Yvraine",
+        "pts": 100,
+        "role": "HQ",
+        "categories": [
+          "Yvraine",
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Psyker",
+          "Aeldari"
+        ],
+        "nameJa": "イヴライネ"
+      },
+      {
+        "id": "the_visarch",
+        "name": "The Visarch",
+        "pts": 90,
+        "role": "HQ",
+        "categories": [
+          "The Visarch",
+          "Infantry",
+          "Epic Hero",
+          "Character",
+          "Aeldari"
+        ],
+        "nameJa": "ヴィスアーク"
+      },
+      {
+        "id": "the_yncarne",
+        "name": "The Yncarne",
+        "pts": 260,
+        "role": "HQ",
+        "categories": [
+          "The Yncarne",
+          "Epic Hero",
+          "Monster",
+          "Character",
+          "Fly",
+          "Psyker",
+          "Daemon",
+          "Aeldari"
+        ],
+        "nameJa": "インカーネ"
+      },
+      {
+        "id": "archon",
+        "name": "Archon",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Kabal",
+          "Aeldari",
+          "Archon"
+        ],
+        "nameJa": "アーコン"
+      },
+      {
+        "id": "autarch",
+        "name": "Autarch",
+        "pts": 85,
+        "role": "HQ",
+        "categories": [
+          "Autarch",
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "アウターク"
+      },
+      {
+        "id": "autarch_wayleaper",
+        "name": "Autarch Wayleaper",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Fly",
+          "Autarch Wayleaper",
+          "Aeldari",
+          "Jump Pack",
+          "Ynnari"
+        ],
+        "nameJa": "アウターク・ウェイリーパー"
+      },
+      {
+        "id": "crimson_hunter",
+        "name": "Crimson Hunter",
+        "pts": 160,
+        "role": "Heavy",
+        "categories": [
+          "Vehicle",
+          "Aircraft",
+          "Fly",
+          "Crimson Hunter",
+          "Aeldari",
+          "Aspect Warrior",
+          "Ynnari"
+        ],
+        "nameJa": "クリムゾン・ハンター"
+      },
+      {
+        "id": "dark_reapers",
+        "name": "Dark Reapers",
+        "pts": 90,
+        "role": "Other",
+        "categories": [
+          "Dark Reapers",
+          "Infantry",
+          "Aspect Warrior",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ダーク・リーパー"
+      },
+      {
+        "id": "death_jester",
+        "name": "Death Jester",
+        "pts": 90,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Death Jester",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "デス・ジェスター"
+      },
+      {
+        "id": "dire_avengers",
+        "name": "Dire Avengers",
+        "pts": 75,
+        "role": "Other",
+        "categories": [
+          "Dire Avengers",
+          "Grenades",
+          "Infantry",
+          "Aeldari",
+          "Aspect Warrior",
+          "Ynnari"
+        ],
+        "nameJa": "ダイア・アヴェンジャー"
+      },
+      {
+        "id": "drazhar",
+        "name": "Drazhar",
+        "pts": 85,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Drazhar",
+          "Aeldari",
+          "Infantry",
+          "Character",
+          "Blades for Hire"
+        ],
+        "nameJa": "ドラツァール"
+      },
+      {
+        "id": "eldrad_ulthran",
+        "name": "Eldrad Ulthran",
+        "pts": 120,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Psyker",
+          "Farseer",
+          "Eldrad Ultran",
+          "Aeldari"
+        ],
+        "nameJa": "エルドラド・ウルスラーン"
+      },
+      {
+        "id": "falcon",
+        "name": "Falcon",
+        "pts": 130,
+        "role": "Transport",
+        "categories": [
+          "Falcon",
+          "Fly",
+          "Transport",
+          "Vehicle",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ファルコン"
+      },
+      {
+        "id": "farseer",
+        "name": "Farseer",
+        "pts": 70,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Psyker",
+          "Farseer",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ファーシーア"
+      },
+      {
+        "id": "farseer_skyrunner",
+        "name": "Farseer Skyrunner",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Farseer Skyrunner",
+          "Farseer",
+          "Character",
+          "Fly",
+          "Mounted",
+          "Psyker",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ファーシーア・スカイランナー"
+      },
+      {
+        "id": "fire_dragons",
+        "name": "Fire Dragons",
+        "pts": 120,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Grenades",
+          "Fire Dragons",
+          "Aeldari",
+          "Aspect Warrior",
+          "Ynnari"
+        ],
+        "nameJa": "ファイア・ドラゴン"
+      },
+      {
+        "id": "fire_prism",
+        "name": "Fire Prism",
+        "pts": 150,
+        "role": "Heavy",
+        "categories": [
+          "Fire Prism",
+          "Fly",
+          "Vehicle",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ファイア・プリズム"
+      },
+      {
+        "id": "guardian_defenders",
+        "name": "Guardian Defenders",
+        "pts": 100,
+        "role": "Battleline",
+        "categories": [
+          "Guardian Defenders",
+          "Battleline",
+          "Infantry",
+          "Grenades",
+          "Guardians",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ガーディアン・ティフェンダー"
+      },
+      {
+        "id": "hemlock_wraithfighter",
+        "name": "Hemlock Wraithfighter",
+        "pts": 155,
+        "role": "Heavy",
+        "categories": [
+          "Hemlock Wraithfighter",
+          "Vehicle",
+          "Fly",
+          "Aircraft",
+          "Psyker",
+          "Wraith Construct",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ヘムロック・レイスファイター"
+      },
+      {
+        "id": "howling_banshees",
+        "name": "Howling Banshees",
+        "pts": 95,
+        "role": "Other",
+        "categories": [
+          "Howling Banshees",
+          "Infantry",
+          "Ynnari",
+          "Aspect Warrior"
+        ],
+        "nameJa": "ハウリング・バンシー"
+      },
+      {
+        "id": "night_spinner",
+        "name": "Night Spinner",
+        "pts": 190,
+        "role": "Heavy",
+        "categories": [
+          "Fly",
+          "Vehicle",
+          "Night Spinner",
+          "Aeldari"
+        ],
+        "nameJa": "ナイトスピナー"
+      },
+      {
+        "id": "rangers",
+        "name": "Rangers",
+        "pts": 55,
+        "role": "Other",
+        "categories": [
+          "Rangers",
+          "Infantry",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "レンジャー"
+      },
+      {
+        "id": "shadowseer",
+        "name": "Shadowseer",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Shadowseer",
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Psyker",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "シャドウシーア"
+      },
+      {
+        "id": "shining_spears",
+        "name": "Shining Spears",
+        "pts": 110,
+        "role": "Other",
+        "categories": [
+          "Shining Spears",
+          "Mounted",
+          "Fly",
+          "Aeldari",
+          "Aspect Warrior",
+          "Ynnari"
+        ],
+        "nameJa": "シャイニング・スピアー"
+      },
+      {
+        "id": "shroud_runners",
+        "name": "Shroud Runners",
+        "pts": 80,
+        "role": "Other",
+        "categories": [
+          "Shroud Runners",
+          "Fly",
+          "Mounted",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "シュラウドランナー"
+      },
+      {
+        "id": "skyweavers",
+        "name": "Skyweavers",
+        "pts": 95,
+        "role": "Other",
+        "categories": [
+          "Skyweavers",
+          "Fly",
+          "Mounted",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "スカイウィーバー"
+      },
+      {
+        "id": "spiritseer",
+        "name": "Spiritseer",
+        "pts": 65,
+        "role": "HQ",
+        "categories": [
+          "Spiritseer",
+          "Character",
+          "Infantry",
+          "Psyker",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "スピリットシーア"
+      },
+      {
+        "id": "starweaver",
+        "name": "Starweaver",
+        "pts": 80,
+        "role": "Transport",
+        "categories": [
+          "Star Weaver",
+          "Dedicated Transport",
+          "Fly",
+          "Vehicle",
+          "Transport",
+          "Aeldari",
+          "Harlequin Allies",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "スターウィーヴァー"
+      },
+      {
+        "id": "storm_guardians",
+        "name": "Storm Guardians",
+        "pts": 110,
+        "role": "Battleline",
+        "categories": [
+          "Storm Guardians",
+          "Battleline",
+          "Infantry",
+          "Grenades",
+          "Guardians",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ストーム・ガーディアン"
+      },
+      {
+        "id": "d_cannon_platform",
+        "name": "D-Cannon Platform",
+        "pts": 125,
+        "role": "Other",
+        "categories": [
+          "Support Weapon",
+          "Infantry",
+          "Aeldari",
+          "D-Cannon Platform",
+          "Ynnari"
+        ],
+        "nameJa": "Dキャノン・プラットフォーム"
+      },
+      {
+        "id": "swooping_hawks",
+        "name": "Swooping Hawks",
+        "pts": 95,
+        "role": "Other",
+        "categories": [
+          "Swooping Hawks",
+          "Infantry",
+          "Fly",
+          "Grenades",
+          "Aeldari",
+          "Jump Pack",
+          "Aspect Warrior",
+          "Ynnari"
+        ],
+        "nameJa": "スウィーピング・ホーク"
+      },
+      {
+        "id": "troupe",
+        "name": "Troupe",
+        "pts": 85,
+        "role": "Other",
+        "categories": [
+          "Troupe",
+          "Infantry",
+          "Grenades",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "トゥループ"
+      },
+      {
+        "id": "troupe_master",
+        "name": "Troupe Master",
+        "pts": 75,
+        "role": "HQ",
+        "categories": [
+          "Troupe Master",
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "トゥループ・マスター"
+      },
+      {
+        "id": "voidweaver",
+        "name": "Voidweaver",
+        "pts": 125,
+        "role": "Heavy",
+        "categories": [
+          "Voidweaver",
+          "Fly",
+          "Vehicle",
+          "Harlequin Allies",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "ヴォイドウィーバー"
+      },
+      {
+        "id": "warlock",
+        "name": "Warlock",
+        "pts": 45,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Psyker",
+          "Warlock",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ウォーロック"
+      },
+      {
+        "id": "warlock_conclave",
+        "name": "Warlock Conclave",
+        "pts": 55,
+        "role": "Other",
+        "categories": [
+          "Warlock Conclave",
+          "Psyker",
+          "Infantry",
+          "Aeldari",
+          "Warlock",
+          "Ynnari"
+        ],
+        "nameJa": "ウォーロック・コンクラーベ"
+      },
+      {
+        "id": "warlock_skyrunners",
+        "name": "Warlock Skyrunners",
+        "pts": 45,
+        "role": "Other",
+        "categories": [
+          "Psyker",
+          "Mounted",
+          "Warlock Skyrunners",
+          "Warlock",
+          "Aeldari",
+          "Fly",
+          "Ynnari"
+        ],
+        "nameJa": "ウォーロック・スカイランナー"
+      },
+      {
+        "id": "warp_spiders",
+        "name": "Warp Spiders",
+        "pts": 105,
+        "role": "Other",
+        "categories": [
+          "Warp Spiders",
+          "Infantry",
+          "Fly",
+          "Jump Pack",
+          "Aeldari",
+          "Aspect Warrior",
+          "Ynnari"
+        ],
+        "nameJa": "ワープ・スパイダー"
+      },
+      {
+        "id": "wave_serpent",
+        "name": "Wave Serpent",
+        "pts": 125,
+        "role": "Transport",
+        "categories": [
+          "Wave Serpent",
+          "Fly",
+          "Dedicated Transport",
+          "Vehicle",
+          "Transport",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ウェイヴ・サーペント"
+      },
+      {
+        "id": "windriders",
+        "name": "Windriders",
+        "pts": 80,
+        "role": "Other",
+        "categories": [
+          "Mounted",
+          "Fly",
+          "Windriders",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "ウインドライダー"
+      },
+      {
+        "id": "wraithblades",
+        "name": "Wraithblades",
+        "pts": 160,
+        "role": "Other",
+        "categories": [
+          "Wraithblades",
+          "Infantry",
+          "Wraith Construct",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "レイスブレイド"
+      },
+      {
+        "id": "wraithguard",
+        "name": "Wraithguard",
+        "pts": 170,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Wraithguard",
+          "Wraith Construct",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "レイスガード"
+      },
+      {
+        "id": "wraithknight",
+        "name": "Wraithknight",
+        "pts": 435,
+        "role": "Heavy",
+        "categories": [
+          "Wraithknight",
+          "Wraith Construct",
+          "Monster",
+          "Titanic",
+          "Towering",
+          "Walker",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "レイスナイト"
+      },
+      {
+        "id": "wraithlord",
+        "name": "Wraithlord",
+        "pts": 140,
+        "role": "Heavy",
+        "categories": [
+          "Wraithlord",
+          "Wraith Construct",
+          "Monster",
+          "Walker",
+          "Aeldari",
+          "Ynnari"
+        ],
+        "nameJa": "レイスロード"
+      },
+      {
+        "id": "hellions",
+        "name": "Hellions",
+        "pts": 85,
+        "role": "Other",
+        "categories": [
+          "Hellions",
+          "Aeldari",
+          "Wych Cult",
+          "Mounted",
+          "Fly"
+        ],
+        "nameJa": "ヘリオン"
+      },
+      {
+        "id": "incubi",
+        "name": "Incubi",
+        "pts": 90,
+        "role": "Other",
+        "categories": [
+          "Incubi",
+          "Aeldari",
+          "Infantry",
+          "Blades for Hire"
+        ],
+        "nameJa": "インキュバス"
+      },
+      {
+        "id": "kabalite_warriors",
+        "name": "Kabalite Warriors",
+        "pts": 115,
+        "role": "Battleline",
+        "categories": [
+          "Kabalite Warriors",
+          "Aeldari",
+          "Kabal",
+          "Battleline",
+          "Infantry"
+        ],
+        "nameJa": "カバライト・ウォリアー"
+      },
+      {
+        "id": "lelith_hesperax",
+        "name": "Lelith Hesperax",
+        "pts": 85,
+        "role": "HQ",
+        "categories": [
+          "Lelith Hesperax",
+          "Aeldari",
+          "Wych Cult",
+          "Succubus",
+          "Epic Hero",
+          "Character",
+          "Infantry"
+        ],
+        "nameJa": "リリス・ヘスペラックス"
+      },
+      {
+        "id": "mandrakes",
+        "name": "Mandrakes",
+        "pts": 75,
+        "role": "Other",
+        "categories": [
+          "Mandrakes",
+          "Aeldari",
+          "Infantry",
+          "Blades for Hire"
+        ],
+        "nameJa": "マンドレイク"
+      },
+      {
+        "id": "raider",
+        "name": "Raider",
+        "pts": 85,
+        "role": "Transport",
+        "categories": [
+          "Raider",
+          "Aeldari",
+          "Dedicated Transport",
+          "Fly",
+          "Vehicle",
+          "Transport"
+        ],
+        "nameJa": "レイダー"
+      },
+      {
+        "id": "ravager",
+        "name": "Ravager",
+        "pts": 110,
+        "role": "Heavy",
+        "categories": [
+          "Ravager",
+          "Aeldari",
+          "Kabal",
+          "Fly",
+          "Vehicle"
+        ],
+        "nameJa": "ラヴェイジャー"
+      },
+      {
+        "id": "razorwing_jetfighter",
+        "name": "Razorwing Jetfighter",
+        "pts": 170,
+        "role": "Heavy",
+        "categories": [
+          "Razorwing Jetfighter",
+          "Aeldari",
+          "Aircraft",
+          "Vehicle",
+          "Fly"
+        ],
+        "nameJa": "レイザーウィング・ジェットファイター"
+      },
+      {
+        "id": "reavers",
+        "name": "Reavers",
+        "pts": 70,
+        "role": "Other",
+        "categories": [
+          "Reavers",
+          "Wych Cult",
+          "Aeldari",
+          "Fly",
+          "Mounted"
+        ],
+        "nameJa": "リーヴァー"
+      },
+      {
+        "id": "scourges_with_heavy_weapons",
+        "name": "Scourges with Heavy Weapons",
+        "pts": 130,
+        "role": "Other",
+        "categories": [
+          "Scourges",
+          "Aeldari",
+          "Fly",
+          "Grenades",
+          "Infantry",
+          "Jump Pack",
+          "Blades for Hire",
+          "Scourges with Heavy Weapons"
+        ],
+        "nameJa": "スカージ（ヘヴィウェポン装備）"
+      },
+      {
+        "id": "succubus",
+        "name": "Succubus",
+        "pts": 50,
+        "role": "HQ",
+        "categories": [
+          "Succubus",
+          "Wych Cult",
+          "Aeldari",
+          "Character",
+          "Infantry"
+        ],
+        "nameJa": "サキュバス"
+      },
+      {
+        "id": "venom",
+        "name": "Venom",
+        "pts": 70,
+        "role": "Transport",
+        "categories": [
+          "Venom",
+          "Aeldari",
+          "Fly",
+          "Dedicated Transport",
+          "Transport",
+          "Vehicle"
+        ],
+        "nameJa": "ヴェノム"
+      },
+      {
+        "id": "voidraven_bomber",
+        "name": "Voidraven Bomber",
+        "pts": 245,
+        "role": "Heavy",
+        "categories": [
+          "Voidraven",
+          "Aeldari",
+          "Aircraft",
+          "Vehicle",
+          "Fly"
+        ],
+        "nameJa": "ヴォイドレイヴン・ボマー"
+      },
+      {
+        "id": "wyches",
+        "name": "Wyches",
+        "pts": 90,
+        "role": "Battleline",
+        "categories": [
+          "Wyches",
+          "Wych Cult",
+          "Aeldari",
+          "Battleline",
+          "Infantry",
+          "Grenades"
+        ],
+        "nameJa": "ウィッチ"
+      },
+      {
+        "id": "phantom_titan",
+        "name": "Phantom Titan",
+        "pts": 2100,
+        "role": "Heavy",
+        "categories": [
+          "Phantom Titan",
+          "Titanic",
+          "Towering",
+          "Walker",
+          "Monster",
+          "Aeldari",
+          "Wraith Construct"
+        ],
+        "nameJa": "ファントムタイタン"
+      },
+      {
+        "id": "revenant_titan",
+        "name": "Revenant Titan",
+        "pts": 1100,
+        "role": "Heavy",
+        "categories": [
+          "Revenant Titan",
+          "Walker",
+          "Towering",
+          "Titanic",
+          "Monster",
+          "Fly",
+          "Wraith Construct",
+          "Aeldari"
+        ],
+        "nameJa": "レヴェナントタイタン"
+      },
+      {
+        "id": "striking_scorpions",
+        "name": "Striking Scorpions",
+        "pts": 85,
+        "role": "Other",
+        "categories": [
+          "Striking Scorpions",
+          "Infantry",
+          "Aeldari",
+          "Aspect Warrior",
+          "Ynnari"
+        ],
+        "nameJa": "ストライキング・スコーピオン"
+      },
+      {
+        "id": "corsair_voidreavers",
+        "name": "Corsair Voidreavers",
+        "pts": 65,
+        "role": "Battleline",
+        "categories": [
+          "Infantry",
+          "Battleline",
+          "Grenades",
+          "Anhrathe",
+          "Corsair Voidreavers",
+          "Aeldari",
+          "Ynnari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "コルセア・ヴォイドリーヴァー"
+      },
+      {
+        "id": "corsair_voidscarred",
+        "name": "Corsair Voidscarred",
+        "pts": 80,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Anhrathe",
+          "Corsair Voidscarred",
+          "Grenades",
+          "Aeldari",
+          "Ynnari",
+          "Corsairs and Travelling Players"
+        ],
+        "nameJa": "コルセア・ヴォイドスカー"
       }
     ]
   },
@@ -6948,6 +8441,455 @@
       }
     ]
   },
+  "agents_of_the_imperium": {
+    "id": "agents_of_the_imperium",
+    "name": "Agents of the Imperium",
+    "nameJa": "インペリアル・エージェント",
+    "group": "Imperium",
+    "units": [
+      {
+        "id": "vindicare_assassin",
+        "name": "Vindicare Assassin",
+        "pts": 110,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Imperium",
+          "Vindicare Assassin",
+          "Officio Assassinorum"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "culexus_assassin",
+        "name": "Culexus Assassin",
+        "pts": 85,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Grenades",
+          "Imperium",
+          "Culexus Assassin",
+          "Officio Assassinorum"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "eversor_assassin",
+        "name": "Eversor Assassin",
+        "pts": 110,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Grenades",
+          "Imperium",
+          "Eversor Assassin",
+          "Officio Assassinorum"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "callidus_assassin",
+        "name": "Callidus Assassin",
+        "pts": 100,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Imperium",
+          "Callidus Assassin",
+          "Officio Assassinorum"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "rogue_trader_entourage",
+        "name": "Rogue Trader Entourage",
+        "pts": 75,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Imperium",
+          "Rogue Trader Entourage",
+          "Voidfarers",
+          "Voidfarer Character"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "voidsmen_at_arms",
+        "name": "Voidsmen-at-Arms",
+        "pts": 50,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Retinue",
+          "Voidsmen-at-Arms",
+          "Voidfarers"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "imperial_navy_breachers",
+        "name": "Imperial Navy Breachers",
+        "pts": 90,
+        "role": "Battleline",
+        "categories": [
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Retinue",
+          "Imperial Navy Breachers",
+          "Battleline",
+          "Voidfarers"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "subductor_squad",
+        "name": "Subductor Squad",
+        "pts": 85,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Retinue",
+          "Subductor Squad",
+          "Adeptus Arbites"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "exaction_squad",
+        "name": "Exaction Squad",
+        "pts": 90,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Retinue",
+          "Exaction Squad",
+          "Adeptus Arbites"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "vigilant_squad",
+        "name": "Vigilant Squad",
+        "pts": 85,
+        "role": "Battleline",
+        "categories": [
+          "Infantry",
+          "Battleline",
+          "Grenades",
+          "Imperium",
+          "Retinue",
+          "Vigilant Squad",
+          "Adeptus Arbites"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "inquisitor_draxus",
+        "name": "Inquisitor Draxus",
+        "pts": 75,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Psyker",
+          "Grenades",
+          "Imperium",
+          "Inquisitor",
+          "Draxus",
+          "Ordo Xenos"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "inquisitor_coteaz",
+        "name": "Inquisitor Coteaz",
+        "pts": 75,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Psyker",
+          "Imperium",
+          "Inquisitor",
+          "Coteaz",
+          "Ordo Malleus"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "inquisitor_greyfax",
+        "name": "Inquisitor Greyfax",
+        "pts": 65,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Psyker",
+          "Grenades",
+          "Imperium",
+          "Inquisitor",
+          "Greyfax",
+          "Ordo Hereticus"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "inquisitor",
+        "name": "Inquisitor",
+        "pts": 55,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Imperium",
+          "Inquisitor"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "navigator",
+        "name": "Navigator",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Psyker",
+          "Imperium",
+          "Voidfarers",
+          "Navigator",
+          "Voidfarer Character"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "ministorum_priest",
+        "name": "Ministorum Priest",
+        "pts": 40,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Imperium",
+          "Ordo Hereticus",
+          "Ministorum Priest"
+        ],
+        "nameJa": "ミニストルム・プリースト"
+      },
+      {
+        "id": "inquisitorial_agents",
+        "name": "Inquisitorial Agents",
+        "pts": 50,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Retinue",
+          "Inquisitorial Agents"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "grey_knights_terminator_squad",
+        "name": "Grey Knights Terminator Squad",
+        "pts": 190,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Psyker",
+          "Terminator",
+          "Grenades",
+          "Imperium",
+          "Ordo Malleus",
+          "Requisitioned",
+          "Grey Knights Terminator Squad"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "inquisitorial_chimera",
+        "name": "Inquisitorial Chimera",
+        "pts": 70,
+        "role": "Transport",
+        "categories": [
+          "Dedicated Transport",
+          "Vehicle",
+          "Transport",
+          "Imperium",
+          "Inquisitorial Chimera"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "imperial_rhino",
+        "name": "Imperial Rhino",
+        "pts": 75,
+        "role": "Transport",
+        "categories": [
+          "Dedicated Transport",
+          "Vehicle",
+          "Transport",
+          "Imperium",
+          "Imperial Rhino"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "sisters_of_battle_squad",
+        "name": "Sisters of Battle Squad",
+        "pts": 100,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Ordo Hereticus",
+          "Sisters of Battle Squad",
+          "Requisitioned"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "sisters_of_battle_immolator",
+        "name": "Sisters of Battle Immolator",
+        "pts": 100,
+        "role": "Transport",
+        "categories": [
+          "Dedicated Transport",
+          "Vehicle",
+          "Transport",
+          "Imperium",
+          "Ordo Hereticus",
+          "Sisters of Battle Immolator"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "corvus_blackstar",
+        "name": "Corvus Blackstar",
+        "pts": 180,
+        "role": "Transport",
+        "categories": [
+          "Fly",
+          "Vehicle",
+          "Aircraft",
+          "Imperium",
+          "Transport",
+          "Retinue",
+          "Corvus Blackstar",
+          "Ordo Xenos",
+          "Deathwatch"
+        ],
+        "nameJa": "コルヴス・ブラックスター"
+      },
+      {
+        "id": "deathwatch_kill_team",
+        "name": "Deathwatch Kill Team",
+        "pts": 100,
+        "role": "Battleline",
+        "categories": [
+          "Infantry",
+          "Battleline",
+          "Grenades",
+          "Imperium",
+          "Retinue",
+          "Ordo Xenos",
+          "Deathwatch",
+          "Kill Team"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "watch_captain_artemis",
+        "name": "Watch Captain Artemis",
+        "pts": 65,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Deathwatch",
+          "Watch Captain Artemis",
+          "Ordo Xenos"
+        ],
+        "nameJa": "監視中隊長アルテミス"
+      },
+      {
+        "id": "watch_master",
+        "name": "Watch Master",
+        "pts": 95,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Captain",
+          "Grenades",
+          "Imperium",
+          "Watch Master",
+          "Deathwatch",
+          "Ordo Xenos"
+        ],
+        "nameJa": "ウォッチマスター"
+      },
+      {
+        "id": "sanctifiers",
+        "name": "Sanctifiers",
+        "pts": 100,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Sanctifiers",
+          "Retinue"
+        ],
+        "nameJa": "サンクティファイアー"
+      },
+      {
+        "id": "aquila_kill_team",
+        "name": "Aquila Kill Team",
+        "pts": 100,
+        "role": "Battleline",
+        "categories": [
+          "Infantry",
+          "Battleline",
+          "Grenades",
+          "Imperium",
+          "Deathwatch",
+          "Aquila Kill Team",
+          "Retinue",
+          "Ordo Xenos"
+        ],
+        "nameJa": ""
+      }
+    ]
+  },
   "astra_militarum": {
     "id": "astra_militarum",
     "name": "Astra Militarum",
@@ -9201,6 +11143,62 @@
       }
     ]
   },
+  "imperial_fists": {
+    "id": "imperial_fists",
+    "name": "Imperial Fists",
+    "nameJa": "",
+    "group": "Imperium",
+    "units": [
+      {
+        "id": "darnath_lysander",
+        "name": "Darnath Lysander",
+        "pts": 100,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Captain",
+          "Imperium",
+          "Terminator",
+          "Darnath Lysander"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "tor_garadon",
+        "name": "Tor Garadon",
+        "pts": 90,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Captain",
+          "Gravis",
+          "Tor Garadon",
+          "Imperium"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "pedro_kantor",
+        "name": "Pedro Kantor",
+        "pts": 90,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Chapter Master",
+          "Pedro Kantor"
+        ],
+        "nameJa": ""
+      }
+    ]
+  },
   "imperial_knights": {
     "id": "imperial_knights",
     "name": "Imperial Knights",
@@ -9547,6 +11545,130 @@
           "Knight Defender"
         ],
         "nameJa": "ナイト・デフェンダー"
+      }
+    ]
+  },
+  "iron_hands": {
+    "id": "iron_hands",
+    "name": "Iron Hands",
+    "nameJa": "",
+    "group": "Imperium",
+    "units": [
+      {
+        "id": "iron_father_feirros",
+        "name": "Iron Father Feirros",
+        "pts": 95,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Epic Hero",
+          "Infantry",
+          "Imperium",
+          "Gravis",
+          "Iron Father Ferrios"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "caanok_var",
+        "name": "Caanok Var",
+        "pts": 100,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Imperium",
+          "Terminator",
+          "Captain",
+          "Caanok Var"
+        ],
+        "nameJa": ""
+      }
+    ]
+  },
+  "raven_guard": {
+    "id": "raven_guard",
+    "name": "Raven Guard",
+    "nameJa": "",
+    "group": "Imperium",
+    "units": [
+      {
+        "id": "kayvaan_shrike",
+        "name": "Kayvaan Shrike",
+        "pts": 100,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Imperium",
+          "Fly",
+          "Jump Pack",
+          "Chapter Master",
+          "Kayvaan Shrike",
+          "Phobos"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "aethon_shaan",
+        "name": "Aethon Shaan",
+        "pts": 110,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Epic Hero",
+          "Infantry",
+          "Fly",
+          "Jump Pack",
+          "Imperium",
+          "Tacticus",
+          "Chapter Master",
+          "Aethon Shaan"
+        ],
+        "nameJa": ""
+      }
+    ]
+  },
+  "salamanders": {
+    "id": "salamanders",
+    "name": "Salamanders",
+    "nameJa": "",
+    "group": "Imperium",
+    "units": [
+      {
+        "id": "adrax_agatone",
+        "name": "Adrax Agatone",
+        "pts": 85,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Captain",
+          "Adrax Agatone",
+          "Imperium",
+          "Tacticus"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "vulkan_he_stan",
+        "name": "Vulkan He'stan",
+        "pts": 100,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Captain",
+          "Imperium",
+          "Grenades",
+          "Vulkan He'stan",
+          "Tacticus"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -11182,6 +13304,46 @@
       }
     ]
   },
+  "white_scars": {
+    "id": "white_scars",
+    "name": "White Scars",
+    "nameJa": "",
+    "group": "Imperium",
+    "units": [
+      {
+        "id": "kor_sarro_khan",
+        "name": "Kor'sarro Khan",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Captain",
+          "Imperium",
+          "Kor'sarro Khan",
+          "Tacticus"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "suboden_khan",
+        "name": "Suboden Khan",
+        "pts": 115,
+        "role": "HQ",
+        "categories": [
+          "Mounted",
+          "Character",
+          "Epic Hero",
+          "Imperium",
+          "Grenades",
+          "Captain",
+          "Suboden Khan"
+        ],
+        "nameJa": ""
+      }
+    ]
+  },
   "leagues_of_votann": {
     "id": "leagues_of_votann",
     "name": "Leagues of Votann",
@@ -11384,7 +13546,7 @@
           "Infantry",
           "Arkanyst Evaluator"
         ],
-        "nameJa": "アーカニスト・エヴァリュエーター"
+        "nameJa": ""
       },
       {
         "id": "kapricus_carrier",

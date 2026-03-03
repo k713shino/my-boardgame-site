@@ -15,15 +15,11 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from "fs";
 import { join } from "path";
 
-// ─── fast-xml-parser は devDependency として必要 ────────────────────────────
 let XMLParser;
 try {
   ({ XMLParser } = await import("fast-xml-parser"));
 } catch {
-  console.error(
-    "❌ fast-xml-parser が見つかりません。\n" +
-      "   npm install -D fast-xml-parser を実行してください。"
-  );
+  console.error("❌ fast-xml-parser が見つかりません。\n   npm install -D fast-xml-parser を実行してください。");
   process.exit(1);
 }
 
@@ -32,35 +28,51 @@ try {
 const BSDATA_DIR = join(process.cwd(), "..", "wh40k-10e");
 const OUTPUT_PATH = join(process.cwd(), "src", "data", "wh40k-units.json");
 
+/**
+ * library: entryLinks 解決に使うライブラリ .cat ファイル名（拡張子なし）
+ *   指定すると、該当 .cat の sharedSelectionEntries を ID マップとして使い
+ *   メイン .cat の entryLinks を解決する。
+ */
 const FACTION_MAP = {
-  "Aeldari - Aeldari Library":              { name: "Aeldari (Craftworlds)", group: "Xenos" },
-  "Aeldari - Drukhari":                     { name: "Drukhari",              group: "Xenos" },
-  "Chaos - Chaos Daemons Library":          { name: "Chaos Daemons",         group: "Chaos" },
-  "Chaos - Chaos Knights Library":          { name: "Chaos Knights",         group: "Chaos" },
-  "Chaos - Chaos Space Marines":            { name: "Chaos Space Marines",   group: "Chaos" },
-  "Chaos - Death Guard":                    { name: "Death Guard",           group: "Chaos" },
-  "Chaos - Emperor's Children":             { name: "Emperor's Children",    group: "Chaos" },
-  "Chaos - Thousand Sons":                  { name: "Thousand Sons",         group: "Chaos" },
-  "Chaos - World Eaters":                   { name: "World Eaters",          group: "Chaos" },
-  "Genestealer Cults":                      { name: "Genestealer Cults",     group: "Xenos" },
-  "Imperium - Adepta Sororitas":            { name: "Adepta Sororitas",      group: "Imperium" },
-  "Imperium - Adeptus Custodes":            { name: "Adeptus Custodes",      group: "Imperium" },
-  "Imperium - Adeptus Mechanicus":          { name: "Adeptus Mechanicus",    group: "Imperium" },
-  "Imperium - Astra Militarum - Library":   { name: "Astra Militarum",       group: "Imperium" },
-  "Imperium - Black Templars":              { name: "Black Templars",        group: "Imperium" },
-  "Imperium - Blood Angels":                { name: "Blood Angels",          group: "Imperium" },
-  "Imperium - Dark Angels":                 { name: "Dark Angels",           group: "Imperium" },
-  "Imperium - Deathwatch":                  { name: "Deathwatch",            group: "Imperium" },
-  "Imperium - Grey Knights":                { name: "Grey Knights",          group: "Imperium" },
-  "Imperium - Imperial Knights - Library":  { name: "Imperial Knights",      group: "Imperium" },
-  "Imperium - Space Marines":               { name: "Space Marines",         group: "Imperium" },
-  "Imperium - Space Wolves":                { name: "Space Wolves",          group: "Imperium" },
-  "Imperium - Ultramarines":                { name: "Ultramarines",          group: "Imperium" },
-  "Leagues of Votann":                      { name: "Leagues of Votann",     group: "Xenos" },
-  "Necrons":                                { name: "Necrons",               group: "Xenos" },
-  "Orks":                                   { name: "Orks",                  group: "Xenos" },
-  "T'au Empire":                            { name: "T'au Empire",           group: "Xenos" },
-  "Tyranids":                               { name: "Tyranids",              group: "Xenos" },
+  // ── Aeldari ──────────────────────────────────────────────────────────────
+  "Aeldari - Aeldari Library":  { name: "Aeldari (Craftworlds)", group: "Xenos",    library: null },
+  "Aeldari - Drukhari":         { name: "Drukhari",              group: "Xenos",    library: "Aeldari - Aeldari Library" },
+  "Aeldari - Ynnari":           { name: "Ynnari",                group: "Xenos",    library: "Aeldari - Aeldari Library" },
+  // ── Chaos ────────────────────────────────────────────────────────────────
+  "Chaos - Chaos Daemons Library":  { name: "Chaos Daemons",       group: "Chaos",    library: null },
+  "Chaos - Chaos Knights Library":  { name: "Chaos Knights",       group: "Chaos",    library: null },
+  "Chaos - Chaos Space Marines":    { name: "Chaos Space Marines", group: "Chaos",    library: null },
+  "Chaos - Death Guard":            { name: "Death Guard",         group: "Chaos",    library: null },
+  "Chaos - Emperor's Children":     { name: "Emperor's Children",  group: "Chaos",    library: null },
+  "Chaos - Thousand Sons":          { name: "Thousand Sons",       group: "Chaos",    library: null },
+  "Chaos - World Eaters":           { name: "World Eaters",        group: "Chaos",    library: null },
+  // ── Xenos ────────────────────────────────────────────────────────────────
+  "Genestealer Cults": { name: "Genestealer Cults", group: "Xenos", library: null },
+  "Leagues of Votann": { name: "Leagues of Votann", group: "Xenos", library: null },
+  "Necrons":           { name: "Necrons",           group: "Xenos", library: null },
+  "Orks":              { name: "Orks",              group: "Xenos", library: null },
+  "T'au Empire":       { name: "T'au Empire",       group: "Xenos", library: null },
+  "Tyranids":          { name: "Tyranids",          group: "Xenos", library: null },
+  // ── Imperium ─────────────────────────────────────────────────────────────
+  "Imperium - Adepta Sororitas":           { name: "Adepta Sororitas",      group: "Imperium", library: null },
+  "Imperium - Adeptus Custodes":           { name: "Adeptus Custodes",      group: "Imperium", library: null },
+  "Imperium - Adeptus Mechanicus":         { name: "Adeptus Mechanicus",    group: "Imperium", library: null },
+  "Imperium - Agents of the Imperium":     { name: "Agents of the Imperium",group: "Imperium", library: null },
+  "Imperium - Astra Militarum - Library":  { name: "Astra Militarum",       group: "Imperium", library: null },
+  "Imperium - Black Templars":             { name: "Black Templars",        group: "Imperium", library: null },
+  "Imperium - Blood Angels":               { name: "Blood Angels",          group: "Imperium", library: null },
+  "Imperium - Dark Angels":                { name: "Dark Angels",           group: "Imperium", library: null },
+  "Imperium - Deathwatch":                 { name: "Deathwatch",            group: "Imperium", library: null },
+  "Imperium - Grey Knights":               { name: "Grey Knights",          group: "Imperium", library: null },
+  "Imperium - Imperial Fists":             { name: "Imperial Fists",        group: "Imperium", library: null },
+  "Imperium - Imperial Knights - Library": { name: "Imperial Knights",      group: "Imperium", library: null },
+  "Imperium - Iron Hands":                 { name: "Iron Hands",            group: "Imperium", library: null },
+  "Imperium - Raven Guard":                { name: "Raven Guard",           group: "Imperium", library: null },
+  "Imperium - Salamanders":                { name: "Salamanders",           group: "Imperium", library: null },
+  "Imperium - Space Marines":              { name: "Space Marines",         group: "Imperium", library: null },
+  "Imperium - Space Wolves":               { name: "Space Wolves",          group: "Imperium", library: null },
+  "Imperium - Ultramarines":               { name: "Ultramarines",          group: "Imperium", library: null },
+  "Imperium - White Scars":                { name: "White Scars",           group: "Imperium", library: null },
 };
 
 const IGNORED_CAT_PREFIXES = [
@@ -83,58 +95,77 @@ function getRole(cats) {
   return "Other";
 }
 
-function parseCat(filepath) {
-  const xml = readFileSync(filepath, "utf-8");
-  const parser = new XMLParser({
+function makeParser() {
+  return new XMLParser({
     ignoreAttributes: false,
     attributeNamePrefix: "@_",
-    isArray: (name) =>
-      ["selectionEntry", "categoryLink", "cost", "entryLink"].includes(name),
+    isArray: (name) => ["selectionEntry", "categoryLink", "cost", "entryLink"].includes(name),
   });
-  const parsed = parser.parse(xml);
-  const catalogue = parsed.catalogue;
+}
+
+/** .cat を解析して unit/model エントリを返す。libMap があれば entryLinks も解決する */
+function parseCat(filepath, libMap = null) {
+  const parser = makeParser();
+  const xml = readFileSync(filepath, "utf-8");
+  const catalogue = parser.parse(xml).catalogue;
   if (!catalogue) return [];
 
   const results = [];
 
-  function processEntries(entries) {
-    if (!Array.isArray(entries)) return;
-    for (const entry of entries) {
-      const name = entry["@_name"] ?? "";
-      const type = entry["@_type"] ?? "";
-      if (entry["@_hidden"] === "true") continue;
-      if (!["model", "unit"].includes(type)) continue;
-      if (name.includes("[Legends]")) continue;
+  function extractUnit(entry) {
+    const name = entry["@_name"] ?? "";
+    const type = entry["@_type"] ?? "";
+    if (entry["@_hidden"] === "true") return;
+    if (!["model", "unit"].includes(type)) return;
+    if (name.includes("[Legends]")) return;
 
-      let pts = 0;
-      for (const cost of entry.costs?.cost ?? []) {
-        if (cost["@_name"] === "pts") {
-          pts = Math.round(parseFloat(cost["@_value"] ?? "0") || 0);
-          break;
-        }
+    let pts = 0;
+    for (const cost of entry.costs?.cost ?? []) {
+      if (cost["@_name"] === "pts") {
+        pts = Math.round(parseFloat(cost["@_value"] ?? "0") || 0);
+        break;
       }
-      if (pts <= 0) continue;
+    }
+    if (pts <= 0) return;
 
-      const cats = (entry.categoryLinks?.categoryLink ?? [])
-        .map((cl) => cl["@_name"] ?? "")
-        .filter((c) => c && !IGNORED_CAT_PREFIXES.some((p) => c.startsWith(p)));
+    const cats = (entry.categoryLinks?.categoryLink ?? [])
+      .map((cl) => cl["@_name"] ?? "")
+      .filter((c) => c && !IGNORED_CAT_PREFIXES.some((p) => c.startsWith(p)));
 
-      results.push({ id: slugify(name), name, pts, role: getRole(cats), categories: cats });
+    results.push({ id: slugify(name), name, pts, role: getRole(cats), categories: cats });
+  }
+
+  // 直接定義されているエントリ
+  for (const e of catalogue.selectionEntries?.selectionEntry ?? []) extractUnit(e);
+  for (const e of catalogue.sharedSelectionEntries?.selectionEntry ?? []) extractUnit(e);
+
+  // entryLinks → ライブラリから解決
+  if (libMap) {
+    for (const link of catalogue.entryLinks?.entryLink ?? []) {
+      const target = libMap.get(link["@_targetId"]);
+      if (target) extractUnit(target);
     }
   }
 
-  // ユニットは selectionEntries と sharedSelectionEntries の両方に存在する
-  processEntries(catalogue.selectionEntries?.selectionEntry);
-  processEntries(catalogue.sharedSelectionEntries?.selectionEntry);
   return results;
 }
 
-// ─── 既存JSONから日本語訳を退避 ───────────────────────────────────────────────
-// 再生成のたびに手動翻訳が消えないよう nameJa を Map に退避し、パース後に復元する。
-// 種族は name（英語）で照合するためIDが変わっても引き継がれる。
+/** ライブラリ .cat の sharedSelectionEntries を id → entry の Map として返す */
+function buildLibMap(filename) {
+  const parser = makeParser();
+  const xml = readFileSync(join(BSDATA_DIR, `${filename}.cat`), "utf-8");
+  const catalogue = parser.parse(xml).catalogue;
+  const map = new Map();
+  for (const e of catalogue?.sharedSelectionEntries?.selectionEntry ?? []) {
+    if (e["@_id"]) map.set(e["@_id"], e);
+  }
+  return map;
+}
 
-const savedUnitJa   = new Map(); // ユニット英語名 → nameJa
-const savedFactionJa = new Map(); // 種族英語名   → nameJa
+// ─── 既存JSONから日本語訳を退避 ───────────────────────────────────────────────
+
+const savedUnitJa    = new Map();
+const savedFactionJa = new Map();
 
 if (existsSync(OUTPUT_PATH)) {
   try {
@@ -151,6 +182,16 @@ if (existsSync(OUTPUT_PATH)) {
   }
 }
 
+// ─── ライブラリマップをキャッシュ ────────────────────────────────────────────
+
+const libMapCache = new Map();
+function getLibMap(libName) {
+  if (!libMapCache.has(libName)) {
+    libMapCache.set(libName, buildLibMap(libName));
+  }
+  return libMapCache.get(libName);
+}
+
 // ─── メイン ───────────────────────────────────────────────────────────────────
 
 const output = {};
@@ -162,7 +203,8 @@ for (const filename of catFiles.sort()) {
   const info = FACTION_MAP[key];
   if (!info) continue;
 
-  const units = parseCat(join(BSDATA_DIR, filename));
+  const libMap = info.library ? getLibMap(info.library) : null;
+  const units  = parseCat(join(BSDATA_DIR, filename), libMap);
 
   // 重複除去
   const seen = new Set();
@@ -172,7 +214,7 @@ for (const filename of catFiles.sort()) {
     return true;
   });
 
-  // ID重複回避
+  // ID 重複回避
   const idCount = {};
   for (const u of deduped) {
     const base = u.id;
