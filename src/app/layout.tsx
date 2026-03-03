@@ -52,11 +52,20 @@ export const metadata: Metadata = {
     siteName: "Dice Journal",
     locale: "ja_JP",
     type: "website",
+    images: [
+      {
+        url: "/images/ogp.png",
+        width: 1424,
+        height: 752,
+        alt: "Dice Journal | 霧島市発のボードゲーム情報メディア",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Dice Journal | 霧島市発のボードゲーム情報メディア",
     description: "鹿児島県霧島市のボードゲーム情報メディア",
+    images: ["/images/ogp.png"],
   },
   robots: {
     index: true,
