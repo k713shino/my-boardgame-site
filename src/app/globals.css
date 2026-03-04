@@ -237,6 +237,31 @@ html.dark article a:hover {
   font-weight: 700;
 }
 
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--surface-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.prose th {
+  background: rgba(148, 163, 184, 0.12);
+  font-weight: 700;
+}
+
+html.dark .prose th {
+  background: rgba(71, 85, 105, 0.25);
+}
+
 /* PointBar */
 .point-bar {
   -webkit-appearance: none;
