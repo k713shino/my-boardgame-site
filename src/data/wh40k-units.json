@@ -1384,7 +1384,7 @@
   "drukhari": {
     "id": "drukhari",
     "name": "Drukhari",
-    "nameJa": "",
+    "nameJa": "デュカーリ",
     "group": "Xenos",
     "units": [
       {
@@ -1918,7 +1918,7 @@
   "ynnari": {
     "id": "ynnari",
     "name": "Ynnari",
-    "nameJa": "",
+    "nameJa": "インナーリ",
     "group": "Xenos",
     "units": [
       {
@@ -11146,7 +11146,7 @@
   "imperial_fists": {
     "id": "imperial_fists",
     "name": "Imperial Fists",
-    "nameJa": "",
+    "nameJa": "インペリアルフィスト",
     "group": "Imperium",
     "units": [
       {
@@ -11163,7 +11163,7 @@
           "Terminator",
           "Darnath Lysander"
         ],
-        "nameJa": ""
+        "nameJa": "ダルナス・ライサンダー"
       },
       {
         "id": "tor_garadon",
@@ -11179,7 +11179,7 @@
           "Tor Garadon",
           "Imperium"
         ],
-        "nameJa": ""
+        "nameJa": "トール・ガラドン"
       },
       {
         "id": "pedro_kantor",
@@ -11195,7 +11195,7 @@
           "Chapter Master",
           "Pedro Kantor"
         ],
-        "nameJa": ""
+        "nameJa": "ペドロ・カントール"
       }
     ]
   },
