@@ -202,6 +202,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
         const q = search.toLowerCase();
         return (
           u.name.toLowerCase().includes(q) ||
+          (u.nameJa != null && u.nameJa.includes(search)) ||
           u.categories.some((c) => c.toLowerCase().includes(q))
         );
       }
