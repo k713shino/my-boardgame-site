@@ -253,15 +253,15 @@ export const AELDARI_UNITS: AeldariUnit[] = [
     abilities: [
       {
         name: "Spirit Mark", nameJa: "スピリットマーク",
-        desc: "コマンドフェイズに18インチ以内の敵ユニット1体を選択。次のコマンドフェイズ開始まで、そのユニットへの友軍ライスコンストラクトの近接攻撃のヒットロールに+1。",
+        desc: "コマンドフェイズに18インチ以内の敵ユニット1体を選択。次のコマンドフェイズ開始まで、そのユニットへの友軍レイスコンストラクトの近接攻撃のヒットロールに+1。",
       },
       {
         name: "Revive", nameJa: "リバイブ",
-        desc: "コマンドフェイズに6インチ以内の友軍ライスコンストラクト1ユニットを選択。そのユニットはD3のウーンドを回復する。",
+        desc: "コマンドフェイズに6インチ以内の友軍レイスコンストラクト1ユニットを選択。そのユニットはD3のウーンドを回復する。",
       },
     ],
     keywords: ["Infantry", "Character", "Psyker", "Spiritseer"],
-    fluff: "死者の魂と交信する特殊なシーア。ライスコンストラクトとの霊的絆を持ち、ライス部隊を指揮する際に真価を発揮する。スピリットシーアと共に戦うライスブレードは特に強力。",
+    fluff: "死者の魂と交信する特殊なシーア。レイスコンストラクトとの霊的絆を持ち、レイス部隊を指揮する際に真価を発揮する。スピリットシーアと共に戦うレイスブレードは特に強力。",
   },
 
   {
@@ -1133,7 +1133,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
   },
 
   // ════════════════════════════════════════════════════════════════════════════
-  // ■ Heavy ─ ライスコンストラクト・支援火器
+  // ■ Heavy ─ レイスコンストラクト・支援火器
   // ════════════════════════════════════════════════════════════════════════════
 
   {
@@ -1186,7 +1186,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
         abilities: ["Torrent", "Devastating Wounds"],
       },
       {
-        name: "Wraithcannon", nameJa: "ライスキャノン",
+        name: "Wraithcannon", nameJa: "レイスキャノン",
         type: "Ranged", range: '12"', A: 1, skill: "4+", S: 14, AP: -4, D: "D3+3",
         abilities: ["Devastating Wounds"],
       },
@@ -1203,7 +1203,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
       },
     ],
     keywords: ["Infantry", "Wraith Construct", "Wraithguard"],
-    fluff: "ライスキャノンまたはDサイズを装備した超重武装コンストラクト。ライスキャノンの一撃はタイタン級の装甲すら引き裂き、Dサイズは数体を薙ぎ払う。5体1ユニット。",
+    fluff: "レイスキャノンまたはDサイズを装備した超重武装コンストラクト。レイスキャノンの一撃はタイタン級の装甲すら引き裂き、Dサイズは数体を薙ぎ払う。5体1ユニット。",
   },
 
   {
@@ -1237,12 +1237,12 @@ export const AELDARI_UNITS: AeldariUnit[] = [
         desc: "このモデルが破壊された場合D6を振る。4+の場合9インチ以内の各ユニットにD3のモータルウーンドを与える。",
       },
       {
-        name: "Wraithlord Resilience", nameJa: "ライスロードの回復力",
+        name: "Wraithlord Resilience", nameJa: "レイスロードの回復力",
         desc: "このモデルはターン終了時にD3のウーンドを回復する。",
       },
     ],
     keywords: ["Monster", "Wraith Construct", "Wraithlord"],
-    fluff: "古代英雄の魂が宿る巨大なライスコンストラクト。ブライトランス2門とフレイマー2門、ゴーストグレイブを装備可能。遠近両用の万能重兵器。",
+    fluff: "古代英雄の魂が宿る巨大なレイスコンストラクト。ブライトランス2門とフレイマー2門、ゴーストグレイブを装備可能。遠近両用の万能重兵器。",
   },
 
   {
@@ -1256,7 +1256,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
     invuln: "5+",
     weapons: [
       {
-        name: "Heavy Wraithcannon x2", nameJa: "ヘヴィ・ライスキャノン×2",
+        name: "Heavy Wraithcannon x2", nameJa: "ヘヴィ・レイスキャノン×2",
         type: "Ranged", range: '24"', A: 2, skill: "3+", S: 14, AP: -4, D: "D6+4",
         abilities: ["Devastating Wounds"],
       },
@@ -1266,7 +1266,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
         abilities: ["Blast"],
       },
       {
-        name: "Titanic Wraithglaive", nameJa: "タイタニック・ライスグレイブ",
+        name: "Titanic Wraithglaive", nameJa: "タイタニック・レイスグレイブ",
         type: "Melee", range: "Melee", A: 5, skill: "3+", S: 16, AP: -4, D: "D6+6",
         abilities: ["Devastating Wounds"],
       },
@@ -1282,7 +1282,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
       },
     ],
     keywords: ["Monster", "Titanic", "Fly", "Wraith Construct", "Wraithknight"],
-    fluff: "アエルダリ最大の戦闘コンストラクト。T12・W24のタイタン級存在。ヘヴィライスキャノン双連装またはサンキャノン＋ライスグレイブで戦場を蹂躙する。",
+    fluff: "アエルダリ最大の戦闘コンストラクト。T12・W24のタイタン級存在。ヘヴィレイスキャノン双連装またはサンキャノン＋レイスグレイブで戦場を蹂躙する。",
   },
 
   {
@@ -1600,7 +1600,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
       },
     ],
     keywords: ["Vehicle", "Fly", "Aircraft", "Psyker", "Hemlock Wraithfighter"],
-    fluff: "死の魂が宿った航空ライスコンストラクト。前方の敵をDサイズで薙ぎ払い、サイキックオーラで周囲の敵の士気を削る恐怖の戦闘機。",
+    fluff: "死の魂が宿った航空レイスコンストラクト。前方の敵をDサイズで薙ぎ払い、サイキックオーラで周囲の敵の士気を削る恐怖の戦闘機。",
   },
 
   {
@@ -2309,7 +2309,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
     invuln: "5+",
     weapons: [
       {
-        name: "Titanic Wraithglaive", nameJa: "タイタニック・ライスグレイブ",
+        name: "Titanic Wraithglaive", nameJa: "タイタニック・レイスグレイブ",
         type: "Melee", range: "Melee", A: 5, skill: "3+", S: 16, AP: -4, D: "D6+6",
         abilities: ["Devastating Wounds"],
       },
@@ -2335,7 +2335,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
       },
     ],
     keywords: ["Monster", "Titanic", "Fly", "Wraith Construct", "Wraithknight"],
-    fluff: "タイタニック・ライスグレイブを装備した近接特化型のライスナイト。リフトキャノンとグレイブの組み合わせで重装甲・歩兵どちらにも対応する格闘戦特化タイタン。",
+    fluff: "タイタニック・レイスグレイブを装備した近接特化型のレイスナイト。リフトキャノンとグレイブの組み合わせで重装甲・歩兵どちらにも対応する格闘戦特化タイタン。",
   },
 
   // ════════════════════════════════════════════════════════════════════════════
