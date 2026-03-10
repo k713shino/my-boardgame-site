@@ -1,15 +1,88 @@
 import type { Metadata } from "next";
-import { RosterBuilder } from "./RosterBuilder";
-import factionsRaw from "@/data/wh40k-units.json";
-import type { Faction } from "./types";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "WH40K Roster Builder",
+  title: "WH40K | Warhammer 40,000",
   description:
-    "Warhammer 40,000 10th Edition 全種族対応ロスタービルダー。BSDataデータ使用。",
+    "Warhammer 40,000 情報ハブ。Aeldari ロスタービルダー、ユニットリファレンス、初心者ガイド。",
 };
 
-export default function WH40KPage() {
-  const factions = Object.values(factionsRaw) as Faction[];
-  return <RosterBuilder factions={factions} />;
+const LINKS = [
+  {
+    href: "/wh40k/builder",
+    label: "Army Builder",
+    labelJa: "ロスタービルダー",
+    desc: "Aeldari 編成ツール。ポイント計算・保存・共有対応。",
+    icon: "⚔️",
+    highlight: true,
+  },
+  {
+    href: "/wh40k/rosters",
+    label: "My Rosters",
+    labelJa: "保存ロスター",
+    desc: "保存したロスター一覧を確認・管理する。",
+    icon: "📋",
+    highlight: false,
+  },
+  {
+    href: "/wh40k/aeldari",
+    label: "Aeldari Reference",
+    labelJa: "アエルダリ リファレンス",
+    desc: "Craftworlds 全ユニットのデータシート日本語解説。",
+    icon: "📖",
+    highlight: false,
+  },
+];
+
+export default function WH40KHubPage() {
+  return (
+    <div className="mx-auto max-w-3xl space-y-10 px-4 py-12">
+      {/* Hero */}
+      <div className="space-y-3">
+        <span className="text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-rose-500">
+          Warhammer 40,000
+        </span>
+        <h1 className="text-3xl font-black uppercase tracking-tight sm:text-4xl">
+          WH40K Hub
+        </h1>
+        <p className="text-sm text-muted leading-relaxed">
+          10th Edition 対応。ロスター作成・ユニット解説・初心者ガイドを提供する WH40K 情報ハブです。
+        </p>
+      </div>
+
+      {/* Nav cards */}
+      <div className="grid gap-3 sm:grid-cols-2">
+        {LINKS.map(({ href, label, labelJa, desc, icon, highlight }) => (
+          <Link
+            key={href}
+            href={href}
+            className={`group flex flex-col gap-2 rounded-2xl border p-5 transition hover:-translate-y-0.5 ${
+              highlight
+                ? "border-rose-400/40 bg-rose-500/5 hover:border-rose-400/70"
+                : "surface-card border-transparent hover:border-slate-300/60 dark:hover:border-slate-600/60"
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-xl">{icon}</span>
+              <span
+                className={`text-sm font-bold ${
+                  highlight ? "text-rose-500" : "text-[color:var(--fg-body)]"
+                }`}
+              >
+                {label}
+              </span>
+            </div>
+            <p className="text-[0.65rem] font-medium text-muted">{labelJa}</p>
+            <p className="text-xs text-muted leading-relaxed">{desc}</p>
+          </Link>
+        ))}
+      </div>
+
+      {/* Note */}
+      <p className="rounded-xl border border-amber-300/40 bg-amber-50/50 px-4 py-3 text-[0.65rem] leading-relaxed text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/5 dark:text-amber-400">
+        ⚠️ ポイントデータは BSData/wh40k-10e より抽出しています。大会使用前は必ず GW 公式{" "}
+        <strong>Munitorum Field Manual</strong> で確認してください。
+      </p>
+    </div>
+  );
 }

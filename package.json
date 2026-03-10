@@ -13,7 +13,11 @@
     "wh40k:generate-name-ja": "node scripts/generate-wh40k-name-ja.mjs",
     "wh40k:audit-name-ja": "node scripts/audit-wh40k-name-ja.mjs"
   },
+  "prisma": {
+    "seed": "node_modules/.bin/tsx prisma/seed.ts"
+  },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
     "@next/mdx": "^16.0.7",
     "@vercel/analytics": "^1.5.0",
     "cloudinary": "^2.7.0",
@@ -29,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@prisma/client": "^5.22.0",
     "@tailwindcss/cli": "^4.1.13",
     "@tailwindcss/postcss": "^4.1.13",
     "@types/node": "^20.19.17",
@@ -37,7 +42,9 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "fast-xml-parser": "^4.5.3",
+    "prisma": "^5.22.0",
     "tailwindcss": "^4.1.13",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

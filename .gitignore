@@ -64,10 +64,11 @@ node_modules/
 .vscode/
 .idea/
 .serena/
-.claud/
+.claude/
 lambda-js/
 daily-notes/
 handover/
+docs/
 
 # ログ
 *.log

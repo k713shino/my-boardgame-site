@@ -155,7 +155,7 @@ function PointBar({ used, limit }: { used: number; limit: number }) {
           {isOver ? `⚠️ ${Math.abs(remaining)}pt over` : `${remaining}pt remaining`}
         </span>
       </div>
-      <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+      <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-white/20">
         {/* eslint-disable-next-line react/no-danger */}
         <style>{`[data-bar-id="${uid}"] { width: ${pct}% }`}</style>
         <div
@@ -322,7 +322,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="surface-card rounded-2xl px-5 py-5 sm:px-6 sm:py-6">
+      <div className="surface-card rounded-2xl px-5 py-5 sm:px-6 sm:py-6 bg-white/95 dark:bg-white/90">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <span className="text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-rose-500">
@@ -345,7 +345,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
               <select
                 value={pointLimit}
                 onChange={(e) => setPointLimit(Number(e.target.value))}
-                className="rounded-full border border-slate-300/70 bg-white/80 px-3 py-1 text-xs font-bold text-slate-700 shadow-sm transition hover:border-rose-400 dark:border-slate-600/70 dark:bg-slate-900/70 dark:text-slate-200"
+                className="rounded-full border border-slate-300/70 bg-white/80 px-3 py-1 text-xs font-bold text-slate-700 shadow-sm transition hover:border-rose-400 dark:border-white/40 dark:bg-white dark:text-slate-800"
               >
                 {POINT_LIMITS.map((p) => (
                   <option key={p} value={p}>
@@ -374,7 +374,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
         )}
 
         {/* Tabs */}
-        <div className="mt-4 flex gap-0 border-b border-slate-200/60 dark:border-slate-700/60">
+        <div className="mt-4 flex gap-0 border-b border-slate-100/80 dark:border-slate-700/60">
           {(
             [
               ["faction", "① 種族選択"],
@@ -458,7 +458,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                   placeholder="🔍 ユニット名・キーワード検索…"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="flex-1 rounded-full border border-slate-300/60 bg-transparent px-3 py-1.5 text-xs outline-none placeholder:text-muted focus:border-rose-400/70 dark:border-slate-600/60"
+                  className="flex-1 rounded-full border border-slate-300/60 bg-transparent px-3 py-1.5 text-xs outline-none placeholder:text-muted focus:border-rose-400/70 dark:border-white/30"
                 />
                 <select
                   aria-label="ロールでフィルター"
@@ -466,7 +466,7 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
                   onChange={(e) =>
                     setFilterRole(e.target.value as UnitRole | "ALL")
                   }
-                  className="rounded-full border border-slate-300/60 bg-white/80 px-3 py-1.5 text-xs dark:border-slate-600/60 dark:bg-slate-900/70"
+                  className="rounded-full border border-slate-300/60 bg-white/80 px-3 py-1.5 text-xs dark:border-white/30 dark:bg-white dark:text-slate-800"
                 >
                   <option value="ALL">全ロール</option>
                   {ROLE_ORDER.map((r) => (

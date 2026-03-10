@@ -1,0 +1,181 @@
+// This is your Prisma schema file
+// WH40K Army Builder
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Master Data
+// ──────────────────────────────────────────────────────────────────────────────
+
+model Faction {
+  id          String       @id
+  name        String
+  nameJa      String?
+  slug        String       @unique
+  group       FactionGroup
+  units       Unit[]
+  rosters     Roster[]
+}
+
+model Unit {
+  id             String              @id @default(cuid())
+  /// 元データのユニットID（同一ユニットが複数陣営に存在する場合あり）
+  unitCode       String
+  name           String
+  nameJa         String?
+  /// "{factionSlug}--{unitCode}" - 陣営をまたいだユニーク識別子
+  slug           String              @unique
+  role           UnitRole
+  basePoints     Int
+  invuln         String?             // インヴルネラブルセーブ（例: "4+"）
+  factionId      String
+  faction        Faction             @relation(fields: [factionId], references: [id])
+  categories     UnitCategory[]
+  weaponGroups   UnitWeaponGroup[]
+  profiles       UnitProfile[]
+  weaponProfiles UnitWeaponProfile[]
+  abilities      UnitAbility[]
+  rosterUnits    RosterUnit[]
+
+  @@index([factionId])
+  @@index([unitCode])
+}
+
+/// ユニットのステータス行（複数モデル編成では複数行）
+model UnitProfile {
+  id         String @id @default(cuid())
+  unitId     String
+  unit       Unit   @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  modelName  String // モデル名（例: "Intercessor Sergeant"）
+  move       String // 例: "6\""
+  toughness  String // 例: "4"
+  save       String // 例: "3+"
+  wounds     String // 例: "2"
+  leadership String // 例: "6+"
+  oc         String // 例: "2"
+  sortOrder  Int    @default(0)
+
+  @@index([unitId])
+}
+
+/// ユニットの武器プロファイル（データシート記載の武器スペック）
+model UnitWeaponProfile {
+  id        String  @id @default(cuid())
+  unitId    String
+  unit      Unit    @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  name      String
+  nameJa    String? // 日本語名
+  isRanged  Boolean
+  range     String  // 例: "18\"" / "Melee"
+  attacks   String  // 例: "2" / "D6"
+  skill     String  // BS or WS 例: "3+"
+  strength  String  // 例: "4"
+  ap        String  // 例: "-1" / "0"
+  damage    String  // 例: "1" / "D6"
+  keywords  String  // 特殊ルール（カンマ区切り）
+  keywordsJa String? // 特殊ルール日本語
+  sortOrder Int     @default(0)
+
+  @@index([unitId])
+}
+
+/// ユニットアビリティ・ルール
+model UnitAbility {
+  id          String @id @default(cuid())
+  unitId      String
+  unit        Unit   @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  name          String
+  nameJa        String? // 日本語名
+  description   String  @db.Text
+  descriptionJa String? @db.Text // 日本語説明文
+  sortOrder     Int     @default(0)
+
+  @@index([unitId])
+}
+
+/// ユニットの武器選択グループ（例：「武器 (1つ選択)」）
+model UnitWeaponGroup {
+  id         String            @id @default(cuid())
+  unitId     String
+  unit       Unit              @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  name       String
+  minChoices Int               @default(1)
+  maxChoices Int               @default(1)
+  sortOrder  Int               @default(0)
+  options    UnitWeaponOption[]
+
+  @@index([unitId])
+}
+
+/// 武器選択グループ内の選択肢
+model UnitWeaponOption {
+  id          String          @id @default(cuid())
+  groupId     String
+  group       UnitWeaponGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  name        String
+  pointsDelta Int             @default(0)
+  sortOrder   Int             @default(0)
+
+  @@index([groupId])
+}
+
+model UnitCategory {
+  id     String @id @default(cuid())
+  name   String
+  unitId String
+  unit   Unit   @relation(fields: [unitId], references: [id], onDelete: Cascade)
+
+  @@index([unitId])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Roster
+// ──────────────────────────────────────────────────────────────────────────────
+
+model Roster {
+  id           String       @id @default(cuid())
+  title        String
+  factionId    String
+  faction      Faction      @relation(fields: [factionId], references: [id])
+  pointsLimit  Int
+  totalPoints  Int          @default(0)
+  rosterUnits  RosterUnit[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model RosterUnit {
+  id       String @id @default(cuid())
+  rosterId String
+  roster   Roster @relation(fields: [rosterId], references: [id], onDelete: Cascade)
+  unitId   String
+  unit     Unit   @relation(fields: [unitId], references: [id])
+  points   Int
+
+  @@index([rosterId])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Enums
+// ──────────────────────────────────────────────────────────────────────────────
+
+enum UnitRole {
+  HQ
+  Battleline
+  Transport
+  Other
+  Heavy
+}
+
+enum FactionGroup {
+  Imperium
+  Chaos
+  Xenos
+}
