@@ -33,8 +33,9 @@ async function getRemotePlay(id: string): Promise<RemotePlay | null> {
   }
 }
 
-export default async function PlayDetail({ params }: { params: { id: string } }) {
-  const playId = decodeURIComponent(params.id);
+export default async function PlayDetail({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const playId = decodeURIComponent(id);
   const localPlay = getPlayById(playId);
   const remotePlay = localPlay ? null : await getRemotePlay(playId);
   const play = localPlay ?? remotePlay;
