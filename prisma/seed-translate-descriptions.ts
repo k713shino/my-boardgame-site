@@ -114,6 +114,7 @@ const TERMINOLOGY_FIXES: [RegExp, string][] = [
 // 値:   置換後の日本語文字列
 const JAPANESE_REPLACEMENTS: Record<string, string> = {
   "無敵セーブ": "スペシャルセーヴ",
+  
 };
 
 function applyTerminologyFixes(text: string): string {

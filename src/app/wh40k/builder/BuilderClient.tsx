@@ -139,10 +139,10 @@ function WeaponModal({
   onCancel: () => void;
 }) {
   const [selections, setSelections] = useState<Map<string, string[]>>(() => {
-    // 初期値：各グループの最初のオプションを選択済みにする
+    // 初期値：minChoices > 0 のグループのみ最初のオプションを選択済みにする
     const init = new Map<string, string[]>();
     for (const g of state.groups) {
-      if (g.options.length > 0) {
+      if (g.options.length > 0 && g.minChoices > 0) {
         init.set(g.id, [g.options[0].name]);
       }
     }
@@ -158,10 +158,14 @@ function WeaponModal({
         // ラジオ
         next.set(group.id, [optionName]);
       } else {
-        // チェックボックス
-        if (cur.includes(optionName)) {
-          next.set(group.id, cur.filter((n) => n !== optionName));
+        // チェックボックス（同じ選択肢を複数回選択可）
+        const count = cur.filter((n) => n === optionName).length;
+        if (count > 0 && (count >= group.maxChoices || cur.length >= group.maxChoices)) {
+          // 同じ選択肢のインスタンスを1つ削除
+          const idx = cur.lastIndexOf(optionName);
+          next.set(group.id, cur.filter((_, i) => i !== idx));
         } else if (cur.length < group.maxChoices) {
+          // スロットが空いていれば追加（同じ選択肢でも可）
           next.set(group.id, [...cur, optionName]);
         }
       }
@@ -235,7 +239,8 @@ function WeaponModal({
                 </div>
                 <div className="space-y-1.5">
                   {group.options.map((opt) => {
-                    const selected = cur.includes(opt.name);
+                    const count = cur.filter((n) => n === opt.name).length;
+                    const selected = count > 0;
                     return (
                       <button
                         key={opt.id}
@@ -264,6 +269,9 @@ function WeaponModal({
                         </span>
                         <span className={`flex-1 text-xs font-medium ${selected ? "text-rose-600 dark:text-rose-400" : ""}`}>
                           {opt.name}
+                          {count > 1 && (
+                            <span className="ml-1 text-[0.6rem] font-bold">×{count}</span>
+                          )}
                         </span>
                         {opt.pointsDelta !== 0 && (
                           <span className={`shrink-0 text-[0.65rem] font-bold ${opt.pointsDelta > 0 ? "text-rose-500" : "text-emerald-500"}`}>
