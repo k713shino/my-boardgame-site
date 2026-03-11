@@ -111,7 +111,7 @@ export default async function UnitPage({
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-slate-200/60 dark:border-slate-700/60">
-                  {["モデル", "M", "T", "Sv", "W", "Ld", "OC"].map((h) => (
+                  {["モデル", "移", "耐", "防", "傷", "統", "確"].map((h) => (
                     <th
                       key={h}
                       className="py-1.5 pr-3 text-left text-[0.6rem] font-bold uppercase tracking-wider text-muted first:pl-0"
@@ -146,7 +146,7 @@ export default async function UnitPage({
 
       {/* Melee Weapons */}
       {meleeWeapons.length > 0 && (
-        <WeaponTable title="近接武器" weapons={meleeWeapons} skillLabel="WS" />
+        <WeaponTable title="白兵戦武器" weapons={meleeWeapons} skillLabel="WS" />
       )}
 
       {/* Weapon Selection Groups */}
