@@ -72,7 +72,7 @@ export type SavedRoster = {
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-const POINTS_LIMITS = [1000, 2000];
+const POINTS_LIMITS = [500, 1000, 1500, 2000, 2500, 3000];
 const ROLES: UnitRole[] = ["HQ", "Battleline", "Transport", "Other", "Heavy"];
 
 const ROLE_META: Record<
