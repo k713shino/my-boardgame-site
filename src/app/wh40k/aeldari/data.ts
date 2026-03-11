@@ -868,7 +868,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
     abilities: [
       {
         name: "Shimmershield", nameJa: "シマーシールド",
-        desc: "このユニットは4+のインヴルネラブルセーブを持つ。",
+        desc: "このユニットは4+のスペシャルセーヴを持つ。",
       },
     ],
     keywords: ["Mounted", "Grenades", "Aspect Warrior", "Fly", "Shining Spears"],
@@ -1671,7 +1671,7 @@ export const AELDARI_UNITS: AeldariUnit[] = [
     abilities: [
       {
         name: "Energy Field", nameJa: "エネルギーフィールド",
-        desc: "このモデルが12インチ以上移動している場合、射撃のセーブロールを4+のインヴルネラブルセーブとして扱える。",
+        desc: "このモデルが12インチ以上移動している場合、射撃のセーブロールを4+のスペシャルセーヴとして扱える。",
       },
       {
         name: "Transport Capacity", nameJa: "輸送能力",

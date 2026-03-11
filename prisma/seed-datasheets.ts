@@ -14,8 +14,17 @@
 
 import { PrismaClient } from "@prisma/client";
 import { XMLParser } from "fast-xml-parser";
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { join, resolve } from "path";
+
+// .env.local が存在すれば読み込み、DATABASE_URL を上書き（Next.js と同じ優先順位にする）
+const envLocalPath = resolve(process.cwd(), ".env.local");
+if (existsSync(envLocalPath)) {
+  for (const line of readFileSync(envLocalPath, "utf-8").split("\n")) {
+    const match = line.match(/^([^#=]+)=(.*)$/);
+    if (match) process.env[match[1].trim()] = match[2].trim().replace(/^["']|["']$/g, "");
+  }
+}
 
 const prisma = new PrismaClient();
 const BSDATA_DIR = resolve(process.cwd(), "..", "wh40k-10e");
@@ -279,7 +288,7 @@ function collectProfiles(
   return { stats, weapons, abilities };
 }
 
-/** インヴルネラブルセーブをアビリティ一覧から抽出（例: "4+"）*/
+/** スペシャルセーヴをアビリティ一覧から抽出（例: "4+"）*/
 function extractInvuln(abilities: AbilityRow[]): string | null {
   for (const a of abilities) {
     // "Invulnerable Save" 系のアビリティを探す
@@ -410,7 +419,7 @@ async function processFaction(
     });
     const uniqueAbilities = abilities.filter((a) => {
       const k = a.name.toLowerCase();
-      // インヴルネラブルセーブ系は abilities から除外（invuln フィールドへ）
+      // スペシャルセーヴ系は abilities から除外（invuln フィールドへ）
       if (k.includes("invulnerable")) return false;
       if (seenAbilities.has(k)) return false;
       seenAbilities.add(k);

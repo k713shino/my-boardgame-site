@@ -14,8 +14,17 @@
 
 import { PrismaClient } from "@prisma/client";
 import { XMLParser } from "fast-xml-parser";
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { join, resolve } from "path";
+
+// .env.local が存在すれば読み込み、DATABASE_URL を上書き（Next.js と同じ優先順位にする）
+const envLocalPath = resolve(process.cwd(), ".env.local");
+if (existsSync(envLocalPath)) {
+  for (const line of readFileSync(envLocalPath, "utf-8").split("\n")) {
+    const match = line.match(/^([^#=]+)=(.*)$/);
+    if (match) process.env[match[1].trim()] = match[2].trim().replace(/^["']|["']$/g, "");
+  }
+}
 
 const prisma = new PrismaClient();
 

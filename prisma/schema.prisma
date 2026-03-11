@@ -34,7 +34,7 @@ model Unit {
   slug           String              @unique
   role           UnitRole
   basePoints     Int
-  invuln         String?             // インヴルネラブルセーブ（例: "4+"）
+  invuln         String?             // スペシャルセーヴ（例: "4+"）
   factionId      String
   faction        Faction             @relation(fields: [factionId], references: [id])
   categories     UnitCategory[]

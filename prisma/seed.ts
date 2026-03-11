@@ -9,8 +9,19 @@
  *   同一ユニットが複数陣営に属す場合も、陣営ごとに別レコードとして管理する。
  */
 
+import fs from "fs";
+import path from "path";
 import { PrismaClient } from "@prisma/client";
 import unitsJson from "../src/data/wh40k-units.json";
+
+// .env.local が存在すれば読み込み、DATABASE_URL を上書き（Next.js と同じ優先順位にする）
+const envLocalPath = path.resolve(process.cwd(), ".env.local");
+if (fs.existsSync(envLocalPath)) {
+  for (const line of fs.readFileSync(envLocalPath, "utf-8").split("\n")) {
+    const match = line.match(/^([^#=]+)=(.*)$/);
+    if (match) process.env[match[1].trim()] = match[2].trim().replace(/^["']|["']$/g, "");
+  }
+}
 
 const prisma = new PrismaClient();
 

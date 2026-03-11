@@ -39,7 +39,7 @@ export interface AeldariUnit {
     Ld: string;
     OC: number;
   };
-  /** インヴルネラブルセーブ（省略可） */
+  /** スペシャルセーヴ（省略可） */
   invuln?: string;
   weapons: Weapon[];
   abilities: Ability[];

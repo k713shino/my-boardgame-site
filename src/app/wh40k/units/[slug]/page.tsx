@@ -103,7 +103,7 @@ export default async function UnitPage({
             </h2>
             {unit.invuln && (
               <span className="rounded-full bg-indigo-500/10 px-2 py-0.5 text-[0.65rem] font-bold text-indigo-500 dark:text-indigo-400">
-                インヴルネラブル {unit.invuln}
+                スペシャルセーヴ {unit.invuln}
               </span>
             )}
           </div>

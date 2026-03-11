@@ -12,7 +12,18 @@
  *   node_modules/.bin/tsx prisma/seed-translations.ts
  */
 
+import fs from "fs";
+import path from "path";
 import { PrismaClient } from "@prisma/client";
+
+// .env.local が存在すれば読み込み、DATABASE_URL を上書き（Next.js と同じ優先順位にする）
+const envLocalPath = path.resolve(process.cwd(), ".env.local");
+if (fs.existsSync(envLocalPath)) {
+  for (const line of fs.readFileSync(envLocalPath, "utf-8").split("\n")) {
+    const match = line.match(/^([^#=]+)=(.*)$/);
+    if (match) process.env[match[1].trim()] = match[2].trim().replace(/^["']|["']$/g, "");
+  }
+}
 
 const prisma = new PrismaClient();
 
@@ -27,7 +38,7 @@ const WEAPON_NAME_MAP: Record<string, string> = {
   "Shuriken Pistol": "シュリケン・ピストル",
   "Star Glaive": "スターグレイブ",
   "Mind War": "精神の戦い",
-  "Staff of Ulthamar": "ウルサマーのスタッフ",
+  "Staff of Ulthamar": "ウルスラーンのスタッフ",
   "Singing Spear": "シンギングスピア",
   "Twin Shuriken Catapult": "ツイン・シュリケン・カタパルト",
   "Witch Staff": "ウィッチスタッフ",
@@ -42,7 +53,7 @@ const WEAPON_NAME_MAP: Record<string, string> = {
   "The Silent Death": "沈黙の死",
   "Blade of Destruction": "破壊の刃",
   "The Maugetar (Ranged)": "モーゲタール（射撃）",
-  "The Maugetar (Melee)": "モーゲタール（近接）",
+  "The Maugetar (Melee)": "モーゲタール（白兵）",
   "The Maugetar": "モーゲタール",
   "Avenger Shuriken Catapult": "アヴェンジャー・シュリケン・カタパルト",
   "Close Combat Weapon": "近接武器",
@@ -80,7 +91,7 @@ const WEAPON_NAME_MAP: Record<string, string> = {
   "Pulse Laser": "パルスレーザー",
   "Wave Serpent Shield": "ウェーブサーペント・シールド",
   "Starcannon": "スターキャノン",
-  // ── ドルカリ・ヤナーリ系 ─────────────────────────────────────────────────────
+  // ── デュカーリ・インナーリ系 ─────────────────────────────────────────────────────
   "Agoniser": "アゴナイザー",
   "Venom Blade": "ヴェノムブレード",
   "Archite Glaive": "アーカイト・グレイブ",
@@ -106,8 +117,8 @@ const WEAPON_NAME_MAP: Record<string, string> = {
   "Twin Heavy Bolter": "ツイン・ヘヴィ・ボルター",
   "Hunter-killer missile": "ハンターキラー・ミサイル",
   "Hunter-Killer Missile": "ハンターキラー・ミサイル",
-  "Havoc launcher": "ヘイヴォック・ランチャー",
-  "Havoc Launcher": "ヘイヴォック・ランチャー",
+  "Havoc launcher": "ハヴォック・ランチャー",
+  "Havoc Launcher": "ハヴォック・ランチャー",
   "Autopistol": "オートピストル",
   "Plasma pistol - standard": "プラズマ・ピストル（スタンダード）",
   "Plasma pistol - supercharge": "プラズマ・ピストル（スーパーチャージ）",
@@ -206,15 +217,15 @@ const WEAPON_KEYWORD_MAP: Record<string, string> = {
   "Rapid Fire 2": "ラピッドファイア 2",
   "Rapid Fire 3": "ラピッドファイア 3",
   "Blast": "ブラスト",
-  "Torrent": "残弾乱射",
+  "Torrent": "噴射",
   "Sustained Hits 1": "連続命中 1",
   "Sustained Hits 2": "連続命中 2",
   "Sustained Hits D3": "連続命中 D3",
   "Sustained Hits D6": "連続命中 D6",
-  "Lethal Hits": "致命的命中",
-  "Devastating Wounds": "壊滅的ウーンド",
+  "Lethal Hits": "会心ヒット",
+  "Devastating Wounds": "会心ウーンズ",
   "Psychic": "サイキック",
-  "Precision": "精密",
+  "Precision": "精密攻撃",
   "Twin-linked": "ツインリンク",
   "Indirect Fire": "間接射撃",
   "Melta 1": "メルタ 1",
@@ -222,31 +233,33 @@ const WEAPON_KEYWORD_MAP: Record<string, string> = {
   "Melta 3": "メルタ 3",
   "Melta 4": "メルタ 4",
   "Lance": "ランス",
-  "Ignores Cover": "遮蔽無視",
-  "Hazardous": "危険",
+  "Ignores Cover": "遮蔽無効",
+  "Hazardous": "暴発",
   "One Shot": "ワンショット",
   "Scatter": "スキャッター",
   "Smoke": "スモーク",
-  "Anti-Infantry 2+": "対歩兵 2+",
-  "Anti-Infantry 3+": "対歩兵 3+",
-  "Anti-Infantry 4+": "対歩兵 4+",
-  "Anti-Infantry 5+": "対歩兵 5+",
-  "Anti-Vehicle 2+": "対乗り物 2+",
-  "Anti-Vehicle 3+": "対乗り物 3+",
-  "Anti-Vehicle 4+": "対乗り物 4+",
-  "Anti-Vehicle 5+": "対乗り物 5+",
-  "Anti-Monster 2+": "対モンスター 2+",
-  "Anti-Monster 3+": "対モンスター 3+",
-  "Anti-Monster 4+": "対モンスター 4+",
-  "Anti-Monster 5+": "対モンスター 5+",
-  "Anti-Fly 4+": "対飛行 4+",
-  "Anti-Chaos 4+": "対ケイオス 4+",
-  "Anti-Tyranid 4+": "対タイラニッド 4+",
-  "Anti-Psyker 4+": "対サイカー 4+",
+  "Anti-Infantry 2+": "インファントリー特攻 2+",
+  "Anti-Infantry 3+": "インファントリー特攻 3+",
+  "Anti-Infantry 4+": "インファントリー特攻 4+",
+  "Anti-Infantry 5+": "インファントリー特攻 5+",
+  "Anti-Vehicle 2+": "ビークル特攻 2+",
+  "Anti-Vehicle 3+": "ビークル特攻 3+",
+  "Anti-Vehicle 4+": "ビークル特攻 4+",
+  "Anti-Vehicle 5+": "ビークル特攻 5+",
+  "Anti-Monster 2+": "モンスター特攻 2+",
+  "Anti-Monster 3+": "モンスター特攻 3+",
+  "Anti-Monster 4+": "モンスター特攻 4+",
+  "Anti-Monster 5+": "モンスター特攻 5+",
+  "Anti-Fly 4+": "飛行特攻 4+",
+  "Anti-Chaos 4+": "ケイオス特攻 4+",
+  "Anti-Tyranid 4+": "ティラニッド特攻 4+",
+  "Anti-Psyker 4+": "サイカー特攻 4+",
   "Ceaseless": "絶え間なき",
   "Extra Attacks": "追加攻撃",
-  "Rend": "引き裂き",
-  "Strength": "強度",
+  "Rend": "貫通",
+  "Strength": "攻撃力",
+  "Melee": "白兵戦",
+  "infantry": "インファントリー",
   "-": "",
 };
 
@@ -255,20 +268,20 @@ const ABILITY_NAME_MAP: Record<string, string> = {
   // ── 汎用ルール ───────────────────────────────────────────────────────────────
   "Objective Secured": "目標確保",
   "Deep Strike": "ディープストライク",
-  "Deadly Demise 1": "致命的な死（1）",
-  "Deadly Demise D3": "致命的な死（D3）",
-  "Deadly Demise D6": "致命的な死（D6）",
-  "Deadly Demise 2": "致命的な死（2）",
-  "Deadly Demise 3": "致命的な死（3）",
+  "Deadly Demise 1": "恐るべき最期（1）",
+  "Deadly Demise D3": "恐るべき最期（D3）",
+  "Deadly Demise D6": "恐るべき最期（D6）",
+  "Deadly Demise 2": "恐るべき最期（2）",
+  "Deadly Demise 3": "恐るべき最期（3）",
   "Explodes": "爆発",
   "Stealth": "ステルス",
   "Hard to Hit": "当てにくい",
   "Leader": "リーダー",
   "Lone Operative": "単独工作員",
-  "Feel No Pain 4+": "フィール・ノー・ペイン 4+",
-  "Feel No Pain 5+": "フィール・ノー・ペイン 5+",
-  "Feel No Pain 6+": "フィール・ノー・ペイン 6+",
-  "Feel No Pain 3+": "フィール・ノー・ペイン 3+",
+  "Feel No Pain 4+": "痛みを知らぬ者 4+",
+  "Feel No Pain 5+": "痛みを知らぬ者 5+",
+  "Feel No Pain 6+": "痛みを知らぬ者 6+",
+  "Feel No Pain 3+": "痛みを知らぬ者 3+",
   "Fights First": "先行戦闘",
   "Infiltrators": "潜入",
   "Scout 6\"": "スカウト 6インチ",
@@ -312,7 +325,7 @@ const ABILITY_NAME_MAP: Record<string, string> = {
   "Runes of Battle (Conceal)": "バトルのルーン（隠蔽）",
   "Runes of Battle (Embolden)": "バトルのルーン（鼓舞）",
   "Tactical Acumen": "戦術的眼識",
-  "Hand of Asuryan": "アスルヤンの手",
+  "Hand of Asuryan": "アシュリアンの御手",
   "Cloudstrider": "雲の歩者",
   "Death is Not Enough": "死では不十分",
   "The Burning Blood": "燃える血",
@@ -365,7 +378,7 @@ const ABILITY_NAME_MAP: Record<string, string> = {
   "Lethal Reflexes": "致死的な反射神経",
   "Avatar of Ynnead (Psychic)": "ヤナールのアヴァター（サイキック）",
   "Soulburst": "ソウルバースト",
-  "Power from Pain (Ynnari)": "苦痛からの力（ヤナーリ）",
+  "Power from Pain (Ynnari)": "苦痛からの力（インナーリ）",
   "Acrobatic": "アクロバット",
   "Prismatic Blur": "プリズマティック・ブラー",
   "Bladevanes Attack": "ブレードヴェーン攻撃",
@@ -377,6 +390,7 @@ const ABILITY_NAME_MAP: Record<string, string> = {
   "Damaged: 1-3 Wounds Remaining": "損傷: ウーンド1〜3残存",
   "Titanic Strides": "タイタニック・ストライド",
   "Point-blank Devastation": "至近距離の壊滅",
+  "Piratical Hero":"英雄海賊",
   // ── スペースマリーン系 ────────────────────────────────────────────────────────
   "Oath of Moment": "その時の誓い",
   "And They Shall Know No Fear": "彼らは恐れを知らない",
@@ -405,11 +419,13 @@ const ABILITY_NAME_MAP: Record<string, string> = {
   "Mob Rule": "モブルール",
   "Ere We Go": "さあ行くぞ",
   "Rampage": "暴走",
-  // ── タイラニッド系 ────────────────────────────────────────────────────────────
+  // ── ティラニッド系 ────────────────────────────────────────────────────────────
   "Shadow in the Warp": "ウォープの影",
   "Synapse": "シナプス",
   "Instinctive Behaviour": "本能的行動",
   "The Horror (Psychic)": "恐怖（サイキック）",
+  "Tyranids": "ティラニッド",
+  "Tyranid": "ティラニッド",
   // ── ケイオス系 ───────────────────────────────────────────────────────────────
   "Mark of Chaos Ascendant": "混沌昇格の印",
   "Death to the False Emperor!": "偽皇帝に死を！",
@@ -471,7 +487,7 @@ function translateKeywords(keywords: string): string | null {
     if (rfMatch) return `ラピッドファイア ${rfMatch[1]}`;
     // "Anti-X Y+" のパターン
     const antiMatch = token.match(/^Anti-(.+) (\d+)\+$/);
-    if (antiMatch) return `対${antiMatch[1]} ${antiMatch[2]}+`;
+    if (antiMatch) return `${antiMatch[1]} ${antiMatch[2]}+特化`;
     // "Melta X" のパターン
     const meltaMatch = token.match(/^Melta (\d+)$/);
     if (meltaMatch) return `メルタ ${meltaMatch[1]}`;
@@ -480,7 +496,7 @@ function translateKeywords(keywords: string): string | null {
     if (shMatch) return `連続命中 ${shMatch[1]}`;
     // "Feel No Pain X+" パターン
     const fnpMatch = token.match(/^Feel No Pain (\d+)\+$/);
-    if (fnpMatch) return `フィール・ノー・ペイン ${fnpMatch[1]}+`;
+    if (fnpMatch) return `痛みを知らぬ者 ${fnpMatch[1]}+`;
     return token; // 翻訳なければ英語のまま
   });
   const result = translated.join("、");
@@ -488,10 +504,36 @@ function translateKeywords(keywords: string): string | null {
   return result === keywords ? null : result;
 }
 
+// ─── ユニット名辞書（英語 → 日本語）──────────────────────────────────────────
+// wh40k-units.json の nameJa を直接編集せずに、ここで訂正できる。
+// 実行後は Neon DB に即反映される（再デプロイ不要）。
+//
+// キー   : 英語ユニット名（DB の Unit.name と完全一致）
+// 値     : 正しい日本語訳
+//
+const UNIT_NAME_MAP: Record<string, string> = {
+  // ── ここに追記 ──────────────────────────────────────────────────────────────
+  "Prince Yriel": "ユリエルの君",
+
+};
+
 // ─── Main ──────────────────────────────────────────────────────────────────────
 
 async function main() {
   console.log("Applying translations...\n");
+
+  // ユニット名の翻訳
+  const unitNameEntries = Object.entries(UNIT_NAME_MAP);
+  if (unitNameEntries.length > 0) {
+    console.log(`  Translating ${unitNameEntries.length} unit names...`);
+    let unitHit = 0;
+    for (const [name, nameJa] of unitNameEntries) {
+      const count = await prisma.unit.updateMany({ where: { name }, data: { nameJa } });
+      if (count.count > 0) unitHit += count.count;
+      else console.warn(`  ⚠ Unit not found: "${name}"`);
+    }
+    console.log(`  ✅ Unit names updated: ${unitHit}`);
+  }
 
   // 武器プロファイルの翻訳
   const weapons = await prisma.unitWeaponProfile.findMany({
