@@ -85,6 +85,7 @@ export function RostersClient() {
                       {new Date(roster.savedAt).toLocaleDateString("ja-JP")} ·{" "}
                       <span className="capitalize">{roster.faction}</span> ·{" "}
                       {roster.pointsLimit}pt制
+                      {roster.detachment && ` · ${roster.detachment}`}
                     </p>
                   </div>
                   <div className="shrink-0 text-right">

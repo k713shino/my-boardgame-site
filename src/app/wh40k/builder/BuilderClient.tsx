@@ -3,6 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import type { UnitRole } from "../types";
+import { DETACHMENTS } from "@/data/wh40k-detachments";
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -65,6 +66,7 @@ export type SavedRoster = {
   name: string;
   faction: string;
   factionName: string;
+  detachment?: string;
   pointsLimit: number;
   units: RosterEntry[];
   savedAt: string;
@@ -383,6 +385,7 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
 
   const [rosterName, setRosterName] = useState("My Roster");
   const [pointsLimit, setPointsLimit] = useState(1000);
+  const [detachment, setDetachment] = useState("");
   const [roster, setRoster] = useState<RosterEntry[]>([]);
   const [search, setSearch] = useState("");
   const [filterRole, setFilterRole] = useState<UnitRole | "ALL">("ALL");
@@ -400,6 +403,7 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
     setLoadingUnits(true);
     setUnits([]);
     setRoster([]);
+    setDetachment("");
     setSearch("");
     setFilterRole("ALL");
     weaponCache.current.clear();
@@ -543,6 +547,7 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
       name: rosterName || "Unnamed Roster",
       faction: selectedFaction.id,
       factionName: selectedFaction.name,
+      detachment: detachment || undefined,
       pointsLimit,
       units: roster,
       savedAt: new Date().toISOString(),
@@ -555,7 +560,7 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
 
   const shareRoster = () => {
     if (!selectedFaction || roster.length === 0) return;
-    const data = { name: rosterName, faction: selectedFaction.id, factionName: selectedFaction.name, pointsLimit, units: roster };
+    const data = { name: rosterName, faction: selectedFaction.id, factionName: selectedFaction.name, detachment: detachment || undefined, pointsLimit, units: roster };
     const encoded = btoa(encodeURIComponent(JSON.stringify(data)));
     const url = `${window.location.origin}/wh40k/rosters/share?d=${encoded}`;
     navigator.clipboard?.writeText(url)
@@ -624,6 +629,28 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
                 >
                   {POINTS_LIMITS.map((p) => <option key={p} value={p}>{p}pt</option>)}
                 </select>
+                {(() => {
+                  const opts = DETACHMENTS[selectedFaction.id] ?? [];
+                  return opts.length > 0 ? (
+                    <select
+                      value={detachment}
+                      onChange={(e) => setDetachment(e.target.value)}
+                      className="rounded-full border border-slate-300/70 bg-white/90 px-3 py-1 text-xs font-bold text-slate-800 shadow-sm dark:border-white/40 dark:bg-white dark:text-slate-800"
+                    >
+                      <option value="">デタッチメント</option>
+                      {opts.map((d) => (
+                        <option key={d.name} value={d.name}>{d.nameJa}</option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input
+                      value={detachment}
+                      onChange={(e) => setDetachment(e.target.value)}
+                      placeholder="デタッチメント"
+                      className="rounded-full border border-slate-300/70 bg-white/90 px-3 py-1 text-xs text-slate-800 shadow-sm outline-none focus:border-rose-400/70 dark:border-white/40 dark:bg-white dark:text-slate-800"
+                    />
+                  );
+                })()}
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 <input

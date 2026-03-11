@@ -9,6 +9,7 @@ import type { UnitRole } from "../../types";
 type SharedData = {
   name: string;
   faction: string;
+  detachment?: string;
   pointsLimit: number;
   units: RosterEntry[];
 };
@@ -75,6 +76,7 @@ export function SharedRosterClient() {
             <h1 className="text-xl font-black">{roster.name}</h1>
             <p className="text-[0.65rem] text-muted capitalize">
               {roster.faction} · {roster.pointsLimit}pt制
+              {roster.detachment && ` · ${roster.detachment}`}
             </p>
           </div>
           <p
