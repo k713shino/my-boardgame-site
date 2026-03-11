@@ -282,7 +282,7 @@ function WeaponTable({
         <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-slate-200/60 dark:border-slate-700/60">
-              {["武器名", "Range", "A", skillLabel, "S", "AP", "D", "特殊"].map((h) => (
+              {["武器名", "射程", "回", skillLabel, "攻", "貫通", "ダ", "特殊"].map((h) => (
                 <th
                   key={h}
                   className="py-1.5 pr-3 text-left text-[0.6rem] font-bold uppercase tracking-wider text-muted first:pl-0"
