@@ -9,6 +9,7 @@ const ROLE_ORDER = ["HQ", "Battleline", "Transport", "Other", "Heavy"] as const;
 export function RostersClient() {
   const [rosters, setRosters] = useState<SavedRoster[]>([]);
   const [loaded, setLoaded] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const raw = localStorage.getItem("wh40k_rosters");
@@ -43,7 +44,7 @@ export function RostersClient() {
             ← WH40K
           </Link>
           <h1 className="mt-1 text-2xl font-black uppercase tracking-tight">
-            My Rosters
+            保存ロスター
           </h1>
           <p className="text-xs text-muted">{rosters.length} 件保存済み</p>
         </div>
@@ -54,6 +55,16 @@ export function RostersClient() {
           ＋ 新規作成
         </Link>
       </div>
+
+      {rosters.length > 0 && (
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="🔍 ロスター名で検索…"
+          className="w-full rounded-xl border border-slate-300/60 bg-transparent px-4 py-2 text-sm outline-none placeholder:text-muted focus:border-rose-400/60 dark:border-slate-600/60"
+        />
+      )}
 
       {rosters.length === 0 ? (
         <div className="surface-card rounded-2xl px-6 py-16 text-center">
@@ -70,7 +81,9 @@ export function RostersClient() {
         </div>
       ) : (
         <div className="space-y-3">
-          {[...rosters].reverse().map((roster) => {
+          {[...rosters].reverse().filter((r) =>
+            search === "" || r.name.toLowerCase().includes(search.toLowerCase())
+          ).map((roster) => {
             const total = roster.units.reduce((s, u) => s + u.pts, 0);
             const isOver = total > roster.pointsLimit;
             return (
@@ -80,13 +93,23 @@ export function RostersClient() {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <h2 className="truncate text-sm font-bold">{roster.name}</h2>
-                    <p className="text-[0.65rem] text-muted">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <h2 className="truncate text-sm font-bold">{roster.name}</h2>
+                      {roster.isPublic ? (
+                        <span className="rounded-full border border-emerald-400/50 bg-emerald-500/10 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-700 dark:text-emerald-300">
+                          公開
+                        </span>
+                      ) : (
+                        <span className="rounded-full border border-slate-300/60 bg-slate-100/50 px-2 py-0.5 text-[0.6rem] font-semibold text-muted dark:border-slate-600/60 dark:bg-slate-800/50">
+                          非公開
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-0.5 text-[0.65rem] text-muted">
                       {new Date(roster.savedAt).toLocaleDateString("ja-JP")} ·{" "}
                       <span className="capitalize">{roster.faction}</span> ·{" "}
                       {roster.pointsLimit}pt制
                       {roster.detachment && ` · ${roster.detachment}`}
-                      {roster.isPublic ? " · Public" : ""}
                     </p>
                   </div>
                   <div className="shrink-0 text-right">
@@ -137,6 +160,13 @@ export function RostersClient() {
               </div>
             );
           })}
+          {search !== "" && [...rosters].filter((r) =>
+            r.name.toLowerCase().includes(search.toLowerCase())
+          ).length === 0 && (
+            <div className="surface-card rounded-2xl px-6 py-12 text-center text-sm text-muted">
+              「{search}」に一致するロスターが見つかりません
+            </div>
+          )}
         </div>
       )}
     </div>

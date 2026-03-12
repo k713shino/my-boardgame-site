@@ -970,7 +970,13 @@ function FactionPicker({
 
 // ─── Main: BuilderClient ─────────────────────────────────────────────────────
 
-export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
+export function BuilderClient({
+  factions,
+  editId,
+}: {
+  factions: FactionListItem[];
+  editId?: string;
+}) {
   const [selectedFaction, setSelectedFaction] = useState<FactionListItem | null>(null);
   const [units, setUnits] = useState<BuilderUnit[]>([]);
   const [loadingUnits, setLoadingUnits] = useState(false);
@@ -994,13 +1000,43 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
   // 武器選択モーダル
   const [weaponModal, setWeaponModal] = useState<ModalState | null>(null);
 
+  // 編集モード: 陣営変更時のロスタークリアをスキップするフラグ
+  const skipRosterClear = useRef(false);
+
+  // 編集モード: localStorage から既存ロスターをロード
+  useEffect(() => {
+    if (!editId) return;
+    const raw = localStorage.getItem("wh40k_rosters");
+    if (!raw) return;
+    try {
+      const saved: SavedRoster[] = JSON.parse(raw);
+      const target = saved.find((r) => r.id === editId);
+      if (!target) return;
+      const faction = factions.find((f) => f.id === target.faction);
+      if (!faction) return;
+      skipRosterClear.current = true;
+      setSelectedFaction(faction);
+      setRosterName(target.name);
+      setPointsLimit(target.pointsLimit);
+      setDetachment(target.detachment ?? "");
+      setRoster(target.units);
+    } catch {
+      // no-op
+    }
+  // editId と factions は初回のみ参照。factions はサーバーから渡す静的データ
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editId]);
+
   // 陣営選択時にユニットを取得
   useEffect(() => {
     if (!selectedFaction) return;
     setLoadingUnits(true);
     setUnits([]);
-    setRoster([]);
-    setDetachment("");
+    if (!skipRosterClear.current) {
+      setRoster([]);
+      setDetachment("");
+    }
+    skipRosterClear.current = false;
     setSearch("");
     setFilterRole("ALL");
     setSelectedTags([]);
@@ -1191,6 +1227,7 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
       pointsLimit,
       units: roster,
       savedAt: new Date().toISOString(),
+      isPublic: false,
     };
     const existing: SavedRoster[] = JSON.parse(localStorage.getItem("wh40k_rosters") ?? "[]");
     localStorage.setItem("wh40k_rosters", JSON.stringify([...existing, saved]));

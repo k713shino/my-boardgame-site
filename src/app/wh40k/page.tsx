@@ -18,7 +18,7 @@ const LINKS = [
   },
   {
     href: "/wh40k/rosters",
-    label: "My Rosters",
+    label: "Rosters",
     labelJa: "保存ロスター",
     desc: "保存したロスター一覧を確認・管理する。",
     icon: "📋",

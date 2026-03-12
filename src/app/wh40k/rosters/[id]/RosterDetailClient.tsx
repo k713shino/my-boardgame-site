@@ -104,18 +104,28 @@ export function RosterDetailClient({
       <header className="surface-card rounded-2xl p-5 space-y-4 sm:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div className="space-y-1">
-            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.25em] text-rose-500">Saved Roster</p>
-            <h1 className="text-xl font-black sm:text-2xl">{roster.name}</h1>
+            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.25em] text-rose-500">保存ロスター</p>
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="text-xl font-black sm:text-2xl">{roster.name}</h1>
+              {roster.isPublic ? (
+                <span className="rounded-full border border-emerald-400/50 bg-emerald-500/10 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-700 dark:text-emerald-300">
+                  公開
+                </span>
+              ) : (
+                <span className="rounded-full border border-slate-300/60 bg-slate-100/50 px-2 py-0.5 text-[0.6rem] font-semibold text-muted dark:border-slate-600/60 dark:bg-slate-800/50">
+                  非公開
+                </span>
+              )}
+            </div>
             <p className="text-[0.68rem] text-muted">
               {new Date(roster.savedAt).toLocaleDateString("ja-JP")} · {roster.factionName} · {roster.pointsLimit}pt
               {roster.detachment ? ` · ${roster.detachment}` : ""}
-              {roster.isPublic ? " · Public" : ""}
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-2 sm:w-auto sm:grid-cols-1">
             <Link
-              href="/wh40k/builder"
+              href={`/wh40k/builder?edit=${roster.id}`}
               className="rounded-full border border-slate-300/60 px-4 py-2 text-center text-xs font-semibold transition hover:border-rose-400/60 dark:border-slate-600/60"
             >
               Builderで編集

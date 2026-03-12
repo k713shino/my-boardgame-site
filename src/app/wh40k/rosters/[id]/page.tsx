@@ -1,5 +1,9 @@
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { RosterDetailClient } from "./RosterDetailClient";
+
+const AUTH_COOKIE = "wh40k_auth";
 
 export default async function RosterDetailPage({
   params,
@@ -29,28 +33,36 @@ export default async function RosterDetailPage({
     },
   });
 
-  const initialRoster =
-    roster && roster.isPublic
-      ? {
-          id: roster.id,
-          name: roster.title,
-          faction: roster.factionId,
-          factionName: roster.faction.nameJa ?? roster.faction.name,
-          pointsLimit: roster.pointsLimit,
-          units: roster.rosterUnits.map((entry) => ({
-            entryId: entry.id,
-            unitId: entry.unitId,
-            slug: entry.unit.slug,
-            name: entry.unit.name,
-            nameJa: entry.unit.nameJa,
-            role: entry.unit.role,
-            pts: entry.points,
-            weaponSelections: [],
-          })),
-          savedAt: roster.updatedAt.toISOString(),
-          isPublic: true,
-        }
-      : null;
+  // 非公開DBロスターは認証Cookie必須
+  if (roster && !roster.isPublic) {
+    const cookieStore = await cookies();
+    const authCookie = cookieStore.get(AUTH_COOKIE);
+    if (!authCookie?.value) {
+      redirect(`/wh40k/auth?from=/wh40k/rosters/${id}`);
+    }
+  }
+
+  const initialRoster = roster
+    ? {
+        id: roster.id,
+        name: roster.title,
+        faction: roster.factionId,
+        factionName: roster.faction.nameJa ?? roster.faction.name,
+        pointsLimit: roster.pointsLimit,
+        units: roster.rosterUnits.map((entry) => ({
+          entryId: entry.id,
+          unitId: entry.unitId,
+          slug: entry.unit.slug,
+          name: entry.unit.name,
+          nameJa: entry.unit.nameJa,
+          role: entry.unit.role,
+          pts: entry.points,
+          weaponSelections: [],
+        })),
+        savedAt: roster.updatedAt.toISOString(),
+        isPublic: roster.isPublic,
+      }
+    : null;
 
   return <RosterDetailClient id={id} initialRoster={initialRoster} />;
 }
