@@ -4,6 +4,12 @@ import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import type { UnitRole } from "../types";
 import { DETACHMENTS } from "@/data/wh40k-detachments";
+import {
+  groupByRole,
+  RosterMetaBar,
+  RosterUnitsSection,
+  ROSTER_ROLES,
+} from "../components/RosterViewParts";
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -70,6 +76,7 @@ export type SavedRoster = {
   pointsLimit: number;
   units: RosterEntry[];
   savedAt: string;
+  isPublic?: boolean;
 };
 
 // ─── Constants ──────────────────────────────────────────────────────────────
@@ -96,6 +103,68 @@ const GROUP_META: Record<
   Chaos:    { text: "text-rose-600 dark:text-rose-400",   badge: "bg-rose-500/10 text-rose-600 dark:text-rose-300" },
   Xenos:    { text: "text-sky-600 dark:text-sky-400",     badge: "bg-sky-500/10 text-sky-600 dark:text-sky-300" },
 };
+
+type BrowseTab = "recommended" | "all" | "owned";
+type SortMode = "recommended" | "points" | "name";
+type QuickFilterId = "anti-infantry" | "anti-tank" | "fast" | "core";
+
+const BROWSE_TAB_LABEL: Record<BrowseTab, string> = {
+  recommended: "おすすめ",
+  all: "すべて",
+  owned: "所持済み",
+};
+
+const SORT_LABEL: Record<SortMode, string> = {
+  recommended: "おすすめ順",
+  points: "ポイント順",
+  name: "名前順",
+};
+
+const QUICK_FILTERS: { id: QuickFilterId; label: string }[] = [
+  { id: "anti-infantry", label: "対歩兵" },
+  { id: "anti-tank", label: "対戦車" },
+  { id: "fast", label: "高速" },
+  { id: "core", label: "主力候補" },
+];
+
+function hasCategory(unit: BuilderUnit, keywords: string[]): boolean {
+  const words = keywords.map((k) => k.toLowerCase());
+  return unit.categories.some((c) => words.some((w) => c.toLowerCase().includes(w)));
+}
+
+function quickFilterMatch(unit: BuilderUnit, quickFilter: QuickFilterId | null): boolean {
+  if (!quickFilter) return true;
+  if (quickFilter === "anti-infantry") {
+    return hasCategory(unit, ["infantry", "battleline", "aspect"]);
+  }
+  if (quickFilter === "anti-tank") {
+    return hasCategory(unit, ["vehicle", "monster", "wraith", "heavy", "tank"]);
+  }
+  if (quickFilter === "fast") {
+    return hasCategory(unit, ["fly", "mounted", "bike", "jump", "jetbike"]);
+  }
+  return unit.role === "HQ" || unit.role === "Battleline" || hasCategory(unit, ["character", "wraith"]);
+}
+
+function recommendationScore(unit: BuilderUnit, inRosterCount: number): number {
+  let score = 0;
+  if (unit.role === "HQ" || unit.role === "Battleline") score += 4;
+  if (unit.basePoints <= 140) score += 2;
+  if (unit.basePoints >= 220) score -= 1;
+  if (hasCategory(unit, ["wraith", "psyker", "battleline", "transport"])) score += 2;
+  if (hasCategory(unit, ["fly", "mounted", "jump"])) score += 1;
+  if (inRosterCount > 0) score += 2;
+  return score;
+}
+
+function unitHint(unit: BuilderUnit): string {
+  if (unit.role === "HQ") return "編成の軸になりやすい指揮ユニット";
+  if (unit.role === "Battleline") return "初心者でも扱いやすい主力候補";
+  if (unit.role === "Transport") return "主力を前線へ届ける支援枠";
+  if (hasCategory(unit, ["fly", "mounted", "jump"])) return "機動力でサイドや後衛に圧力";
+  if (hasCategory(unit, ["wraith", "monster", "vehicle"])) return "耐久を活かして盤面を支える";
+  return "役割に合わせて編成しやすい汎用枠";
+}
 
 // ─── PointBar ────────────────────────────────────────────────────────────────
 
@@ -309,6 +378,529 @@ function WeaponModal({
   );
 }
 
+// ─── Save / Share Controls ───────────────────────────────────────────────────
+
+function SaveShareControls({
+  disabled,
+  saveStatus,
+  publicSaveStatus,
+  onSave,
+  onPublicSave,
+  onShare,
+  onReset,
+}: {
+  disabled: boolean;
+  saveStatus: "idle" | "saved";
+  publicSaveStatus: "idle" | "saving" | "published";
+  onSave: () => void;
+  onPublicSave: () => void;
+  onShare: () => void;
+  onReset: () => void;
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <button
+        onClick={onSave}
+        disabled={disabled}
+        className="rounded-full bg-rose-500 px-4 py-1.5 text-xs font-bold text-white transition hover:bg-rose-400 disabled:opacity-40"
+      >
+        {saveStatus === "saved" ? "✅ 保存済み" : "💾 保存"}
+      </button>
+      <button
+        onClick={onPublicSave}
+        disabled={disabled || publicSaveStatus === "saving"}
+        className="rounded-full border border-emerald-400/50 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-500/15 disabled:opacity-40 dark:text-emerald-300"
+      >
+        {publicSaveStatus === "saving"
+          ? "公開中..."
+          : publicSaveStatus === "published"
+            ? "公開済み"
+            : "公開保存"}
+      </button>
+      <button
+        onClick={onShare}
+        disabled={disabled}
+        className="rounded-full border border-slate-300/60 px-4 py-1.5 text-xs font-semibold transition hover:border-rose-400/60 disabled:opacity-40 dark:border-slate-600/60"
+      >
+        🔗 共有
+      </button>
+      <button
+        onClick={onReset}
+        disabled={disabled}
+        className="rounded-full border border-slate-300/60 px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-red-400/60 hover:text-red-400 disabled:opacity-40 dark:border-slate-600/60"
+      >
+        🗑 リセット
+      </button>
+    </div>
+  );
+}
+
+// ─── Builder Header ──────────────────────────────────────────────────────────
+
+type BuilderHeaderProps = {
+  selectedFaction: FactionListItem;
+  detachmentOptions: { name: string; nameJa: string }[];
+  rosterName: string;
+  pointsLimit: number;
+  detachment: string;
+  saveStatus: "idle" | "saved";
+  publicSaveStatus: "idle" | "saving" | "published";
+  rosterCount: number;
+  totalPts: number;
+  onRosterNameChange: (value: string) => void;
+  onPointsLimitChange: (value: number) => void;
+  onDetachmentChange: (value: string) => void;
+  onFactionChange: () => void;
+  onSave: () => void;
+  onPublicSave: () => void;
+  onShare: () => void;
+  onReset: () => void;
+};
+
+function BuilderHeader({
+  selectedFaction,
+  detachmentOptions,
+  rosterName,
+  pointsLimit,
+  detachment,
+  saveStatus,
+  publicSaveStatus,
+  rosterCount,
+  totalPts,
+  onRosterNameChange,
+  onPointsLimitChange,
+  onDetachmentChange,
+  onFactionChange,
+  onSave,
+  onPublicSave,
+  onShare,
+  onReset,
+}: BuilderHeaderProps) {
+  const groupMeta = GROUP_META[selectedFaction.group];
+  return (
+    <div className="sticky top-0 z-20 border-b border-white/70 bg-white shadow-[0_18px_36px_-28px_rgba(15,23,42,0.38)] dark:border-white/20 dark:bg-white/90">
+      <div className="mx-auto max-w-[1400px] px-4 py-3">
+        <div className="rounded-2xl border border-white/80 bg-white px-4 py-3 shadow-[0_18px_40px_-34px_rgba(15,23,42,0.45)] supports-[backdrop-filter]:backdrop-blur-sm dark:border-white/30 dark:bg-white dark:shadow-none">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-wrap items-center gap-2">
+              <Link href="/wh40k" className="text-xs text-slate-500 transition hover:text-rose-500">
+                ← WH40K
+              </Link>
+              <h1 className="text-base font-black uppercase tracking-tight text-slate-700">
+                Army Builder
+              </h1>
+              <button
+                onClick={onFactionChange}
+                className={`rounded-full px-2.5 py-0.5 text-[0.65rem] font-bold transition hover:opacity-70 ${groupMeta.badge}`}
+                title="陣営を変更"
+              >
+                {selectedFaction.name} ▾
+              </button>
+              <select
+                value={pointsLimit}
+                onChange={(e) => onPointsLimitChange(Number(e.target.value))}
+                className="rounded-full border border-slate-300/70 bg-white/90 px-3 py-1 text-xs font-bold text-slate-800 shadow-sm dark:border-white/40 dark:bg-white dark:text-slate-800"
+              >
+                {POINTS_LIMITS.map((p) => (
+                  <option key={p} value={p}>
+                    {p}pt
+                  </option>
+                ))}
+              </select>
+              {detachmentOptions.length > 0 ? (
+                <select
+                  value={detachment}
+                  onChange={(e) => onDetachmentChange(e.target.value)}
+                  className="rounded-full border border-slate-300/70 bg-white/90 px-3 py-1 text-xs font-bold text-slate-800 shadow-sm dark:border-white/40 dark:bg-white dark:text-slate-800"
+                >
+                  <option value="">デタッチメント</option>
+                  {detachmentOptions.map((d) => (
+                    <option key={d.name} value={d.name}>
+                      {d.nameJa}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  value={detachment}
+                  onChange={(e) => onDetachmentChange(e.target.value)}
+                  placeholder="デタッチメント"
+                  className="rounded-full border border-slate-300/70 bg-white/90 px-3 py-1 text-xs text-slate-800 shadow-sm outline-none focus:border-rose-400/70 dark:border-white/40 dark:bg-white dark:text-slate-800"
+                />
+              )}
+            </div>
+            <div className="flex flex-1 flex-wrap items-center gap-2 md:justify-end">
+              <input
+                value={rosterName}
+                onChange={(e) => onRosterNameChange(e.target.value)}
+                className="min-w-[160px] flex-1 rounded-lg border border-slate-300/70 bg-white px-3 py-1 text-xs text-slate-800 outline-none shadow-sm focus:border-rose-400/70 dark:border-white/40 dark:bg-white dark:text-slate-800"
+                placeholder="Roster Name"
+              />
+              <SaveShareControls
+                disabled={rosterCount === 0}
+                saveStatus={saveStatus}
+                publicSaveStatus={publicSaveStatus}
+                onSave={onSave}
+                onPublicSave={onPublicSave}
+                onShare={onShare}
+                onReset={onReset}
+              />
+            </div>
+          </div>
+          {rosterCount > 0 && (
+            <div className="mt-2">
+              <PointBar used={totalPts} limit={pointsLimit} />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Filter Sidebar ──────────────────────────────────────────────────────────
+
+type FilterSidebarProps = {
+  className?: string;
+  search: string;
+  filterRole: UnitRole | "ALL";
+  units: BuilderUnit[];
+  availableTags: string[];
+  selectedTags: string[];
+  quickFilter: QuickFilterId | null;
+  sortMode: SortMode;
+  onSearchChange: (value: string) => void;
+  onFilterRoleChange: (role: UnitRole | "ALL") => void;
+  onToggleTag: (tag: string) => void;
+  onQuickFilterChange: (filter: QuickFilterId | null) => void;
+  onSortModeChange: (sortMode: SortMode) => void;
+  onClearTagFilter: () => void;
+};
+
+function FilterSidebar({
+  className,
+  search,
+  filterRole,
+  units,
+  availableTags,
+  selectedTags,
+  quickFilter,
+  sortMode,
+  onSearchChange,
+  onFilterRoleChange,
+  onToggleTag,
+  onQuickFilterChange,
+  onSortModeChange,
+  onClearTagFilter,
+}: FilterSidebarProps) {
+  return (
+    <aside className={`space-y-3 md:sticky md:top-[90px] md:self-start ${className ?? ""}`}>
+      <div className="surface-card rounded-2xl p-4 space-y-4">
+        <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">
+          フィルター
+        </h2>
+        <input
+          type="text"
+          placeholder="🔍 ユニット名で検索…"
+          value={search}
+          onChange={(e) => onSearchChange(e.target.value)}
+          className="w-full rounded-xl border border-slate-300/60 bg-transparent px-3 py-2 text-xs outline-none placeholder:text-muted focus:border-rose-400/60 dark:border-slate-600/60"
+        />
+        <div className="space-y-0.5">
+          <button
+            onClick={() => onFilterRoleChange("ALL")}
+            className={`w-full rounded-lg px-3 py-1.5 text-left text-xs font-medium transition ${
+              filterRole === "ALL"
+                ? "bg-rose-500/10 text-rose-500"
+                : "text-muted hover:text-[color:var(--fg-body)]"
+            }`}
+          >
+            全ロール
+          </button>
+          {ROLES.map((role) => {
+            const meta = ROLE_META[role];
+            const count = units.filter((u) => u.role === role).length;
+            return (
+              <button
+                key={role}
+                onClick={() => onFilterRoleChange(role)}
+                className={`w-full flex items-center justify-between rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+                  filterRole === role
+                    ? `${meta.bg} ${meta.text}`
+                    : "text-muted hover:text-[color:var(--fg-body)]"
+                }`}
+              >
+                <span>{meta.label}</span>
+                <span className="text-[0.6rem]">{count}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <p className="text-[0.62rem] font-bold uppercase tracking-widest text-muted">Tags</p>
+            {selectedTags.length > 0 && (
+              <button
+                onClick={onClearTagFilter}
+                className="text-[0.6rem] font-semibold text-rose-500 transition hover:opacity-80"
+              >
+                解除
+              </button>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {availableTags.slice(0, 10).map((tag) => {
+              const active = selectedTags.includes(tag);
+              return (
+                <button
+                  key={tag}
+                  onClick={() => onToggleTag(tag)}
+                  className={`rounded-full border px-2.5 py-1 text-[0.62rem] font-semibold transition ${
+                    active
+                      ? "border-rose-400/70 bg-rose-500/10 text-rose-500"
+                      : "border-slate-300/60 text-muted hover:border-slate-400/60 dark:border-slate-700/60"
+                  }`}
+                >
+                  {active ? "✓ " : ""}
+                  {tag}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <p className="text-[0.62rem] font-bold uppercase tracking-widest text-muted">Quick Filters</p>
+          <div className="flex flex-wrap gap-1.5">
+            {QUICK_FILTERS.map((f) => {
+              const active = quickFilter === f.id;
+              return (
+                <button
+                  key={f.id}
+                  onClick={() => onQuickFilterChange(active ? null : f.id)}
+                  className={`rounded-full border px-2.5 py-1 text-[0.62rem] font-semibold transition ${
+                    active
+                      ? "border-indigo-400/70 bg-indigo-500/10 text-indigo-500 dark:text-indigo-400"
+                      : "border-slate-300/60 text-muted hover:border-slate-400/60 dark:border-slate-700/60"
+                  }`}
+                >
+                  {f.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="space-y-1.5">
+          <p className="text-[0.62rem] font-bold uppercase tracking-widest text-muted">Sort</p>
+          {(Object.keys(SORT_LABEL) as SortMode[]).map((mode) => (
+            <button
+              key={mode}
+              onClick={() => onSortModeChange(mode)}
+              className={`w-full rounded-lg px-3 py-1.5 text-left text-xs font-medium transition ${
+                sortMode === mode
+                  ? "bg-indigo-500/10 text-indigo-500 dark:text-indigo-400"
+                  : "text-muted hover:text-[color:var(--fg-body)]"
+              }`}
+            >
+              {sortMode === mode ? "● " : "○ "}
+              {SORT_LABEL[mode]}
+            </button>
+          ))}
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+// ─── Unit Card List ──────────────────────────────────────────────────────────
+
+type UnitCardListProps = {
+  className?: string;
+  unitsByRole: Record<UnitRole, BuilderUnit[]>;
+  filteredUnitsCount: number;
+  totalUnitsCount: number;
+  browseTab: BrowseTab;
+  tabCounts: Record<BrowseTab, number>;
+  countInRoster: (unitId: string) => number;
+  onAddUnit: (unit: BuilderUnit) => void;
+  onRemoveUnit: (unitId: string) => void;
+  onBrowseTabChange: (tab: BrowseTab) => void;
+};
+
+function UnitCardList({
+  className,
+  unitsByRole,
+  filteredUnitsCount,
+  totalUnitsCount,
+  browseTab,
+  tabCounts,
+  countInRoster,
+  onAddUnit,
+  onRemoveUnit,
+  onBrowseTabChange,
+}: UnitCardListProps) {
+  return (
+    <main className={`min-w-0 space-y-4 ${className ?? ""}`}>
+      <div className="surface-card rounded-2xl p-3">
+        <div className="flex flex-wrap gap-1.5">
+          {(Object.keys(BROWSE_TAB_LABEL) as BrowseTab[]).map((tab) => {
+            const active = browseTab === tab;
+            return (
+              <button
+                key={tab}
+                onClick={() => onBrowseTabChange(tab)}
+                className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
+                  active
+                    ? "bg-rose-500/10 text-rose-500 dark:text-rose-400"
+                    : "text-muted hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                }`}
+              >
+                {BROWSE_TAB_LABEL[tab]} ({tabCounts[tab]})
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {ROLES.map((role) => {
+        const roleUnits = unitsByRole[role];
+        if (!roleUnits.length) return null;
+        const meta = ROLE_META[role];
+        return (
+          <section key={role} className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className={`text-[0.65rem] font-bold uppercase tracking-widest ${meta.text}`}>
+                {meta.label}
+              </span>
+              <span className="text-[0.65rem] text-muted">{roleUnits.length}</span>
+            </div>
+            <div className="space-y-1.5">
+              {roleUnits.map((unit) => {
+                const count = countInRoster(unit.id);
+                const active = count > 0;
+                return (
+                  <div
+                    key={unit.id}
+                    className={`flex items-center rounded-xl border px-4 py-2.5 transition ${
+                      active ? `${meta.bg} ${meta.border}` : "surface-card border-transparent"
+                    }`}
+                  >
+                    <div className="min-w-0 flex-1">
+                      <Link
+                        href={`/wh40k/units/${unit.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className={`truncate text-xs font-semibold underline decoration-dotted underline-offset-2 transition hover:opacity-70 ${
+                          active ? meta.text : ""
+                        }`}
+                      >
+                        {unit.name}
+                      </Link>
+                      {unit.nameJa && (
+                        <p className="truncate text-[0.6rem] text-muted">{unit.nameJa}</p>
+                      )}
+                      <p className="mt-1 text-[0.68rem] text-muted">{unitHint(unit)}</p>
+                      <div className="mt-1 flex flex-wrap gap-1">
+                        {unit.categories.slice(0, 3).map((c) => (
+                          <span
+                            key={c}
+                            className="rounded-full border border-slate-300/60 px-2 py-0.5 text-[0.55rem] text-muted dark:border-slate-700/60"
+                          >
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="ml-2 flex shrink-0 items-center gap-1">
+                      <span className={`text-xs font-bold ${active ? meta.text : "text-muted"}`}>
+                        {unit.basePoints}pt
+                      </span>
+                      {active && (
+                        <>
+                          <button
+                            onClick={() => onRemoveUnit(unit.id)}
+                            className="flex h-6 w-6 items-center justify-center rounded-full text-sm text-muted hover:bg-red-500/10 hover:text-red-400"
+                            title="1つ削除"
+                          >
+                            −
+                          </button>
+                          <span className={`min-w-[1rem] text-center text-xs font-black ${meta.text}`}>
+                            {count}
+                          </span>
+                        </>
+                      )}
+                      <button
+                        onClick={() => onAddUnit(unit)}
+                        className={`flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold transition ${
+                          active ? `${meta.text} hover:opacity-70` : "text-muted hover:text-[color:var(--fg-body)]"
+                        }`}
+                        title="ロスターに追加"
+                      >
+                        ＋
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
+      {filteredUnitsCount === 0 && totalUnitsCount > 0 && (
+        <div className="surface-card rounded-2xl px-6 py-12 text-center text-sm text-muted">
+          条件に一致するユニットが見つかりません
+        </div>
+      )}
+    </main>
+  );
+}
+
+// ─── Roster Sidebar ──────────────────────────────────────────────────────────
+
+type RosterSidebarProps = {
+  className?: string;
+  roster: RosterEntry[];
+  rosterByRole: Record<UnitRole, RosterEntry[]>;
+  pointsLimit: number;
+  totalPts: number;
+  onRemoveEntry: (entryId: string) => void;
+};
+
+function RosterSidebar({
+  className,
+  roster,
+  rosterByRole,
+  pointsLimit,
+  totalPts,
+  onRemoveEntry,
+}: RosterSidebarProps) {
+  const roleSummary = ROSTER_ROLES
+    .map((role) => ({ role, count: rosterByRole[role].length }))
+    .filter((row) => row.count > 0);
+
+  return (
+    <aside className={`space-y-3 md:sticky md:top-[90px] md:self-start ${className ?? ""}`}>
+      <div className="surface-card rounded-2xl p-4 space-y-4">
+        <div className="flex items-center justify-between border-b border-slate-200/70 pb-2 dark:border-slate-700/60">
+          <h2 className="text-sm font-black uppercase tracking-[0.25em] text-[color:var(--fg-body)]">
+            ロスター
+          </h2>
+          <span className="text-[0.7rem] font-semibold text-muted">{roster.length}ユニット</span>
+        </div>
+        <RosterMetaBar total={totalPts} limit={pointsLimit} summary={roleSummary} />
+        {roster.length === 0 ? (
+          <p className="py-6 text-center text-[0.7rem] text-muted">ユニットを追加してください</p>
+        ) : (
+          <RosterUnitsSection byRole={rosterByRole} onRemoveEntry={onRemoveEntry} compact />
+        )}
+      </div>
+    </aside>
+  );
+}
+
 // ─── FactionPicker ───────────────────────────────────────────────────────────
 
 function FactionPicker({
@@ -389,7 +981,12 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
   const [roster, setRoster] = useState<RosterEntry[]>([]);
   const [search, setSearch] = useState("");
   const [filterRole, setFilterRole] = useState<UnitRole | "ALL">("ALL");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [quickFilter, setQuickFilter] = useState<QuickFilterId | null>(null);
+  const [sortMode, setSortMode] = useState<SortMode>("recommended");
+  const [browseTab, setBrowseTab] = useState<BrowseTab>("recommended");
   const [saveStatus, setSaveStatus] = useState<"idle" | "saved">("idle");
+  const [publicSaveStatus, setPublicSaveStatus] = useState<"idle" | "saving" | "published">("idle");
 
   // 武器オプションキャッシュ（unitId → WeaponGroup[]）
   const weaponCache = useRef<Map<string, WeaponGroup[]>>(new Map());
@@ -406,6 +1003,10 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
     setDetachment("");
     setSearch("");
     setFilterRole("ALL");
+    setSelectedTags([]);
+    setQuickFilter(null);
+    setSortMode("recommended");
+    setBrowseTab("recommended");
     weaponCache.current.clear();
 
     fetch(`/api/wh40k/factions/${selectedFaction.id}/units`)
@@ -417,9 +1018,28 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
 
   // ─── Derived ──────────────────────────────────────────────────────────────
 
-  const filteredUnits = useMemo(() => {
+  const countInRoster = useCallback(
+    (unitId: string) => roster.filter((r) => r.unitId === unitId).length,
+    [roster]
+  );
+
+  const availableTags = useMemo(() => {
+    const tagCounts = new Map<string, number>();
+    for (const unit of units) {
+      for (const tag of unit.categories) {
+        tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+      }
+    }
+    return [...tagCounts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([tag]) => tag);
+  }, [units]);
+
+  const baseFilteredUnits = useMemo(() => {
     return units.filter((u) => {
       if (filterRole !== "ALL" && u.role !== filterRole) return false;
+      if (selectedTags.length > 0 && !selectedTags.every((tag) => u.categories.includes(tag))) return false;
+      if (!quickFilterMatch(u, quickFilter)) return false;
       if (search) {
         const q = search.toLowerCase();
         return (
@@ -430,7 +1050,33 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
       }
       return true;
     });
-  }, [units, search, filterRole]);
+  }, [units, search, filterRole, selectedTags, quickFilter]);
+
+  const tabCounts = useMemo(() => {
+    const recommendedCount = baseFilteredUnits.filter((u) => recommendationScore(u, countInRoster(u.id)) >= 4).length;
+    const ownedCount = baseFilteredUnits.filter((u) => countInRoster(u.id) > 0).length;
+    return {
+      recommended: recommendedCount,
+      all: baseFilteredUnits.length,
+      owned: ownedCount,
+    };
+  }, [baseFilteredUnits, countInRoster]);
+
+  const filteredUnits = useMemo(() => {
+    const tabFiltered = baseFilteredUnits.filter((u) => {
+      if (browseTab === "owned") return countInRoster(u.id) > 0;
+      if (browseTab === "recommended") return recommendationScore(u, countInRoster(u.id)) >= 4;
+      return true;
+    });
+    const sorted = [...tabFiltered].sort((a, b) => {
+      if (sortMode === "points") return a.basePoints - b.basePoints || a.name.localeCompare(b.name);
+      if (sortMode === "name") return a.name.localeCompare(b.name);
+      const diff = recommendationScore(b, countInRoster(b.id)) - recommendationScore(a, countInRoster(a.id));
+      if (diff !== 0) return diff;
+      return a.basePoints - b.basePoints || a.name.localeCompare(b.name);
+    });
+    return sorted;
+  }, [baseFilteredUnits, browseTab, sortMode, countInRoster]);
 
   const unitsByRole = useMemo(() => {
     const map = Object.fromEntries(ROLES.map((r) => [r, [] as BuilderUnit[]])) as Record<UnitRole, BuilderUnit[]>;
@@ -438,19 +1084,9 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
     return map;
   }, [filteredUnits]);
 
-  const rosterByRole = useMemo(() => {
-    const map = Object.fromEntries(ROLES.map((r) => [r, [] as RosterEntry[]])) as Record<UnitRole, RosterEntry[]>;
-    for (const u of roster) map[u.role]?.push(u);
-    return map;
-  }, [roster]);
+  const rosterByRole = useMemo(() => groupByRole(roster), [roster]);
 
   const totalPts = useMemo(() => roster.reduce((s, u) => s + u.pts, 0), [roster]);
-  const isOver = totalPts > pointsLimit;
-
-  const countInRoster = useCallback(
-    (unitId: string) => roster.filter((r) => r.unitId === unitId).length,
-    [roster]
-  );
 
   // ─── Handlers ─────────────────────────────────────────────────────────────
 
@@ -536,7 +1172,11 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
 
   const resetRoster = () => {
     if (roster.length === 0) return;
-    if (confirm("ロスターをリセットしますか？")) { setRoster([]); setSaveStatus("idle"); }
+    if (confirm("ロスターをリセットしますか？")) {
+      setRoster([]);
+      setSaveStatus("idle");
+      setPublicSaveStatus("idle");
+    }
   };
 
   const saveRoster = () => {
@@ -558,6 +1198,58 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
     setTimeout(() => setSaveStatus("idle"), 2500);
   };
 
+  const savePublicRoster = useCallback(async () => {
+    if (!selectedFaction || roster.length === 0) return;
+
+    setPublicSaveStatus("saving");
+
+    try {
+      const payload = {
+        name: rosterName || "Unnamed Roster",
+        faction: selectedFaction.id,
+        detachment: detachment || undefined,
+        pointsLimit,
+        units: roster,
+        isPublic: true,
+      };
+
+      const res = await fetch("/api/wh40k/rosters", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error("failed_to_save_public_roster");
+      }
+
+      const created = (await res.json()) as { id: string; detailUrl: string };
+      const saved: SavedRoster = {
+        id: created.id,
+        name: rosterName || "Unnamed Roster",
+        faction: selectedFaction.id,
+        factionName: selectedFaction.name,
+        detachment: detachment || undefined,
+        pointsLimit,
+        units: roster,
+        savedAt: new Date().toISOString(),
+        isPublic: true,
+      };
+
+      const existing: SavedRoster[] = JSON.parse(localStorage.getItem("wh40k_rosters") ?? "[]");
+      localStorage.setItem(
+        "wh40k_rosters",
+        JSON.stringify([...existing.filter((entry) => entry.id !== saved.id), saved])
+      );
+
+      setPublicSaveStatus("published");
+      window.location.href = created.detailUrl;
+    } catch {
+      setPublicSaveStatus("idle");
+      alert("公開ロスターの保存に失敗しました。DB 接続を確認してください。");
+    }
+  }, [detachment, pointsLimit, roster, rosterName, selectedFaction]);
+
   const shareRoster = () => {
     if (!selectedFaction || roster.length === 0) return;
     const data = { name: rosterName, faction: selectedFaction.id, factionName: selectedFaction.name, detachment: detachment || undefined, pointsLimit, units: roster };
@@ -567,6 +1259,22 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
       .then(() => alert("✅ 共有URLをクリップボードにコピーしました"))
       .catch(() => prompt("共有URL:", url));
   };
+
+  const toggleTag = useCallback((tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  }, []);
+
+  const clearTagFilter = useCallback(() => {
+    setSelectedTags([]);
+  }, []);
+
+  const handleFactionChange = useCallback(() => {
+    if (roster.length === 0 || confirm("陣営を変更するとロスターがリセットされます。よろしいですか？")) {
+      setSelectedFaction(null);
+    }
+  }, [roster.length]);
 
   // ─── 陣営未選択 ──────────────────────────────────────────────────────────
 
@@ -590,7 +1298,7 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
 
   // ─── 陣営選択済み ─────────────────────────────────────────────────────────
 
-  const groupMeta = GROUP_META[selectedFaction.group];
+  const detachmentOptions = DETACHMENTS[selectedFaction.id] ?? [];
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -603,80 +1311,25 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
         />
       )}
 
-      {/* ── Header ── */}
-      <div className="sticky top-0 z-20 border-b border-white/70 bg-white shadow-[0_18px_36px_-28px_rgba(15,23,42,0.38)] dark:border-white/20 dark:bg-white/90">
-        <div className="mx-auto max-w-[1400px] px-4 py-3">
-          <div className="rounded-2xl border border-white/80 bg-white px-4 py-3 shadow-[0_18px_40px_-34px_rgba(15,23,42,0.45)] supports-[backdrop-filter]:backdrop-blur-sm dark:border-white/30 dark:bg-white dark:shadow-none">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex flex-wrap items-center gap-2">
-                <Link href="/wh40k" className="text-xs text-slate-500 hover:text-rose-500 transition">← WH40K</Link>
-                <h1 className="text-base font-black uppercase tracking-tight text-slate-700">Army Builder</h1>
-                <button
-                  onClick={() => {
-                    if (roster.length === 0 || confirm("陣営を変更するとロスターがリセットされます。よろしいですか？")) {
-                      setSelectedFaction(null);
-                    }
-                  }}
-                  className={`rounded-full px-2.5 py-0.5 text-[0.65rem] font-bold transition hover:opacity-70 ${groupMeta.badge}`}
-                  title="クリックで陣営を変更"
-                >
-                  {selectedFaction.name} ▾
-                </button>
-                <select
-                  value={pointsLimit}
-                  onChange={(e) => setPointsLimit(Number(e.target.value))}
-                  className="rounded-full border border-slate-300/70 bg-white/90 px-3 py-1 text-xs font-bold text-slate-800 shadow-sm dark:border-white/40 dark:bg-white dark:text-slate-800"
-                >
-                  {POINTS_LIMITS.map((p) => <option key={p} value={p}>{p}pt</option>)}
-                </select>
-                {(() => {
-                  const opts = DETACHMENTS[selectedFaction.id] ?? [];
-                  return opts.length > 0 ? (
-                    <select
-                      value={detachment}
-                      onChange={(e) => setDetachment(e.target.value)}
-                      className="rounded-full border border-slate-300/70 bg-white/90 px-3 py-1 text-xs font-bold text-slate-800 shadow-sm dark:border-white/40 dark:bg-white dark:text-slate-800"
-                    >
-                      <option value="">デタッチメント</option>
-                      {opts.map((d) => (
-                        <option key={d.name} value={d.name}>{d.nameJa}</option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input
-                      value={detachment}
-                      onChange={(e) => setDetachment(e.target.value)}
-                      placeholder="デタッチメント"
-                      className="rounded-full border border-slate-300/70 bg-white/90 px-3 py-1 text-xs text-slate-800 shadow-sm outline-none focus:border-rose-400/70 dark:border-white/40 dark:bg-white dark:text-slate-800"
-                    />
-                  );
-                })()}
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <input
-                  value={rosterName}
-                  onChange={(e) => setRosterName(e.target.value)}
-                  className="min-w-[130px] rounded-lg border border-slate-300/70 bg-white px-3 py-1 text-xs text-slate-800 outline-none shadow-sm focus:border-rose-400/70 dark:border-white/40 dark:bg-white dark:text-slate-800"
-                  placeholder="Roster Name"
-                />
-                <button onClick={saveRoster} disabled={roster.length === 0}
-                  className="rounded-full bg-rose-500 px-4 py-1.5 text-xs font-bold text-white transition hover:bg-rose-400 disabled:opacity-40">
-                  {saveStatus === "saved" ? "✅ 保存済み" : "💾 保存"}
-                </button>
-                <button onClick={shareRoster} disabled={roster.length === 0}
-                  className="rounded-full border border-slate-300/60 px-4 py-1.5 text-xs font-semibold transition hover:border-rose-400/60 disabled:opacity-40 dark:border-slate-600/60">
-                  🔗 共有
-                </button>
-                <button onClick={resetRoster} disabled={roster.length === 0}
-                  className="rounded-full border border-slate-300/60 px-4 py-1.5 text-xs font-semibold text-muted transition hover:border-red-400/60 hover:text-red-400 disabled:opacity-40 dark:border-slate-600/60">
-                  🗑 リセット
-                </button>
-              </div>
-            </div>
-            {roster.length > 0 && <div className="mt-2"><PointBar used={totalPts} limit={pointsLimit} /></div>}
-          </div>
-        </div>
-      </div>
+      <BuilderHeader
+        selectedFaction={selectedFaction}
+        detachmentOptions={detachmentOptions}
+        rosterName={rosterName}
+        pointsLimit={pointsLimit}
+        detachment={detachment}
+        saveStatus={saveStatus}
+        publicSaveStatus={publicSaveStatus}
+        rosterCount={roster.length}
+        totalPts={totalPts}
+        onRosterNameChange={setRosterName}
+        onPointsLimitChange={setPointsLimit}
+        onDetachmentChange={setDetachment}
+        onFactionChange={handleFactionChange}
+        onSave={saveRoster}
+        onPublicSave={savePublicRoster}
+        onShare={shareRoster}
+        onReset={resetRoster}
+      />
 
       {/* ── Loading ── */}
       {loadingUnits && (
@@ -690,173 +1343,44 @@ export function BuilderClient({ factions }: { factions: FactionListItem[] }) {
         <div className="mx-auto w-full max-w-[1400px] flex-1 px-4 py-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-[200px_1fr_260px]">
 
-            {/* ── Left: Filter Panel ── */}
-            <aside className="space-y-3 md:sticky md:top-[90px] md:self-start">
-              <div className="surface-card rounded-2xl p-4 space-y-3">
-                <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">フィルター</h2>
-                <input
-                  type="text"
-                  placeholder="🔍 ユニット名で検索…"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full rounded-xl border border-slate-300/60 bg-transparent px-3 py-2 text-xs outline-none placeholder:text-muted focus:border-rose-400/60 dark:border-slate-600/60"
-                />
-                <div className="space-y-0.5">
-                  <button
-                    onClick={() => setFilterRole("ALL")}
-                    className={`w-full rounded-lg px-3 py-1.5 text-left text-xs font-medium transition ${filterRole === "ALL" ? "bg-rose-500/10 text-rose-500" : "text-muted hover:text-[color:var(--fg-body)]"}`}
-                  >全ロール</button>
-                  {ROLES.map((role) => {
-                    const meta = ROLE_META[role];
-                    const count = units.filter((u) => u.role === role).length;
-                    return (
-                      <button key={role} onClick={() => setFilterRole(role)}
-                        className={`w-full flex items-center justify-between rounded-lg px-3 py-1.5 text-xs font-medium transition ${filterRole === role ? `${meta.bg} ${meta.text}` : "text-muted hover:text-[color:var(--fg-body)]"}`}>
-                        <span>{meta.label}</span>
-                        <span className="text-[0.6rem]">{count}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </aside>
+            <FilterSidebar
+              className="order-2 md:order-1"
+              search={search}
+              filterRole={filterRole}
+              units={units}
+              availableTags={availableTags}
+              selectedTags={selectedTags}
+              quickFilter={quickFilter}
+              sortMode={sortMode}
+              onSearchChange={setSearch}
+              onFilterRoleChange={setFilterRole}
+              onToggleTag={toggleTag}
+              onQuickFilterChange={setQuickFilter}
+              onSortModeChange={setSortMode}
+              onClearTagFilter={clearTagFilter}
+            />
 
-            {/* ── Center: Unit List ── */}
-            <main className="min-w-0 space-y-4">
-              {ROLES.map((role) => {
-                const roleUnits = unitsByRole[role];
-                if (!roleUnits.length) return null;
-                const meta = ROLE_META[role];
-                return (
-                  <section key={role} className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <span className={`text-[0.65rem] font-bold uppercase tracking-widest ${meta.text}`}>{meta.label}</span>
-                      <span className="text-[0.65rem] text-muted">{roleUnits.length}</span>
-                    </div>
-                    <div className="space-y-1.5">
-                      {roleUnits.map((unit) => {
-                        const count = countInRoster(unit.id);
-                        const active = count > 0;
-                        return (
-                          <div key={unit.id}
-                            className={`flex items-center rounded-xl border px-4 py-2.5 transition ${active ? `${meta.bg} ${meta.border}` : "surface-card border-transparent"}`}>
-                            <div className="min-w-0 flex-1">
-                              <Link
-                                href={`/wh40k/units/${unit.slug}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
-                                className={`truncate text-xs font-semibold underline decoration-dotted underline-offset-2 transition hover:opacity-70 ${active ? meta.text : ""}`}
-                              >
-                                {unit.name}
-                              </Link>
-                              {unit.nameJa && <p className="truncate text-[0.6rem] text-muted">{unit.nameJa}</p>}
-                              <div className="mt-0.5 flex flex-wrap gap-1">
-                                {unit.categories.slice(0, 3).map((c) => (
-                                  <span key={c} className="text-[0.55rem] text-muted">{c}</span>
-                                ))}
-                              </div>
-                            </div>
-                            <div className="ml-2 flex shrink-0 items-center gap-1">
-                              <span className={`text-xs font-bold ${active ? meta.text : "text-muted"}`}>
-                                {unit.basePoints}pt
-                              </span>
-                              {active && (
-                                <>
-                                  <button onClick={() => removeLastUnit(unit.id)}
-                                    className="flex h-6 w-6 items-center justify-center rounded-full text-sm text-muted hover:bg-red-500/10 hover:text-red-400"
-                                    title="1つ削除">−</button>
-                                  <span className={`min-w-[1rem] text-center text-xs font-black ${meta.text}`}>{count}</span>
-                                </>
-                              )}
-                              <button onClick={() => handleAddUnit(unit)}
-                                className={`flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold transition ${active ? `${meta.text} hover:opacity-70` : "text-muted hover:text-[color:var(--fg-body)]"}`}
-                                title="ロスターに追加">＋</button>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </section>
-                );
-              })}
-              {filteredUnits.length === 0 && units.length > 0 && (
-                <div className="surface-card rounded-2xl px-6 py-12 text-center text-sm text-muted">ユニットが見つかりません</div>
-              )}
-            </main>
+            <UnitCardList
+              className="order-3 md:order-2"
+              unitsByRole={unitsByRole}
+              filteredUnitsCount={filteredUnits.length}
+              totalUnitsCount={units.length}
+              browseTab={browseTab}
+              tabCounts={tabCounts}
+              countInRoster={countInRoster}
+              onAddUnit={handleAddUnit}
+              onRemoveUnit={removeLastUnit}
+              onBrowseTabChange={setBrowseTab}
+            />
 
-            {/* ── Right: Roster Panel ── */}
-            <aside className="space-y-3 md:sticky md:top-[90px] md:self-start">
-              <div className="surface-card rounded-2xl p-4 space-y-4">
-                <div className="flex items-center justify-between border-b border-slate-200/70 pb-2 dark:border-slate-700/60">
-                  <h2 className="text-sm font-black uppercase tracking-[0.25em] text-[color:var(--fg-body)]">ロスター</h2>
-                  <span className="text-[0.7rem] font-semibold text-muted">{roster.length}ユニット</span>
-                </div>
-
-                <div className={`rounded-xl p-3 text-center ${isOver ? "bg-red-500/10" : "bg-slate-100/60 dark:bg-white/20"}`}>
-                  <p className={`text-2xl font-black ${isOver ? "text-red-500" : "text-[color:var(--accent-primary)]"}`}>
-                    {totalPts}<span className="text-sm font-normal text-muted"> / {pointsLimit}pt</span>
-                  </p>
-                  {isOver && <p className="mt-0.5 text-xs font-bold text-red-500">⚠️ ポイント超過</p>}
-                </div>
-
-                {roster.length > 0 && (
-                  <div className="space-y-0.5 text-xs">
-                    {ROLES.map((role) => {
-                      const count = rosterByRole[role].length;
-                      if (!count) return null;
-                      return (
-                        <div key={role} className="flex justify-between">
-                          <span className="text-muted">{ROLE_META[role].label}</span>
-                          <span className={ROLE_META[role].text}>{count}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-
-                {roster.length === 0 ? (
-                  <p className="py-6 text-center text-[0.7rem] text-muted">ユニットを追加してください</p>
-                ) : (
-                  <div className="space-y-2">
-                    {ROLES.map((role) => {
-                      const entries = rosterByRole[role];
-                      if (!entries.length) return null;
-                      const meta = ROLE_META[role];
-                      return (
-                        <div key={role}>
-                          <p className={`mb-1 text-[0.6rem] font-bold uppercase tracking-wider ${meta.text}`}>{meta.label}</p>
-                          {entries.map((entry) => (
-                            <div key={entry.entryId}
-                              className={`mb-1.5 rounded-xl border px-2.5 py-2 ${meta.border}`}>
-                              <div className="flex items-center gap-2">
-                                <span className="min-w-0 flex-1 truncate text-xs font-semibold">{entry.name}</span>
-                                <span className={`shrink-0 text-xs font-bold ${meta.text}`}>{entry.pts}pt</span>
-                                <button onClick={() => removeEntry(entry.entryId)}
-                                  className="shrink-0 text-xs text-muted hover:text-red-400" title="削除">✕</button>
-                              </div>
-                              {/* 選択された武器を表示 */}
-                              {entry.weaponSelections.length > 0 && (
-                                <div className="mt-1.5 space-y-0.5">
-                                  {entry.weaponSelections.map((ws) => (
-                                    <div key={ws.groupId} className="flex items-start gap-1">
-                                      <span className="text-[0.55rem] text-muted shrink-0 mt-0.5">↳</span>
-                                      <span className="text-[0.6rem] text-muted leading-relaxed">
-                                        {ws.selectedNames.join(", ")}
-                                      </span>
-                                    </div>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            </aside>
+            <RosterSidebar
+              className="order-1 md:order-3"
+              roster={roster}
+              rosterByRole={rosterByRole}
+              pointsLimit={pointsLimit}
+              totalPts={totalPts}
+              onRemoveEntry={removeEntry}
+            />
           </div>
         </div>
       )}

@@ -86,6 +86,7 @@ export function RostersClient() {
                       <span className="capitalize">{roster.faction}</span> ·{" "}
                       {roster.pointsLimit}pt制
                       {roster.detachment && ` · ${roster.detachment}`}
+                      {roster.isPublic ? " · Public" : ""}
                     </p>
                   </div>
                   <div className="shrink-0 text-right">

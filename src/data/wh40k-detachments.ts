@@ -1,113 +1,247 @@
 /**
  * WH40K 10th edition detachments by faction.
  * Key = faction id (matches DB Faction.id).
- * Value = array of detachment names (English).
+ * Value = array of detachment names (English + Japanese).
+ * Source: Wahapedia (https://wahapedia.ru)
+ * Boarding Actions detachments are excluded (standard matched play only).
  */
 export const DETACHMENTS: Record<string, { name: string; nameJa: string }[]> = {
+  // ─── Xenos ─────────────────────────────────────────────────────────────────
   aeldari_craftworlds: [
-    { name: "Warhost",          nameJa: "ウォーホスト" },
-    { name: "Aspect Host",      nameJa: "アスペクト・ホスト" },
-    { name: "Devoted of Ynnead", nameJa: "イナードの献身者" },
-  ],
-  space_marines: [
-    { name: "Gladius Task Force",     nameJa: "グラディウス任務部隊" },
-    { name: "Ironstorm Spearhead",    nameJa: "アイアンストーム突撃隊" },
-    { name: "Anvil Siege Force",      nameJa: "アンビル包囲軍" },
-    { name: "Firestorm Assault Force", nameJa: "ファイアストーム強襲軍" },
-    { name: "1st Company Task Force", nameJa: "第1中隊任務部隊" },
-    { name: "Vanguard Spearhead",     nameJa: "ヴァンガード突撃隊" },
-  ],
-  blood_angels: [
-    { name: "Sons of Sanguinius", nameJa: "サングィニウスの息子たち" },
-  ],
-  dark_angels: [
-    { name: "Unforgiven Task Force", nameJa: "許されし者任務部隊" },
-  ],
-  space_wolves: [
-    { name: "Champions of Russ", nameJa: "ラスの勇者たち" },
-  ],
-  black_templars: [
-    { name: "Righteous Crusaders", nameJa: "正義の十字軍" },
-  ],
-  ultramarines: [
-    { name: "Spearhead Assault", nameJa: "突撃隊強襲" },
-  ],
-  grey_knights: [
-    { name: "Teleport Strike Force", nameJa: "テレポート打撃部隊" },
-  ],
-  chaos_space_marines: [
-    { name: "Slaves to Darkness",  nameJa: "暗黒の奴隷" },
-    { name: "Council of Traitors", nameJa: "反逆者の議会" },
-  ],
-  death_guard: [
-    { name: "Plague Company",      nameJa: "疫病の中隊" },
-    { name: "Inexorable March",    nameJa: "容赦なき行進" },
-  ],
-  thousand_sons: [
-    { name: "Cult of Magic",       nameJa: "魔術のカルト" },
-    { name: "Arcane Runes",        nameJa: "神秘のルーン" },
-  ],
-  world_eaters: [
-    { name: "Berserker Warband",   nameJa: "バーサーカーの戦団" },
-  ],
-  chaos_daemons: [
-    { name: "Chaos Undivided",     nameJa: "渾沌 (不分割)" },
-    { name: "Warlord of Chaos",    nameJa: "混沌の将" },
-  ],
-  tyranids: [
-    { name: "Invasion Fleet",      nameJa: "侵略艦隊" },
-    { name: "Crusher Stampede",    nameJa: "蹂躙の暴走" },
-    { name: "Assimilation Swarm",  nameJa: "同化の群れ" },
-    { name: "Vanguard Onslaught",  nameJa: "先鋒の猛攻" },
-    { name: "Unending Swarm",      nameJa: "終わりなき群れ" },
-  ],
-  necrons: [
-    { name: "Awakened Dynasty",    nameJa: "覚醒の王朝" },
-    { name: "Hypercrypt Legion",   nameJa: "ハイパークリプト軍団" },
-    { name: "Canoptek Court",      nameJa: "カノプテク宮廷" },
-    { name: "Starved Frenzy",      nameJa: "飢えの狂乱" },
-    { name: "Undying Legions",     nameJa: "不滅の軍団" },
-  ],
-  orks: [
-    { name: "Waaagh! Tribe",       nameJa: "ウォー! 部族" },
-    { name: "Green Tide",          nameJa: "グリーン・タイド" },
-    { name: "Bully Boyz",          nameJa: "ブリー・ボーイズ" },
-    { name: "Dread Mob",           nameJa: "ドレッド・モブ" },
-  ],
-  t_au_empire: [
-    { name: "Kauyon",              nameJa: "カウヨン" },
-    { name: "Mont'ka",             nameJa: "モンカ" },
+    { name: "Armoured Warhost",     nameJa: "アーマード・ウォーホスト" },
+    { name: "Aspect Host",          nameJa: "アスペクト・ホスト" },
+    { name: "Corsair Coterie",      nameJa: "コルセア・コトリー" },
+    { name: "Devoted of Ynnead",    nameJa: "イナードの献身者" },
+    { name: "Eldritch Raiders",     nameJa: "エルドリッチ・レイダーズ" },
+    { name: "Ghosts of the Webway", nameJa: "ウェブウェイの亡霊" },
+    { name: "Guardian Battlehost",  nameJa: "ガーディアン・バトルホスト" },
+    { name: "Seer Council",         nameJa: "シア・カウンシル" },
+    { name: "Serpent's Brood",      nameJa: "サーペントの群れ" },
+    { name: "Spirit Conclave",      nameJa: "スピリット・コンクレーヴ" },
+    { name: "Warhost",              nameJa: "ウォーホスト" },
+    { name: "Windrider Host",       nameJa: "ウィンドライダー・ホスト" },
   ],
   drukhari: [
-    { name: "Realspace Raiders",   nameJa: "リアルスペース・レイダーズ" },
-    { name: "Court of the Archon", nameJa: "アーコンの宮廷" },
+    { name: "Realspace Raiders",    nameJa: "リアルスペース・レイダーズ" },
+    { name: "Skysplinter Assault",  nameJa: "スカイスプリンター強襲" },
+    { name: "Spectacle of Spite",   nameJa: "怨恨の見世物" },
+    { name: "Covenite Coterie",     nameJa: "コヴナイトの一団" },
+    { name: "Kabalite Cartel",      nameJa: "カバライト・カルテル" },
+    { name: "Reaper's Wager",       nameJa: "死神の賭け" },
+  ],
+  necrons: [
+    { name: "Awakened Dynasty",     nameJa: "覚醒の王朝" },
+    { name: "Annihilation Legion",  nameJa: "殲滅軍団" },
+    { name: "Canoptek Court",       nameJa: "カノプテク宮廷" },
+    { name: "Obeisance Phalanx",    nameJa: "帰服の密集隊" },
+    { name: "Hypercrypt Legion",    nameJa: "ハイパークリプト軍団" },
+    { name: "Starshatter Arsenal",  nameJa: "星砕き兵器庫" },
+    { name: "Cryptek Conclave",     nameJa: "クリプテク評議会" },
+    { name: "Cursed Legion",        nameJa: "呪われし軍団" },
+    { name: "Pantheon of Woe",      nameJa: "悲嘆の万神殿" },
+  ],
+  tyranids: [
+    { name: "Invasion Fleet",              nameJa: "侵略艦隊" },
+    { name: "Crusher Stampede",            nameJa: "蹂躙の暴走" },
+    { name: "Unending Swarm",              nameJa: "終わりなき群れ" },
+    { name: "Assimilation Swarm",          nameJa: "同化の群れ" },
+    { name: "Vanguard Onslaught",          nameJa: "先鋒の猛攻" },
+    { name: "Synaptic Nexus",              nameJa: "シナプス回路" },
+    { name: "Subterranean Assault",        nameJa: "地下強襲" },
+    { name: "Warrior Bioform Onslaught",   nameJa: "ウォリアー生体形態の猛攻" },
+  ],
+  orks: [
+    { name: "War Horde",       nameJa: "ウォー・ホード" },
+    { name: "Da Big Hunt",     nameJa: "ダ・ビッグ・ハント" },
+    { name: "Kult of Speed",   nameJa: "スピードのカルト" },
+    { name: "Dread Mob",       nameJa: "ドレッド・モブ" },
+    { name: "Green Tide",      nameJa: "グリーン・タイド" },
+    { name: "Bully Boyz",      nameJa: "ブリー・ボーイズ" },
+    { name: "Taktikal Brigade",nameJa: "タクティカル旅団" },
+    { name: "More Dakka!",     nameJa: "もっとダッカ！" },
+    { name: "Freebooter Krew", nameJa: "フリーブーター・クルー" },
+  ],
+  t_au_empire: [
+    { name: "Kauyon",                       nameJa: "カウヨン" },
+    { name: "Mont'ka",                      nameJa: "モンカ" },
+    { name: "Retaliation Cadre",            nameJa: "報復戦闘団" },
+    { name: "Kroot Hunting Pack",           nameJa: "クルート狩猟団" },
+    { name: "Auxiliary Cadre",              nameJa: "補助戦闘団" },
+    { name: "Experimental Prototype Cadre", nameJa: "実験試作戦闘団" },
   ],
   genestealer_cults: [
-    { name: "Cult Ambush",         nameJa: "カルトの奇襲" },
+    { name: "Host of Ascension",        nameJa: "昇天の宿主" },
+    { name: "Xenocreed Congregation",   nameJa: "エイリアン信仰の会衆" },
+    { name: "Biosanctic Broodsurge",    nameJa: "生命聖域の群れの波" },
+    { name: "Outlander Claw",           nameJa: "外来者の爪" },
+    { name: "Brood Brother Auxilia",    nameJa: "群れの兄弟補助隊" },
+    { name: "Final Day",                nameJa: "最終日" },
   ],
-  adeptus_mechanicus: [
-    { name: "Cohort Cybernetica",  nameJa: "コホート・サイバーネティカ" },
-    { name: "Skitarii Hunter Cohort", nameJa: "スキタリイ狩猟コホート" },
+  leagues_of_votann: [
+    { name: "Needgaârd Oathband",   nameJa: "ニードガールド誓いの絆" },
+    { name: "Persecution Prospect", nameJa: "迫害の見込み" },
+    { name: "Dêlve Assault Shift",  nameJa: "デルヴ攻撃班" },
+    { name: "Brandfast Oathband",   nameJa: "ブランドファスト誓いの絆" },
+    { name: "Hearthfyre Arsenal",   nameJa: "ヘスファイア兵器庫" },
+    { name: "Hearthband",           nameJa: "ヘスバンド" },
+    { name: "Mercenary Oathband",   nameJa: "傭兵の誓いの絆" },
   ],
-  astra_militarum: [
-    { name: "Combined Regiment",   nameJa: "統合連隊" },
-    { name: "Hammer of the Emperor", nameJa: "皇帝の鉄槌" },
+
+  // ─── Chaos ─────────────────────────────────────────────────────────────────
+  chaos_space_marines: [
+    { name: "Veterans of the Long War", nameJa: "長き戦いの古参兵" },
+    { name: "Deceptors",                nameJa: "欺瞞者ども" },
+    { name: "Renegade Raiders",         nameJa: "叛徒の略奪者" },
+    { name: "Dread Talons",             nameJa: "恐怖の爪" },
+    { name: "Fellhammer Siege-host",    nameJa: "フェルハンマー包囲軍" },
+    { name: "Pactbound Zealots",        nameJa: "契約で縛られた狂信者" },
+    { name: "Chaos Cult",               nameJa: "ケイオス・カルト" },
+    { name: "Soulforged Warpack",       nameJa: "魂鍛えの戦闘集団" },
+    { name: "Cabal of Chaos",           nameJa: "混沌の密議" },
+    { name: "Creations of Bile",        nameJa: "バイルの造物" },
+    { name: "Nightmare Hunt",           nameJa: "悪夢の狩" },
+    { name: "Huron's Marauders",        nameJa: "ヒューロンの略奪兵" },
+    { name: "Renegade Warband",         nameJa: "叛徒の戦団" },
+  ],
+  death_guard: [
+    { name: "Virulent Vectorium",       nameJa: "病原性ヴェクトリウム" },
+    { name: "Mortarion's Hammer",       nameJa: "モータリオンの鉄槌" },
+    { name: "Champions of Contagion",   nameJa: "伝染の勇者たち" },
+    { name: "Tallyband Summoners",      nameJa: "タリーバンドの召喚者" },
+    { name: "Shamblerot Vectorium",     nameJa: "シャンブルロット・ヴェクトリウム" },
+    { name: "Death Lord's Chosen",      nameJa: "デス・ロードの選ばれし者" },
+    { name: "Flyblown Host",            nameJa: "蛆の宿主" },
+  ],
+  thousand_sons: [
+    { name: "Grand Coven",            nameJa: "大密会" },
+    { name: "Changehost of Deceit",   nameJa: "欺きのチェンジホスト" },
+    { name: "Warpmeld Pact",          nameJa: "ワープ溶合の契約" },
+    { name: "Rubricae Phalanx",       nameJa: "ルブリカエの密集隊" },
+    { name: "Warpforged Cabal",       nameJa: "ワープ鍛えの密議" },
+    { name: "Hexwarp Thrallband",     nameJa: "六重ワープの奴隷団" },
+  ],
+  world_eaters: [
+    { name: "Berzerker Warband",        nameJa: "バーサーカーの戦団" },
+    { name: "Cult of Blood",            nameJa: "血のカルト" },
+    { name: "Khorne Daemonkin",         nameJa: "コーンのデーモンキン" },
+    { name: "Possessed Slaughterband",  nameJa: "ポゼスドの殺戮団" },
+    { name: "Goretrack Onslaught",      nameJa: "流血路の猛攻" },
+    { name: "Vessels of Wrath",         nameJa: "怒りの器" },
+  ],
+  emperor_s_children: [
+    { name: "Mercurial Host",           nameJa: "気まぐれな宿主" },
+    { name: "Peerless Bladesmen",       nameJa: "比類なき剣士" },
+    { name: "Rapid Evisceration",       nameJa: "迅速な内臓抉り" },
+    { name: "Carnival of Excess",       nameJa: "過剰のカーニバル" },
+    { name: "Coterie of the Conceited", nameJa: "傲慢者の一団" },
+    { name: "Slaanesh's Chosen",        nameJa: "スラーネッシュの選ばれし者" },
+    { name: "Court of the Phoenician",  nameJa: "フォーニシアンの宮廷" },
+  ],
+  chaos_daemons: [
+    { name: "Daemonic Incursion",   nameJa: "ディーモンの侵攻" },
+    { name: "Shadow Legion",        nameJa: "影の軍団" },
+    { name: "Blood Legion",         nameJa: "血の軍団" },
+    { name: "Legion of Excess",     nameJa: "耽溺の軍団" },
+    { name: "Plague Legion",        nameJa: "疫病の軍団" },
+    { name: "Scintillating Legion", nameJa: "きらめく軍団" },
+  ],
+  chaos_knights: [
+    { name: "Traitoris Lance",      nameJa: "反逆者の槍騎兵" },
+    { name: "Infernal Lance",       nameJa: "地獄の槍騎兵" },
+    { name: "Lords of Dread",       nameJa: "恐怖の支配者" },
+    { name: "Houndpack Lance",      nameJa: "猟犬群の槍騎兵" },
+    { name: "Iconoclast Fiefdom",   nameJa: "聖像破壊者の封土" },
+  ],
+
+  // ─── Imperium ───────────────────────────────────────────────────────────────
+  space_marines: [
+    { name: "Gladius Task Force",      nameJa: "グラディウス任務部隊" },
+    { name: "Ironstorm Spearhead",     nameJa: "アイアンストーム突撃隊" },
+    { name: "Stormlance Task Force",   nameJa: "ストームランス任務部隊" },
+    { name: "Anvil Siege Force",       nameJa: "アンビル包囲軍" },
+    { name: "Firestorm Assault Force", nameJa: "ファイアストーム強襲軍" },
+    { name: "1st Company Task Force",  nameJa: "第1中隊任務部隊" },
+    { name: "Vanguard Spearhead",      nameJa: "ヴァンガード突撃隊" },
+  ],
+  blood_angels: [
+    { name: "Sons of Sanguinius",      nameJa: "サングィニウスの息子たち" },
+  ],
+  dark_angels: [
+    { name: "Unforgiven Task Force",   nameJa: "許されし者任務部隊" },
+    { name: "Inner Circle Task Force", nameJa: "インナーサークル任務部隊" },
+  ],
+  space_wolves: [
+    { name: "Champions of Russ",       nameJa: "ラスの勇者たち" },
+  ],
+  black_templars: [
+    { name: "Righteous Crusaders",     nameJa: "正義の十字軍" },
+  ],
+  ultramarines: [
+    { name: "Gladius Task Force",      nameJa: "グラディウス任務部隊" },
+  ],
+  iron_hands: [
+    { name: "Gladius Task Force",      nameJa: "グラディウス任務部隊" },
+  ],
+  imperial_fists: [
+    { name: "Gladius Task Force",      nameJa: "グラディウス任務部隊" },
+  ],
+  salamanders: [
+    { name: "Gladius Task Force",      nameJa: "グラディウス任務部隊" },
+  ],
+  raven_guard: [
+    { name: "Gladius Task Force",      nameJa: "グラディウス任務部隊" },
+  ],
+  white_scars: [
+    { name: "Gladius Task Force",      nameJa: "グラディウス任務部隊" },
+  ],
+  deathwatch: [
+    { name: "Deathwatch Killteam",     nameJa: "デスウォッチ・キルチーム" },
+  ],
+  grey_knights: [
+    { name: "Brotherhood Strike",      nameJa: "兄弟団の打撃" },
+    { name: "Hallowed Conclave",       nameJa: "神聖なる評議会" },
+    { name: "Banishers",               nameJa: "追放者たち" },
+    { name: "Sanctic Spearhead",       nameJa: "聖域の突撃隊" },
+    { name: "Augurium Task Force",     nameJa: "予言任務部隊" },
+    { name: "Warpbane Task Force",     nameJa: "ワープ禁忌任務部隊" },
   ],
   adepta_sororitas: [
     { name: "Hallowed Martyrs",    nameJa: "神聖なる殉教者" },
     { name: "Penitent Host",       nameJa: "懺悔の宿主" },
+    { name: "Bringers of Flame",   nameJa: "炎をもたらす者" },
+    { name: "Army of Faith",       nameJa: "信仰の軍隊" },
+    { name: "Champions of Faith",  nameJa: "信仰の勇者" },
   ],
   adeptus_custodes: [
-    { name: "Shield Host",         nameJa: "シールド・ホスト" },
     { name: "Talons of the Emperor", nameJa: "皇帝の爪" },
+    { name: "Shield Host",           nameJa: "シールド・ホスト" },
+    { name: "Null Maiden Vigil",     nameJa: "ヌル・メイデン哨戒" },
+    { name: "Auric Champions",       nameJa: "黄金の勇者" },
+    { name: "Solar Spearhead",       nameJa: "太陽の突撃隊" },
+    { name: "Lions of the Emperor",  nameJa: "皇帝の獅子" },
   ],
-  leagues_of_votann: [
-    { name: "Oathband",            nameJa: "誓いの絆" },
+  adeptus_mechanicus: [
+    { name: "Rad-Zone Corps",           nameJa: "放射汚染地帯部隊" },
+    { name: "Skitarii Hunter Cohort",   nameJa: "スキタリイ狩猟コホート" },
+    { name: "Data-Psalm Conclave",      nameJa: "データ聖歌評議会" },
+    { name: "Explorator Maniple",       nameJa: "探索者マニプル" },
+    { name: "Cohort Cybernetica",       nameJa: "コホート・サイバーネティカ" },
+    { name: "Haloscreed Battle Clade",  nameJa: "ハロスクリード戦闘クレード" },
+  ],
+  astra_militarum: [
+    { name: "Combined Arms",        nameJa: "統合兵力" },
+    { name: "Siege Regiment",       nameJa: "包囲連隊" },
+    { name: "Mechanised Assault",   nameJa: "機甲突撃" },
+    { name: "Hammer of the Emperor",nameJa: "皇帝の鉄槌" },
+    { name: "Recon Element",        nameJa: "偵察部隊" },
+    { name: "Bridgehead Strike",    nameJa: "橋頭堡強襲" },
+    { name: "Grizzled Company",     nameJa: "歴戦の中隊" },
   ],
   imperial_knights: [
-    { name: "Noble Lance",         nameJa: "気高き槍騎兵" },
-  ],
-  chaos_knights: [
-    { name: "Traitoris Lance",     nameJa: "裏切り者の槍騎兵" },
+    { name: "Valourstrike Lance",   nameJa: "勇武の槍騎兵" },
+    { name: "Gate Warden Lance",    nameJa: "門番の槍騎兵" },
+    { name: "Questoris Companions", nameJa: "クエストリス同伴者" },
+    { name: "Spearhead-At-Arms",    nameJa: "武装突撃隊" },
+    { name: "Questor Forgepact",    nameJa: "クエストルの鍛冶盟約" },
   ],
 };

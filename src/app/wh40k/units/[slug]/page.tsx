@@ -3,14 +3,187 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import type { UnitRole } from "../../types";
+import {
+  RelatedRostersSection,
+  UnitAbilitiesSection,
+  UnitHero,
+  UnitKeywordsSection,
+  UnitOverviewSection,
+  UnitSynergySection,
+  UnitWeaponOptionsSection,
+  UnitWeaponTable,
+} from "../../components/UnitDetailParts";
 
 const ROLE_META: Record<UnitRole, { label: string; text: string; bg: string }> = {
-  HQ:         { label: "Character",           text: "text-rose-500",    bg: "bg-rose-500/10" },
-  Battleline: { label: "Battleline",           text: "text-emerald-500", bg: "bg-emerald-500/10" },
-  Transport:  { label: "Dedicated Transport",  text: "text-amber-500",   bg: "bg-amber-500/10" },
-  Other:      { label: "Other",                text: "text-sky-500",     bg: "bg-sky-500/10" },
-  Heavy:      { label: "Heavy",                text: "text-red-500",     bg: "bg-red-500/10" },
+  HQ: { label: "Character", text: "text-rose-500", bg: "bg-rose-500/10" },
+  Battleline: { label: "Battleline", text: "text-emerald-500", bg: "bg-emerald-500/10" },
+  Transport: { label: "Dedicated Transport", text: "text-amber-500", bg: "bg-amber-500/10" },
+  Other: { label: "Other", text: "text-sky-500", bg: "bg-sky-500/10" },
+  Heavy: { label: "Heavy", text: "text-red-500", bg: "bg-red-500/10" },
 };
+
+function hasKeyword(categories: string[], keywords: string[]): boolean {
+  const lowered = categories.map((c) => c.toLowerCase());
+  return keywords.some((k) => lowered.some((c) => c.includes(k.toLowerCase())));
+}
+
+function synergyReasonFor(role: UnitRole, categories: string[]): string {
+  if (role === "HQ") return "指揮オーラやバフで主力の効率を底上げできます。";
+  if (role === "Transport") return "前進力を補い、主力ユニットを安全に展開できます。";
+  if (role === "Battleline") return "盤面維持と任務達成を安定させる中核枠です。";
+  if (hasKeyword(categories, ["wraith", "monster", "vehicle"])) {
+    return "高耐久ユニットとして中央維持や圧力役を補完します。";
+  }
+  if (hasKeyword(categories, ["fly", "mounted", "jump"])) {
+    return "機動力を活かして側面展開や後衛への圧力を担えます。";
+  }
+  return "火力・任務・牽制の穴を埋める柔軟な補完枠です。";
+}
+
+const GENERIC_SYNERGY_CATEGORIES = new Set([
+  "aeldari",
+  "character",
+  "infantry",
+  "vehicle",
+  "monster",
+  "grenades",
+  "epic hero",
+]);
+
+type RosterWithUnits = {
+  id: string;
+  title: string;
+  pointsLimit: number;
+  totalPoints: number;
+  updatedAt: Date;
+};
+
+type SynergyCandidate = {
+  id: string;
+  slug: string;
+  name: string;
+  nameJa: string | null;
+  role: UnitRole;
+  categories: { name: string }[];
+};
+
+function isUnknownIsPublicError(error: unknown): boolean {
+  if (!error || typeof error !== "object") return false;
+  const maybeMessage = (error as { message?: unknown }).message;
+  const message = typeof maybeMessage === "string" ? maybeMessage : "";
+  return message.includes("Unknown argument `isPublic`");
+}
+
+async function findRelatedRosters(params: {
+  factionId: string;
+  unitId?: string;
+  excludeIds?: string[];
+  take: number;
+}): Promise<RosterWithUnits[]> {
+  const where = {
+    factionId: params.factionId,
+    ...(params.unitId ? { rosterUnits: { some: { unitId: params.unitId } } } : {}),
+    ...(params.excludeIds && params.excludeIds.length > 0 ? { id: { notIn: params.excludeIds } } : {}),
+  };
+
+  const orderBy = [{ updatedAt: "desc" as const }];
+  const select = {
+    id: true,
+    title: true,
+    pointsLimit: true,
+    totalPoints: true,
+    updatedAt: true,
+  };
+
+  try {
+    const withPublicFilter = await prisma.roster.findMany({
+      where: { ...where, isPublic: true } as typeof where & { isPublic: boolean },
+      select,
+      orderBy,
+      take: params.take,
+    });
+    return withPublicFilter as unknown as RosterWithUnits[];
+  } catch (error) {
+    if (!isUnknownIsPublicError(error)) throw error;
+
+    // Prisma Client が isPublic を未認識の環境では、既存データ互換でフォールバック。
+    const fallback = await prisma.roster.findMany({
+      where,
+      select,
+      orderBy,
+      take: params.take,
+    });
+    return fallback as unknown as RosterWithUnits[];
+  }
+}
+
+function buildSynergyCategoryPool(categoryNames: string[]): string[] {
+  return categoryNames
+    .filter((name) => {
+      const normalized = name.trim().toLowerCase();
+      return normalized.length > 0 && !GENERIC_SYNERGY_CATEGORIES.has(normalized);
+    })
+    .slice(0, 8);
+}
+
+function preferredSynergyRoles(role: UnitRole): UnitRole[] {
+  if (role === "Battleline") return ["HQ", "Transport"];
+  if (role === "HQ") return ["Battleline", "Heavy"];
+  if (role === "Heavy") return ["HQ", "Battleline"];
+  if (role === "Transport") return ["Battleline", "Other"];
+  return ["HQ", "Battleline"];
+}
+
+async function findSynergyUnits(params: {
+  factionId: string;
+  unitId: string;
+  role: UnitRole;
+  categoryNames: string[];
+  take: number;
+}) {
+  const priorityCategoryNames = buildSynergyCategoryPool(params.categoryNames);
+  const preferredRoles = preferredSynergyRoles(params.role);
+  const select = {
+    id: true,
+    slug: true,
+    name: true,
+    nameJa: true,
+    role: true,
+    categories: { select: { name: true } },
+  } as const;
+
+  const primaryCandidates = await prisma.unit.findMany({
+    where: {
+      factionId: params.factionId,
+      NOT: { id: params.unitId },
+      OR: [
+        ...(priorityCategoryNames.length > 0
+          ? [{ categories: { some: { name: { in: priorityCategoryNames } } } }]
+          : []),
+        { role: { in: preferredRoles } },
+      ],
+    },
+    select,
+    take: Math.max(params.take * 3, 12),
+  });
+
+  const primaryIds = new Set(primaryCandidates.map((candidate) => candidate.id));
+  const fallbackCandidates =
+    primaryCandidates.length >= params.take * 2
+      ? []
+      : await prisma.unit.findMany({
+          where: {
+            factionId: params.factionId,
+            NOT: {
+              id: { in: [params.unitId, ...primaryIds] },
+            },
+          },
+          select,
+          take: params.take * 2 - primaryCandidates.length,
+        });
+
+  return [...primaryCandidates, ...fallbackCandidates] as SynergyCandidate[];
+}
 
 export async function generateMetadata({
   params,
@@ -22,7 +195,9 @@ export async function generateMetadata({
     where: { slug },
     include: { faction: { select: { name: true } } },
   });
+
   if (!unit) return { title: "Unit Not Found | WH40K" };
+
   return {
     title: `${unit.name} | WH40K ${unit.faction.name}`,
     description: `${unit.nameJa ?? unit.name}（${unit.name}）のデータシート。`,
@@ -38,283 +213,146 @@ export default async function UnitPage({
 
   const unit = await prisma.unit.findUnique({
     where: { slug },
-    include: {
-      faction: true,
-      profiles:       { orderBy: { sortOrder: "asc" } },
-      weaponProfiles: { orderBy: { sortOrder: "asc" } },
-      abilities:      { orderBy: { sortOrder: "asc" } },
-      weaponGroups:   {
-        include: { options: { orderBy: { sortOrder: "asc" } } },
-        orderBy: { sortOrder: "asc" },
+    select: {
+      id: true,
+      name: true,
+      nameJa: true,
+      role: true,
+      basePoints: true,
+      invuln: true,
+      factionId: true,
+      faction: {
+        select: {
+          name: true,
+          nameJa: true,
+        },
       },
-      categories: { select: { name: true } },
+      categories: {
+        select: { name: true },
+      },
     },
   });
+
   if (!unit) notFound();
 
   const meta = ROLE_META[unit.role as UnitRole];
-  const rangedWeapons = unit.weaponProfiles.filter((w) => w.isRanged);
-  const meleeWeapons  = unit.weaponProfiles.filter((w) => !w.isRanged);
+  const categoryNames = unit.categories.map((c) => c.name);
+  const [profiles, weaponProfiles, abilities, weaponGroups, synergyCandidates, directRosters] = await Promise.all([
+    prisma.unitProfile.findMany({
+      where: { unitId: unit.id },
+      orderBy: { sortOrder: "asc" },
+    }),
+    prisma.unitWeaponProfile.findMany({
+      where: { unitId: unit.id },
+      orderBy: { sortOrder: "asc" },
+    }),
+    prisma.unitAbility.findMany({
+      where: { unitId: unit.id },
+      orderBy: { sortOrder: "asc" },
+    }),
+    prisma.unitWeaponGroup.findMany({
+      where: { unitId: unit.id },
+      include: { options: { orderBy: { sortOrder: "asc" } } },
+      orderBy: { sortOrder: "asc" },
+    }),
+    findSynergyUnits({
+      factionId: unit.factionId,
+      unitId: unit.id,
+      role: unit.role as UnitRole,
+      categoryNames,
+      take: 4,
+    }),
+    findRelatedRosters({
+      factionId: unit.factionId,
+      unitId: unit.id,
+      take: 3,
+    }),
+  ]);
+  const rangedWeapons = weaponProfiles.filter((weapon) => weapon.isRanged);
+  const meleeWeapons = weaponProfiles.filter((weapon) => !weapon.isRanged);
+
+  const synergyUnits = synergyCandidates
+    .map((candidate) => {
+      const candidateCategories = candidate.categories.map((c) => c.name);
+      const overlap = candidateCategories.filter((c) => categoryNames.includes(c)).length;
+      let score = overlap * 2;
+
+      if (unit.role === "Battleline" && (candidate.role === "HQ" || candidate.role === "Transport")) score += 3;
+      if (unit.role === "HQ" && candidate.role === "Battleline") score += 3;
+      if (unit.role === "Heavy" && candidate.role === "HQ") score += 2;
+      if (hasKeyword(categoryNames, ["wraith"]) && hasKeyword(candidateCategories, ["wraith", "psyker"])) score += 2;
+      if (hasKeyword(categoryNames, ["infantry"]) && hasKeyword(candidateCategories, ["transport"])) score += 2;
+      if (hasKeyword(candidateCategories, ["fly", "mounted", "jump"])) score += 1;
+
+      return {
+        slug: candidate.slug,
+        name: candidate.name,
+        nameJa: candidate.nameJa,
+        score,
+        reason: synergyReasonFor(candidate.role as UnitRole, candidateCategories),
+      };
+    })
+    .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name))
+    .slice(0, 4);
+
+  const directIds = new Set(directRosters.map((r) => r.id));
+  const additionalRosters =
+    directRosters.length < 3
+      ? await findRelatedRosters({
+          factionId: unit.factionId,
+          excludeIds: [...directIds],
+          take: 3 - directRosters.length,
+        })
+      : [];
+
+  const relatedRosters = [...directRosters, ...additionalRosters].map((roster) => {
+    const includesCurrent = directIds.has(roster.id);
+
+    return {
+      title: roster.title,
+      description: `${roster.totalPoints}/${roster.pointsLimit}pt · ${new Date(roster.updatedAt).toLocaleDateString("ja-JP")}`,
+      href: `/wh40k/rosters/${roster.id}`,
+      actionLabel: "このロスターを見る",
+      badge: includesCurrent ? "採用中" : "同陣営",
+    };
+  });
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 px-4 py-10">
-      {/* Breadcrumb */}
-      <nav className="flex flex-wrap gap-1.5 text-xs text-muted">
-        <Link href="/wh40k" className="hover:text-rose-500 transition">WH40K</Link>
+    <div className="mx-auto max-w-3xl space-y-6 px-4 py-8 sm:py-10">
+      <nav className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
+        <Link href="/wh40k" className="transition hover:text-rose-500">
+          WH40K
+        </Link>
         <span>/</span>
         <span>{unit.faction.nameJa ?? unit.faction.name}</span>
         <span>/</span>
         <span className="text-[color:var(--fg-body)]">{unit.name}</span>
       </nav>
 
-      {/* Header */}
-      <div className="surface-card rounded-2xl p-6 space-y-3">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <span className={`rounded-full px-2.5 py-0.5 text-[0.65rem] font-bold ${meta.bg} ${meta.text}`}>
-              {meta.label}
-            </span>
-            <h1 className="mt-2 text-2xl font-black">{unit.name}</h1>
-            {unit.nameJa && <p className="text-sm text-muted">{unit.nameJa}</p>}
-            <p className="mt-0.5 text-[0.65rem] text-muted">
-              {unit.faction.nameJa ?? unit.faction.name}
-            </p>
-          </div>
-          <div className="shrink-0 text-right">
-            <p className={`text-3xl font-black ${meta.text}`}>{unit.basePoints}</p>
-            <p className="text-xs text-muted">pts</p>
-          </div>
-        </div>
+      <UnitHero
+        data={{
+          name: unit.name,
+          nameJa: unit.nameJa,
+          basePoints: unit.basePoints,
+          factionName: unit.faction.name,
+          factionNameJa: unit.faction.nameJa,
+          roleMeta: meta,
+          categoryNames,
+        }}
+      />
 
-        <Link
-          href="/wh40k/builder"
-          className="inline-block rounded-full bg-rose-500 px-5 py-2 text-xs font-bold text-white transition hover:bg-rose-400"
-        >
-          ⚔️ ビルダーに追加
-        </Link>
-      </div>
+      <UnitOverviewSection role={unit.role as UnitRole} invuln={unit.invuln} profiles={profiles} />
+      <UnitWeaponTable title="射撃武器" weapons={rangedWeapons} skillLabel="BS" />
+      <UnitWeaponTable title="白兵戦武器" weapons={meleeWeapons} skillLabel="WS" />
+      <UnitWeaponOptionsSection groups={weaponGroups} />
+      <UnitAbilitiesSection abilities={abilities} />
+      <UnitSynergySection items={synergyUnits} />
+      <RelatedRostersSection items={relatedRosters} />
+      <UnitKeywordsSection categoryNames={categoryNames} />
 
-      {/* Stats */}
-      {unit.profiles.length > 0 && (
-        <section className="surface-card rounded-2xl p-5 space-y-3">
-          <div className="flex items-center gap-3">
-            <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">
-              ステータス
-            </h2>
-            {unit.invuln && (
-              <span className="rounded-full bg-indigo-500/10 px-2 py-0.5 text-[0.65rem] font-bold text-indigo-500 dark:text-indigo-400">
-                スペシャルセーヴ {unit.invuln}
-              </span>
-            )}
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="border-b border-slate-200/60 dark:border-slate-700/60">
-                  {["モデル", "移", "耐", "防", "傷", "統", "確"].map((h) => (
-                    <th
-                      key={h}
-                      className="py-1.5 pr-3 text-left text-[0.6rem] font-bold uppercase tracking-wider text-muted first:pl-0"
-                    >
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                {unit.profiles.map((pr) => (
-                  <tr key={pr.id}>
-                    <td className="py-2 pr-3 font-semibold">{pr.modelName}</td>
-                    <td className="py-2 pr-3">{pr.move}</td>
-                    <td className="py-2 pr-3">{pr.toughness}</td>
-                    <td className="py-2 pr-3">{pr.save}</td>
-                    <td className="py-2 pr-3">{pr.wounds}</td>
-                    <td className="py-2 pr-3">{pr.leadership}</td>
-                    <td className="py-2 pr-3">{pr.oc}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      )}
-
-      {/* Ranged Weapons */}
-      {rangedWeapons.length > 0 && (
-        <WeaponTable title="射撃武器" weapons={rangedWeapons} skillLabel="BS" />
-      )}
-
-      {/* Melee Weapons */}
-      {meleeWeapons.length > 0 && (
-        <WeaponTable title="白兵戦武器" weapons={meleeWeapons} skillLabel="WS" />
-      )}
-
-      {/* Weapon Selection Groups */}
-      {unit.weaponGroups.length > 0 && (
-        <section className="surface-card rounded-2xl p-5 space-y-4">
-          <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">
-            武器選択肢
-          </h2>
-          <div className="space-y-3">
-            {unit.weaponGroups.map((g) => (
-              <div key={g.id}>
-                <p className="text-xs font-semibold">
-                  {g.name}
-                  <span className="ml-1.5 text-[0.6rem] font-normal text-muted">
-                    {g.minChoices === g.maxChoices
-                      ? `${g.maxChoices}つ選択`
-                      : `${g.minChoices}〜${g.maxChoices}つ選択`}
-                  </span>
-                </p>
-                <ul className="mt-1 flex flex-wrap gap-1.5">
-                  {g.options.map((opt) => (
-                    <li
-                      key={opt.id}
-                      className="flex items-center gap-1 rounded-full border border-slate-200/80 px-2.5 py-0.5 text-[0.65rem] dark:border-slate-700/80"
-                    >
-                      <span>{opt.name}</span>
-                      {opt.pointsDelta !== 0 && (
-                        <span className={opt.pointsDelta > 0 ? "text-amber-500" : "text-emerald-500"}>
-                          ({opt.pointsDelta > 0 ? "+" : ""}{opt.pointsDelta}pt)
-                        </span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Abilities */}
-      {unit.abilities.length > 0 && (
-        <section className="surface-card rounded-2xl p-5 space-y-3">
-          <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">
-            アビリティ
-          </h2>
-          <div className="space-y-3">
-            {unit.abilities.map((a) => (
-              <div key={a.id}>
-                <p className="text-xs font-bold">
-                  {a.nameJa ?? a.name}
-                  {a.nameJa && (
-                    <span className="ml-1.5 text-[0.55rem] font-normal text-muted">{a.name}</span>
-                  )}
-                </p>
-                <p className="mt-0.5 text-xs text-muted leading-relaxed whitespace-pre-line">
-                  {a.descriptionJa ?? a.description}
-                </p>
-                {a.descriptionJa && (
-                  <details className="mt-1">
-                    <summary className="cursor-pointer text-[0.55rem] text-muted/60 select-none">
-                      原文を表示
-                    </summary>
-                    <p className="mt-1 text-[0.6rem] text-muted/50 leading-relaxed whitespace-pre-line">
-                      {a.description}
-                    </p>
-                  </details>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Keywords */}
-      {unit.categories.length > 0 && (
-        <section className="space-y-2">
-          <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">
-            キーワード
-          </h2>
-          <div className="flex flex-wrap gap-1.5">
-            {unit.categories.map((c) => (
-              <span
-                key={c.name}
-                className="rounded-full border border-slate-200 bg-white/90 px-2.5 py-0.5 text-[0.65rem] dark:border-white/30 dark:bg-white/85 dark:text-slate-800"
-              >
-                {c.name}
-              </span>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Disclaimer */}
       <p className="rounded-xl border border-amber-300/40 bg-amber-50/50 px-4 py-3 text-[0.65rem] leading-relaxed text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/5 dark:text-amber-400">
         ⚠️ 大会使用前は必ず GW 公式 <strong>Munitorum Field Manual</strong> でポイントを確認してください。
       </p>
     </div>
-  );
-}
-
-// ─── 武器テーブル コンポーネント ────────────────────────────────────────────────
-
-type WeaponProfileRow = {
-  id: string;
-  name: string;
-  nameJa: string | null;
-  range: string;
-  attacks: string;
-  skill: string;
-  strength: string;
-  ap: string;
-  damage: string;
-  keywords: string;
-  keywordsJa: string | null;
-};
-
-function WeaponTable({
-  title,
-  weapons,
-  skillLabel,
-}: {
-  title: string;
-  weapons: WeaponProfileRow[];
-  skillLabel: string;
-}) {
-  return (
-    <section className="surface-card rounded-2xl p-5 space-y-3">
-      <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">
-        {title}
-      </h2>
-      <div className="overflow-x-auto">
-        <table className="w-full text-xs">
-          <thead>
-            <tr className="border-b border-slate-200/60 dark:border-slate-700/60">
-              {["武器名", "射程", "回", skillLabel === "BS" ? "射" : skillLabel === "WS" ? "接" : skillLabel, "攻", "貫通", "ダ", "特殊"].map((h) => (
-                <th
-                  key={h}
-                  className="py-1.5 pr-3 text-left text-[0.6rem] font-bold uppercase tracking-wider text-muted first:pl-0"
-                >
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-            {weapons.map((w) => (
-              <tr key={w.id}>
-                <td className="py-2 pr-3 font-semibold">
-                  {w.nameJa ?? w.name}
-                  {w.nameJa && (
-                    <span className="ml-1 text-[0.55rem] text-muted font-normal">{w.name}</span>
-                  )}
-                </td>
-                <td className="py-2 pr-3">{w.range}</td>
-                <td className="py-2 pr-3">{w.attacks}</td>
-                <td className="py-2 pr-3">{w.skill}</td>
-                <td className="py-2 pr-3">{w.strength}</td>
-                <td className="py-2 pr-3">{w.ap}</td>
-                <td className="py-2 pr-3">{w.damage}</td>
-                <td className="py-2 text-[0.6rem] text-muted">
-                  {w.keywordsJa ?? (w.keywords === "-" ? "" : w.keywords)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
   );
 }

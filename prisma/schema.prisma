@@ -133,6 +133,7 @@ model UnitCategory {
   unit   Unit   @relation(fields: [unitId], references: [id], onDelete: Cascade)
 
   @@index([unitId])
+  @@index([name, unitId])
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -146,9 +147,12 @@ model Roster {
   faction      Faction      @relation(fields: [factionId], references: [id])
   pointsLimit  Int
   totalPoints  Int          @default(0)
+  isPublic     Boolean      @default(false)
   rosterUnits  RosterUnit[]
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
+
+  @@index([factionId, isPublic, updatedAt])
 }
 
 model RosterUnit {
@@ -160,6 +164,7 @@ model RosterUnit {
   points   Int
 
   @@index([rosterId])
+  @@index([unitId, rosterId])
 }
 
 // ──────────────────────────────────────────────────────────────────────────────

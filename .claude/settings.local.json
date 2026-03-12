@@ -3,7 +3,14 @@
     "allow": [
       "Bash(npm view:*)",
       "Bash(npm install:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "WebFetch(domain:wh40k.lexicanum.com)",
+      "WebFetch(domain:www.dakkadakka.com)",
+      "WebFetch(domain:community.warhammer.com)",
+      "WebFetch(domain:www.newrecruit.eu)",
+      "WebFetch(domain:warhammer40000.fandom.com)",
+      "WebFetch(domain:www.statshammer.com)",
+      "WebFetch(domain:www.40kstats.com)"
     ],
     "deny": [],
     "ask": []
