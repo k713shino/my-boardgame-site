@@ -104,18 +104,16 @@ const GROUP_META: Record<
   Xenos:    { text: "text-sky-600 dark:text-sky-400",     badge: "bg-sky-500/10 text-sky-600 dark:text-sky-300" },
 };
 
-type BrowseTab = "recommended" | "all" | "owned";
-type SortMode = "recommended" | "points" | "name";
+type BrowseTab = "all" | "owned";
+type SortMode = "points" | "name";
 type QuickFilterId = "anti-infantry" | "anti-tank" | "fast" | "core";
 
 const BROWSE_TAB_LABEL: Record<BrowseTab, string> = {
-  recommended: "おすすめ",
   all: "すべて",
   owned: "所持済み",
 };
 
 const SORT_LABEL: Record<SortMode, string> = {
-  recommended: "おすすめ順",
   points: "ポイント順",
   name: "名前順",
 };
@@ -146,16 +144,6 @@ function quickFilterMatch(unit: BuilderUnit, quickFilter: QuickFilterId | null):
   return unit.role === "HQ" || unit.role === "Battleline" || hasCategory(unit, ["character", "wraith"]);
 }
 
-function recommendationScore(unit: BuilderUnit, inRosterCount: number): number {
-  let score = 0;
-  if (unit.role === "HQ" || unit.role === "Battleline") score += 4;
-  if (unit.basePoints <= 140) score += 2;
-  if (unit.basePoints >= 220) score -= 1;
-  if (hasCategory(unit, ["wraith", "psyker", "battleline", "transport"])) score += 2;
-  if (hasCategory(unit, ["fly", "mounted", "jump"])) score += 1;
-  if (inRosterCount > 0) score += 2;
-  return score;
-}
 
 function unitHint(unit: BuilderUnit): string {
   if (unit.role === "HQ") return "編成の軸になりやすい指揮ユニット";
@@ -989,8 +977,8 @@ export function BuilderClient({
   const [filterRole, setFilterRole] = useState<UnitRole | "ALL">("ALL");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [quickFilter, setQuickFilter] = useState<QuickFilterId | null>(null);
-  const [sortMode, setSortMode] = useState<SortMode>("recommended");
-  const [browseTab, setBrowseTab] = useState<BrowseTab>("recommended");
+  const [sortMode, setSortMode] = useState<SortMode>("points");
+  const [browseTab, setBrowseTab] = useState<BrowseTab>("all");
   const [saveStatus, setSaveStatus] = useState<"idle" | "saved">("idle");
   const [publicSaveStatus, setPublicSaveStatus] = useState<"idle" | "saving" | "published">("idle");
 
@@ -1041,8 +1029,8 @@ export function BuilderClient({
     setFilterRole("ALL");
     setSelectedTags([]);
     setQuickFilter(null);
-    setSortMode("recommended");
-    setBrowseTab("recommended");
+    setSortMode("points");
+    setBrowseTab("all");
     weaponCache.current.clear();
 
     fetch(`/api/wh40k/factions/${selectedFaction.id}/units`)
@@ -1089,10 +1077,8 @@ export function BuilderClient({
   }, [units, search, filterRole, selectedTags, quickFilter]);
 
   const tabCounts = useMemo(() => {
-    const recommendedCount = baseFilteredUnits.filter((u) => recommendationScore(u, countInRoster(u.id)) >= 4).length;
     const ownedCount = baseFilteredUnits.filter((u) => countInRoster(u.id) > 0).length;
     return {
-      recommended: recommendedCount,
       all: baseFilteredUnits.length,
       owned: ownedCount,
     };
@@ -1101,14 +1087,10 @@ export function BuilderClient({
   const filteredUnits = useMemo(() => {
     const tabFiltered = baseFilteredUnits.filter((u) => {
       if (browseTab === "owned") return countInRoster(u.id) > 0;
-      if (browseTab === "recommended") return recommendationScore(u, countInRoster(u.id)) >= 4;
       return true;
     });
     const sorted = [...tabFiltered].sort((a, b) => {
-      if (sortMode === "points") return a.basePoints - b.basePoints || a.name.localeCompare(b.name);
       if (sortMode === "name") return a.name.localeCompare(b.name);
-      const diff = recommendationScore(b, countInRoster(b.id)) - recommendationScore(a, countInRoster(a.id));
-      if (diff !== 0) return diff;
       return a.basePoints - b.basePoints || a.name.localeCompare(b.name);
     });
     return sorted;
