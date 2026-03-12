@@ -366,6 +366,41 @@ function WeaponModal({
   );
 }
 
+// ─── Roster Text Format ──────────────────────────────────────────────────────
+
+const ROLE_TEXT_LABEL: Record<string, string> = {
+  HQ: "Character",
+  Battleline: "Battleline",
+  Transport: "Dedicated Transport",
+  Other: "Other",
+  Heavy: "Heavy",
+};
+
+function formatRosterText(params: {
+  name: string;
+  factionName: string;
+  detachment?: string;
+  pointsLimit: number;
+  units: RosterEntry[];
+}): string {
+  const total = params.units.reduce((s, u) => s + u.pts, 0);
+  const lines: string[] = [];
+  lines.push(`【${params.name}】`);
+  lines.push(`${params.factionName}${params.detachment ? ` / ${params.detachment}` : ""} | ${params.pointsLimit}pt制限`);
+  lines.push("");
+  for (const role of ["HQ", "Battleline", "Transport", "Other", "Heavy"] as const) {
+    const roleUnits = params.units.filter((u) => u.role === role);
+    if (roleUnits.length === 0) continue;
+    lines.push(`■ ${ROLE_TEXT_LABEL[role]}`);
+    for (const u of roleUnits) {
+      lines.push(`  ・${u.nameJa ?? u.name} (${u.pts}pt)`);
+    }
+    lines.push("");
+  }
+  lines.push(`合計: ${total}pt / ${params.pointsLimit}pt`);
+  return lines.join("\n").trimEnd();
+}
+
 // ─── Save / Share Controls ───────────────────────────────────────────────────
 
 function SaveShareControls({
@@ -375,6 +410,7 @@ function SaveShareControls({
   onSave,
   onPublicSave,
   onShare,
+  onCopyRoster,
   onReset,
 }: {
   disabled: boolean;
@@ -383,6 +419,7 @@ function SaveShareControls({
   onSave: () => void;
   onPublicSave: () => void;
   onShare: () => void;
+  onCopyRoster: () => void;
   onReset: () => void;
 }) {
   return (
@@ -411,6 +448,13 @@ function SaveShareControls({
         className="rounded-full border border-slate-300/60 px-4 py-1.5 text-xs font-semibold transition hover:border-rose-400/60 disabled:opacity-40 dark:border-slate-600/60"
       >
         🔗 共有
+      </button>
+      <button
+        onClick={onCopyRoster}
+        disabled={disabled}
+        className="rounded-full border border-slate-300/60 px-4 py-1.5 text-xs font-semibold transition hover:border-sky-400/60 disabled:opacity-40 dark:border-slate-600/60"
+      >
+        📋 コピー
       </button>
       <button
         onClick={onReset}
@@ -442,6 +486,7 @@ type BuilderHeaderProps = {
   onSave: () => void;
   onPublicSave: () => void;
   onShare: () => void;
+  onCopyRoster: () => void;
   onReset: () => void;
 };
 
@@ -462,6 +507,7 @@ function BuilderHeader({
   onSave,
   onPublicSave,
   onShare,
+  onCopyRoster,
   onReset,
 }: BuilderHeaderProps) {
   const groupMeta = GROUP_META[selectedFaction.group];
@@ -531,6 +577,7 @@ function BuilderHeader({
                 onSave={onSave}
                 onPublicSave={onPublicSave}
                 onShare={onShare}
+                onCopyRoster={onCopyRoster}
                 onReset={onReset}
               />
             </div>
@@ -1279,6 +1326,20 @@ export function BuilderClient({
       .catch(() => prompt("共有URL:", url));
   };
 
+  const copyRosterText = () => {
+    if (!selectedFaction || roster.length === 0) return;
+    const text = formatRosterText({
+      name: rosterName,
+      factionName: selectedFaction.nameJa ?? selectedFaction.name,
+      detachment: detachment || undefined,
+      pointsLimit,
+      units: roster,
+    });
+    navigator.clipboard?.writeText(text)
+      .then(() => alert("✅ ロスターをクリップボードにコピーしました"))
+      .catch(() => prompt("ロスターテキスト:", text));
+  };
+
   const toggleTag = useCallback((tag: string) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
@@ -1347,6 +1408,7 @@ export function BuilderClient({
         onSave={saveRoster}
         onPublicSave={savePublicRoster}
         onShare={shareRoster}
+        onCopyRoster={copyRosterText}
         onReset={resetRoster}
       />
 

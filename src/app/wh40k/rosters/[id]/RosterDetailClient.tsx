@@ -87,6 +87,35 @@ export function RosterDetailClient({
       .catch(() => prompt("共有URL:", url));
   };
 
+  const copyRosterText = () => {
+    if (!roster) return;
+    const roleOrder = ["HQ", "Battleline", "Transport", "Other", "Heavy"] as const;
+    const roleLabel: Record<string, string> = {
+      HQ: "Character", Battleline: "Battleline",
+      Transport: "Dedicated Transport", Other: "Other", Heavy: "Heavy",
+    };
+    const total = roster.units.reduce((s, u) => s + u.pts, 0);
+    const lines: string[] = [];
+    lines.push(`【${roster.name}】`);
+    lines.push(`${roster.factionName}${roster.detachment ? ` / ${roster.detachment}` : ""} | ${roster.pointsLimit}pt制限`);
+    lines.push("");
+    for (const role of roleOrder) {
+      const units = roster.units.filter((u) => u.role === role);
+      if (units.length === 0) continue;
+      lines.push(`■ ${roleLabel[role]}`);
+      for (const u of units) {
+        lines.push(`  ・${u.nameJa ?? u.name} (${u.pts}pt)`);
+      }
+      lines.push("");
+    }
+    lines.push(`合計: ${total}pt / ${roster.pointsLimit}pt`);
+    const text = lines.join("\n").trimEnd();
+    navigator.clipboard
+      ?.writeText(text)
+      .then(() => alert("✅ ロスターをクリップボードにコピーしました"))
+      .catch(() => prompt("ロスターテキスト:", text));
+  };
+
   if (!loaded) {
     return <div className="py-20 text-center text-sm text-muted">読み込み中…</div>;
   }
@@ -157,6 +186,12 @@ export function RosterDetailClient({
               className="rounded-full bg-rose-500 px-4 py-2 text-xs font-bold text-white transition hover:bg-rose-400"
             >
               共有URLをコピー
+            </button>
+            <button
+              onClick={copyRosterText}
+              className="rounded-full border border-slate-300/60 px-4 py-2 text-xs font-semibold transition hover:border-sky-400/60 dark:border-slate-600/60"
+            >
+              📋 テキストコピー
             </button>
           </div>
         </div>
