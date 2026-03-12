@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { SavedRoster } from "../../builder/BuilderClient";
 import {
@@ -18,23 +19,44 @@ export function RosterDetailClient({
   id: string;
   initialRoster?: SavedRoster | null;
 }) {
+  const router = useRouter();
   const [roster, setRoster] = useState<SavedRoster | null>(initialRoster);
   const [loaded, setLoaded] = useState(Boolean(initialRoster));
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     if (initialRoster) {
+      // DBから取得済み（サーバー側で認証チェック済み）
       setRoster(initialRoster);
       setLoaded(true);
       return;
     }
 
+    // localStorageから読み込み
     const raw = localStorage.getItem("wh40k_rosters");
     if (raw) {
       try {
         const rosters: SavedRoster[] = JSON.parse(raw);
         const found = rosters.find((r) => r.id === id);
         if (found) {
+          if (found.isPublic === false) {
+            // 非公開ロスターは認証Cookieをサーバー側で検証
+            fetch("/api/wh40k/auth/check")
+              .then((res) => res.json())
+              .then(({ authenticated }: { authenticated: boolean }) => {
+                if (!authenticated) {
+                  router.replace(`/wh40k/auth?from=/wh40k/rosters/${id}`);
+                } else {
+                  setRoster(found);
+                  setLoaded(true);
+                }
+              })
+              .catch(() => {
+                // 通信エラー時は念のため認証ページへ
+                router.replace(`/wh40k/auth?from=/wh40k/rosters/${id}`);
+              });
+            return;
+          }
           setRoster(found);
           setLoaded(true);
           return;
@@ -46,7 +68,7 @@ export function RosterDetailClient({
 
     setNotFound(true);
     setLoaded(true);
-  }, [id, initialRoster]);
+  }, [id, initialRoster, router]);
 
   const shareRoster = () => {
     if (!roster) return;
