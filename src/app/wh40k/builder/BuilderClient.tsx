@@ -435,6 +435,10 @@ function formatRosterText(params: {
     lines.push(`■ ${ROLE_TEXT_LABEL[role]}`);
     for (const u of roleUnits) {
       lines.push(`  ・${u.nameJa ?? u.name} (${u.pts}pt)`);
+      for (const ws of u.weaponSelections ?? []) {
+        const delta = ws.pointsDelta !== 0 ? ` (${ws.pointsDelta > 0 ? "+" : ""}${ws.pointsDelta}pt)` : "";
+        lines.push(`    └ ${ws.groupName}: ${ws.selectedNames.join(" / ")}${delta}`);
+      }
     }
     lines.push("");
   }

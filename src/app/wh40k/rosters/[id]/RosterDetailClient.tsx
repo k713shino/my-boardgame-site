@@ -26,7 +26,7 @@ export function RosterDetailClient({
 
   useEffect(() => {
     if (initialRoster) {
-      // DBから取得済み（サーバー側で認証チェック済み）
+      // DBから取得済み（武器選択含む）
       setRoster(initialRoster);
       setLoaded(true);
       return;
@@ -105,6 +105,10 @@ export function RosterDetailClient({
       lines.push(`■ ${roleLabel[role]}`);
       for (const u of units) {
         lines.push(`  ・${u.nameJa ?? u.name} (${u.pts}pt)`);
+        for (const ws of u.weaponSelections ?? []) {
+          const delta = ws.pointsDelta !== 0 ? ` (${ws.pointsDelta > 0 ? "+" : ""}${ws.pointsDelta}pt)` : "";
+          lines.push(`    └ ${ws.groupName}: ${ws.selectedNames.join(" / ")}${delta}`);
+        }
       }
       lines.push("");
     }

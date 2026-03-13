@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { RosterDetailClient } from "./RosterDetailClient";
+import type { WeaponSelection } from "../../builder/BuilderClient";
 
 const AUTH_COOKIE = "wh40k_auth";
 
@@ -57,7 +58,9 @@ export default async function RosterDetailPage({
           nameJa: entry.unit.nameJa,
           role: entry.unit.role,
           pts: entry.points,
-          weaponSelections: [],
+          weaponSelections: Array.isArray(entry.weaponSelectionsJson)
+            ? (entry.weaponSelectionsJson as unknown as WeaponSelection[])
+            : [],
         })),
         savedAt: roster.updatedAt.toISOString(),
         isPublic: roster.isPublic,

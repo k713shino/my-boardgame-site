@@ -20,7 +20,8 @@
       "Bash(node -e \"const {PrismaClient} = require\\(''@prisma/client''\\); const p = new PrismaClient\\(\\); p.faction.findMany\\({where:{group:''Imperium''}, select:{id:true,name:true,nameJa:true}, orderBy:{name:''asc''}}\\).then\\(r => {console.log\\(JSON.stringify\\(r,null,2\\)\\); p.$disconnect\\(\\)}\\)\")",
       "Bash(node -e \"const d = require\\(''/home/k713shino/my-boardgame-site/src/data/wh40k-units.json''\\); const imperiumFactions = Object.values\\(d\\).filter\\(f => f.group === ''Imperium''\\).map\\(f => \\({id:f.id, name:f.name, nameJa:f.nameJa}\\)\\); console.log\\(JSON.stringify\\(imperiumFactions, null, 2\\)\\)\")",
       "Bash(npx tsc:*)",
-      "WebFetch(domain:wahapedia.ru)"
+      "WebFetch(domain:wahapedia.ru)",
+      "Bash(npx prisma:*)"
     ],
     "deny": [],
     "ask": []

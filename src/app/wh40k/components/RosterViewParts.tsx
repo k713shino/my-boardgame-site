@@ -185,7 +185,7 @@ export function RosterUnitsSection({
                       )}
                     </div>
 
-                    {entry.weaponSelections.length > 0 && (
+                    {(entry.weaponSelections ?? []).length > 0 && (
                       <ul className="mt-1.5 space-y-0.5 border-t border-slate-200/60 pt-1.5 dark:border-slate-700/60">
                         {entry.weaponSelections.map((ws) => (
                           <li key={ws.groupId} className="flex items-baseline gap-1 text-[0.6rem] text-muted">

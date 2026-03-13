@@ -1,9 +1,17 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+type WeaponSelectionInput = {
+  groupId: string;
+  groupName: string;
+  selectedNames: string[];
+  pointsDelta: number;
+};
+
 type CreateRosterUnitInput = {
   unitId?: unknown;
   pts?: unknown;
+  weaponSelections?: unknown;
 };
 
 type CreateRosterBody = {
@@ -30,9 +38,21 @@ export async function POST(req: Request) {
   const units = rawUnits
     .map((entry) => {
       const unit = entry as CreateRosterUnitInput;
+      const rawWeapons = Array.isArray(unit.weaponSelections) ? unit.weaponSelections : [];
+      const weaponSelections: WeaponSelectionInput[] = rawWeapons
+        .filter(
+          (ws): ws is WeaponSelectionInput =>
+            ws !== null &&
+            typeof ws === "object" &&
+            typeof ws.groupId === "string" &&
+            typeof ws.groupName === "string" &&
+            Array.isArray(ws.selectedNames) &&
+            typeof ws.pointsDelta === "number"
+        );
       return {
         unitId: typeof unit.unitId === "string" ? unit.unitId : "",
         points: typeof unit.pts === "number" ? unit.pts : Number(unit.pts),
+        weaponSelections,
       };
     })
     .filter((entry) => entry.unitId && Number.isFinite(entry.points));
@@ -64,6 +84,7 @@ export async function POST(req: Request) {
           create: units.map((unit) => ({
             unitId: unit.unitId,
             points: unit.points,
+            weaponSelectionsJson: unit.weaponSelections,
           })),
         },
       },

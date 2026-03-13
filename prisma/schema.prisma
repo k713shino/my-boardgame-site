@@ -156,12 +156,14 @@ model Roster {
 }
 
 model RosterUnit {
-  id       String @id @default(cuid())
-  rosterId String
-  roster   Roster @relation(fields: [rosterId], references: [id], onDelete: Cascade)
-  unitId   String
-  unit     Unit   @relation(fields: [unitId], references: [id])
-  points   Int
+  id                  String @id @default(cuid())
+  rosterId            String
+  roster              Roster @relation(fields: [rosterId], references: [id], onDelete: Cascade)
+  unitId              String
+  unit                Unit   @relation(fields: [unitId], references: [id])
+  points              Int
+  /// WeaponSelection[] を JSON で格納
+  weaponSelectionsJson Json   @default("[]")
 
   @@index([rosterId])
   @@index([unitId, rosterId])
