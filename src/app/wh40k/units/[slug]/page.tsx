@@ -13,6 +13,7 @@ import {
   UnitWeaponOptionsSection,
   UnitWeaponTable,
 } from "../../components/UnitDetailParts";
+import { DatasheetTracker } from "./DatasheetTracker";
 
 const ROLE_META: Record<UnitRole, { label: string; text: string; bg: string }> = {
   HQ: { label: "Character", text: "text-rose-500", bg: "bg-rose-500/10" },
@@ -319,6 +320,7 @@ export default async function UnitPage({
 
   return (
     <div className="mx-auto max-w-3xl space-y-6 px-4 py-8 sm:py-10">
+      <DatasheetTracker unitSlug={slug} unitName={unit.name} faction={unit.factionId} />
       <nav className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
         <Link href="/wh40k" className="transition hover:text-rose-500">
           WH40K

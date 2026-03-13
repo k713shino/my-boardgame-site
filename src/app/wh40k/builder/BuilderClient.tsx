@@ -2,6 +2,14 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
+import {
+  trackRosterSave,
+  trackRosterCreate,
+  trackRosterShare,
+  trackArmySelect,
+  trackDetachmentSelect,
+  trackPointsChange,
+} from "@/lib/gtag";
 import type { UnitRole } from "../types";
 import { DETACHMENTS } from "@/data/wh40k-detachments";
 import {
@@ -1633,6 +1641,7 @@ export function BuilderClient({
     };
     const existing: SavedRoster[] = JSON.parse(localStorage.getItem("wh40k_rosters") ?? "[]");
     localStorage.setItem("wh40k_rosters", JSON.stringify([...existing, saved]));
+    trackRosterSave({ faction: selectedFaction.id, points: totalPts, unit_count: roster.length });
     setSaveStatus("saved");
     setTimeout(() => setSaveStatus("idle"), 2500);
   };
@@ -1681,6 +1690,7 @@ export function BuilderClient({
         JSON.stringify([...existing.filter((entry) => entry.id !== saved.id), saved])
       );
 
+      trackRosterCreate({ faction: selectedFaction.id, points: totalPts, unit_count: roster.length, is_public: true });
       setPublicSaveStatus("published");
       window.location.href = created.detailUrl;
     } catch {
@@ -1695,7 +1705,10 @@ export function BuilderClient({
     const encoded = btoa(encodeURIComponent(JSON.stringify(data)));
     const url = `${window.location.origin}/wh40k/rosters/share?d=${encoded}`;
     navigator.clipboard?.writeText(url)
-      .then(() => alert("✅ 共有URLをクリップボードにコピーしました"))
+      .then(() => {
+        trackRosterShare({ roster_id: "builder", faction: selectedFaction.id });
+        alert("✅ 共有URLをクリップボードにコピーしました");
+      })
       .catch(() => prompt("共有URL:", url));
   };
 
@@ -1729,6 +1742,21 @@ export function BuilderClient({
     }
   }, [roster.length]);
 
+  const handleFactionSelect = useCallback((faction: FactionListItem) => {
+    setSelectedFaction(faction);
+    trackArmySelect({ faction: faction.id });
+  }, []);
+
+  const handleDetachmentChange = useCallback((d: string) => {
+    setDetachment(d);
+    if (d && selectedFaction) trackDetachmentSelect({ faction: selectedFaction.id, detachment: d });
+  }, [selectedFaction]);
+
+  const handlePointsLimitChange = useCallback((pts: number) => {
+    setPointsLimit(pts);
+    trackPointsChange({ points_limit: pts });
+  }, []);
+
   // ─── 陣営未選択 ──────────────────────────────────────────────────────────
 
   if (!selectedFaction) {
@@ -1743,7 +1771,7 @@ export function BuilderClient({
           </div>
         </div>
         <div className="flex-1">
-          <FactionPicker factions={factions} onSelect={setSelectedFaction} />
+          <FactionPicker factions={factions} onSelect={handleFactionSelect} />
         </div>
       </div>
     );
@@ -1775,8 +1803,8 @@ export function BuilderClient({
         rosterCount={roster.length}
         totalPts={totalPts}
         onRosterNameChange={setRosterName}
-        onPointsLimitChange={setPointsLimit}
-        onDetachmentChange={setDetachment}
+        onPointsLimitChange={handlePointsLimitChange}
+        onDetachmentChange={handleDetachmentChange}
         onFactionChange={handleFactionChange}
         onSave={saveRoster}
         onPublicSave={savePublicRoster}

@@ -11,6 +11,7 @@ import {
   RosterUnitsSection,
   ROSTER_ROLES,
 } from "../../components/RosterViewParts";
+import { trackRosterShare } from "@/lib/gtag";
 
 export function RosterDetailClient({
   id,
@@ -83,7 +84,10 @@ export function RosterDetailClient({
     const url = `${window.location.origin}/wh40k/rosters/share?d=${encoded}`;
     navigator.clipboard
       ?.writeText(url)
-      .then(() => alert("✅ 共有URLをクリップボードにコピーしました"))
+      .then(() => {
+        trackRosterShare({ roster_id: roster.id, faction: roster.faction });
+        alert("✅ 共有URLをクリップボードにコピーしました");
+      })
       .catch(() => prompt("共有URL:", url));
   };
 
