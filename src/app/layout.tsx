@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SiteHeader } from "@/components/SiteHeader";
+import Script from "next/script"
 
 const themeScript = [
   "(() => {",
@@ -81,6 +82,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/images/icon.svg" type="image/svg+xml" />
       </head>
       <body className="min-h-dvh transition-colors duration-500">
+        {children}
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Z95NS11GHT"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-Z95NS11GHT');
+          `}
+        </Script>
         <div className="flex min-h-dvh flex-col items-center gap-10 px-4 py-8 sm:gap-12 sm:px-6 sm:py-12">
           <SiteHeader />
           <main className="w-full max-w-4xl">

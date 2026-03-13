@@ -8,8 +8,8 @@ export interface VallejoMatch {
 }
 
 export interface GundamMatch {
-  code: string;
-  name: string;
+  code: string;   // NGA01〜NGA20 / NGA201〜NGA204
+  name: string;   // ガンダムアッセンブルカラー 色名
   approx?: boolean;
 }
 
@@ -22,6 +22,17 @@ export interface PaintEntry {
   gundam?: GundamMatch[];
 }
 
+// NGA色一覧 (参照)
+// NGA01 ホワイト       NGA02 ブルー         NGA03 イエロー
+// NGA04 レッド         NGA05 ブラック        NGA06 シャアピンク
+// NGA07 シャアレッド   NGA08 ライトグリーン  NGA09 グリーン
+// NGA10 ライトグレー   NGA11 パープル        NGA12 シルバー
+// NGA13 ゴールド       NGA14 グレー          NGA15 サンドイエロー
+// NGA16 グランドブラウン NGA17 グレイッシュブルー NGA18 コーラルピンク
+// NGA19 オレンジ       NGA20 エメラルドグリーン
+// NGA201 シェイドブラック  NGA202 シェイドブラウン
+// NGA203 シェイドブルー    NGA204 シェイドパープル
+
 export const PAINT_DATA: PaintEntry[] = [
   // ── Base ────────────────────────────────────────────────────────────────────
   {
@@ -30,7 +41,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#0d0d0d",
     vallejo: [{ line: "GC", code: "72.051", name: "Black" }],
-    gundam: [{ code: "XF-1", name: "ブラック" }],
+    gundam: [{ code: "NGA05", name: "ブラック" }],
   },
   {
     id: "corax-white",
@@ -38,7 +49,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#f0f0f0",
     vallejo: [{ line: "GC", code: "72.001", name: "White" }],
-    gundam: [{ code: "XF-2", name: "ホワイト" }],
+    gundam: [{ code: "NGA01", name: "ホワイト" }],
   },
   {
     id: "mephiston-red",
@@ -46,7 +57,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#8c1a1a",
     vallejo: [{ line: "GC", code: "72.010", name: "Bloody Red", approx: true }],
-    gundam: [{ code: "XF-7", name: "フラットレッド", approx: true }],
+    gundam: [{ code: "NGA04", name: "レッド", approx: true }],
   },
   {
     id: "khorne-red",
@@ -54,6 +65,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#6b0e0e",
     vallejo: [{ line: "GC", code: "72.011", name: "Gory Red", approx: true }],
+    gundam: [{ code: "NGA07", name: "シャアレッド", approx: true }],
   },
   {
     id: "macragge-blue",
@@ -61,7 +73,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#1b3f6b",
     vallejo: [{ line: "GC", code: "72.022", name: "Ultramarine Blue", approx: true }],
-    gundam: [{ code: "XF-8", name: "フラットブルー", approx: true }],
+    gundam: [{ code: "NGA02", name: "ブルー", approx: true }],
   },
   {
     id: "kantor-blue",
@@ -69,6 +81,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#0f2b50",
     vallejo: [{ line: "GC", code: "72.023", name: "Imperial Blue", approx: true }],
+    gundam: [{ code: "NGA17", name: "グレイッシュブルー", approx: true }],
   },
   {
     id: "caliban-green",
@@ -76,7 +89,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#0e3b1e",
     vallejo: [{ line: "GC", code: "72.028", name: "Dark Green", approx: true }],
-    gundam: [{ code: "XF-5", name: "フラットグリーン", approx: true }],
+    gundam: [{ code: "NGA09", name: "グリーン", approx: true }],
   },
   {
     id: "averland-sunset",
@@ -84,7 +97,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#e8920d",
     vallejo: [{ line: "GC", code: "72.007", name: "Gold Yellow", approx: true }],
-    gundam: [{ code: "XF-3", name: "フラットイエロー", approx: true }],
+    gundam: [{ code: "NGA03", name: "イエロー", approx: true }],
   },
   {
     id: "jokaero-orange",
@@ -92,6 +105,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#c94510",
     vallejo: [{ line: "GC", code: "72.008", name: "Orange Fire", approx: true }],
+    gundam: [{ code: "NGA19", name: "オレンジ", approx: true }],
   },
   {
     id: "zandri-dust",
@@ -102,6 +116,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.061", name: "Plague Brown", approx: true },
       { line: "MC", code: "70.819", name: "Iraqi Sand", approx: true },
     ],
+    gundam: [{ code: "NGA15", name: "サンドイエロー", approx: true }],
   },
   {
     id: "steel-legion-drab",
@@ -109,6 +124,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#7a6840",
     vallejo: [{ line: "MC", code: "70.873", name: "US Field Drab", approx: true }],
+    gundam: [{ code: "NGA16", name: "グランドブラウン", approx: true }],
   },
   {
     id: "rhinox-hide",
@@ -119,6 +135,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.045", name: "Charred Brown", approx: true },
       { line: "MC", code: "70.984", name: "Flat Brown", approx: true },
     ],
+    gundam: [{ code: "NGA16", name: "グランドブラウン", approx: true }],
   },
   {
     id: "rakarth-flesh",
@@ -129,6 +146,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.034", name: "Bonewhite", approx: true },
       { line: "MC", code: "70.837", name: "Pale Sand", approx: true },
     ],
+    gundam: [{ code: "NGA15", name: "サンドイエロー", approx: true }],
   },
   {
     id: "wraithbone",
@@ -139,6 +157,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.034", name: "Bonewhite", approx: true },
       { line: "MC", code: "70.837", name: "Pale Sand", approx: true },
     ],
+    gundam: [{ code: "NGA15", name: "サンドイエロー", approx: true }],
   },
   {
     id: "grey-seer",
@@ -146,6 +165,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#c2c2c0",
     vallejo: [{ line: "GC", code: "72.102", name: "Stonewall Grey", approx: true }],
+    gundam: [{ code: "NGA10", name: "ライトグレー", approx: true }],
   },
   {
     id: "celestra-grey",
@@ -156,6 +176,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.102", name: "Stonewall Grey", approx: true },
       { line: "MC", code: "70.990", name: "Light Grey", approx: true },
     ],
+    gundam: [{ code: "NGA10", name: "ライトグレー", approx: true }],
   },
   {
     id: "leadbelcher",
@@ -163,7 +184,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#787878",
     vallejo: [{ line: "GC", code: "72.054", name: "Gunmetal Metal" }],
-    gundam: [{ code: "XF-16", name: "フラットアルミ", approx: true }],
+    gundam: [{ code: "NGA12", name: "シルバー", approx: true }],
   },
   {
     id: "retributor-armour",
@@ -171,7 +192,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#c8922a",
     vallejo: [{ line: "GC", code: "72.057", name: "Glorious Gold", approx: true }],
-    gundam: [{ code: "XF-6", name: "カッパー", approx: true }],
+    gundam: [{ code: "NGA13", name: "ゴールド", approx: true }],
   },
   {
     id: "balthasar-gold",
@@ -182,6 +203,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.057", name: "Glorious Gold", approx: true },
       { line: "MC", code: "70.996", name: "Gold", approx: true },
     ],
+    gundam: [{ code: "NGA13", name: "ゴールド", approx: true }],
   },
   {
     id: "xv-88",
@@ -192,6 +214,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.061", name: "Plague Brown", approx: true },
       { line: "MC", code: "70.912", name: "Tan Yellow", approx: true },
     ],
+    gundam: [{ code: "NGA15", name: "サンドイエロー", approx: true }],
   },
   {
     id: "naggaroth-night",
@@ -199,6 +222,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#3b1f4a",
     vallejo: [{ line: "GC", code: "72.016", name: "Royal Purple", approx: true }],
+    gundam: [{ code: "NGA11", name: "パープル", approx: true }],
   },
   {
     id: "xereus-purple",
@@ -206,6 +230,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#4a2060",
     vallejo: [{ line: "GC", code: "72.016", name: "Royal Purple", approx: true }],
+    gundam: [{ code: "NGA11", name: "パープル", approx: true }],
   },
   {
     id: "screamer-pink",
@@ -213,6 +238,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#8c2050",
     vallejo: [{ line: "GC", code: "72.014", name: "Warlord Purple", approx: true }],
+    gundam: [{ code: "NGA06", name: "シャアピンク", approx: true }],
   },
   {
     id: "mechanicus-standard-grey",
@@ -220,7 +246,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#484848",
     vallejo: [{ line: "MC", code: "70.992", name: "Neutral Grey", approx: true }],
-    gundam: [{ code: "XF-54", name: "ダークシーグレイ", approx: true }],
+    gundam: [{ code: "NGA14", name: "グレー", approx: true }],
   },
   {
     id: "death-world-forest",
@@ -228,6 +254,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#5a6b38",
     vallejo: [{ line: "MC", code: "70.893", name: "US Dark Green", approx: true }],
+    gundam: [{ code: "NGA20", name: "エメラルドグリーン", approx: true }],
   },
   {
     id: "gal-vorbak-red",
@@ -235,6 +262,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#5a1010",
     vallejo: [{ line: "GC", code: "72.012", name: "Scarlet Red", approx: true }],
+    gundam: [{ code: "NGA07", name: "シャアレッド", approx: true }],
   },
   {
     id: "thousand-sons-blue",
@@ -242,6 +270,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#1a5070",
     vallejo: [{ line: "GC", code: "72.022", name: "Ultramarine Blue", approx: true }],
+    gundam: [{ code: "NGA17", name: "グレイッシュブルー", approx: true }],
   },
   {
     id: "waaagh-flesh",
@@ -249,6 +278,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Base",
     hex: "#2a4820",
     vallejo: [{ line: "GC", code: "72.028", name: "Dark Green", approx: true }],
+    gundam: [{ code: "NGA09", name: "グリーン", approx: true }],
   },
   // ── Layer ───────────────────────────────────────────────────────────────────
   {
@@ -257,6 +287,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#cc2200",
     vallejo: [{ line: "GC", code: "72.010", name: "Bloody Red" }],
+    gundam: [{ code: "NGA04", name: "レッド", approx: true }],
   },
   {
     id: "wild-rider-red",
@@ -264,6 +295,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#e04010",
     vallejo: [{ line: "GC", code: "72.008", name: "Orange Fire", approx: true }],
+    gundam: [{ code: "NGA19", name: "オレンジ", approx: true }],
   },
   {
     id: "troll-slayer-orange",
@@ -271,6 +303,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#e86010",
     vallejo: [{ line: "GC", code: "72.008", name: "Orange Fire", approx: true }],
+    gundam: [{ code: "NGA19", name: "オレンジ", approx: true }],
   },
   {
     id: "yriel-yellow",
@@ -278,6 +311,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#f0c400",
     vallejo: [{ line: "GC", code: "72.006", name: "Sun Yellow" }],
+    gundam: [{ code: "NGA03", name: "イエロー", approx: true }],
   },
   {
     id: "flash-gitz-yellow",
@@ -285,6 +319,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#f8e000",
     vallejo: [{ line: "GC", code: "72.006", name: "Sun Yellow", approx: true }],
+    gundam: [{ code: "NGA03", name: "イエロー", approx: true }],
   },
   {
     id: "moot-green",
@@ -292,6 +327,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#00cc44",
     vallejo: [{ line: "GC", code: "72.025", name: "Escorpena Green", approx: true }],
+    gundam: [{ code: "NGA08", name: "ライトグリーン", approx: true }],
   },
   {
     id: "warpstone-glow",
@@ -299,6 +335,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#20a020",
     vallejo: [{ line: "GC", code: "72.025", name: "Escorpena Green", approx: true }],
+    gundam: [{ code: "NGA08", name: "ライトグリーン", approx: true }],
   },
   {
     id: "skarsnik-green",
@@ -306,6 +343,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#50b050",
     vallejo: [{ line: "GC", code: "72.024", name: "Goblin Green", approx: true }],
+    gundam: [{ code: "NGA08", name: "ライトグリーン", approx: true }],
   },
   {
     id: "hoeth-blue",
@@ -313,6 +351,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#4a7fc0",
     vallejo: [{ line: "GC", code: "72.021", name: "Magic Blue" }],
+    gundam: [{ code: "NGA02", name: "ブルー", approx: true }],
   },
   {
     id: "altdorf-guard-blue",
@@ -320,6 +359,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#2a5fa0",
     vallejo: [{ line: "GC", code: "72.022", name: "Ultramarine Blue", approx: true }],
+    gundam: [{ code: "NGA02", name: "ブルー", approx: true }],
   },
   {
     id: "calgar-blue",
@@ -327,6 +367,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#5080c0",
     vallejo: [{ line: "GC", code: "72.021", name: "Magic Blue", approx: true }],
+    gundam: [{ code: "NGA02", name: "ブルー", approx: true }],
   },
   {
     id: "lothern-blue",
@@ -334,6 +375,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#6090d0",
     vallejo: [{ line: "GC", code: "72.023", name: "Imperial Blue", approx: true }],
+    gundam: [{ code: "NGA02", name: "ブルー", approx: true }],
   },
   {
     id: "teclis-blue",
@@ -348,6 +390,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#c06080",
     vallejo: [{ line: "GC", code: "72.013", name: "Squid Pink", approx: true }],
+    gundam: [{ code: "NGA06", name: "シャアピンク", approx: true }],
   },
   {
     id: "genestealer-purple",
@@ -355,6 +398,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#7050a0",
     vallejo: [{ line: "GC", code: "72.016", name: "Royal Purple", approx: true }],
+    gundam: [{ code: "NGA11", name: "パープル", approx: true }],
   },
   {
     id: "dawnstone",
@@ -365,6 +409,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.101", name: "Ghost Grey", approx: true },
       { line: "MC", code: "70.992", name: "Neutral Grey", approx: true },
     ],
+    gundam: [{ code: "NGA14", name: "グレー", approx: true }],
   },
   {
     id: "administratum-grey",
@@ -375,6 +420,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.101", name: "Ghost Grey" },
       { line: "MC", code: "70.990", name: "Light Grey", approx: true },
     ],
+    gundam: [{ code: "NGA10", name: "ライトグレー", approx: true }],
   },
   {
     id: "ulthuan-grey",
@@ -382,6 +428,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#d8dcdc",
     vallejo: [{ line: "MC", code: "70.993", name: "White Grey", approx: true }],
+    gundam: [{ code: "NGA10", name: "ライトグレー", approx: true }],
   },
   {
     id: "pallid-wych-flesh",
@@ -389,6 +436,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#e8d8c0",
     vallejo: [{ line: "MC", code: "70.837", name: "Pale Sand", approx: true }],
+    gundam: [{ code: "NGA01", name: "ホワイト", approx: true }],
   },
   {
     id: "ushabti-bone",
@@ -396,6 +444,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#c8b070",
     vallejo: [{ line: "GC", code: "72.034", name: "Bonewhite", approx: true }],
+    gundam: [{ code: "NGA15", name: "サンドイエロー", approx: true }],
   },
   {
     id: "screaming-skull",
@@ -406,6 +455,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.034", name: "Bonewhite", approx: true },
       { line: "MC", code: "70.837", name: "Pale Sand", approx: true },
     ],
+    gundam: [{ code: "NGA15", name: "サンドイエロー", approx: true }],
   },
   {
     id: "cadian-fleshtone",
@@ -413,7 +463,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#c08060",
     vallejo: [{ line: "GC", code: "72.036", name: "Elf Skintone", approx: true }],
-    gundam: [{ code: "XF-15", name: "フラットフレッシュ", approx: true }],
+    gundam: [{ code: "NGA18", name: "コーラルピンク", approx: true }],
   },
   {
     id: "kislev-flesh",
@@ -421,6 +471,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#d09878",
     vallejo: [{ line: "MC", code: "70.845", name: "Sunny Skintone", approx: true }],
+    gundam: [{ code: "NGA18", name: "コーラルピンク", approx: true }],
   },
   {
     id: "tallarn-sand",
@@ -428,6 +479,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#b89060",
     vallejo: [{ line: "GC", code: "72.061", name: "Plague Brown", approx: true }],
+    gundam: [{ code: "NGA15", name: "サンドイエロー", approx: true }],
   },
   {
     id: "karak-stone",
@@ -438,6 +490,7 @@ export const PAINT_DATA: PaintEntry[] = [
       { line: "GC", code: "72.061", name: "Plague Brown", approx: true },
       { line: "MC", code: "70.837", name: "Pale Sand", approx: true },
     ],
+    gundam: [{ code: "NGA15", name: "サンドイエロー", approx: true }],
   },
   {
     id: "ironbreaker",
@@ -445,6 +498,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#909090",
     vallejo: [{ line: "GC", code: "72.052", name: "Chainmail Silver", approx: true }],
+    gundam: [{ code: "NGA12", name: "シルバー", approx: true }],
   },
   {
     id: "runefang-steel",
@@ -452,6 +506,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#b0b0b0",
     vallejo: [{ line: "GC", code: "72.052", name: "Chainmail Silver" }],
+    gundam: [{ code: "NGA12", name: "シルバー", approx: true }],
   },
   {
     id: "auric-armour-gold",
@@ -459,6 +514,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Layer",
     hex: "#e0b040",
     vallejo: [{ line: "GC", code: "72.057", name: "Glorious Gold", approx: true }],
+    gundam: [{ code: "NGA13", name: "ゴールド", approx: true }],
   },
   // ── Shade ───────────────────────────────────────────────────────────────────
   {
@@ -466,10 +522,8 @@ export const PAINT_DATA: PaintEntry[] = [
     citadel: "Nuln Oil",
     category: "Shade",
     hex: "#1a1a1a",
-    vallejo: [
-      { line: "Wash", code: "73.201", name: "Black Wash" },
-    ],
-    gundam: [{ code: "Mr.ウェザリングカラー WC05", name: "マルチブラック", approx: true }],
+    vallejo: [{ line: "Wash", code: "73.201", name: "Black Wash" }],
+    gundam: [{ code: "NGA201", name: "シェイドブラック", approx: true }],
   },
   {
     id: "agrax-earthshade",
@@ -477,7 +531,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Shade",
     hex: "#5c3a18",
     vallejo: [{ line: "Wash", code: "73.200", name: "Sepia Wash" }],
-    gundam: [{ code: "Mr.ウェザリングカラー WC02", name: "グランドブラウン", approx: true }],
+    gundam: [{ code: "NGA202", name: "シェイドブラウン", approx: true }],
   },
   {
     id: "reikland-fleshshade",
@@ -485,6 +539,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Shade",
     hex: "#8b4030",
     vallejo: [{ line: "Wash", code: "73.204", name: "Fleshtone Wash" }],
+    gundam: [{ code: "NGA202", name: "シェイドブラウン", approx: true }],
   },
   {
     id: "carroburg-crimson",
@@ -499,6 +554,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Shade",
     hex: "#401858",
     vallejo: [{ line: "Wash", code: "73.207", name: "Violet Wash" }],
+    gundam: [{ code: "NGA204", name: "シェイドパープル", approx: true }],
   },
   {
     id: "coelia-greenshade",
@@ -520,6 +576,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Shade",
     hex: "#101838",
     vallejo: [{ line: "Wash", code: "73.202", name: "Blue Wash" }],
+    gundam: [{ code: "NGA203", name: "シェイドブルー", approx: true }],
   },
   {
     id: "athonian-camoshade",
@@ -527,6 +584,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Shade",
     hex: "#304020",
     vallejo: [{ line: "Wash", code: "73.203", name: "Umber Wash", approx: true }],
+    gundam: [{ code: "NGA202", name: "シェイドブラウン", approx: true }],
   },
   {
     id: "casandora-yellow",
@@ -548,6 +606,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Shade",
     hex: "#7a5820",
     vallejo: [{ line: "Wash", code: "73.200", name: "Sepia Wash", approx: true }],
+    gundam: [{ code: "NGA202", name: "シェイドブラウン", approx: true }],
   },
   // ── Dry ─────────────────────────────────────────────────────────────────────
   {
@@ -556,6 +615,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Dry",
     hex: "#e8e8e0",
     vallejo: [{ line: "MC", code: "70.993", name: "White Grey", approx: true }],
+    gundam: [{ code: "NGA01", name: "ホワイト", approx: true }],
   },
   {
     id: "etherium-blue",
@@ -570,6 +630,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Dry",
     hex: "#c0c0b8",
     vallejo: [{ line: "GC", code: "72.052", name: "Chainmail Silver", approx: true }],
+    gundam: [{ code: "NGA12", name: "シルバー", approx: true }],
   },
   {
     id: "golden-griffon",
@@ -577,6 +638,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Dry",
     hex: "#d0a840",
     vallejo: [{ line: "GC", code: "72.057", name: "Glorious Gold", approx: true }],
+    gundam: [{ code: "NGA13", name: "ゴールド", approx: true }],
   },
   // ── Contrast ────────────────────────────────────────────────────────────────
   {
@@ -585,6 +647,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Contrast",
     hex: "#a01818",
     vallejo: [{ line: "GC", code: "72.010", name: "Bloody Red", approx: true }],
+    gundam: [{ code: "NGA04", name: "レッド", approx: true }],
   },
   {
     id: "ultramarines-blue",
@@ -592,6 +655,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Contrast",
     hex: "#1c3e6e",
     vallejo: [{ line: "GC", code: "72.022", name: "Ultramarine Blue", approx: true }],
+    gundam: [{ code: "NGA02", name: "ブルー", approx: true }],
   },
   {
     id: "dark-angels-green",
@@ -599,6 +663,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Contrast",
     hex: "#14421a",
     vallejo: [{ line: "GC", code: "72.028", name: "Dark Green", approx: true }],
+    gundam: [{ code: "NGA09", name: "グリーン", approx: true }],
   },
   {
     id: "skeleton-horde",
@@ -606,6 +671,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Contrast",
     hex: "#c0a860",
     vallejo: [{ line: "GC", code: "72.034", name: "Bonewhite", approx: true }],
+    gundam: [{ code: "NGA15", name: "サンドイエロー", approx: true }],
   },
   {
     id: "gryph-charger-grey",
@@ -613,6 +679,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Contrast",
     hex: "#7080a0",
     vallejo: [{ line: "MC", code: "70.992", name: "Neutral Grey", approx: true }],
+    gundam: [{ code: "NGA14", name: "グレー", approx: true }],
   },
   {
     id: "black-templar",
@@ -620,6 +687,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Contrast",
     hex: "#181818",
     vallejo: [{ line: "GC", code: "72.051", name: "Black", approx: true }],
+    gundam: [{ code: "NGA05", name: "ブラック", approx: true }],
   },
   {
     id: "iyanden-yellow",
@@ -627,6 +695,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Contrast",
     hex: "#d4a000",
     vallejo: [{ line: "GC", code: "72.006", name: "Sun Yellow", approx: true }],
+    gundam: [{ code: "NGA03", name: "イエロー", approx: true }],
   },
   {
     id: "nazdreg-yellow",
@@ -634,6 +703,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Contrast",
     hex: "#e8b800",
     vallejo: [{ line: "GC", code: "72.006", name: "Sun Yellow", approx: true }],
+    gundam: [{ code: "NGA03", name: "イエロー", approx: true }],
   },
   {
     id: "snakebite-leather",
@@ -641,6 +711,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Contrast",
     hex: "#8c6020",
     vallejo: [{ line: "MC", code: "70.984", name: "Flat Brown", approx: true }],
+    gundam: [{ code: "NGA16", name: "グランドブラウン", approx: true }],
   },
   {
     id: "wyldwood",
@@ -648,6 +719,7 @@ export const PAINT_DATA: PaintEntry[] = [
     category: "Contrast",
     hex: "#4a3418",
     vallejo: [{ line: "MC", code: "70.984", name: "Flat Brown", approx: true }],
+    gundam: [{ code: "NGA16", name: "グランドブラウン", approx: true }],
   },
 ];
 

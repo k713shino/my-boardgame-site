@@ -44,7 +44,7 @@ const LINKS = [
     href: "/wh40k/paint-conv",
     label: "Paint Conversion",
     labelJa: "塗料変換ツール",
-    desc: "Citadel → Vallejo / ガンダムアッセンブルカラー 対応表。あくまで主観なので参考程度に。ガンダムアッセンブルカラーがタミヤのエナメルの品番と色名になっているので修正中です。",
+    desc: "Citadel → Vallejo / ガンダムアッセンブルカラー 対応表。あくまで主観なので参考程度に。",
     icon: "🎨",
     highlight: false,
   },
