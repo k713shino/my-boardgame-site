@@ -286,15 +286,15 @@ function WeaponModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center sm:items-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={onCancel}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
       {/* Modal */}
       <div
-        className="relative w-full max-w-md rounded-2xl bg-white dark:bg-slate-900 shadow-2xl overflow-hidden"
+        className="surface-card relative w-full max-w-md rounded-2xl overflow-hidden max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -321,7 +321,7 @@ function WeaponModal({
         </div>
 
         {/* Groups */}
-        <div className="max-h-[60vh] overflow-y-auto px-5 py-4 space-y-5">
+        <div className="flex-1 overflow-y-auto px-5 py-4 space-y-5">
           {state.groups.map((group) => {
             const cur = selections.get(group.id) ?? [];
             const isMulti = group.maxChoices > 1;
