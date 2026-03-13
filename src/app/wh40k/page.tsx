@@ -32,6 +32,14 @@ const LINKS = [
     icon: "📖",
     highlight: false,
   },
+  {
+    href: "/wh40k/damage-calc",
+    label: "Damage Calculator",
+    labelJa: "期待ダメージ計算機",
+    desc: "武器スペックと防御値を入力して期待ダメージを計算する。",
+    icon: "🎲",
+    highlight: false,
+  },
 ];
 
 export default function WH40KHubPage() {
