@@ -82,8 +82,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/images/icon.svg" type="image/svg+xml" />
       </head>
       <body className="min-h-dvh transition-colors duration-500">
-        {children}
-
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Z95NS11GHT"
           strategy="afterInteractive"
