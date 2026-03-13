@@ -12,7 +12,7 @@ const LINKS = [
     href: "/wh40k/builder",
     label: "Army Builder",
     labelJa: "ロスタービルダー",
-    desc: "Aeldari 編成ツール。ポイント計算・保存・共有対応。",
+    desc: "全陣営対応 編成ツール。ポイント計算・保存・共有対応。",
     icon: "⚔️",
     highlight: true,
   },

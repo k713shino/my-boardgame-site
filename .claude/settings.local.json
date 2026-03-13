@@ -10,7 +10,17 @@
       "WebFetch(domain:www.newrecruit.eu)",
       "WebFetch(domain:warhammer40000.fandom.com)",
       "WebFetch(domain:www.statshammer.com)",
-      "WebFetch(domain:www.40kstats.com)"
+      "WebFetch(domain:www.40kstats.com)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\(''/home/k713shino/my-boardgame-site/src/data/wh40k-units.json''\\)\\); print\\(''All Factions:''\\); [print\\(f''  {k}: {len\\(v[\"\"units\"\"]\\)} units''\\) for k,v in d.items\\(\\)]\")",
+      "Bash(xargs ls:*)",
+      "WebFetch(domain:newrecruit.eu)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:bsdata.github.io)",
+      "WebFetch(domain:www.bsdata.net)",
+      "Bash(node -e \"const {PrismaClient} = require\\(''@prisma/client''\\); const p = new PrismaClient\\(\\); p.faction.findMany\\({where:{group:''Imperium''}, select:{id:true,name:true,nameJa:true}, orderBy:{name:''asc''}}\\).then\\(r => {console.log\\(JSON.stringify\\(r,null,2\\)\\); p.$disconnect\\(\\)}\\)\")",
+      "Bash(node -e \"const d = require\\(''/home/k713shino/my-boardgame-site/src/data/wh40k-units.json''\\); const imperiumFactions = Object.values\\(d\\).filter\\(f => f.group === ''Imperium''\\).map\\(f => \\({id:f.id, name:f.name, nameJa:f.nameJa}\\)\\); console.log\\(JSON.stringify\\(imperiumFactions, null, 2\\)\\)\")",
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:wahapedia.ru)"
     ],
     "deny": [],
     "ask": []

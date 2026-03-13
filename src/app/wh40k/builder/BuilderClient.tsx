@@ -65,6 +65,8 @@ export type RosterEntry = {
   role: UnitRole;
   pts: number;
   weaponSelections: WeaponSelection[];
+  /** 同盟ユニットの場合に元の陣営IDを格納 */
+  allyFaction?: string;
 };
 
 export type SavedRoster = {
@@ -103,6 +105,43 @@ const GROUP_META: Record<
   Chaos:    { text: "text-rose-600 dark:text-rose-400",   badge: "bg-rose-500/10 text-rose-600 dark:text-rose-300" },
   Xenos:    { text: "text-sky-600 dark:text-sky-400",     badge: "bg-sky-500/10 text-sky-600 dark:text-sky-300" },
 };
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Imperium 同盟ルール（10th Edition）
+// ・Agents of the Imperium: Imperium全陣営が使用可（agents_of_the_imperium本人を除く）
+//   - Incursion(≤1000pt): Retinue×1 + Character×1 + Requisitioned×1 = 計3
+//   - Strike Force(≤2000pt): Retinue×2 + Character×2 + Requisitioned×1 = 計5
+//   - Onslaught(>2000pt):  Retinue×3 + Character×3 + Requisitioned×2 = 計8
+// ・Imperial Knights Freeblades: Imperium全陣営が使用可（imperial_knights本人を除く）
+//   - 1 TITANIC モデル、または ARMIGER モデル最大3体（どちらか一方）
+// ──────────────────────────────────────────────────────────────────────────────
+
+/** agents_of_the_imperium / imperial_knights を同盟として使える陣営の除外リスト */
+const ALLY_EXCLUDED_IDS = new Set(["agents_of_the_imperium", "imperial_knights"]);
+
+/** ポイント上限からAgentsの最大ユニット数を返す */
+function getAllyAgentsLimit(pointsLimit: number): number {
+  if (pointsLimit <= 1000) return 3;  // Incursion
+  if (pointsLimit <= 2000) return 5;  // Strike Force
+  return 8;                           // Onslaught
+}
+
+// スペースマリーン章ファクションID（baseの space_marines を先頭に、以降は各章）
+const SPACE_MARINES_IDS = new Set([
+  "space_marines",
+  "black_templars",
+  "blood_angels",
+  "dark_angels",
+  "deathwatch",
+  "grey_knights",
+  "imperial_fists",
+  "iron_hands",
+  "raven_guard",
+  "salamanders",
+  "space_wolves",
+  "ultramarines",
+  "white_scars",
+]);
 
 type BrowseTab = "all" | "owned";
 type SortMode = "points" | "name";
@@ -186,6 +225,8 @@ type ModalState = {
   groups: WeaponGroup[];
   /** groupId → 選択中のオプション名リスト */
   selections: Map<string, string[]>;
+  /** 同盟ユニットの場合に元の陣営ID */
+  allyFaction?: string;
 };
 
 function WeaponModal({
@@ -762,6 +803,14 @@ type UnitCardListProps = {
   onAddUnit: (unit: BuilderUnit) => void;
   onRemoveUnit: (unitId: string) => void;
   onBrowseTabChange: (tab: BrowseTab) => void;
+  // 同盟ユニット
+  allyAgents?: BuilderUnit[];
+  allyKnights?: BuilderUnit[];
+  allyAgentsInRoster?: number;
+  allyAgentsLimit?: number;
+  allyKnightsInRoster?: number;
+  onAddAllyUnit?: (unit: BuilderUnit, allyFaction: string) => void;
+  onRemoveAllyUnit?: (unitId: string) => void;
 };
 
 function UnitCardList({
@@ -775,7 +824,17 @@ function UnitCardList({
   onAddUnit,
   onRemoveUnit,
   onBrowseTabChange,
+  allyAgents = [],
+  allyKnights = [],
+  allyAgentsInRoster = 0,
+  allyAgentsLimit = 0,
+  allyKnightsInRoster = 0,
+  onAddAllyUnit,
+  onRemoveAllyUnit,
 }: UnitCardListProps) {
+  const [allyExpanded, setAllyExpanded] = useState(false);
+  const hasAllies = allyAgents.length > 0 || allyKnights.length > 0;
+
   return (
     <main className={`min-w-0 space-y-4 ${className ?? ""}`}>
       <div className="surface-card rounded-2xl p-3">
@@ -889,6 +948,163 @@ function UnitCardList({
           条件に一致するユニットが見つかりません
         </div>
       )}
+
+      {/* ── Allied Units セクション ── */}
+      {hasAllies && (
+        <div className="rounded-2xl border border-amber-400/25 bg-amber-500/5">
+          {/* ヘッダー（折りたたみトグル） */}
+          <button
+            onClick={() => setAllyExpanded((v) => !v)}
+            className="flex w-full items-center justify-between px-4 py-3 text-left"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-[0.65rem] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400">
+                Allied Units / 同盟ユニット
+              </span>
+              <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[0.6rem] font-bold text-amber-600 dark:text-amber-300">
+                {allyAgentsInRoster + allyKnightsInRoster}
+              </span>
+            </div>
+            <span className="text-[0.65rem] text-muted">
+              {allyExpanded ? "▲ 閉じる" : "▼ 開く"}
+            </span>
+          </button>
+
+          {allyExpanded && (
+            <div className="space-y-4 border-t border-amber-400/20 px-4 pb-4 pt-3">
+              {/* Agents of the Imperium */}
+              {allyAgents.length > 0 && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[0.6rem] font-bold uppercase tracking-widest text-amber-500">
+                      Agents of the Imperium
+                    </span>
+                    <span className={`text-[0.6rem] font-bold ${allyAgentsInRoster > allyAgentsLimit ? "text-red-500" : "text-muted"}`}>
+                      {allyAgentsInRoster}/{allyAgentsLimit}
+                    </span>
+                    <span className="text-[0.55rem] text-muted">（ポイント制限に応じた上限）</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    {allyAgents.map((unit) => {
+                      const count = countInRoster(unit.id);
+                      const active = count > 0;
+                      return (
+                        <div
+                          key={unit.id}
+                          className={`flex items-center rounded-xl border px-4 py-2.5 transition ${
+                            active
+                              ? "border-amber-400/40 bg-amber-500/10"
+                              : "surface-card border-transparent"
+                          }`}
+                        >
+                          <div className="min-w-0 flex-1">
+                            <p className={`truncate text-xs font-semibold ${active ? "text-amber-600 dark:text-amber-400" : ""}`}>
+                              {unit.name}
+                            </p>
+                            {unit.nameJa && <p className="truncate text-[0.6rem] text-muted">{unit.nameJa}</p>}
+                          </div>
+                          <div className="ml-2 flex shrink-0 items-center gap-1">
+                            <span className={`text-xs font-bold ${active ? "text-amber-600 dark:text-amber-400" : "text-muted"}`}>
+                              {unit.basePoints}pt
+                            </span>
+                            {active && (
+                              <>
+                                <button
+                                  onClick={() => onRemoveAllyUnit?.(unit.id)}
+                                  className="flex h-6 w-6 items-center justify-center rounded-full text-sm text-muted hover:bg-red-500/10 hover:text-red-400"
+                                  title="1つ削除"
+                                >−</button>
+                                <span className="min-w-[1rem] text-center text-xs font-black text-amber-600 dark:text-amber-400">
+                                  {count}
+                                </span>
+                              </>
+                            )}
+                            <button
+                              onClick={() => onAddAllyUnit?.(unit, "agents_of_the_imperium")}
+                              className={`flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold transition ${
+                                active ? "text-amber-600 hover:opacity-70 dark:text-amber-400" : "text-muted hover:text-[color:var(--fg-body)]"
+                              }`}
+                              title="ロスターに追加"
+                            >＋</button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Imperial Knights Freeblades */}
+              {allyKnights.length > 0 && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[0.6rem] font-bold uppercase tracking-widest text-amber-500">
+                      Imperial Knights Freeblades
+                    </span>
+                    <span className={`text-[0.6rem] font-bold ${allyKnightsInRoster > 3 ? "text-red-500" : "text-muted"}`}>
+                      {allyKnightsInRoster}
+                    </span>
+                    <span className="text-[0.55rem] text-muted">（1 Titanic または Armiger×3まで）</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    {allyKnights.map((unit) => {
+                      const count = countInRoster(unit.id);
+                      const active = count > 0;
+                      const isTitanic = unit.categories.some((c) => c.toLowerCase() === "titanic");
+                      return (
+                        <div
+                          key={unit.id}
+                          className={`flex items-center rounded-xl border px-4 py-2.5 transition ${
+                            active
+                              ? "border-amber-400/40 bg-amber-500/10"
+                              : "surface-card border-transparent"
+                          }`}
+                        >
+                          <div className="min-w-0 flex-1">
+                            <p className={`truncate text-xs font-semibold ${active ? "text-amber-600 dark:text-amber-400" : ""}`}>
+                              {unit.name}
+                              {isTitanic && (
+                                <span className="ml-1.5 rounded-full border border-amber-400/50 px-1.5 py-0.5 text-[0.5rem] font-bold text-amber-500">
+                                  TITANIC
+                                </span>
+                              )}
+                            </p>
+                            {unit.nameJa && <p className="truncate text-[0.6rem] text-muted">{unit.nameJa}</p>}
+                          </div>
+                          <div className="ml-2 flex shrink-0 items-center gap-1">
+                            <span className={`text-xs font-bold ${active ? "text-amber-600 dark:text-amber-400" : "text-muted"}`}>
+                              {unit.basePoints}pt
+                            </span>
+                            {active && (
+                              <>
+                                <button
+                                  onClick={() => onRemoveAllyUnit?.(unit.id)}
+                                  className="flex h-6 w-6 items-center justify-center rounded-full text-sm text-muted hover:bg-red-500/10 hover:text-red-400"
+                                  title="1つ削除"
+                                >−</button>
+                                <span className="min-w-[1rem] text-center text-xs font-black text-amber-600 dark:text-amber-400">
+                                  {count}
+                                </span>
+                              </>
+                            )}
+                            <button
+                              onClick={() => onAddAllyUnit?.(unit, "imperial_knights")}
+                              className={`flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold transition ${
+                                active ? "text-amber-600 hover:opacity-70 dark:text-amber-400" : "text-muted hover:text-[color:var(--fg-body)]"
+                              }`}
+                              title="ロスターに追加"
+                            >＋</button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
     </main>
   );
 }
@@ -902,6 +1118,9 @@ type RosterSidebarProps = {
   pointsLimit: number;
   totalPts: number;
   onRemoveEntry: (entryId: string) => void;
+  allyAgentsInRoster?: number;
+  allyAgentsLimit?: number;
+  allyKnightsInRoster?: number;
 };
 
 function RosterSidebar({
@@ -911,10 +1130,17 @@ function RosterSidebar({
   pointsLimit,
   totalPts,
   onRemoveEntry,
+  allyAgentsInRoster = 0,
+  allyAgentsLimit = 0,
+  allyKnightsInRoster = 0,
 }: RosterSidebarProps) {
   const roleSummary = ROSTER_ROLES
     .map((role) => ({ role, count: rosterByRole[role].length }))
     .filter((row) => row.count > 0);
+
+  const showAlly = allyAgentsLimit > 0;
+  const agentsOver = allyAgentsInRoster > allyAgentsLimit;
+  const knightsOver = allyKnightsInRoster > 3;
 
   return (
     <aside className={`space-y-3 md:sticky md:top-[90px] md:self-start ${className ?? ""}`}>
@@ -932,11 +1158,64 @@ function RosterSidebar({
           <RosterUnitsSection byRole={rosterByRole} onRemoveEntry={onRemoveEntry} compact />
         )}
       </div>
+
+      {/* 同盟ユニット サマリー */}
+      {showAlly && (
+        <div className="surface-card rounded-2xl p-3 space-y-2">
+          <p className="text-[0.6rem] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400">
+            Allied Units
+          </p>
+          <div className="space-y-1">
+            <div className="flex items-center justify-between text-[0.65rem]">
+              <span className="text-muted">Agents of the Imperium</span>
+              <span className={`font-bold ${agentsOver ? "text-red-500" : "text-amber-600 dark:text-amber-400"}`}>
+                {allyAgentsInRoster}/{allyAgentsLimit}
+                {agentsOver && " ⚠"}
+              </span>
+            </div>
+            <div className="flex items-center justify-between text-[0.65rem]">
+              <span className="text-muted">Knights Freeblades</span>
+              <span className={`font-bold ${knightsOver ? "text-red-500" : "text-amber-600 dark:text-amber-400"}`}>
+                {allyKnightsInRoster}
+                {knightsOver && " ⚠ 上限超過"}
+              </span>
+            </div>
+            <p className="text-[0.55rem] text-muted leading-relaxed pt-0.5">
+              Titanic×1 または Armiger×3 まで
+            </p>
+          </div>
+        </div>
+      )}
     </aside>
   );
 }
 
 // ─── FactionPicker ───────────────────────────────────────────────────────────
+
+function FactionCard({
+  f,
+  badge,
+  onSelect,
+}: {
+  f: FactionListItem;
+  badge: string;
+  onSelect: (f: FactionListItem) => void;
+}) {
+  return (
+    <button
+      onClick={() => onSelect(f)}
+      className="surface-card flex items-center justify-between rounded-2xl px-4 py-3 text-left transition hover:-translate-y-0.5 hover:border-rose-400/60 active:scale-95"
+    >
+      <div className="min-w-0">
+        <p className="truncate text-sm font-bold">{f.name}</p>
+        {f.nameJa && <p className="truncate text-[0.65rem] text-muted">{f.nameJa}</p>}
+      </div>
+      <span className={`ml-3 shrink-0 rounded-full px-2 py-0.5 text-[0.6rem] font-bold ${badge}`}>
+        {f.unitCount}
+      </span>
+    </button>
+  );
+}
 
 function FactionPicker({
   factions,
@@ -946,6 +1225,7 @@ function FactionPicker({
   onSelect: (f: FactionListItem) => void;
 }) {
   const [search, setSearch] = useState("");
+  const [smExpanded, setSmExpanded] = useState(false);
 
   const grouped = useMemo(() => {
     const q = search.toLowerCase();
@@ -958,6 +1238,9 @@ function FactionPicker({
     }
     return result;
   }, [factions, search]);
+
+  // 検索中は強制展開
+  const isSearching = search.trim().length > 0;
 
   return (
     <div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
@@ -976,24 +1259,63 @@ function FactionPicker({
         const items = grouped[group];
         if (!items.length) return null;
         const meta = GROUP_META[group];
+
+        if (group === "Imperium") {
+          // Space Marines章とその他に分割
+          const smBase = items.find((f) => f.id === "space_marines");
+          const smChapters = items.filter((f) => f.id !== "space_marines" && SPACE_MARINES_IDS.has(f.id));
+          const otherImperium = items.filter((f) => !SPACE_MARINES_IDS.has(f.id));
+          const showSm = isSearching || smExpanded;
+
+          return (
+            <div key={group} className="space-y-3">
+              <h3 className={`text-[0.65rem] font-bold uppercase tracking-[0.3em] ${meta.text}`}>{group}</h3>
+
+              {/* スペースマリーン群 */}
+              <div className="rounded-2xl border border-amber-400/20 bg-amber-500/5 p-3 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[0.65rem] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400">
+                    Space Marines
+                  </span>
+                  {!isSearching && (
+                    <button
+                      onClick={() => setSmExpanded((v) => !v)}
+                      className="text-[0.65rem] text-muted hover:text-amber-500 transition"
+                    >
+                      {smExpanded ? "▲ 折りたたむ" : `▼ 章を選ぶ (${smChapters.length + (smBase ? 1 : 0)})`}
+                    </button>
+                  )}
+                </div>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {/* ベースSMを常に表示 */}
+                  {smBase && (
+                    <FactionCard f={smBase} badge={meta.badge} onSelect={onSelect} />
+                  )}
+                  {/* 各章は展開時のみ表示 */}
+                  {showSm && smChapters.map((f) => (
+                    <FactionCard key={f.id} f={f} badge={meta.badge} onSelect={onSelect} />
+                  ))}
+                </div>
+              </div>
+
+              {/* その他のImperium陣営 */}
+              {otherImperium.length > 0 && (
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {otherImperium.map((f) => (
+                    <FactionCard key={f.id} f={f} badge={meta.badge} onSelect={onSelect} />
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        }
+
         return (
           <div key={group} className="space-y-2">
             <h3 className={`text-[0.65rem] font-bold uppercase tracking-[0.3em] ${meta.text}`}>{group}</h3>
             <div className="grid gap-2 sm:grid-cols-2">
               {items.map((f) => (
-                <button
-                  key={f.id}
-                  onClick={() => onSelect(f)}
-                  className="surface-card flex items-center justify-between rounded-2xl px-4 py-3 text-left transition hover:-translate-y-0.5 hover:border-rose-400/60 active:scale-95"
-                >
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-bold">{f.name}</p>
-                    {f.nameJa && <p className="truncate text-[0.65rem] text-muted">{f.nameJa}</p>}
-                  </div>
-                  <span className={`ml-3 shrink-0 rounded-full px-2 py-0.5 text-[0.6rem] font-bold ${meta.badge}`}>
-                    {f.unitCount}
-                  </span>
-                </button>
+                <FactionCard key={f.id} f={f} badge={meta.badge} onSelect={onSelect} />
               ))}
             </div>
           </div>
@@ -1014,6 +1336,7 @@ export function BuilderClient({
 }) {
   const [selectedFaction, setSelectedFaction] = useState<FactionListItem | null>(null);
   const [units, setUnits] = useState<BuilderUnit[]>([]);
+  const [allyUnits, setAllyUnits] = useState<{ agents: BuilderUnit[]; knights: BuilderUnit[] }>({ agents: [], knights: [] });
   const [loadingUnits, setLoadingUnits] = useState(false);
 
   const [rosterName, setRosterName] = useState("My Roster");
@@ -1067,6 +1390,7 @@ export function BuilderClient({
     if (!selectedFaction) return;
     setLoadingUnits(true);
     setUnits([]);
+    setAllyUnits({ agents: [], knights: [] });
     if (!skipRosterClear.current) {
       setRoster([]);
       setDetachment("");
@@ -1080,9 +1404,39 @@ export function BuilderClient({
     setBrowseTab("all");
     weaponCache.current.clear();
 
-    fetch(`/api/wh40k/factions/${selectedFaction.id}/units`)
-      .then((r) => r.json())
-      .then((data: BuilderUnit[]) => setUnits(data))
+    // Space Marines章の場合はベースSMユニットも合わせて取得
+    const isSmChapter =
+      selectedFaction.id !== "space_marines" && SPACE_MARINES_IDS.has(selectedFaction.id);
+
+    // Imperium陣営かつ同盟除外リスト以外なら ally ユニットを取得
+    const canUseAllies =
+      selectedFaction.group === "Imperium" && !ALLY_EXCLUDED_IDS.has(selectedFaction.id);
+
+    const mainFetch = fetch(`/api/wh40k/factions/${selectedFaction.id}/units`).then((r) => r.json() as Promise<BuilderUnit[]>);
+    const smFetch = isSmChapter
+      ? fetch(`/api/wh40k/factions/space_marines/units`).then((r) => r.json() as Promise<BuilderUnit[]>)
+      : Promise.resolve(null);
+    const agentsFetch = canUseAllies
+      ? fetch(`/api/wh40k/factions/agents_of_the_imperium/units`).then((r) => r.json() as Promise<BuilderUnit[]>)
+      : Promise.resolve(null);
+    const knightsFetch = canUseAllies
+      ? fetch(`/api/wh40k/factions/imperial_knights/units`).then((r) => r.json() as Promise<BuilderUnit[]>)
+      : Promise.resolve(null);
+
+    Promise.all([mainFetch, smFetch, agentsFetch, knightsFetch])
+      .then(([chapterUnits, smUnits, agentsUnits, knightsUnits]) => {
+        // メインユニット（SM章マージ）
+        if (smUnits) {
+          const seen = new Set(chapterUnits.map((u) => u.id));
+          setUnits([...chapterUnits, ...smUnits.filter((u) => !seen.has(u.id))]);
+        } else {
+          setUnits(chapterUnits);
+        }
+        // 同盟ユニット
+        if (agentsUnits || knightsUnits) {
+          setAllyUnits({ agents: agentsUnits ?? [], knights: knightsUnits ?? [] });
+        }
+      })
       .catch(console.error)
       .finally(() => setLoadingUnits(false));
   }, [selectedFaction]);
@@ -1153,10 +1507,24 @@ export function BuilderClient({
 
   const totalPts = useMemo(() => roster.reduce((s, u) => s + u.pts, 0), [roster]);
 
+  // 同盟ユニットのロスター内カウント
+  const allyAgentsInRoster = useMemo(
+    () => roster.filter((r) => r.allyFaction === "agents_of_the_imperium").length,
+    [roster]
+  );
+  const allyKnightsInRoster = useMemo(
+    () => roster.filter((r) => r.allyFaction === "imperial_knights").length,
+    [roster]
+  );
+  const allyAgentsLimit = useMemo(
+    () => (allyUnits.agents.length > 0 ? getAllyAgentsLimit(pointsLimit) : 0),
+    [allyUnits.agents.length, pointsLimit]
+  );
+
   // ─── Handlers ─────────────────────────────────────────────────────────────
 
   const commitAddUnit = useCallback(
-    (unit: BuilderUnit, weaponSelections: WeaponSelection[]) => {
+    (unit: BuilderUnit, weaponSelections: WeaponSelection[], allyFaction?: string) => {
       const weaponDelta = weaponSelections.reduce((s, ws) => s + ws.pointsDelta, 0);
       const entryId = `${unit.id}_${Date.now()}_${Math.random().toString(36).slice(2, 5)}`;
       setRoster((prev) => [
@@ -1170,6 +1538,7 @@ export function BuilderClient({
           role: unit.role,
           pts: unit.basePoints + weaponDelta,
           weaponSelections,
+          ...(allyFaction ? { allyFaction } : {}),
         },
       ]);
     },
@@ -1177,7 +1546,7 @@ export function BuilderClient({
   );
 
   const handleAddUnit = useCallback(
-    async (unit: BuilderUnit) => {
+    async (unit: BuilderUnit, allyFaction?: string) => {
       // キャッシュ確認
       if (!weaponCache.current.has(unit.id)) {
         const res = await fetch(`/api/wh40k/units/${unit.id}/weapons`);
@@ -1188,10 +1557,10 @@ export function BuilderClient({
 
       if (groups.length === 0) {
         // 武器オプションなし → 直接追加
-        commitAddUnit(unit, []);
+        commitAddUnit(unit, [], allyFaction);
       } else {
         // モーダルを開く
-        setWeaponModal({ unit, groups, selections: new Map() });
+        setWeaponModal({ unit, groups, selections: new Map(), allyFaction });
       }
     },
     [commitAddUnit]
@@ -1200,7 +1569,7 @@ export function BuilderClient({
   const handleModalConfirm = useCallback(
     (selections: Map<string, string[]>) => {
       if (!weaponModal) return;
-      const { unit, groups } = weaponModal;
+      const { unit, groups, allyFaction } = weaponModal;
       const weaponSelections: WeaponSelection[] = [];
       for (const g of groups) {
         const names = selections.get(g.id) ?? [];
@@ -1216,7 +1585,7 @@ export function BuilderClient({
           pointsDelta: delta,
         });
       }
-      commitAddUnit(unit, weaponSelections);
+      commitAddUnit(unit, weaponSelections, allyFaction);
       setWeaponModal(null);
     },
     [weaponModal, commitAddUnit]
@@ -1452,6 +1821,13 @@ export function BuilderClient({
               onAddUnit={handleAddUnit}
               onRemoveUnit={removeLastUnit}
               onBrowseTabChange={setBrowseTab}
+              allyAgents={allyUnits.agents}
+              allyKnights={allyUnits.knights}
+              allyAgentsInRoster={allyAgentsInRoster}
+              allyAgentsLimit={allyAgentsLimit}
+              allyKnightsInRoster={allyKnightsInRoster}
+              onAddAllyUnit={(unit, allyFaction) => handleAddUnit(unit, allyFaction)}
+              onRemoveAllyUnit={removeLastUnit}
             />
 
             <RosterSidebar
@@ -1461,6 +1837,9 @@ export function BuilderClient({
               pointsLimit={pointsLimit}
               totalPts={totalPts}
               onRemoveEntry={removeEntry}
+              allyAgentsInRoster={allyAgentsInRoster}
+              allyAgentsLimit={allyAgentsLimit}
+              allyKnightsInRoster={allyKnightsInRoster}
             />
           </div>
         </div>
