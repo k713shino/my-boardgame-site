@@ -72,8 +72,9 @@ export async function POST(req: Request) {
 
   const totalPoints = units.reduce((sum, unit) => sum + unit.points, 0);
 
-  try {
-    const roster = await prisma.roster.create({
+  // weaponSelectionsJson カラムが存在しない場合（db push 未実行時）の fallback
+  const tryCreate = async (withWeapons: boolean) =>
+    prisma.roster.create({
       data: {
         title,
         factionId,
@@ -84,12 +85,21 @@ export async function POST(req: Request) {
           create: units.map((unit) => ({
             unitId: unit.unitId,
             points: unit.points,
-            weaponSelectionsJson: unit.weaponSelections,
+            ...(withWeapons ? { weaponSelectionsJson: unit.weaponSelections } : {}),
           })),
         },
       },
       select: { id: true, isPublic: true },
     });
+
+  try {
+    let roster;
+    try {
+      roster = await tryCreate(true);
+    } catch {
+      // カラムが未追加の場合は weaponSelections なしで再試行
+      roster = await tryCreate(false);
+    }
 
     return NextResponse.json({
       id: roster.id,
