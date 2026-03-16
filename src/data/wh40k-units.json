@@ -16949,7 +16949,242 @@
           "Synapse",
           "Tyranid Prime with Lash Whip"
         ],
-        "nameJa": ""
+        "nameJa": "ティラニッド・プライム（ラッシュ・ウィップ）"
+      },
+      {
+        "id": "winged_hive_tyrant",
+        "name": "Winged Hive Tyrant",
+        "pts": 170,
+        "role": "HQ",
+        "categories": [
+          "Monster",
+          "Character",
+          "Psyker",
+          "Winged Hive Tyrant",
+          "Great Devourer",
+          "Fly",
+          "Synapse",
+          "Vanguard Invader",
+          "Hive Tyrant"
+        ],
+        "nameJa": "ウィングド・ハイブ・タイラント"
+      },
+      {
+        "id": "gargoyles",
+        "name": "Gargoyles",
+        "pts": 85,
+        "role": "Battleline",
+        "categories": [
+          "Battleline",
+          "Infantry",
+          "Fly",
+          "Gargoyles",
+          "Great Devourer",
+          "Endless Multitude",
+          "Vanguard Invader"
+        ],
+        "nameJa": "ガーゴイル"
+      },
+      {
+        "id": "winged_tyranid_prime",
+        "name": "Winged Tyranid Prime",
+        "pts": 65,
+        "role": "HQ",
+        "categories": [
+          "Winged Tyranid Prime",
+          "Character",
+          "Infantry",
+          "Fly",
+          "Great Devourer",
+          "Synapse",
+          "Vanguard Invader"
+        ],
+        "nameJa": "ウィングド・ティラニッド・プライム"
+      },
+      {
+        "id": "lictor",
+        "name": "Lictor",
+        "pts": 60,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Great Devourer",
+          "Lictor",
+          "Vanguard Invader"
+        ],
+        "nameJa": "リクター"
+      },
+      {
+        "id": "deathleaper",
+        "name": "Deathleaper",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Character",
+          "Great Devourer",
+          "Deathleaper",
+          "Infantry",
+          "Vanguard Invader"
+        ],
+        "nameJa": "デスリーパー"
+      },
+      {
+        "id": "von_ryan_s_leapers",
+        "name": "Von Ryan's Leapers",
+        "pts": 70,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Great Devourer",
+          "Von Ryan's Leapers",
+          "Vanguard Invader"
+        ],
+        "nameJa": "フォン・ライアンズ・リーパーズ"
+      },
+      {
+        "id": "parasite_of_mortrex",
+        "name": "Parasite of Mortrex",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Parasite of Mortrex",
+          "Character",
+          "Fly",
+          "Great Devourer",
+          "Infantry",
+          "Vanguard Invader",
+          "Synapse"
+        ],
+        "nameJa": "パラサイト・オブ・モルトレックス"
+      },
+      {
+        "id": "mawloc",
+        "name": "Mawloc",
+        "pts": 135,
+        "role": "Heavy",
+        "categories": [
+          "Mawloc",
+          "Monster",
+          "Great Devourer",
+          "Vanguard Invader"
+        ],
+        "nameJa": "モウロック"
+      },
+      {
+        "id": "trygon",
+        "name": "Trygon",
+        "pts": 140,
+        "role": "Heavy",
+        "categories": [
+          "Trygon",
+          "Monster",
+          "Great Devourer",
+          "Vanguard Invader"
+        ],
+        "nameJa": "トライゴン"
+      },
+      {
+        "id": "tyrannocyte",
+        "name": "Tyrannocyte",
+        "pts": 105,
+        "role": "Transport",
+        "categories": [
+          "Dedicated Transport",
+          "Transport",
+          "Monster",
+          "Fly",
+          "Great Devourer",
+          "Tyrannocyte",
+          "Vanguard Invader"
+        ],
+        "nameJa": "ティラノサイト"
+      },
+      {
+        "id": "raveners",
+        "name": "Raveners",
+        "pts": 125,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Great Devourer",
+          "Raveners",
+          "Vanguard Invader",
+          "Burrowers"
+        ],
+        "nameJa": "レイヴナー"
+      },
+      {
+        "id": "neurolictor",
+        "name": "Neurolictor",
+        "pts": 70,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Great Devourer",
+          "Neurolictor",
+          "Vanguard Invader",
+          "Synapse"
+        ],
+        "nameJa": "ニューロリクター"
+      },
+      {
+        "id": "hyperadapted_raveners",
+        "name": "Hyperadapted Raveners",
+        "pts": 165,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Great Devourer",
+          "Vanguard Invader",
+          "Burrowers",
+          "Hyperadapted Raveners",
+          "Character"
+        ],
+        "nameJa": "ハイパーアダプテッド・レイヴナー"
+      },
+      {
+        "id": "node_organism_crucible",
+        "name": "Node Organism [Crucible]",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Great Devourer",
+          "Synapse",
+          "Node Organism"
+        ],
+        "nameJa": "ノード・オーガニズム〔クルーシブル〕"
+      },
+      {
+        "id": "prime_organism_crucible",
+        "name": "Prime Organism [Crucible]",
+        "pts": 135,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Crucible",
+          "Great Devourer",
+          "Monster",
+          "Prime Organism"
+        ],
+        "nameJa": "プライム・オーガニズム〔クルーシブル〕"
+      },
+      {
+        "id": "macro_organism_crucible",
+        "name": "Macro Organism [Crucible]",
+        "pts": 150,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Crucible",
+          "Great Devourer",
+          "Monster",
+          "Macro Organism"
+        ],
+        "nameJa": "マクロ・オーガニズム〔クルーシブル〕"
       }
     ]
   }

@@ -52,7 +52,7 @@ const FACTION_MAP = {
   "Necrons":           { name: "Necrons",           group: "Xenos", library: null },
   "Orks":              { name: "Orks",              group: "Xenos", library: null },
   "T'au Empire":       { name: "T'au Empire",       group: "Xenos", library: null },
-  "Tyranids":          { name: "Tyranids",          group: "Xenos", library: null },
+  "Tyranids":          { name: "Tyranids",          group: "Xenos", library: "Library - Tyranids" },
   // ── Imperium ─────────────────────────────────────────────────────────────
   "Imperium - Adepta Sororitas":           { name: "Adepta Sororitas",      group: "Imperium", library: null },
   "Imperium - Adeptus Custodes":           { name: "Adeptus Custodes",      group: "Imperium", library: null },
@@ -103,7 +103,7 @@ function makeParser() {
   });
 }
 
-/** .cat を解析して unit/model エントリを返す。libMap があれば entryLinks も解決する */
+/** .cat を解析して unit/model エントリを返す。libMap があれば外部ライブラリのentryLinksも解決する */
 function parseCat(filepath, libMap = null) {
   const parser = makeParser();
   const xml = readFileSync(filepath, "utf-8");
@@ -139,12 +139,18 @@ function parseCat(filepath, libMap = null) {
   for (const e of catalogue.selectionEntries?.selectionEntry ?? []) extractUnit(e);
   for (const e of catalogue.sharedSelectionEntries?.selectionEntry ?? []) extractUnit(e);
 
-  // entryLinks → ライブラリから解決
-  if (libMap) {
-    for (const link of catalogue.entryLinks?.entryLink ?? []) {
-      const target = libMap.get(link["@_targetId"]);
-      if (target) extractUnit(target);
-    }
+  // 自ファイルの sharedSelectionEntries を self-map として構築
+  const selfMap = new Map();
+  for (const e of catalogue.sharedSelectionEntries?.selectionEntry ?? []) {
+    if (e["@_id"]) selfMap.set(e["@_id"], e);
+  }
+
+  // entryLinks を解決: 外部ライブラリ → 自ファイルの順でルックアップ
+  for (const link of catalogue.entryLinks?.entryLink ?? []) {
+    if (link["@_hidden"] === "true") continue;
+    const targetId = link["@_targetId"];
+    const target = (libMap && libMap.get(targetId)) ?? selfMap.get(targetId);
+    if (target) extractUnit(target);
   }
 
   return results;

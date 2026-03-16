@@ -1357,7 +1357,9 @@ export function BuilderClient({
   addFaction?: string;
   addUnitSlug?: string;
 }) {
-  const [selectedFaction, setSelectedFaction] = useState<FactionListItem | null>(null);
+  const [selectedFaction, setSelectedFaction] = useState<FactionListItem | null>(
+    () => (addFaction ? (factions.find((f) => f.id === addFaction) ?? null) : null)
+  );
   const [units, setUnits] = useState<BuilderUnit[]>([]);
   const [allyUnits, setAllyUnits] = useState<{ agents: BuilderUnit[]; knights: BuilderUnit[] }>({ agents: [], knights: [] });
   const [loadingUnits, setLoadingUnits] = useState(false);
@@ -1387,14 +1389,6 @@ export function BuilderClient({
 
   // ユニットページからの「Builderで追加」: ユニット読込後に追加するslugを保持
   const pendingAddSlug = useRef<string | null>(addUnitSlug ?? null);
-
-  // addFaction 指定時に初回マウントで陣営を自動選択
-  useEffect(() => {
-    if (!addFaction) return;
-    const faction = factions.find((f) => f.id === addFaction);
-    if (faction) setSelectedFaction(faction);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   // 編集モード: localStorage から既存ロスターをロード
   useEffect(() => {
