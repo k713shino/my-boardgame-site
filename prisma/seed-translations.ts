@@ -514,6 +514,7 @@ function translateKeywords(keywords: string): string | null {
 const UNIT_NAME_MAP: Record<string, string> = {
   // ── ここに追記 ──────────────────────────────────────────────────────────────
   "Prince Yriel": "ユリエルの君",
+  "Tyranid Prime with Lash Whip": "ティラニッド・プライム（ラッシュウィップ装備）",
 
 };
 
