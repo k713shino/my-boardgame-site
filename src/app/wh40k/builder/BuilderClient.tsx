@@ -1349,9 +1349,13 @@ function FactionPicker({
 export function BuilderClient({
   factions,
   editId,
+  addFaction,
+  addUnitSlug,
 }: {
   factions: FactionListItem[];
   editId?: string;
+  addFaction?: string;
+  addUnitSlug?: string;
 }) {
   const [selectedFaction, setSelectedFaction] = useState<FactionListItem | null>(null);
   const [units, setUnits] = useState<BuilderUnit[]>([]);
@@ -1380,6 +1384,17 @@ export function BuilderClient({
 
   // 編集モード: 陣営変更時のロスタークリアをスキップするフラグ
   const skipRosterClear = useRef(false);
+
+  // ユニットページからの「Builderで追加」: ユニット読込後に追加するslugを保持
+  const pendingAddSlug = useRef<string | null>(addUnitSlug ?? null);
+
+  // addFaction 指定時に初回マウントで陣営を自動選択
+  useEffect(() => {
+    if (!addFaction) return;
+    const faction = factions.find((f) => f.id === addFaction);
+    if (faction) setSelectedFaction(faction);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // 編集モード: localStorage から既存ロスターをロード
   useEffect(() => {
@@ -1587,6 +1602,19 @@ export function BuilderClient({
     },
     [commitAddUnit]
   );
+
+  // ユニット読み込み完了後、pendingAddSlug が残っていれば自動追加
+  useEffect(() => {
+    if (!pendingAddSlug.current || units.length === 0) return;
+    const slug = pendingAddSlug.current;
+    const target = units.find((u) => u.slug === slug);
+    if (target) {
+      pendingAddSlug.current = null;
+      handleAddUnit(target);
+    }
+  // handleAddUnit は useCallback なので安定しているが、units 変化時のみ実行
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [units]);
 
   const handleModalConfirm = useCallback(
     (selections: Map<string, string[]>) => {

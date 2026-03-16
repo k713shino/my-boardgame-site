@@ -369,6 +369,8 @@ export default async function UnitPage({
           name: unit.name,
           nameJa: unit.nameJa,
           basePoints: unit.basePoints,
+          factionId: unit.factionId,
+          unitSlug: slug,
           factionName: unit.faction.name,
           factionNameJa: unit.faction.nameJa,
           roleMeta: meta,

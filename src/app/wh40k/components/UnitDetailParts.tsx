@@ -7,6 +7,8 @@ type UnitHeaderData = {
   name: string;
   nameJa: string | null;
   basePoints: number;
+  factionId: string;
+  unitSlug: string;
   factionName: string;
   factionNameJa: string | null;
   roleMeta: UnitMeta;
@@ -105,7 +107,7 @@ export function UnitHero({ data }: { data: UnitHeaderData }) {
 
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         <Link
-          href="/wh40k/builder"
+          href={`/wh40k/builder?faction=${data.factionId}&add=${data.unitSlug}`}
           className="rounded-full bg-rose-500 px-5 py-2 text-center text-xs font-bold text-white transition hover:bg-rose-400"
         >
           Builderで追加してみる

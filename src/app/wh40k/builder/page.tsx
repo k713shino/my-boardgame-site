@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 export default async function BuilderPage({
   searchParams,
 }: {
-  searchParams: Promise<{ edit?: string }>;
+  searchParams: Promise<{ edit?: string; faction?: string; add?: string }>;
 }) {
-  const { edit } = await searchParams;
+  const { edit, faction, add } = await searchParams;
 
   const factions = await prisma.faction.findMany({
     include: { _count: { select: { units: true } } },
@@ -30,5 +30,5 @@ export default async function BuilderPage({
     unitCount: f._count.units,
   }));
 
-  return <BuilderClient factions={factionList} editId={edit} />;
+  return <BuilderClient factions={factionList} editId={edit} addFaction={faction} addUnitSlug={add} />;
 }
