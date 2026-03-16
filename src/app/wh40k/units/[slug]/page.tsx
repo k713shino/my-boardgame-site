@@ -33,8 +33,13 @@ function synergyReasonForPair(
   thisRole: UnitRole,
   thisCategories: string[],
   candidateRole: UnitRole,
-  candidateCategories: string[]
+  candidateCategories: string[],
+  leaderFlags: { iLeadCandidate: boolean; candidateLeadsMe: boolean }
 ): string {
+  if (leaderFlags.iLeadCandidate)
+    return "このユニットにアタッチ（合流）して指揮能力・戦闘バフを付与できます。";
+  if (leaderFlags.candidateLeadsMe)
+    return "このユニットに合流できるLeaderです。アタッチで指揮能力・戦闘バフを受けられます。";
   if (thisRole === "HQ" && candidateRole === "Battleline")
     return "CharacterがアタッチしてBattlelineの戦闘力・生存率を高めます。";
   if (thisRole === "HQ" && candidateRole === "Heavy")
@@ -215,48 +220,91 @@ export default async function UnitPage({
 
   const meta = ROLE_META[unit.role as UnitRole];
   const categoryNames = unit.categories.map((c) => c.name);
-  const [profiles, weaponProfiles, abilities, weaponGroups, synergyCandidates, directRosters] = await Promise.all([
-    prisma.unitProfile.findMany({
-      where: { unitId: unit.id },
-      orderBy: { sortOrder: "asc" },
-    }),
-    prisma.unitWeaponProfile.findMany({
-      where: { unitId: unit.id },
-      orderBy: { sortOrder: "asc" },
-    }),
-    prisma.unitAbility.findMany({
-      where: { unitId: unit.id },
-      orderBy: { sortOrder: "asc" },
-    }),
+  const thisRole = unit.role as UnitRole;
+
+  // ── Stage 1: アビリティ取得（Leader合流先を解析するため先行取得）──────────
+  const abilities = await prisma.unitAbility.findMany({
+    where: { unitId: unit.id },
+    orderBy: { sortOrder: "asc" },
+  });
+
+  // Leader アビリティの合流先ユニット名リストを解析
+  const myLeaderAbility = abilities.find((a) => a.description.includes("can be attached to the following"));
+  const myLeaderTargetNames: string[] = myLeaderAbility
+    ? [...myLeaderAbility.description.matchAll(/■\s*([^\n]+)/g)].map((m) => m[1].trim())
+    : [];
+  const myLeaderTargetNamesLower = new Set(myLeaderTargetNames.map((n) => n.toLowerCase()));
+
+  // ── Stage 2: 残りデータを並行取得 ──────────────────────────────────────────
+  const unitSynergySelect = {
+    id: true, slug: true, name: true, nameJa: true, role: true,
+    categories: { select: { name: true } },
+  } as const;
+
+  const [profiles, weaponProfiles, weaponGroups, roleCandidates, leaderTargetUnits, leaderAbilityRefs, directRosters] = await Promise.all([
+    prisma.unitProfile.findMany({ where: { unitId: unit.id }, orderBy: { sortOrder: "asc" } }),
+    prisma.unitWeaponProfile.findMany({ where: { unitId: unit.id }, orderBy: { sortOrder: "asc" } }),
     prisma.unitWeaponGroup.findMany({
       where: { unitId: unit.id },
       include: { options: { orderBy: { sortOrder: "asc" } } },
       orderBy: { sortOrder: "asc" },
     }),
-    findSynergyUnits({
-      factionId: unit.factionId,
-      unitId: unit.id,
-      role: unit.role as UnitRole,
-      categoryNames,
-      take: 4,
+    // ロール補完候補（HQ以外でのバックアップ）
+    findSynergyUnits({ factionId: unit.factionId, unitId: unit.id, role: thisRole, categoryNames, take: 4 }),
+    // 現ユニットの Leader アビリティが指定する合流先ユニットを名前で明示取得
+    myLeaderTargetNames.length > 0
+      ? prisma.unit.findMany({
+          where: { factionId: unit.factionId, name: { in: myLeaderTargetNames }, NOT: { id: unit.id } },
+          select: unitSynergySelect,
+        })
+      : Promise.resolve([]),
+    // 現ユニットに合流できる Leader ユニット（他ユニットのアビリティに現ユニット名が列挙されているもの）
+    prisma.unitAbility.findMany({
+      where: {
+        unit: { factionId: unit.factionId },
+        description: { contains: `■ ${unit.name}` },
+      },
+      select: { unit: { select: unitSynergySelect } },
     }),
-    findRelatedRosters({
-      factionId: unit.factionId,
-      unitId: unit.id,
-      take: 3,
-    }),
+    findRelatedRosters({ factionId: unit.factionId, unitId: unit.id, take: 3 }),
   ]);
+
   const rangedWeapons = weaponProfiles.filter((weapon) => weapon.isRanged);
   const meleeWeapons = weaponProfiles.filter((weapon) => !weapon.isRanged);
 
-  const thisRole = unit.role as UnitRole;
-  const synergyUnits = synergyCandidates
+  // 現ユニットに合流できる Leader ユニット一覧（重複除去）
+  const leaderUnitsForMe = leaderAbilityRefs
+    .map((r) => r.unit as SynergyCandidate)
+    .filter((u, i, arr) => arr.findIndex((x) => x.id === u.id) === i);
+  const leaderUnitIdSet = new Set(leaderUnitsForMe.map((u) => u.id));
+
+  // 全候補をマージ（Leader関連を優先、重複除去）
+  const seen = new Set<string>([unit.id]);
+  const allCandidates: SynergyCandidate[] = [];
+  for (const u of [
+    ...(leaderTargetUnits as SynergyCandidate[]),  // 合流先（最優先）
+    ...leaderUnitsForMe,                            // 合流できるLeader
+    ...(roleCandidates as SynergyCandidate[]),       // ロール補完
+  ]) {
+    if (!seen.has(u.id)) {
+      seen.add(u.id);
+      allCandidates.push(u);
+    }
+  }
+
+  const synergyUnits = allCandidates
     .map((candidate) => {
       const candidateCategories = candidate.categories.map((c) => c.name);
       const candidateRole = candidate.role as UnitRole;
       let score = 0;
 
-      // ロール直接シナジー（40K 10th: CharacterアタッチとTransport搭乗が主軸）
+      // Leader アビリティによる合流シナジー（最優先）
+      const iLeadCandidate = myLeaderTargetNamesLower.has(candidate.name.toLowerCase());
+      const candidateLeadsMe = leaderUnitIdSet.has(candidate.id);
+      if (iLeadCandidate) score += 10;
+      if (candidateLeadsMe) score += 10;
+
+      // ロール直接シナジー
       if (thisRole === "HQ" && (candidateRole === "Battleline" || candidateRole === "Heavy")) score += 5;
       if (thisRole === "Battleline" && (candidateRole === "HQ" || candidateRole === "Transport")) score += 5;
       if (thisRole === "Transport" && (candidateRole === "Battleline" || candidateRole === "Other")) score += 5;
@@ -274,7 +322,7 @@ export default async function UnitPage({
         name: candidate.name,
         nameJa: candidate.nameJa,
         score,
-        reason: synergyReasonForPair(thisRole, categoryNames, candidateRole, candidateCategories),
+        reason: synergyReasonForPair(thisRole, categoryNames, candidateRole, candidateCategories, { iLeadCandidate, candidateLeadsMe }),
       };
     })
     .filter((u) => u.score > 0)
