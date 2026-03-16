@@ -360,48 +360,35 @@ export function UnitSynergySection({ items }: { items: SynergyUnitItem[] }) {
 }
 
 export function RelatedRostersSection({ items }: { items: RelatedRosterItem[] }) {
+  if (items.length === 0) return null;
+
   return (
     <section className="surface-card rounded-2xl p-5 space-y-3">
       <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">関連ロスター</h2>
-      {items.length === 0 ? (
-        <article className="rounded-xl border border-slate-200/70 px-3 py-3 dark:border-slate-700/70">
-          <p className="text-xs font-semibold">このユニットを含む公開ロスターはまだありません</p>
-          <p className="mt-0.5 text-[0.65rem] text-muted">
-            Builder で新規作成して共有すると、このセクションに表示できるようになります。
-          </p>
-          <Link
-            href="/wh40k/builder"
-            className="mt-2 inline-block rounded-full bg-rose-500 px-3 py-1 text-[0.65rem] font-semibold text-white transition hover:bg-rose-400"
+      <div className="space-y-2">
+        {items.map((item) => (
+          <article
+            key={`${item.title}-${item.href}`}
+            className="rounded-xl border border-slate-200/70 px-3 py-2.5 dark:border-slate-700/70"
           >
-            Builderでロスターを作る
-          </Link>
-        </article>
-      ) : (
-        <div className="space-y-2">
-          {items.map((item) => (
-            <article
-              key={`${item.title}-${item.href}`}
-              className="rounded-xl border border-slate-200/70 px-3 py-2.5 dark:border-slate-700/70"
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="text-xs font-semibold">{item.title}</h3>
+              {item.badge && (
+                <span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-[0.55rem] font-semibold text-rose-500">
+                  {item.badge}
+                </span>
+              )}
+            </div>
+            <p className="mt-0.5 text-[0.65rem] leading-relaxed text-muted">{item.description}</p>
+            <Link
+              href={item.href}
+              className="mt-2 inline-block rounded-full border border-slate-300/60 px-3 py-1 text-[0.65rem] font-semibold transition hover:border-rose-400/70 hover:text-rose-500 dark:border-slate-600/60"
             >
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="text-xs font-semibold">{item.title}</h3>
-                {item.badge && (
-                  <span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-[0.55rem] font-semibold text-rose-500">
-                    {item.badge}
-                  </span>
-                )}
-              </div>
-              <p className="mt-0.5 text-[0.65rem] leading-relaxed text-muted">{item.description}</p>
-              <Link
-                href={item.href}
-                className="mt-2 inline-block rounded-full border border-slate-300/60 px-3 py-1 text-[0.65rem] font-semibold transition hover:border-rose-400/70 hover:text-rose-500 dark:border-slate-600/60"
-              >
-                {item.actionLabel}
-              </Link>
-            </article>
-          ))}
-        </div>
-      )}
+              {item.actionLabel}
+            </Link>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }

@@ -28,28 +28,40 @@ function hasKeyword(categories: string[], keywords: string[]): boolean {
   return keywords.some((k) => lowered.some((c) => c.includes(k.toLowerCase())));
 }
 
-function synergyReasonFor(role: UnitRole, categories: string[]): string {
-  if (role === "HQ") return "指揮オーラやバフで主力の効率を底上げできます。";
-  if (role === "Transport") return "前進力を補い、主力ユニットを安全に展開できます。";
-  if (role === "Battleline") return "盤面維持と任務達成を安定させる中核枠です。";
-  if (hasKeyword(categories, ["wraith", "monster", "vehicle"])) {
-    return "高耐久ユニットとして中央維持や圧力役を補完します。";
-  }
-  if (hasKeyword(categories, ["fly", "mounted", "jump"])) {
-    return "機動力を活かして側面展開や後衛への圧力を担えます。";
-  }
-  return "火力・任務・牽制の穴を埋める柔軟な補完枠です。";
+/** thisRole の視点から見た候補ユニットとの相性理由を返す */
+function synergyReasonForPair(
+  thisRole: UnitRole,
+  thisCategories: string[],
+  candidateRole: UnitRole,
+  candidateCategories: string[]
+): string {
+  if (thisRole === "HQ" && candidateRole === "Battleline")
+    return "CharacterがアタッチしてBattlelineの戦闘力・生存率を高めます。";
+  if (thisRole === "HQ" && candidateRole === "Heavy")
+    return "オーラ効果で重火力ユニットの射撃性能を底上げします。";
+  if (thisRole === "Battleline" && candidateRole === "HQ")
+    return "このBattlelineにアタッチして指揮能力と戦闘力を付与できます。";
+  if (thisRole === "Battleline" && candidateRole === "Transport")
+    return "搭乗展開することで生存率を保ちつつ前線に到達できます。";
+  if (thisRole === "Transport" && (candidateRole === "Battleline" || candidateRole === "Other"))
+    return "このTransportに搭乗して安全に前線へ展開できます。";
+  if (thisRole === "Heavy" && candidateRole === "HQ")
+    return "CharacterのオーラやLeaderルールで重火力の命中・攻撃力を強化します。";
+  if (thisRole === "Heavy" && candidateRole === "Battleline")
+    return "前衛で敵を引きつける間、後方から火力支援します。";
+  if (thisRole === "Other" && candidateRole === "HQ")
+    return "Characterのオーラやバフを活用して本来の性能を発揮します。";
+  if (hasKeyword(thisCategories, ["wraith"]) && hasKeyword(candidateCategories, ["wraith", "psyker"]))
+    return "同じWraithシナジーで相乗効果を生む組み合わせです。";
+  if (hasKeyword(thisCategories, ["infantry"]) && hasKeyword(candidateCategories, ["transport"]))
+    return "このTransportに搭乗して前線へ展開できます。";
+  if (hasKeyword(candidateCategories, ["fly", "mounted", "jump", "jetbike"]))
+    return "高機動力で側面制圧や後衛圧力を担い、主力を補完します。";
+  if (candidateRole === "HQ")
+    return "Characterのオーラや指揮効果で編成全体の効率を高めます。";
+  return "同陣営で役割を補い合える組み合わせです。";
 }
 
-const GENERIC_SYNERGY_CATEGORIES = new Set([
-  "aeldari",
-  "character",
-  "infantry",
-  "vehicle",
-  "monster",
-  "grenades",
-  "epic hero",
-]);
 
 type RosterWithUnits = {
   id: string;
@@ -106,26 +118,11 @@ async function findRelatedRosters(params: {
     return withPublicFilter as unknown as RosterWithUnits[];
   } catch (error) {
     if (!isUnknownIsPublicError(error)) throw error;
-
-    // Prisma Client が isPublic を未認識の環境では、既存データ互換でフォールバック。
-    const fallback = await prisma.roster.findMany({
-      where,
-      select,
-      orderBy,
-      take: params.take,
-    });
-    return fallback as unknown as RosterWithUnits[];
+    // isPublic カラム未対応環境では表示しない
+    return [];
   }
 }
 
-function buildSynergyCategoryPool(categoryNames: string[]): string[] {
-  return categoryNames
-    .filter((name) => {
-      const normalized = name.trim().toLowerCase();
-      return normalized.length > 0 && !GENERIC_SYNERGY_CATEGORIES.has(normalized);
-    })
-    .slice(0, 8);
-}
 
 function preferredSynergyRoles(role: UnitRole): UnitRole[] {
   if (role === "Battleline") return ["HQ", "Transport"];
@@ -142,7 +139,6 @@ async function findSynergyUnits(params: {
   categoryNames: string[];
   take: number;
 }) {
-  const priorityCategoryNames = buildSynergyCategoryPool(params.categoryNames);
   const preferredRoles = preferredSynergyRoles(params.role);
   const select = {
     id: true,
@@ -153,37 +149,18 @@ async function findSynergyUnits(params: {
     categories: { select: { name: true } },
   } as const;
 
-  const primaryCandidates = await prisma.unit.findMany({
+  // ロール優先で候補を取得（フォールバックは廃止: 無関係ユニットを出さないため）
+  const candidates = await prisma.unit.findMany({
     where: {
       factionId: params.factionId,
       NOT: { id: params.unitId },
-      OR: [
-        ...(priorityCategoryNames.length > 0
-          ? [{ categories: { some: { name: { in: priorityCategoryNames } } } }]
-          : []),
-        { role: { in: preferredRoles } },
-      ],
+      role: { in: preferredRoles },
     },
     select,
-    take: Math.max(params.take * 3, 12),
+    take: Math.max(params.take * 4, 16),
   });
 
-  const primaryIds = new Set(primaryCandidates.map((candidate) => candidate.id));
-  const fallbackCandidates =
-    primaryCandidates.length >= params.take * 2
-      ? []
-      : await prisma.unit.findMany({
-          where: {
-            factionId: params.factionId,
-            NOT: {
-              id: { in: [params.unitId, ...primaryIds] },
-            },
-          },
-          select,
-          take: params.take * 2 - primaryCandidates.length,
-        });
-
-  return [...primaryCandidates, ...fallbackCandidates] as SynergyCandidate[];
+  return candidates as SynergyCandidate[];
 }
 
 export async function generateMetadata({
@@ -272,27 +249,35 @@ export default async function UnitPage({
   const rangedWeapons = weaponProfiles.filter((weapon) => weapon.isRanged);
   const meleeWeapons = weaponProfiles.filter((weapon) => !weapon.isRanged);
 
+  const thisRole = unit.role as UnitRole;
   const synergyUnits = synergyCandidates
     .map((candidate) => {
       const candidateCategories = candidate.categories.map((c) => c.name);
-      const overlap = candidateCategories.filter((c) => categoryNames.includes(c)).length;
-      let score = overlap * 2;
+      const candidateRole = candidate.role as UnitRole;
+      let score = 0;
 
-      if (unit.role === "Battleline" && (candidate.role === "HQ" || candidate.role === "Transport")) score += 3;
-      if (unit.role === "HQ" && candidate.role === "Battleline") score += 3;
-      if (unit.role === "Heavy" && candidate.role === "HQ") score += 2;
-      if (hasKeyword(categoryNames, ["wraith"]) && hasKeyword(candidateCategories, ["wraith", "psyker"])) score += 2;
-      if (hasKeyword(categoryNames, ["infantry"]) && hasKeyword(candidateCategories, ["transport"])) score += 2;
-      if (hasKeyword(candidateCategories, ["fly", "mounted", "jump"])) score += 1;
+      // ロール直接シナジー（40K 10th: CharacterアタッチとTransport搭乗が主軸）
+      if (thisRole === "HQ" && (candidateRole === "Battleline" || candidateRole === "Heavy")) score += 5;
+      if (thisRole === "Battleline" && (candidateRole === "HQ" || candidateRole === "Transport")) score += 5;
+      if (thisRole === "Transport" && (candidateRole === "Battleline" || candidateRole === "Other")) score += 5;
+      if (thisRole === "Heavy" && candidateRole === "HQ") score += 5;
+      if (thisRole === "Other" && candidateRole === "HQ") score += 4;
+      if (thisRole === "Heavy" && candidateRole === "Battleline") score += 2;
+
+      // キーワードシナジー
+      if (hasKeyword(categoryNames, ["wraith"]) && hasKeyword(candidateCategories, ["wraith", "psyker"])) score += 3;
+      if (hasKeyword(categoryNames, ["infantry"]) && hasKeyword(candidateCategories, ["transport"])) score += 3;
+      if (hasKeyword(candidateCategories, ["fly", "mounted", "jump", "jetbike"])) score += 1;
 
       return {
         slug: candidate.slug,
         name: candidate.name,
         nameJa: candidate.nameJa,
         score,
-        reason: synergyReasonFor(candidate.role as UnitRole, candidateCategories),
+        reason: synergyReasonForPair(thisRole, categoryNames, candidateRole, candidateCategories),
       };
     })
+    .filter((u) => u.score > 0)
     .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name))
     .slice(0, 4);
 
