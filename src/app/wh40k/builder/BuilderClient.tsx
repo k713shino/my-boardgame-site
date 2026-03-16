@@ -85,6 +85,7 @@ export type SavedRoster = {
   detachment?: string;
   pointsLimit: number;
   units: RosterEntry[];
+  warlordEntryId?: string;
   savedAt: string;
   isPublic?: boolean;
 };
@@ -431,6 +432,7 @@ function formatRosterText(params: {
   detachment?: string;
   pointsLimit: number;
   units: RosterEntry[];
+  warlordEntryId?: string;
 }): string {
   const total = params.units.reduce((s, u) => s + u.pts, 0);
   const lines: string[] = [];
@@ -442,7 +444,8 @@ function formatRosterText(params: {
     if (roleUnits.length === 0) continue;
     lines.push(`■ ${ROLE_TEXT_LABEL[role]}`);
     for (const u of roleUnits) {
-      lines.push(`  ・${u.nameJa ?? u.name} (${u.pts}pt)`);
+      const isWarlord = params.warlordEntryId === u.entryId;
+      lines.push(`  ・${u.nameJa ?? u.name} (${u.pts}pt)${isWarlord ? " 【Warlord】" : ""}`);
       for (const ws of u.weaponSelections ?? []) {
         const delta = ws.pointsDelta !== 0 ? ` (${ws.pointsDelta > 0 ? "+" : ""}${ws.pointsDelta}pt)` : "";
         lines.push(`    └ ${ws.groupName}: ${ws.selectedNames.join(" / ")}${delta}`);
@@ -1130,6 +1133,8 @@ type RosterSidebarProps = {
   pointsLimit: number;
   totalPts: number;
   onRemoveEntry: (entryId: string) => void;
+  warlordEntryId: string | null;
+  onSetWarlord: (entryId: string | null) => void;
   allyAgentsInRoster?: number;
   allyAgentsLimit?: number;
   allyKnightsInRoster?: number;
@@ -1142,6 +1147,8 @@ function RosterSidebar({
   pointsLimit,
   totalPts,
   onRemoveEntry,
+  warlordEntryId,
+  onSetWarlord,
   allyAgentsInRoster = 0,
   allyAgentsLimit = 0,
   allyKnightsInRoster = 0,
@@ -1167,7 +1174,7 @@ function RosterSidebar({
         {roster.length === 0 ? (
           <p className="py-6 text-center text-[0.7rem] text-muted">ユニットを追加してください</p>
         ) : (
-          <RosterUnitsSection byRole={rosterByRole} onRemoveEntry={onRemoveEntry} compact />
+          <RosterUnitsSection byRole={rosterByRole} onRemoveEntry={onRemoveEntry} onSetWarlord={onSetWarlord} warlordEntryId={warlordEntryId} compact />
         )}
       </div>
 
@@ -1361,6 +1368,7 @@ export function BuilderClient({
   const [quickFilter, setQuickFilter] = useState<QuickFilterId | null>(null);
   const [sortMode, setSortMode] = useState<SortMode>("points");
   const [browseTab, setBrowseTab] = useState<BrowseTab>("all");
+  const [warlordEntryId, setWarlordEntryId] = useState<string | null>(null);
   const [saveStatus, setSaveStatus] = useState<"idle" | "saved">("idle");
   const [publicSaveStatus, setPublicSaveStatus] = useState<"idle" | "saving" | "published">("idle");
 
@@ -1390,6 +1398,7 @@ export function BuilderClient({
       setPointsLimit(target.pointsLimit);
       setDetachment(target.detachment ?? "");
       setRoster(target.units);
+      setWarlordEntryId(target.warlordEntryId ?? null);
     } catch {
       // no-op
     }
@@ -1406,6 +1415,7 @@ export function BuilderClient({
     if (!skipRosterClear.current) {
       setRoster([]);
       setDetachment("");
+      setWarlordEntryId(null);
     }
     skipRosterClear.current = false;
     setSearch("");
@@ -1614,12 +1624,14 @@ export function BuilderClient({
 
   const removeEntry = useCallback((entryId: string) => {
     setRoster((prev) => prev.filter((u) => u.entryId !== entryId));
+    setWarlordEntryId((prev) => (prev === entryId ? null : prev));
   }, []);
 
   const resetRoster = () => {
     if (roster.length === 0) return;
     if (confirm("ロスターをリセットしますか？")) {
       setRoster([]);
+      setWarlordEntryId(null);
       setSaveStatus("idle");
       setPublicSaveStatus("idle");
     }
@@ -1636,6 +1648,7 @@ export function BuilderClient({
       detachment: detachment || undefined,
       pointsLimit,
       units: roster,
+      warlordEntryId: warlordEntryId ?? undefined,
       savedAt: new Date().toISOString(),
       isPublic: false,
     };
@@ -1701,7 +1714,7 @@ export function BuilderClient({
 
   const shareRoster = () => {
     if (!selectedFaction || roster.length === 0) return;
-    const data = { name: rosterName, faction: selectedFaction.id, factionName: selectedFaction.name, detachment: detachment || undefined, pointsLimit, units: roster };
+    const data = { name: rosterName, faction: selectedFaction.id, factionName: selectedFaction.name, detachment: detachment || undefined, pointsLimit, units: roster, warlordEntryId: warlordEntryId ?? undefined };
     const encoded = btoa(encodeURIComponent(JSON.stringify(data)));
     const url = `${window.location.origin}/wh40k/rosters/share?d=${encoded}`;
     navigator.clipboard?.writeText(url)
@@ -1720,6 +1733,7 @@ export function BuilderClient({
       detachment: detachment || undefined,
       pointsLimit,
       units: roster,
+      warlordEntryId: warlordEntryId ?? undefined,
     });
     navigator.clipboard?.writeText(text)
       .then(() => alert("✅ ロスターをクリップボードにコピーしました"))
@@ -1869,6 +1883,8 @@ export function BuilderClient({
               pointsLimit={pointsLimit}
               totalPts={totalPts}
               onRemoveEntry={removeEntry}
+              warlordEntryId={warlordEntryId}
+              onSetWarlord={setWarlordEntryId}
               allyAgentsInRoster={allyAgentsInRoster}
               allyAgentsLimit={allyAgentsLimit}
               allyKnightsInRoster={allyKnightsInRoster}

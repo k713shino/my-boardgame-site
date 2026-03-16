@@ -122,11 +122,15 @@ export function RosterUnitsSection({
   byRole,
   resolveHref,
   onRemoveEntry,
+  onSetWarlord,
+  warlordEntryId,
   compact = false,
 }: {
   byRole: Record<UnitRole, RosterEntry[]>;
   resolveHref?: (entry: RosterEntry) => string | null;
   onRemoveEntry?: (entryId: string) => void;
+  onSetWarlord?: (entryId: string | null) => void;
+  warlordEntryId?: string | null;
   compact?: boolean;
 }) {
   return (
@@ -152,28 +156,42 @@ export function RosterUnitsSection({
             <div className={compact ? "space-y-1" : "space-y-1.5"}>
               {entries.map((entry) => {
                 const href = resolveHref?.(entry) ?? null;
+                const isWarlord = warlordEntryId === entry.entryId;
                 return (
                   <article
                     key={entry.entryId}
-                    className={`surface-card rounded-xl border ${compact ? "px-3 py-2" : "px-4 py-2.5"} ${meta.border}`}
+                    className={`surface-card rounded-xl border ${compact ? "px-3 py-2" : "px-4 py-2.5"} ${isWarlord ? "border-yellow-400/60 bg-yellow-500/5" : meta.border}`}
                   >
                     <div className="flex items-center gap-3">
                       <div className="min-w-0 flex-1">
-                        {href ? (
-                          <Link
-                            href={href}
-                            className={`block truncate ${compact ? "text-[0.7rem]" : "text-xs"} font-semibold underline decoration-dotted underline-offset-2 transition hover:opacity-70 ${meta.text}`}
-                          >
-                            {entry.name}
-                          </Link>
-                        ) : (
-                          <p className={`truncate ${compact ? "text-[0.7rem]" : "text-xs"} font-semibold ${meta.text}`}>{entry.name}</p>
-                        )}
-
+                        <div className="flex items-center gap-1.5">
+                          {isWarlord && (
+                            <span className="shrink-0 text-[0.65rem]" title="Warlord">👑</span>
+                          )}
+                          {href ? (
+                            <Link
+                              href={href}
+                              className={`block truncate ${compact ? "text-[0.7rem]" : "text-xs"} font-semibold underline decoration-dotted underline-offset-2 transition hover:opacity-70 ${meta.text}`}
+                            >
+                              {entry.name}
+                            </Link>
+                          ) : (
+                            <p className={`truncate ${compact ? "text-[0.7rem]" : "text-xs"} font-semibold ${meta.text}`}>{entry.name}</p>
+                          )}
+                        </div>
                         {entry.nameJa && <p className={`${compact ? "text-[0.55rem]" : "text-[0.6rem]"} truncate text-muted`}>{entry.nameJa}</p>}
                       </div>
 
                       <span className={`shrink-0 ${compact ? "text-[0.68rem]" : "text-xs"} font-bold ${meta.text}`}>{entry.pts}pt</span>
+                      {onSetWarlord && (
+                        <button
+                          onClick={() => onSetWarlord(isWarlord ? null : entry.entryId)}
+                          className={`shrink-0 text-[0.7rem] transition ${isWarlord ? "text-yellow-500 hover:text-yellow-400" : "text-muted hover:text-yellow-500"}`}
+                          title={isWarlord ? "Warlord解除" : "Warlordに指定"}
+                        >
+                          👑
+                        </button>
+                      )}
                       {onRemoveEntry && (
                         <button
                           onClick={() => onRemoveEntry(entry.entryId)}
