@@ -8,7 +8,7 @@
       {
         "id": "asurmen",
         "name": "Asurmen",
-        "pts": 125,
+        "pts": 135,
         "role": "HQ",
         "categories": [
           "Infantry",
@@ -737,7 +737,7 @@
       {
         "id": "wraithlord",
         "name": "Wraithlord",
-        "pts": 140,
+        "pts": 130,
         "role": "Heavy",
         "categories": [
           "Wraithlord",
@@ -752,7 +752,7 @@
       {
         "id": "wraithguard",
         "name": "Wraithguard",
-        "pts": 170,
+        "pts": 160,
         "role": "Other",
         "categories": [
           "Infantry",
@@ -781,7 +781,7 @@
       {
         "id": "wraithblades",
         "name": "Wraithblades",
-        "pts": 160,
+        "pts": 150,
         "role": "Other",
         "categories": [
           "Wraithblades",
@@ -838,7 +838,7 @@
       {
         "id": "haemonculus",
         "name": "Haemonculus",
-        "pts": 70,
+        "pts": 60,
         "role": "HQ",
         "categories": [
           "Haemonculus",
@@ -1053,7 +1053,7 @@
       {
         "id": "wracks",
         "name": "Wracks",
-        "pts": 65,
+        "pts": 60,
         "role": "Battleline",
         "categories": [
           "Wracks",
@@ -1318,7 +1318,7 @@
       {
         "id": "scourges_with_shardcarbines",
         "name": "Scourges with Shardcarbines",
-        "pts": 80,
+        "pts": 75,
         "role": "Other",
         "categories": [
           "Scourges",
@@ -1345,7 +1345,7 @@
           "Aeldari",
           "Anhrathe"
         ],
-        "nameJa": "ユリエルの君"
+        "nameJa": "プリンス・イリエル"
       },
       {
         "id": "kharseth",
@@ -1378,6 +1378,81 @@
           "Corsair Skyreavers"
         ],
         "nameJa": "コルセア・スカイリーヴァー"
+      },
+      {
+        "id": "archtormentor_crucible",
+        "name": "Archtormentor [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Wych Cult",
+          "Aeldari",
+          "Archtormentor"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "flesh_crafter_crucible",
+        "name": "Flesh Crafter [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Aeldari",
+          "Haemonculus Covens",
+          "Flesh Crafter"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "craftworld_warleader_crucible",
+        "name": "Craftworld Warleader [Crucible]",
+        "pts": 75,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Aeldari",
+          "Craftworld Warleader",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "skyrunner_crucible",
+        "name": "Skyrunner [Crucible]",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Aeldari",
+          "Crucible",
+          "Mounted",
+          "Skyrunner",
+          "Fly"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "ghost_warrior_crucible",
+        "name": "Ghost Warrior [Crucible]",
+        "pts": 160,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Aeldari",
+          "Crucible",
+          "Monster",
+          "Walker",
+          "Ghost Warrior",
+          "Wraith Construct"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -1433,7 +1508,7 @@
       {
         "id": "haemonculus",
         "name": "Haemonculus",
-        "pts": 70,
+        "pts": 60,
         "role": "HQ",
         "categories": [
           "Haemonculus",
@@ -1648,7 +1723,7 @@
       {
         "id": "wracks",
         "name": "Wracks",
-        "pts": 65,
+        "pts": 60,
         "role": "Battleline",
         "categories": [
           "Wracks",
@@ -1852,7 +1927,7 @@
       {
         "id": "scourges_with_shardcarbines",
         "name": "Scourges with Shardcarbines",
-        "pts": 80,
+        "pts": 75,
         "role": "Other",
         "categories": [
           "Scourges",
@@ -1912,6 +1987,36 @@
           "Kharseth"
         ],
         "nameJa": "カーセス"
+      },
+      {
+        "id": "archtormentor_crucible",
+        "name": "Archtormentor [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Wych Cult",
+          "Aeldari",
+          "Archtormentor"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "flesh_crafter_crucible",
+        "name": "Flesh Crafter [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Aeldari",
+          "Haemonculus Covens",
+          "Flesh Crafter"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -2533,7 +2638,7 @@
       {
         "id": "wraithblades",
         "name": "Wraithblades",
-        "pts": 160,
+        "pts": 150,
         "role": "Other",
         "categories": [
           "Wraithblades",
@@ -2547,7 +2652,7 @@
       {
         "id": "wraithguard",
         "name": "Wraithguard",
-        "pts": 170,
+        "pts": 160,
         "role": "Other",
         "categories": [
           "Infantry",
@@ -2578,7 +2683,7 @@
       {
         "id": "wraithlord",
         "name": "Wraithlord",
-        "pts": 140,
+        "pts": 130,
         "role": "Heavy",
         "categories": [
           "Wraithlord",
@@ -3200,7 +3305,7 @@
       {
         "id": "kairos_fateweaver",
         "name": "Kairos Fateweaver",
-        "pts": 285,
+        "pts": 295,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -3219,7 +3324,7 @@
       {
         "id": "lord_of_change",
         "name": "Lord of Change",
-        "pts": 270,
+        "pts": 285,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -3807,6 +3912,52 @@
           "Shadow Legion"
         ],
         "nameJa": "シーカー"
+      },
+      {
+        "id": "daemonic_herald_crucible",
+        "name": "Daemonic Herald [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Chaos",
+          "Daemon",
+          "Summoned",
+          "Daemonic Herald",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "daemonic_charioteer_crucible",
+        "name": "Daemonic Charioteer [Crucible]",
+        "pts": 120,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Chaos",
+          "Daemon",
+          "Crucible",
+          "Mounted",
+          "Daemonic Charioteer"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "immortal_champion_crucible",
+        "name": "Immortal Champion [Crucible]",
+        "pts": 180,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Chaos",
+          "Daemon",
+          "Crucible",
+          "Monster",
+          "Immortal Champion"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -4936,6 +5087,50 @@
           "Red Corsairs Reave-captain"
         ],
         "nameJa": "レッド コルセア リーブ・キャプテン"
+      },
+      {
+        "id": "exalted_champion_crucible",
+        "name": "Exalted Champion [Crucible]",
+        "pts": 90,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Chaos",
+          "Exalted Champion"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "sorcerous_champion_crucible",
+        "name": "Sorcerous Champion [Crucible]",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Chaos",
+          "Psyker",
+          "Sorcerous Champion"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "soul_forge_tyrant_crucible",
+        "name": "Soul Forge Tyrant [Crucible]",
+        "pts": 160,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Chaos",
+          "Mounted",
+          "Daemon",
+          "Helstalker",
+          "Soul Forge Tyrant"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -4963,7 +5158,7 @@
       {
         "id": "daemon_prince_of_nurgle_with_wings",
         "name": "Daemon Prince of Nurgle with wings",
-        "pts": 195,
+        "pts": 180,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -5452,6 +5647,51 @@
           "Foetid Bloat-drone"
         ],
         "nameJa": "フォーテッド・ブロートドローン ヘビーブライトランチャー装備"
+      },
+      {
+        "id": "plague_sorcerer_crucible",
+        "name": "Plague Sorcerer [Crucible]",
+        "pts": 70,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Psyker",
+          "Chaos",
+          "Nurgle",
+          "Plague Sorcerer"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "plague_lord_crucible",
+        "name": "Plague Lord [Crucible]",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Chaos",
+          "Nurgle",
+          "Grenades",
+          "Plague Lord"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "tri_lobe_vectors_crucible",
+        "name": "Tri-lobe Vectors [Crucible]",
+        "pts": 120,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Chaos",
+          "Nurgle",
+          "Tri-lobe Vectors"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -5604,7 +5844,7 @@
       {
         "id": "flawless_blades",
         "name": "Flawless Blades",
-        "pts": 110,
+        "pts": 100,
         "role": "Other",
         "categories": [
           "Infantry",
@@ -5618,7 +5858,7 @@
       {
         "id": "chaos_terminators",
         "name": "Chaos Terminators",
-        "pts": 155,
+        "pts": 145,
         "role": "Other",
         "categories": [
           "Infantry",
@@ -5793,6 +6033,55 @@
           "Summoned"
         ],
         "nameJa": "シーカー"
+      },
+      {
+        "id": "excruciator_crucible",
+        "name": "Excruciator [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Psyker",
+          "Grenades",
+          "Chaos",
+          "Slaanesh",
+          "Excruciator",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "champion_of_excess_crucible",
+        "name": "Champion of Excess [Crucible]",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Chaos",
+          "Slaanesh",
+          "Crucible",
+          "Champion of Excess"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "flawless_champion_crucible",
+        "name": "Flawless Champion [Crucible]",
+        "pts": 100,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Chaos",
+          "Slaanesh",
+          "Crucible",
+          "Flawless Champion"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -6234,7 +6523,7 @@
       {
         "id": "kairos_fateweaver",
         "name": "Kairos Fateweaver",
-        "pts": 285,
+        "pts": 295,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -6253,7 +6542,7 @@
       {
         "id": "lord_of_change",
         "name": "Lord of Change",
-        "pts": 270,
+        "pts": 285,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -6345,6 +6634,53 @@
           "Mutant"
         ],
         "nameJa": "ケイオス スポーン (フレッシュ チェンジ)"
+      },
+      {
+        "id": "magister_crucible",
+        "name": "Magister [Crucible]",
+        "pts": 105,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Psyker",
+          "Chaos",
+          "Tzeentch",
+          "Magister"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "brayherd_chieftain_crucible",
+        "name": "Brayherd Chieftain [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Chaos",
+          "Tzeentch",
+          "Mutant",
+          "Brayherd Chieftain"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "brayherd_shaman_crucible",
+        "name": "Brayherd Shaman [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Chaos",
+          "Tzeentch",
+          "Mutant",
+          "Psyker",
+          "Brayherd Shaman"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -6593,7 +6929,7 @@
       {
         "id": "forgefiend",
         "name": "Forgefiend",
-        "pts": 170,
+        "pts": 165,
         "role": "Heavy",
         "categories": [
           "Vehicle",
@@ -6801,6 +7137,49 @@
           "Flesh Hounds"
         ],
         "nameJa": "フレッシュハウンド"
+      },
+      {
+        "id": "butcherlord_crucible",
+        "name": "Butcherlord [Crucible]",
+        "pts": 90,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Chaos",
+          "Khorne",
+          "Butcherlord"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "eight_blessed_lord_crucible",
+        "name": "Eight-blessed Lord [Crucible]",
+        "pts": 90,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Chaos",
+          "Khorne",
+          "Mounted",
+          "Eight-blessed Lord"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "bloodcult_champion_crucible",
+        "name": "Bloodcult Champion [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Khorne",
+          "Bloodcult Champion"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -7130,6 +7509,50 @@
           "Acolyte Hybrids with Autopistols"
         ],
         "nameJa": "アコライト・ハイブリッド・ウィズ・オートピストル"
+      },
+      {
+        "id": "cult_insurrectionist_crucible",
+        "name": "Cult Insurrectionist [Crucible]",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Great Devourer",
+          "Cult Insurrectionist"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "cult_guerrilla_crucible",
+        "name": "Cult Guerrilla [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Great Devourer",
+          "Grenades",
+          "Cult Guerrilla"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "voice_of_the_patriarch_crucible",
+        "name": "Voice of the Patriarch [Crucible]",
+        "pts": 70,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Great Devourer",
+          "Psyker",
+          "Voice of the Patriarch"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -7581,6 +8004,54 @@
           "Celestian Insidiants"
         ],
         "nameJa": "セレスティアン・インシディアンス"
+      },
+      {
+        "id": "militant_commander_crucible",
+        "name": "Militant Commander [Crucible]",
+        "pts": 75,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Canoness",
+          "Militant Commander",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "inspiring_devotee_crucible",
+        "name": "Inspiring Devotee [Crucible]",
+        "pts": 50,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Crucible",
+          "Inspiring Devotee"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "reliquant_knight_crucible",
+        "name": "Reliquant Knight [Crucible]",
+        "pts": 100,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Grenades",
+          "Imperium",
+          "Crucible",
+          "Vehicle",
+          "Walker",
+          "Reliquant Knight",
+          "Paragon Warsuits"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -7649,7 +8120,7 @@
       {
         "id": "custodian_guard",
         "name": "Custodian Guard",
-        "pts": 150,
+        "pts": 160,
         "role": "Battleline",
         "categories": [
           "Custodian Guard",
@@ -8009,6 +8480,51 @@
           "Ares Gunship"
         ],
         "nameJa": "アレス・ガンシップ"
+      },
+      {
+        "id": "guardian_of_the_throne_crucible",
+        "name": "Guardian of the Throne [Crucible]",
+        "pts": 130,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Imperium",
+          "Guardian of the Throne",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "null_maiden_crucible",
+        "name": "Null Maiden [Crucible]",
+        "pts": 65,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Imperium",
+          "Crucible",
+          "Null Maiden",
+          "Anathema Psykana"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "kataphraktoi_exemplar_crucible",
+        "name": "Kataphraktoi Exemplar [Crucible]",
+        "pts": 150,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Imperium",
+          "Crucible",
+          "Kataphraktoi Exemplar",
+          "Mounted",
+          "Dawneagle Jetbike",
+          "Fly"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -8438,6 +8954,54 @@
           "Servitor Battleclade"
         ],
         "nameJa": "サーヴィター・バトルクレイド"
+      },
+      {
+        "id": "magos_crucible",
+        "name": "Magos [Crucible]",
+        "pts": 70,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Imperium",
+          "Cult Mechanicus",
+          "Magos",
+          "Tech-Priest",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "cohort_commander_crucible",
+        "name": "Cohort Commander [Crucible]",
+        "pts": 45,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Imperium",
+          "Crucible",
+          "Skitarii",
+          "Marshal",
+          "Cohort Commander"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "ironstrider_alpha_crucible",
+        "name": "Ironstrider Alpha [Crucible]",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Imperium",
+          "Crucible",
+          "Skitarii",
+          "Vehicle",
+          "Walker",
+          "Ironstrider Alpha"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -8887,6 +9451,53 @@
           "Ordo Xenos"
         ],
         "nameJa": "アクィラ・キルチーム"
+      },
+      {
+        "id": "martial_agent_crucible",
+        "name": "Martial Agent [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Imperium",
+          "Martial Agent",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "deathwatch_agent_crucible",
+        "name": "Deathwatch Agent [Crucible]",
+        "pts": 105,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Imperium",
+          "Crucible",
+          "Ordo Xenos",
+          "Deathwatch",
+          "Deathwatch Agent"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "enthroned_agent_crucible",
+        "name": "Enthroned Agent [Crucible]",
+        "pts": 120,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Imperium",
+          "Crucible",
+          "Vehicle",
+          "Walker",
+          "Enthroned Agent"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -9434,7 +10045,7 @@
       {
         "id": "rogal_dorn_battle_tank",
         "name": "Rogal Dorn Battle Tank",
-        "pts": 250,
+        "pts": 260,
         "role": "Heavy",
         "categories": [
           "Rogal Dorn Battle Tank",
@@ -9722,7 +10333,7 @@
       {
         "id": "rogal_dorn_commander",
         "name": "Rogal Dorn Commander",
-        "pts": 275,
+        "pts": 290,
         "role": "HQ",
         "categories": [
           "Imperium",
@@ -9804,6 +10415,55 @@
           "Artillery Team"
         ],
         "nameJa": "アーティラリー・チーム"
+      },
+      {
+        "id": "front_line_commander_crucible",
+        "name": "Front-line Commander [Crucible]",
+        "pts": 55,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Imperium",
+          "Grenades",
+          "Officer",
+          "Front-line Commander"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "augmented_bone_ead_crucible",
+        "name": "Augmented Bone 'Ead [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Imperium",
+          "Grenades",
+          "Regiment",
+          "Augmented Bone 'Ead",
+          "Ogryn"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "sentinel_commander_crucible",
+        "name": "Sentinel Commander [Crucible]",
+        "pts": 75,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Crucible",
+          "Imperium",
+          "Officer",
+          "Vehicle",
+          "Walker",
+          "Sentinel Commander"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -10094,7 +10754,7 @@
       {
         "id": "astorath",
         "name": "Astorath",
-        "pts": 95,
+        "pts": 85,
         "role": "HQ",
         "categories": [
           "Epic Hero",
@@ -10835,7 +11495,7 @@
       {
         "id": "brotherhood_terminator_squad",
         "name": "Brotherhood Terminator Squad",
-        "pts": 160,
+        "pts": 150,
         "role": "Battleline",
         "categories": [
           "Battleline",
@@ -11140,6 +11800,54 @@
           "Imperium"
         ],
         "nameJa": "グレイ・ナイト・サンダーホーク・ガンシップ"
+      },
+      {
+        "id": "champion_of_titan_crucible",
+        "name": "Champion of Titan [Crucible]",
+        "pts": 90,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Psyker",
+          "Grenades",
+          "Imperium",
+          "Champion of Titan"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "venerable_daemon_slayer_crucible",
+        "name": "Venerable Daemon Slayer [Crucible]",
+        "pts": 175,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Crucible",
+          "Psyker",
+          "Imperium",
+          "Vehicle",
+          "Walker",
+          "Venerable Daemon Slayer"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "dreadknight_champion_crucible",
+        "name": "Dreadknight Champion [Crucible]",
+        "pts": 210,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Crucible",
+          "Psyker",
+          "Imperium",
+          "Vehicle",
+          "Walker",
+          "Dreadknight Champion"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -11234,7 +11942,7 @@
       {
         "id": "armiger_helverin",
         "name": "Armiger Helverin",
-        "pts": 140,
+        "pts": 135,
         "role": "Heavy",
         "categories": [
           "Vehicle",
@@ -11265,7 +11973,7 @@
       {
         "id": "knight_errant",
         "name": "Knight Errant",
-        "pts": 365,
+        "pts": 355,
         "role": "HQ",
         "categories": [
           "Vehicle",
@@ -11282,7 +11990,7 @@
       {
         "id": "knight_gallant",
         "name": "Knight Gallant",
-        "pts": 365,
+        "pts": 355,
         "role": "HQ",
         "categories": [
           "Vehicle",
@@ -11996,16 +12704,16 @@
         "role": "Heavy",
         "categories": [
           "Vehicle",
-          "Dreadnought",
           "Imperium",
-          "Walker"
+          "Walker",
+          "Dreadnought"
         ],
         "nameJa": "ドレッドノート"
       },
       {
         "id": "redemptor_dreadnought",
         "name": "Redemptor Dreadnought",
-        "pts": 195,
+        "pts": 205,
         "role": "Heavy",
         "categories": [
           "Vehicle",
@@ -12037,10 +12745,10 @@
         "role": "Heavy",
         "categories": [
           "Vehicle",
-          "Dreadnought",
           "Walker",
           "Brutalis Dreadnought",
-          "Imperium"
+          "Imperium",
+          "Dreadnought"
         ],
         "nameJa": "ブルータリス・ドレッドノート"
       },
@@ -12351,7 +13059,7 @@
       {
         "id": "repulsor_executioner",
         "name": "Repulsor Executioner",
-        "pts": 220,
+        "pts": 230,
         "role": "Transport",
         "categories": [
           "Vehicle",
@@ -12641,7 +13349,7 @@
       {
         "id": "lieutenant_with_combi_weapon",
         "name": "Lieutenant with Combi-weapon",
-        "pts": 70,
+        "pts": 85,
         "role": "HQ",
         "categories": [
           "Character",
@@ -12815,6 +13523,55 @@
           "Company Heroes"
         ],
         "nameJa": "カンパニー・ヒーローズ"
+      },
+      {
+        "id": "champion_of_the_chapter_crucible",
+        "name": "Champion of the Chapter [Crucible]",
+        "pts": 70,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Champion of the Chapter",
+          "Tacticus",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "librarius_adept_crucible",
+        "name": "Librarius Adept [Crucible]",
+        "pts": 70,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Psyker",
+          "Tacticus",
+          "Librarius Adept",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "venerable_battle_brother_crucible",
+        "name": "Venerable Battle-Brother [Crucible]",
+        "pts": 160,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Vehicle",
+          "Dreadnought",
+          "Venerable Battle-Brother",
+          "Imperium",
+          "Walker",
+          "Crucible"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -12867,8 +13624,8 @@
           "Character",
           "Epic Hero",
           "Imperium",
-          "Dreadnought",
-          "Bjorn the Fell-Handed"
+          "Bjorn the Fell-Handed",
+          "Dreadnought"
         ],
         "nameJa": "“兇手” ビョルン"
       },
@@ -12985,8 +13742,8 @@
           "Vehicle",
           "Walker",
           "Imperium",
-          "Dreadnought",
-          "Wulfen"
+          "Wulfen",
+          "Dreadnought"
         ],
         "nameJa": "ウルフェン・ドレッドノート"
       },
@@ -13001,9 +13758,9 @@
           "Character",
           "Epic Hero",
           "Imperium",
-          "Dreadnought",
           "Murderfang",
-          "Wulfen"
+          "Wulfen",
+          "Dreadnought"
         ],
         "nameJa": "マーダーファング"
       },
@@ -13135,21 +13892,6 @@
     "group": "Imperium",
     "units": [
       {
-        "id": "captain_sicarius",
-        "name": "Captain Sicarius",
-        "pts": 85,
-        "role": "HQ",
-        "categories": [
-          "Epic Hero",
-          "Character",
-          "Infantry",
-          "Captain",
-          "Imperium",
-          "Sicarius"
-        ],
-        "nameJa": "キャプテン・シカリウス"
-      },
-      {
         "id": "chief_librarian_tigurius",
         "name": "Chief Librarian Tigurius",
         "pts": 75,
@@ -13163,17 +13905,6 @@
           "Chief Librarian Tigurius"
         ],
         "nameJa": "チーフライブラリアン・ティグリウス"
-      },
-      {
-        "id": "marneus_calgar",
-        "name": "Marneus Calgar",
-        "pts": 200,
-        "role": "Other",
-        "categories": [
-          "Imperium",
-          "Infantry"
-        ],
-        "nameJa": "マルネウス・カルガー"
       },
       {
         "id": "roboute_guilliman",
@@ -13290,7 +14021,7 @@
       {
         "id": "wardens_of_ultramar",
         "name": "Wardens of Ultramar",
-        "pts": 90,
+        "pts": 105,
         "role": "Other",
         "categories": [
           "Infantry",
@@ -13600,6 +14331,61 @@
           "Earthshakers"
         ],
         "nameJa": "クトーニアン・アースシェイカー"
+      },
+      {
+        "id": "living_ancestor_crucible",
+        "name": "Living Ancestor [Crucible]",
+        "pts": 70,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Psyker",
+          "Living Ancestor"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "kinhost_commander_crucible",
+        "name": "Kinhost Commander [Crucible]",
+        "pts": 65,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Kinhost Commander",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "steeljack_elder_crucible",
+        "name": "Steeljack Elder [Crucible]",
+        "pts": 80,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Ironkin Steeljacks",
+          "Steeljack Elder"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "berehk_stornbr_w",
+        "name": "Berehk Stornbröw",
+        "pts": 110,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Infantry",
+          "Character",
+          "Cthonian",
+          "Berehk Stornbröw"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -13905,7 +14691,7 @@
       {
         "id": "c_tan_shard_of_the_deceiver",
         "name": "C'tan Shard of the Deceiver",
-        "pts": 285,
+        "pts": 295,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -13919,7 +14705,7 @@
       {
         "id": "c_tan_shard_of_the_nightbringer",
         "name": "C'tan Shard of the Nightbringer",
-        "pts": 315,
+        "pts": 325,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -13933,7 +14719,7 @@
       {
         "id": "c_tan_shard_of_the_void_dragon",
         "name": "C'tan Shard of the Void Dragon",
-        "pts": 310,
+        "pts": 320,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -13947,7 +14733,7 @@
       {
         "id": "transcendent_c_tan",
         "name": "Transcendent C'tan",
-        "pts": 305,
+        "pts": 315,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -14233,7 +15019,7 @@
       {
         "id": "nekrosor_ammentar",
         "name": "Nekrosor Ammentar",
-        "pts": 165,
+        "pts": 185,
         "role": "HQ",
         "categories": [
           "Infantry",
@@ -14243,6 +15029,50 @@
           "Nekrosor Ammentar"
         ],
         "nameJa": "ネクロソー・アメンタール"
+      },
+      {
+        "id": "dynastic_conqueror_crucible",
+        "name": "Dynastic Conqueror [Crucible]",
+        "pts": 85,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Noble",
+          "Dynastic Conqueror",
+          "Crucible"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "hyperscientist_crucible",
+        "name": "Hyperscientist [Crucible]",
+        "pts": 85,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Hyperscientist",
+          "Cryptek"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "triarchal_overseer_crucible",
+        "name": "Triarchal Overseer [Crucible]",
+        "pts": 120,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Crucible",
+          "Vehicle",
+          "Walker",
+          "Triarch",
+          "Triarchal Overseer",
+          "Stalker"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -14937,6 +15767,49 @@
           "Breaka Boyz"
         ],
         "nameJa": "バキンカ・ボゥイ？"
+      },
+      {
+        "id": "hordeboss_crucible",
+        "name": "Hordeboss [Crucible]",
+        "pts": 75,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Hordeboss",
+          "Crucible",
+          "Grenades"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "warphead_crucible",
+        "name": "Warphead [Crucible]",
+        "pts": 65,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Psyker",
+          "Warphead"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "upstart_gretchin_crucible",
+        "name": "Upstart Gretchin [Crucible]",
+        "pts": 40,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Grenades",
+          "Grots",
+          "Upstart Gretchin"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -15114,7 +15987,7 @@
       {
         "id": "stealth_battlesuits",
         "name": "Stealth Battlesuits",
-        "pts": 110,
+        "pts": 100,
         "role": "Other",
         "categories": [
           "Infantry",
@@ -15542,6 +16415,66 @@
           "Krootox Rampagers"
         ],
         "nameJa": "クルートックス・ランペイジャー"
+      },
+      {
+        "id": "shas_nel_crucible",
+        "name": "Shas'nel [Crucible]",
+        "pts": 50,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Grenades",
+          "Shas'nel"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "battlesuit_veteran_crucible",
+        "name": "Battlesuit Veteran [Crucible]",
+        "pts": 60,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Fly",
+          "Battlesuit",
+          "Battlesuit Veteran"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "kinband_champion_crucible",
+        "name": "Kinband Champion [Crucible]",
+        "pts": 55,
+        "role": "HQ",
+        "categories": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Kroot",
+          "Kinband Champion"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "the_twin_lance",
+        "name": "The Twin Lance",
+        "pts": 160,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Vehicle",
+          "Walker",
+          "Fly",
+          "Character",
+          "Battlesuit",
+          "Non-Kroot",
+          "The Twin Lance"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -16003,6 +16936,20 @@
           "Synapse"
         ],
         "nameJa": "ハイヴタイラント"
+      },
+      {
+        "id": "tyranid_prime_with_lash_whip",
+        "name": "Tyranid Prime with Lash Whip",
+        "pts": 85,
+        "role": "HQ",
+        "categories": [
+          "Infantry",
+          "Character",
+          "Great Devourer",
+          "Synapse",
+          "Tyranid Prime with Lash Whip"
+        ],
+        "nameJa": ""
       }
     ]
   }
