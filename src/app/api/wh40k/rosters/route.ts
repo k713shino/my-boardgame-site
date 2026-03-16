@@ -22,6 +22,20 @@ type CreateRosterBody = {
   units?: unknown;
 };
 
+/** DB上の全公開ロスターIDを返す（クライアント側のクリーンアップ用） */
+export async function GET() {
+  try {
+    const rosters = await prisma.roster.findMany({
+      where: { isPublic: true } as { isPublic: boolean },
+      select: { id: true },
+    });
+    return NextResponse.json({ ids: rosters.map((r) => r.id) });
+  } catch {
+    // isPublic 未対応環境では空配列を返す
+    return NextResponse.json({ ids: [] });
+  }
+}
+
 export async function POST(req: Request) {
   const body = (await req.json().catch(() => null)) as CreateRosterBody | null;
 

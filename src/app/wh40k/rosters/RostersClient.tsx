@@ -13,14 +13,28 @@ export function RostersClient() {
 
   useEffect(() => {
     const raw = localStorage.getItem("wh40k_rosters");
+    let localRosters: SavedRoster[] = [];
     if (raw) {
       try {
-        setRosters(JSON.parse(raw));
+        localRosters = JSON.parse(raw);
       } catch {
-        setRosters([]);
+        localRosters = [];
       }
     }
+    setRosters(localRosters);
     setLoaded(true);
+
+    // localStorageにないDB公開ロスターを自動削除（過去の削除漏れをクリーンアップ）
+    const localPublicIds = new Set(localRosters.filter((r) => r.isPublic).map((r) => r.id));
+    fetch("/api/wh40k/rosters")
+      .then((res) => res.json())
+      .then(({ ids }: { ids: string[] }) => {
+        const staleIds = ids.filter((id) => !localPublicIds.has(id));
+        staleIds.forEach((id) => {
+          fetch(`/api/wh40k/rosters/${id}`, { method: "DELETE" }).catch(() => {});
+        });
+      })
+      .catch(() => {});
   }, []);
 
   const deleteRoster = async (id: string) => {
