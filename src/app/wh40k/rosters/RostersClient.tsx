@@ -23,11 +23,15 @@ export function RostersClient() {
     setLoaded(true);
   }, []);
 
-  const deleteRoster = (id: string) => {
+  const deleteRoster = async (id: string) => {
     if (!confirm("このロスターを削除しますか？")) return;
+    const target = rosters.find((r) => r.id === id);
     const updated = rosters.filter((r) => r.id !== id);
     setRosters(updated);
     localStorage.setItem("wh40k_rosters", JSON.stringify(updated));
+    if (target?.isPublic) {
+      await fetch(`/api/wh40k/rosters/${id}`, { method: "DELETE" }).catch(() => {});
+    }
   };
 
   if (!loaded) {

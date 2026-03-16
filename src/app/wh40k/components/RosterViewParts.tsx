@@ -183,7 +183,7 @@ export function RosterUnitsSection({
                       </div>
 
                       <span className={`shrink-0 ${compact ? "text-[0.68rem]" : "text-xs"} font-bold ${meta.text}`}>{entry.pts}pt</span>
-                      {onSetWarlord && (
+                      {onSetWarlord && entry.role === "HQ" && (
                         <button
                           onClick={() => onSetWarlord(isWarlord ? null : entry.entryId)}
                           className={`shrink-0 text-[0.7rem] transition ${isWarlord ? "text-yellow-500 hover:text-yellow-400" : "text-muted hover:text-yellow-500"}`}
