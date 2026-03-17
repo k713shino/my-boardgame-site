@@ -1,12 +1,12 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { RosterDetailClient } from "./RosterDetailClient";
-import type { WeaponSelection } from "../../builder/BuilderClient";
+import { RosterDetailClient } from "../../../rosters/[id]/RosterDetailClient";
+import type { WeaponSelection } from "../../../builder/BuilderClient";
 
 const AUTH_COOKIE = "wh40k_auth";
 
-export default async function RosterDetailPage({
+export default async function FullRosterDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -39,7 +39,7 @@ export default async function RosterDetailPage({
     const cookieStore = await cookies();
     const authCookie = cookieStore.get(AUTH_COOKIE);
     if (!authCookie?.value) {
-      redirect(`/wh40k/auth?from=/wh40k/rosters/${id}`);
+      redirect(`/wh40k/full/auth?from=/wh40k/full/rosters/${id}`);
     }
   }
 
@@ -67,5 +67,14 @@ export default async function RosterDetailPage({
       }
     : null;
 
-  return <RosterDetailClient id={id} initialRoster={initialRoster} showDatasheetLinks={false} authPath="" />;
+  return (
+    <RosterDetailClient
+      id={id}
+      initialRoster={initialRoster}
+      showDatasheetLinks={true}
+      builderPath="/wh40k/full/builder"
+      shareBasePath="/wh40k/full/rosters/share"
+      authPath="/wh40k/full/auth"
+    />
+  );
 }

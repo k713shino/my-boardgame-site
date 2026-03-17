@@ -6,7 +6,13 @@ import type { SavedRoster } from "../builder/BuilderClient";
 
 const ROLE_ORDER = ["HQ", "Battleline", "Transport", "Other", "Heavy"] as const;
 
-export function RostersClient() {
+export function RostersClient({
+  builderPath = "/wh40k/builder",
+  rosterBasePath = "/wh40k/rosters",
+}: {
+  builderPath?: string;
+  rosterBasePath?: string;
+} = {}) {
   const [rosters, setRosters] = useState<SavedRoster[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [search, setSearch] = useState("");
@@ -67,7 +73,7 @@ export function RostersClient() {
           <p className="text-xs text-muted">{rosters.length} 件保存済み</p>
         </div>
         <Link
-          href="/wh40k/builder"
+          href={builderPath}
           className="rounded-full bg-rose-500 px-5 py-2 text-xs font-bold text-white transition hover:bg-rose-400"
         >
           ＋ 新規作成
@@ -91,7 +97,7 @@ export function RostersClient() {
             保存されたロスターがありません
           </p>
           <Link
-            href="/wh40k/builder"
+            href={builderPath}
             className="mt-4 inline-block rounded-full bg-rose-500 px-6 py-2 text-xs font-bold text-white transition hover:bg-rose-400"
           >
             ロスターを作成する
@@ -163,7 +169,7 @@ export function RostersClient() {
 
                 <div className="flex gap-2">
                   <Link
-                    href={`/wh40k/rosters/${roster.id}`}
+                    href={`${rosterBasePath}/${roster.id}`}
                     className="flex-1 rounded-full border border-slate-300/60 py-1.5 text-center text-xs font-semibold transition hover:border-rose-400/60 dark:border-slate-600/60"
                   >
                     詳細を見る

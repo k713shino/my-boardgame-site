@@ -20,7 +20,13 @@ type SharedData = {
   units: RosterEntry[];
 };
 
-export function SharedRosterClient() {
+export function SharedRosterClient({
+  showDatasheetLinks = false,
+  builderPath = "/wh40k/builder",
+}: {
+  showDatasheetLinks?: boolean;
+  builderPath?: string;
+}) {
   const searchParams = useSearchParams();
   const [roster, setRoster] = useState<SharedData | null>(null);
   const [error, setError] = useState(false);
@@ -84,7 +90,7 @@ export function SharedRosterClient() {
           </div>
 
           <Link
-            href="/wh40k/builder"
+            href={builderPath}
             className="rounded-full bg-rose-500 px-4 py-2 text-center text-xs font-bold text-white transition hover:bg-rose-400"
           >
             Builderで複製して編集
@@ -98,7 +104,7 @@ export function SharedRosterClient() {
         <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">Units</h2>
         <RosterUnitsSection
           byRole={byRole}
-          resolveHref={(entry) => resolveUnitDetailUrl(entry, roster.faction)}
+          resolveHref={showDatasheetLinks ? (entry) => resolveUnitDetailUrl(entry, roster.faction) : undefined}
         />
       </section>
     </div>

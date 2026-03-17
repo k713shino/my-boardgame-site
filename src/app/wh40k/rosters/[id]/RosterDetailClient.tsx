@@ -16,9 +16,17 @@ import { trackRosterShare } from "@/lib/gtag";
 export function RosterDetailClient({
   id,
   initialRoster = null,
+  showDatasheetLinks = false,
+  builderPath = "/wh40k/builder",
+  shareBasePath = "/wh40k/rosters/share",
+  authPath = "/wh40k/auth",
 }: {
   id: string;
   initialRoster?: SavedRoster | null;
+  showDatasheetLinks?: boolean;
+  builderPath?: string;
+  shareBasePath?: string;
+  authPath?: string;
 }) {
   const router = useRouter();
   const [roster, setRoster] = useState<SavedRoster | null>(initialRoster);
@@ -40,13 +48,13 @@ export function RosterDetailClient({
         const rosters: SavedRoster[] = JSON.parse(raw);
         const found = rosters.find((r) => r.id === id);
         if (found) {
-          if (found.isPublic === false) {
+          if (authPath && found.isPublic === false) {
             // 非公開ロスターは認証Cookieをサーバー側で検証
             fetch("/api/wh40k/auth/check")
               .then((res) => res.json())
               .then(({ authenticated }: { authenticated: boolean }) => {
                 if (!authenticated) {
-                  router.replace(`/wh40k/auth?from=/wh40k/rosters/${id}`);
+                  router.replace(`${authPath}?from=${window.location.pathname}`);
                 } else {
                   setRoster(found);
                   setLoaded(true);
@@ -54,7 +62,7 @@ export function RosterDetailClient({
               })
               .catch(() => {
                 // 通信エラー時は念のため認証ページへ
-                router.replace(`/wh40k/auth?from=/wh40k/rosters/${id}`);
+                router.replace(`${authPath}?from=${window.location.pathname}`);
               });
             return;
           }
@@ -81,7 +89,7 @@ export function RosterDetailClient({
       units: roster.units,
     };
     const encoded = btoa(encodeURIComponent(JSON.stringify(data)));
-    const url = `${window.location.origin}/wh40k/rosters/share?d=${encoded}`;
+    const url = `${window.location.origin}${shareBasePath}?d=${encoded}`;
     navigator.clipboard
       ?.writeText(url)
       .then(() => {
@@ -184,7 +192,7 @@ export function RosterDetailClient({
 
           <div className="grid grid-cols-2 gap-2 sm:w-auto sm:grid-cols-1">
             <Link
-              href={`/wh40k/builder?edit=${roster.id}`}
+              href={`${builderPath}?edit=${roster.id}`}
               className="rounded-full border border-slate-300/60 px-4 py-2 text-center text-xs font-semibold transition hover:border-rose-400/60 dark:border-slate-600/60"
             >
               Builderで編集
@@ -211,7 +219,7 @@ export function RosterDetailClient({
         <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">Units</h2>
         <RosterUnitsSection
           byRole={byRole}
-          resolveHref={(entry) => resolveUnitDetailUrl(entry, roster.faction)}
+          resolveHref={showDatasheetLinks ? (entry) => resolveUnitDetailUrl(entry, roster.faction) : undefined}
         />
       </section>
 

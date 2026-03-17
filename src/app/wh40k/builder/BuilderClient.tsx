@@ -897,17 +897,23 @@ function UnitCardList({
                     }`}
                   >
                     <div className="min-w-0 flex-1">
-                      <Link
-                        href={`/wh40k/units/${unit.slug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className={`truncate text-xs font-semibold underline decoration-dotted underline-offset-2 transition hover:opacity-70 ${
-                          active ? meta.text : ""
-                        }`}
-                      >
-                        {unit.name}
-                      </Link>
+                      {showDatasheetLinks ? (
+                        <Link
+                          href={`/wh40k/units/${unit.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className={`truncate text-xs font-semibold underline decoration-dotted underline-offset-2 transition hover:opacity-70 ${
+                            active ? meta.text : ""
+                          }`}
+                        >
+                          {unit.name}
+                        </Link>
+                      ) : (
+                        <span className={`truncate text-xs font-semibold ${active ? meta.text : ""}`}>
+                          {unit.name}
+                        </span>
+                      )}
                       {unit.nameJa && (
                         <p className="truncate text-[0.6rem] text-muted">{unit.nameJa}</p>
                       )}
@@ -1351,11 +1357,17 @@ export function BuilderClient({
   editId,
   addFaction,
   addUnitSlug,
+  showDatasheetLinks = false,
+  shareBasePath = "/wh40k/rosters/share",
+  rosterBasePath = "/wh40k/rosters",
 }: {
   factions: FactionListItem[];
   editId?: string;
   addFaction?: string;
   addUnitSlug?: string;
+  showDatasheetLinks?: boolean;
+  shareBasePath?: string;
+  rosterBasePath?: string;
 }) {
   const [selectedFaction, setSelectedFaction] = useState<FactionListItem | null>(
     () => (addFaction ? (factions.find((f) => f.id === addFaction) ?? null) : null)
@@ -1727,7 +1739,7 @@ export function BuilderClient({
 
       trackRosterCreate({ faction: selectedFaction.id, points: totalPts, unit_count: roster.length, is_public: true });
       setPublicSaveStatus("published");
-      window.location.href = created.detailUrl;
+      window.location.href = `${rosterBasePath}/${created.id}`;
     } catch {
       setPublicSaveStatus("idle");
       alert("公開ロスターの保存に失敗しました。DB 接続を確認してください。");
@@ -1738,7 +1750,7 @@ export function BuilderClient({
     if (!selectedFaction || roster.length === 0) return;
     const data = { name: rosterName, faction: selectedFaction.id, factionName: selectedFaction.name, detachment: detachment || undefined, pointsLimit, units: roster, warlordEntryId: warlordEntryId ?? undefined };
     const encoded = btoa(encodeURIComponent(JSON.stringify(data)));
-    const url = `${window.location.origin}/wh40k/rosters/share?d=${encoded}`;
+    const url = `${window.location.origin}${shareBasePath}?d=${encoded}`;
     navigator.clipboard?.writeText(url)
       .then(() => {
         trackRosterShare({ roster_id: "builder", faction: selectedFaction.id });
