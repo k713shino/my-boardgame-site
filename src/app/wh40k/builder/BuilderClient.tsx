@@ -45,6 +45,7 @@ export type BuilderUnit = {
 export type WeaponOption = {
   id: string;
   name: string;
+  nameJa?: string;
   pointsDelta: number;
   sortOrder: number;
 };
@@ -420,7 +421,10 @@ function WeaponModal({
                                   )}
                                 </span>
                                 <span className={`flex-1 text-xs font-medium ${selected ? sc.text : ""}`}>
-                                  {opt.name}
+                                  {opt.nameJa ?? opt.name}
+                                  {opt.nameJa && (
+                                    <span className="ml-1 text-[0.6rem] text-muted font-normal">{opt.name}</span>
+                                  )}
                                   {count > 1 && (
                                     <span className="ml-1 text-[0.6rem] font-bold">×{count}</span>
                                   )}
@@ -1662,6 +1666,7 @@ export function BuilderClient({
             options: enhancements.map((e, i) => ({
               id: `__enh_${i}__`,
               name: e.name,
+              nameJa: e.nameJa,
               pointsDelta: e.pts,
               sortOrder: i,
             })),
