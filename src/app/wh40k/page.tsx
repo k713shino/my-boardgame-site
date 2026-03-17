@@ -88,7 +88,7 @@ export default function WH40KHubPage() {
 
       {/* Note */}
       <p className="rounded-xl border border-amber-300/40 bg-amber-50/50 px-4 py-3 text-[0.65rem] leading-relaxed text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/5 dark:text-amber-400">
-        ⚠️ ポイントデータは BSData/wh40k-10e より抽出しています。大会使用前は必ず GW 公式{" "}
+        ⚠️ 大会使用前は必ず GW 公式{" "}
         <strong>Munitorum Field Manual</strong> で確認してください。
       </p>
     </div>

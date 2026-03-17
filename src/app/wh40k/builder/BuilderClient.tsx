@@ -826,6 +826,7 @@ type UnitCardListProps = {
   allyKnightsInRoster?: number;
   onAddAllyUnit?: (unit: BuilderUnit, allyFaction: string) => void;
   onRemoveAllyUnit?: (unitId: string) => void;
+  showDatasheetLinks?: boolean;
 };
 
 function UnitCardList({
@@ -846,6 +847,7 @@ function UnitCardList({
   allyKnightsInRoster = 0,
   onAddAllyUnit,
   onRemoveAllyUnit,
+  showDatasheetLinks = false,
 }: UnitCardListProps) {
   const [allyExpanded, setAllyExpanded] = useState(false);
   const hasAllies = allyAgents.length > 0 || allyKnights.length > 0;
@@ -1908,6 +1910,7 @@ export function BuilderClient({
               allyKnightsInRoster={allyKnightsInRoster}
               onAddAllyUnit={(unit, allyFaction) => handleAddUnit(unit, allyFaction)}
               onRemoveAllyUnit={removeLastUnit}
+              showDatasheetLinks={showDatasheetLinks}
             />
 
             <RosterSidebar

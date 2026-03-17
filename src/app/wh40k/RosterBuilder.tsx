@@ -751,19 +751,9 @@ export function RosterBuilder({ factions }: { factions: Faction[] }) {
 
               {/* Warning */}
               <p className="rounded-xl border border-amber-300/40 bg-amber-50/50 px-4 py-3 text-[0.65rem] leading-relaxed text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/5 dark:text-amber-400">
-                ⚠️ ポイントデータは{" "}
-                <a
-                  href="https://github.com/BSData/wh40k-10e"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline decoration-dotted"
-                >
-                  BSData/wh40k-10e
-                </a>{" "}
-                から自動抽出しています。更新遅れ・誤りがある場合があります。
+                ⚠️ ポイントデータは更新遅れ・誤りがある場合があります。
                 大会使用前は必ず GW 公式{" "}
                 <strong>Munitorum Field Manual</strong>（無料 PDF）で確認してください。
-                ポイント数字はクリックして手動編集できます。
               </p>
             </>
           )}
