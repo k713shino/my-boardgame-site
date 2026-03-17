@@ -401,6 +401,662 @@ export const ENHANCEMENTS: EnhancementMap = {
     ],
   },
 
+  // ─── Grey Knights ─────────────────────────────────────────────────────────
+  grey_knights: {
+    "Brotherhood Strike": [
+      { name: "Banishing Wave",           nameJa: "退魔の波動",            pts: 20 },
+      { name: "Blinding Aura",            nameJa: "まばゆきオーラ",        pts: 10 },
+      { name: "Purity of Purpose",        nameJa: "純然たる決意",          pts: 15 },
+      { name: "Tome of Forbidden Ways",   nameJa: "禁じられし道の書",      pts: 25 },
+    ],
+    "Hallowed Conclave": [
+      { name: "Eye of the Augurium",      nameJa: "予兆の目",              pts: 25 },
+      { name: "Inescapable Judgement",    nameJa: "免れ得ぬ裁き",          pts: 20 },
+      { name: "Nemesis Rounds",           nameJa: "ネメシス弾",            pts: 10 },
+      { name: "Sanctic Reaper",           nameJa: "神聖なる死神",          pts: 15 },
+    ],
+    "Banishers": [
+      { name: "Pyresoul",                 nameJa: "魂の猛火",              pts: 20 },
+      { name: "Sigil of the Hunt",        nameJa: "狩りの印章",            pts: 10 },
+      { name: "The Ephemeral Tome",       nameJa: "刹那の大冊",            pts: 15 },
+      { name: "The Sixty-sixth Seal",     nameJa: "第六十六の封印",        pts: 25 },
+    ],
+    "Sanctic Spearhead": [
+      { name: "Driven by Duty",           pts: 10 },
+      { name: "Quickening Foci",          pts: 15 },
+      { name: "Sigil of Exigence",        pts: 30 },
+      { name: "Spiritus Machina",         pts: 25 },
+    ],
+    "Augurium Task Force": [
+      { name: "A Foot in the Future",     nameJa: "未来への足取り",        pts: 15 },
+      { name: "Doomseer's Amulet",        nameJa: "終末予言者のアミュレット", pts: 25 },
+      { name: "Grimoire of Conjunctions", nameJa: "星合のグリモワール",    pts: 10 },
+      { name: "Shield of Prophecy",       nameJa: "預言の盾",              pts: 20 },
+    ],
+    "Warpbane Task Force": [
+      { name: "Mandulian Reliquary",      pts: 20 },
+      { name: "Paragon of Sanctity",      pts: 10 },
+      { name: "Phial of the Abyss",       pts: 25 },
+      { name: "Radiant Champion",         pts: 15 },
+    ],
+  },
+
+  // ─── Adepta Sororitas ─────────────────────────────────────────────────────
+  adepta_sororitas: {
+    "Hallowed Martyrs": [
+      { name: "Chaplet of Sacrifice",     pts: 25 },
+      { name: "Mantle of Ophelia",        pts: 20 },
+      { name: "Saintly Example",          pts: 10 },
+      { name: "Through Suffering, Strength", pts: 25 },
+    ],
+    "Penitent Host": [
+      { name: "Catechism of Divine Penitence", pts: 20 },
+      { name: "Psalm of Righteous Judgement",  pts: 30 },
+      { name: "Refrain of Enduring Faith",     pts: 25 },
+      { name: "Verse of Holy Piety",           pts: 15 },
+    ],
+    "Bringers of Flame": [
+      { name: "Fire and Fury",            pts: 30 },
+      { name: "Iron Surplice of Saint Istalela", pts: 10 },
+      { name: "Manual of Saint Griselda", pts: 20 },
+      { name: "Righteous Rage",           pts: 15 },
+    ],
+    "Army of Faith": [
+      { name: "Blade of Saint Ellynor",   pts: 15 },
+      { name: "Divine Aspect",            pts: 5  },
+      { name: "Litanies of Faith",        pts: 10 },
+      { name: "Triptych of the Macharian Crusade", pts: 20 },
+    ],
+    "Champions of Faith": [
+      { name: "Eyes of the Oracle",       pts: 10 },
+      { name: "Mark of Devotion",         pts: 30 },
+      { name: "Sanctified Amulet",        pts: 25 },
+      { name: "Triptych of Judgement",    pts: 15 },
+    ],
+  },
+
+  // ─── Adeptus Custodes ─────────────────────────────────────────────────────
+  adeptus_custodes: {
+    "Talons of the Emperor": [
+      { name: "Aegis Projector",          pts: 20 },
+      { name: "Champion of the Imperium", pts: 25 },
+      { name: "Gift of Terran Artifice",  pts: 15 },
+      { name: "Radiant Mantle",           pts: 30 },
+    ],
+    "Shield Host": [
+      { name: "Auric Mantle",             pts: 15 },
+      { name: "Castellan's Mark",         pts: 20 },
+      { name: "From the Hall of Armouries", pts: 25 },
+      { name: "Panoptispex",              pts: 5  },
+    ],
+    "Null Maiden Vigil": [
+      { name: "Enhanced Voidsheen Cloak", pts: 10 },
+      { name: "Huntress' Eye",            pts: 15 },
+      { name: "Oblivion Knight",          pts: 25 },
+      { name: "Raptor Blade",             pts: 5  },
+    ],
+    "Auric Champions": [
+      { name: "Blade Imperator",          pts: 25 },
+      { name: "Inspirational Exemplar",   pts: 10 },
+      { name: "Martial Philosopher",      pts: 30 },
+      { name: "Veiled Blade",             pts: 25 },
+    ],
+    "Solar Spearhead": [
+      { name: "Adamantine Talisman",      pts: 25 },
+      { name: "Augury Uplink",            pts: 35 },
+      { name: "Honoured Fallen",          pts: 15 },
+      { name: "Veteran of the Kataphraktoi", pts: 10 },
+    ],
+    "Lions of the Emperor": [
+      { name: "Admonimortis",             pts: 10 },
+      { name: "Fierce Conqueror",         pts: 15 },
+      { name: "Praesidius",               pts: 25 },
+      { name: "Superior Creation",        pts: 25 },
+    ],
+  },
+
+  // ─── Adeptus Mechanicus ───────────────────────────────────────────────────
+  adeptus_mechanicus: {
+    "Rad-Zone Corps": [
+      { name: "Autoclavic Denunciation",  pts: 15 },
+      { name: "Malphonic Susurrus",       pts: 20 },
+      { name: "Peerless Eradicator",      pts: 20 },
+      { name: "Radial Suffusion",         pts: 25 },
+    ],
+    "Skitarii Hunter Cohort": [
+      { name: "Battle-sphere Uplink",     pts: 30 },
+      { name: "Cantic Thrallnet",         pts: 25 },
+      { name: "Clandestine Infiltrator",  pts: 20 },
+      { name: "Veiled Hunter",            pts: 10 },
+    ],
+    "Data-Psalm Conclave": [
+      { name: "Data-blessed Autosermon",  pts: 20 },
+      { name: "Mantle of the Gnosticarch", pts: 15 },
+      { name: "Mechanicus Locum",         pts: 10 },
+      { name: "Temporcopia",              pts: 25 },
+    ],
+    "Explorator Maniple": [
+      { name: "Artisan",                  pts: 15 },
+      { name: "Genetor",                  pts: 25 },
+      { name: "Logis",                    pts: 20 },
+      { name: "Magos",                    pts: 15 },
+    ],
+    "Cohort Cybernetica": [
+      { name: "Arch-negator",             pts: 10 },
+      { name: "Emotionless Clarity",      pts: 15 },
+      { name: "Lord of Machines",         pts: 20 },
+      { name: "Necromechanic",            pts: 25 },
+    ],
+    "Haloscreed Battle Clade": [
+      { name: "Cognitive Reinforcement",  pts: 35 },
+      { name: "Inloaded Lethality",       pts: 15 },
+      { name: "Sanctified Ordnance",      pts: 10 },
+      { name: "Transoracular Dyad Wafers", pts: 15 },
+    ],
+  },
+
+  // ─── Astra Militarum ─────────────────────────────────────────────────────
+  astra_militarum: {
+    "Combined Arms": [
+      { name: "Death Mask of Ollanius",   pts: 10 },
+      { name: "Drill Commander",          pts: 20 },
+      { name: "Grand Strategist",         pts: 15 },
+      { name: "Reactive Command",         pts: 15 },
+    ],
+    "Siege Regiment": [
+      { name: "Eager Advance",            pts: 20 },
+      { name: "Flash Grenades",           pts: 20 },
+      { name: "Legacy Sidearm",           pts: 10 },
+      { name: "Stalwart's Honours",       pts: 15 },
+    ],
+    "Mechanised Assault": [
+      { name: "Bold Leadership",          pts: 25 },
+      { name: "Sacred Unguents",          pts: 10 },
+      { name: "Smoke Grenades",           pts: 10 },
+      { name: "Vanguard Honours",         pts: 15 },
+    ],
+    "Hammer of the Emperor": [
+      { name: "Calm Under Fire",          pts: 15 },
+      { name: "Indomitable Steed",        pts: 15 },
+      { name: "Regimental Banner",        pts: 20 },
+      { name: "Veteran Crew",             pts: 20 },
+    ],
+    "Recon Element": [
+      { name: "Guerrilla Honours",        pts: 25 },
+      { name: "Scare Gas Grenades",       pts: 5  },
+      { name: "Survival Gear",            pts: 5  },
+      { name: "Tripwires",                pts: 20 },
+    ],
+    "Bridgehead Strike": [
+      { name: "Advance Augury",           pts: 15 },
+      { name: "Bombast-class Vox-array",  pts: 35 },
+      { name: "Priority-drop Beacon",     pts: 30 },
+      { name: "Shroud Projector",         pts: 15 },
+    ],
+    "Grizzled Company": [
+      { name: "Abhuman Detail",           pts: 20 },
+      { name: "Aquilan Eye",              pts: 20 },
+      { name: "Laud Hailer",              pts: 10 },
+      { name: "Spec Ops Veteran",         pts: 15 },
+    ],
+  },
+
+  // ─── T'au Empire ──────────────────────────────────────────────────────────
+  t_au_empire: {
+    "Kauyon": [
+      { name: "Exemplar of the Kauyon",           pts: 20 },
+      { name: "Precision of the Patient Hunter",  pts: 15 },
+      { name: "Solid-image Projection Unit",      pts: 30 },
+      { name: "Through Unity, Devastation",       pts: 40 },
+    ],
+    "Mont'ka": [
+      { name: "Coordinated Exploitation",         pts: 40 },
+      { name: "Exemplar of the Mont'ka",          pts: 10 },
+      { name: "Strategic Conqueror",              pts: 15 },
+      { name: "Strike Swiftly",                   pts: 25 },
+    ],
+    "Retaliation Cadre": [
+      { name: "Internal Grenade Racks",           pts: 20 },
+      { name: "Prototype Weapon System",          pts: 15 },
+      { name: "Puretide Engram Neurochip",        pts: 25 },
+      { name: "Starflare Ignition System",        pts: 20 },
+    ],
+    "Kroot Hunting Pack": [
+      { name: "Borthrod Gland",                   pts: 15 },
+      { name: "Kroothawk Flock",                  pts: 10 },
+      { name: "Nomadic Hunter",                   pts: 20 },
+      { name: "Root-carved Weapons",              pts: 10 },
+    ],
+    "Auxiliary Cadre": [
+      { name: "Admired Leader",                   pts: 20 },
+      { name: "Fanatical Convert",                pts: 10 },
+      { name: "Student of Kauyon",                pts: 15 },
+      { name: "Transponder Lock Module",          pts: 25 },
+    ],
+    "Experimental Prototype Cadre": [
+      { name: "Fusion Blades",                    pts: 25 },
+      { name: "Plasma Accelerator Rifle",         pts: 10 },
+      { name: "Supernova Launcher",               pts: 15 },
+      { name: "Thermoneutronic Projector",        pts: 20 },
+    ],
+  },
+
+  // ─── Genestealer Cults ────────────────────────────────────────────────────
+  genestealer_cults: {
+    "Host of Ascension": [
+      { name: "A Chink in Their Armour",  pts: 20 },
+      { name: "Assassination Edict",      pts: 15 },
+      { name: "Our Time Is Nigh",         pts: 20 },
+      { name: "Prowling Agitant",         pts: 15 },
+    ],
+    "Xenocreed Congregation": [
+      { name: "Deeds That Speak to the Masses", pts: 25 },
+      { name: "Denunciator of Tyrants",   pts: 25 },
+      { name: "Gene-sire's Reliquant",    pts: 5  },
+      { name: "Incendiary Inspiration",   pts: 15 },
+    ],
+    "Biosanctic Broodsurge": [
+      { name: "Alien Majesty",            pts: 15 },
+      { name: "Biomorph Adaptation",      pts: 25 },
+      { name: "Mutagenic Regeneration",   pts: 10 },
+      { name: "Predatory Instincts",      pts: 20 },
+    ],
+    "Outlander Claw": [
+      { name: "Assault Commando",         pts: 15 },
+      { name: "Cartographic Data-leech",  pts: 10 },
+      { name: "Serpentine Tactics",       pts: 10 },
+      { name: "Starfall Shells",          pts: 10 },
+    ],
+    "Brood Brother Auxilia": [
+      { name: "Adaptive Reprisal",        pts: 15 },
+      { name: "Firepoint Commander",      pts: 10 },
+      { name: "Martial Espionage",        pts: 25 },
+      { name: "The Hero Returned",        pts: 20 },
+    ],
+    "Final Day": [
+      { name: "Enraptured Damnation",     pts: 10 },
+      { name: "Inhuman Integration",      pts: 20 },
+      { name: "Synaptic Auger",           pts: 15 },
+      { name: "Vanguard Tyrant",          pts: 25 },
+    ],
+  },
+
+  // ─── Leagues of Votann ────────────────────────────────────────────────────
+  leagues_of_votann: {
+    "Needgaârd Oathband": [
+      { name: "Ancestral Crest",          pts: 15 },
+      { name: "Dead Reckoning",           pts: 10 },
+      { name: "Iron Ambassador",          pts: 5  },
+      { name: "Oathbound Speculator",     pts: 30 },
+    ],
+    "Persecution Prospect": [
+      { name: "Eye for Weakness",         pts: 25 },
+      { name: "Nomad Strategist",         pts: 20 },
+      { name: "Surgical Saboteur",        pts: 10 },
+      { name: "Writ of Acquisition",      pts: 10 },
+    ],
+    "Dêlve Assault Shift": [
+      { name: "Dêlvwerke Navigator",      pts: 25 },
+      { name: "Multiwave System Jammer",  pts: 10 },
+      { name: "Piledriver",               pts: 15 },
+      { name: "Quake Supervisor",         pts: 20 },
+    ],
+    "Brandfast Oathband": [
+      { name: "Precursive Judgement",     pts: 15 },
+      { name: "Signature Restoration",    pts: 5  },
+      { name: "Tactical Alchemy",         pts: 10 },
+      { name: "Trivärg Cyber Implant",    pts: 40 },
+    ],
+    "Hearthfyre Arsenal": [
+      { name: "Calculated Tenacity",      pts: 15 },
+      { name: "Fârstrydr Node",           pts: 20 },
+      { name: "Graviton Vault",           pts: 5  },
+      { name: "Mantle of Elders",         pts: 10 },
+    ],
+    "Hearthband": [
+      { name: "Bastion Shield",           pts: 25 },
+      { name: "High Kâhl",                pts: 30 },
+      { name: "Ironskein",                pts: 10 },
+      { name: "Quake Multigenerator",     pts: 15 },
+    ],
+    "Mercenary Oathband": [
+      { name: "Asset Manipulator",        pts: 25 },
+      { name: "Etacarn SB9 Targeting Implant", pts: 15 },
+      { name: "Mercenary Prospector",     pts: 20 },
+      { name: "Metaphysical Brokerage",   pts: 20 },
+    ],
+  },
+
+  // ─── Death Guard ──────────────────────────────────────────────────────────
+  death_guard: {
+    "Virulent Vectorium": [
+      { name: "Arch Contaminator",        pts: 25 },
+      { name: "Daemon Weapon of Nurgle",  pts: 10 },
+      { name: "Furnace of Plagues",       pts: 25 },
+      { name: "Revolting Regeneration",   pts: 20 },
+    ],
+    "Mortarion's Hammer": [
+      { name: "Bilemaw Blight",           nameJa: "バイルモウの悪疫",      pts: 10 },
+      { name: "Eye of Affliction",        nameJa: "苦悶の眼",              pts: 20 },
+      { name: "Shriekworm Familiar",      nameJa: "叫び蟲の使い魔",        pts: 15 },
+      { name: "Tendrilous Emissions",     nameJa: "湧き出る触手",          pts: 30 },
+    ],
+    "Champions of Contagion": [
+      { name: "Cornucophagus",            nameJa: "豊饒の鞴",              pts: 35 },
+      { name: "Final Ingredient",         nameJa: "決め手の成分",          pts: 20 },
+      { name: "Needle of Nurgle",         nameJa: "ナーグル神の針",        pts: 25 },
+      { name: "Visions of Virulence",     nameJa: "腐敗の幻視",            pts: 15 },
+    ],
+    "Tallyband Summoners": [
+      { name: "Beckoning Blight",         pts: 20 },
+      { name: "Entropic Knell",           pts: 15 },
+      { name: "Fell Harvester",           pts: 10 },
+      { name: "Tome of Bounteous Blessings", pts: 20 },
+    ],
+    "Shamblerot Vectorium": [
+      { name: "Lord of the Walking Pox",  pts: 15 },
+      { name: "Sorrowsyphon",             pts: 10 },
+      { name: "Talisman of Burgeoning",   pts: 25 },
+      { name: "Witherbone Pipes",         pts: 25 },
+    ],
+    "Death Lord's Chosen": [
+      { name: "Face of Death",            nameJa: "死の面容",              pts: 10 },
+      { name: "Helm of the Fly King",     nameJa: "蠅王の兜",              pts: 20 },
+      { name: "Vile Vigour",              nameJa: "不浄なる活力",          pts: 15 },
+      { name: "Warprot Talisman",         nameJa: "歪み腐れの護符",        pts: 30 },
+    ],
+    "Flyblown Host": [
+      { name: "Droning Chorus",           nameJa: "鬱々たる合唱",          pts: 15 },
+      { name: "Insectile Murmuration",    nameJa: "毒蟲の騒乱",            pts: 20 },
+      { name: "Plagueveil",               nameJa: "悪疫の帷",              pts: 25 },
+      { name: "Rejuvenating Swarm",       nameJa: "再生の大群",            pts: 10 },
+    ],
+  },
+
+  // ─── Thousand Sons ────────────────────────────────────────────────────────
+  thousand_sons: {
+    "Grand Coven": [
+      { name: "Eldritch Vortex of E'taph", pts: 35 },
+      { name: "Incandaeum",               pts: 15 },
+      { name: "Lord of Forbidden Lore",   pts: 20 },
+      { name: "Umbralefic Crystal",       pts: 20 },
+    ],
+    "Changehost of Deceit": [
+      { name: "Diabolic Savant",          pts: 20 },
+      { name: "Duplicitous Malediction",  pts: 15 },
+      { name: "Nethershriek Mind-eater",  pts: 10 },
+      { name: "Tome of True Names",       pts: 20 },
+    ],
+    "Warpmeld Pact": [
+      { name: "Bray Lord",                pts: 15 },
+      { name: "Diamond of Distortion",    pts: 20 },
+      { name: "Flowing Flesh",            pts: 10 },
+      { name: "Warpmeld Dagger",          pts: 10 },
+    ],
+    "Rubricae Phalanx": [
+      { name: "Arcane Thralls",           pts: 5  },
+      { name: "Lord of the Rubricae",     pts: 15 },
+      { name: "Risen Rubricae",           pts: 30 },
+      { name: "The Stave Abominus",       pts: 20 },
+    ],
+    "Warpforged Cabal": [
+      { name: "Biomechanical Mutation",   pts: 15 },
+      { name: "The Perplexing Cloak",     pts: 20 },
+      { name: "Warp Syphon",             pts: 5  },
+      { name: "Warp-cursed Runemaster",   pts: 10 },
+    ],
+    "Hexwarp Thrallband": [
+      { name: "Arcane Might",             pts: 20 },
+      { name: "Empowered Manifestation",  pts: 20 },
+      { name: "Empyric Onslaught",        pts: 25 },
+      { name: "Noctilith Mantle",         pts: 15 },
+    ],
+  },
+
+  // ─── World Eaters ─────────────────────────────────────────────────────────
+  world_eaters: {
+    "Berzerker Warband": [
+      { name: "Battle-lust",              nameJa: "闘争への渇望",          pts: 10 },
+      { name: "Berzerker Glaive",         nameJa: "狂戦士の薙刀",          pts: 35 },
+      { name: "Favoured of Khorne",       nameJa: "コーンの寵愛",          pts: 15 },
+      { name: "Helm of Brazen Ire",       nameJa: "燃えたつ憤怒の兜",      pts: 30 },
+    ],
+    "Cult of Blood": [
+      { name: "Brazen Form",              nameJa: "真鍮の肉体",            pts: 25 },
+      { name: "Butcher Lord",             pts: 10 },
+      { name: "Chosen of the Blood God",  pts: 15 },
+      { name: "Strategic Slaughter",      pts: 20 },
+    ],
+    "Khorne Daemonkin": [
+      { name: "Blade of Endless Bloodshed", pts: 30 },
+      { name: "Blood-forged Armour",      pts: 20 },
+      { name: "Disciple of Khorne",       pts: 15 },
+      { name: "Icon of War",              pts: 25 },
+    ],
+    "Possessed Slaughterband": [
+      { name: "Frenzied Focus",           pts: 20 },
+      { name: "Killing Clarity",          pts: 15 },
+      { name: "Malicious Vigour",         pts: 30 },
+      { name: "Violent Demise",           pts: 10 },
+    ],
+    "Goretrack Onslaught": [
+      { name: "Aggressive Deployment",    pts: 20 },
+      { name: "Infernal Infusion",        pts: 25 },
+      { name: "Murderous Onslaught",      pts: 5  },
+      { name: "Unleash Hell",             pts: 10 },
+    ],
+    "Vessels of Wrath": [
+      { name: "Archslaughterer",          pts: 25 },
+      { name: "Avenger's Crown",          pts: 15 },
+      { name: "Gateways to Glory",        pts: 10 },
+      { name: "Vox-diabolus",             pts: 20 },
+    ],
+  },
+
+  // ─── Emperor's Children ───────────────────────────────────────────────────
+  emperor_s_children: {
+    "Mercurial Host": [
+      { name: "Intoxicating Musk",        pts: 20 },
+      { name: "Loathsome Dexterity",      pts: 10 },
+      { name: "Steeped in Suffering",     pts: 20 },
+      { name: "Tactical Perfection",      pts: 15 },
+    ],
+    "Peerless Bladesmen": [
+      { name: "Blinding Speed",           pts: 25 },
+      { name: "Distortion",               pts: 25 },
+      { name: "Faultless Opportunist",    pts: 15 },
+      { name: "Rise to the Challenge",    pts: 30 },
+    ],
+    "Rapid Evisceration": [
+      { name: "Accomplished Tactician",   pts: 35 },
+      { name: "Heretek Adept",            pts: 35 },
+      { name: "Spearhead Striker",        pts: 20 },
+      { name: "Sublime Prescience",       pts: 25 },
+    ],
+    "Carnival of Excess": [
+      { name: "Dark Blessings",           pts: 10 },
+      { name: "Empyric Suffusion",        pts: 15 },
+      { name: "Possessed Blade",          pts: 25 },
+      { name: "Warp Walker",              pts: 30 },
+    ],
+    "Coterie of the Conceited": [
+      { name: "Pledge of Dark Glory",     pts: 25 },
+      { name: "Pledge of Eternal Servitude", pts: 25 },
+      { name: "Pledge of Mortal Pain",    pts: 15 },
+      { name: "Pledge of Unholy Fortune", pts: 30 },
+    ],
+    "Slaanesh's Chosen": [
+      { name: "Eager to Prove",           pts: 15 },
+      { name: "Proud and Vainglorious",   pts: 20 },
+      { name: "Repulsed by Weakness",     pts: 25 },
+      { name: "Slayer of Champions",      pts: 15 },
+    ],
+    "Court of the Phoenician": [
+      { name: "Exalted Patron",           pts: 15 },
+      { name: "Soulstain Made Manifest",  pts: 15 },
+      { name: "Spiritsliver",             pts: 20 },
+      { name: "Tears of the Phoenix",     pts: 25 },
+    ],
+  },
+
+  // ─── Chaos Daemons ────────────────────────────────────────────────────────
+  chaos_daemons: {
+    "Daemonic Incursion": [
+      { name: "A'rgath, the King of Blades", nameJa: "\"刃を統べしもの\"ア＝ルガス", pts: 20 },
+      { name: "Soulstealer",              nameJa: "魂盗み",                pts: 15 },
+      { name: "The Endless Gift",         nameJa: "終わりなき恵み",        pts: 30 },
+      { name: "The Everstave",            nameJa: "久遠の杖",              pts: 25 },
+    ],
+    "Shadow Legion": [
+      { name: "Fade to Darkness",         pts: 30 },
+      { name: "Leaping Shadows",          pts: 25 },
+      { name: "Malice Made Manifest",     pts: 25 },
+      { name: "Mantle of Gloom",          pts: 20 },
+    ],
+    "Blood Legion": [
+      { name: "Brazenmaw",                nameJa: "真鍮の大口",            pts: 15 },
+      { name: "Fury's Cage",              nameJa: "激怒の檻",              pts: 20 },
+      { name: "Gateway Unto Damnation",   nameJa: "破滅の大門",            pts: 10 },
+      { name: "Slaughterthirst",          nameJa: "殺戮の渇望",            pts: 25 },
+    ],
+    "Legion of Excess": [
+      { name: "Avatar of Perfection",     nameJa: "完成の化身",            pts: 15 },
+      { name: "Dreaming Crown",           nameJa: "夢の宝冠",              pts: 30 },
+      { name: "False Majesty",            nameJa: "虚栄の威厳",            pts: 30 },
+      { name: "Soul Glutton",             nameJa: "魂の暴食者",            pts: 10 },
+    ],
+    "Plague Legion": [
+      { name: "Cankerblight",             nameJa: "荒廃病魔の主",          pts: 15 },
+      { name: "Droning Shroud",           nameJa: "羽虫の覆い",            pts: 35 },
+      { name: "Font of Spores",           nameJa: "胞子溜まり",            pts: 20 },
+      { name: "Maggot Maws",              nameJa: "蛆の大口",              pts: 15 },
+    ],
+    "Scintillating Legion": [
+      { name: "Improbable Shield",        pts: 30 },
+      { name: "Inescapable Eye",          pts: 10 },
+      { name: "Infernal Puppeteer",       pts: 25 },
+      { name: "Neverblade",               pts: 20 },
+    ],
+  },
+
+  // ─── Chaos Knights ────────────────────────────────────────────────────────
+  chaos_knights: {
+    "Traitoris Lance": [
+      { name: "Malevolent Heraldry",      pts: 30 },
+      { name: "Nightmare's Master",       pts: 20 },
+      { name: "Tyrant's Shadow",          pts: 25 },
+      { name: "Veil of Medrengard",       pts: 35 },
+    ],
+    "Infernal Lance": [
+      { name: "Bestial Aspect",           nameJa: "猟奇なる相貌",          pts: 20 },
+      { name: "Blasphemous Engine",       nameJa: "冒涜のエンジン",        pts: 35 },
+      { name: "Fleshmetal Fusion",        nameJa: "融け合うフレッシュメタル", pts: 35 },
+      { name: "Knight Diabolus",          nameJa: "悪魔の騎士",            pts: 25 },
+    ],
+    "Lords of Dread": [
+      { name: "Blade of Celerity",        nameJa: "刃の潮流",              pts: 35 },
+      { name: "Blessing of the Dark Master", nameJa: "暗闇の君主の祝福",  pts: 20 },
+      { name: "Mirror of Fates",          nameJa: "宿命の鏡",              pts: 30 },
+      { name: "Putrid Carapace",          nameJa: "腐敗した外殻",          pts: 30 },
+    ],
+    "Houndpack Lance": [
+      { name: "Final Howl",               nameJa: "究竟な咆哮",            pts: 20 },
+      { name: "Loping Predator",          nameJa: "駆け回る捕食者",        pts: 10 },
+      { name: "Panoply of the Cursed Knight", nameJa: "呪いの騎士の装具", pts: 15 },
+      { name: "Preyslayer's Mantle",      nameJa: "機動兵器プレイスレイヤー", pts: 15 },
+    ],
+    "Iconoclast Fiefdom": [
+      { name: "Diabolical Resilience",    nameJa: "怪異なる耐久力",        pts: 35 },
+      { name: "Pave the Way",             nameJa: "進路開拓",              pts: 15 },
+      { name: "Profane Altar",            nameJa: "邪悪なる狂信",          pts: 20 },
+      { name: "Tyrant's Banner",          nameJa: "暴君の軍旗",            pts: 5  },
+    ],
+  },
+
+  // ─── Imperial Knights ─────────────────────────────────────────────────────
+  imperial_knights: {
+    "Valourstrike Lance": [
+      { name: "Bearer of the Evanescent Ion", pts: 15 },
+      { name: "Bearer of the Iron Chalice",   pts: 20 },
+      { name: "Bearer of the Judicant's Helm", pts: 25 },
+      { name: "Bearer of the Lancer's Sigil", pts: 25 },
+    ],
+    "Gate Warden Lance": [
+      { name: "Acquisitor-at-Arms",       nameJa: "併合官",                pts: 15 },
+      { name: "Augury Halo",              nameJa: "卜占の光輪",            pts: 20 },
+      { name: "Purgation's Hand",         nameJa: "浄化の手",              pts: 20 },
+      { name: "Vengeful Tread",           nameJa: "復讐の足取り",          pts: 15 },
+    ],
+    "Questoris Companions": [
+      { name: "Crushing Condemnation",    nameJa: "猛烈なる弾劾",          pts: 10 },
+      { name: "Herald of Triumph",        nameJa: "勝利の先触れ",          pts: 15 },
+      { name: "Pennant of Silvered Fury", pts: 15 },
+      { name: "Wyrmslayer Divination",    pts: 10 },
+    ],
+    "Spearhead-At-Arms": [
+      { name: "Fables of Nightmare",      pts: 10 },
+      { name: "Martial Tuition",          pts: 15 },
+      { name: "Mentor's Pride",           pts: 20 },
+      { name: "Tales of Heroism",         pts: 10 },
+    ],
+    "Questor Forgepact": [
+      { name: "Knight of the Opus Machina", nameJa: "機械紋の騎士",        pts: 20 },
+      { name: "Magos Questoris",          nameJa: "クエストリス大賢人",    pts: 35 },
+      { name: "Omnissian Champion",       nameJa: "万機神の闘士",          pts: 30 },
+      { name: "Vocifer Magnificat",       nameJa: "崇高なる叫唱",          pts: 15 },
+    ],
+  },
+
+  // ─── SM Chapter Variants (shared Gladius Task Force data) ─────────────────
+  ultramarines: {
+    "Gladius Task Force": [
+      { name: "Adept of the Codex",       nameJa: "聖典の習熟者",          pts: 20 },
+      { name: "Artificer Armour",         nameJa: "アーティファイサー・アーマー", pts: 10 },
+      { name: "Fire Discipline",          nameJa: "規律ある射撃",          pts: 25 },
+      { name: "The Honour Vehement",      nameJa: "烈士の誉れ",            pts: 15 },
+    ],
+  },
+  iron_hands: {
+    "Gladius Task Force": [
+      { name: "Adept of the Codex",       nameJa: "聖典の習熟者",          pts: 20 },
+      { name: "Artificer Armour",         nameJa: "アーティファイサー・アーマー", pts: 10 },
+      { name: "Fire Discipline",          nameJa: "規律ある射撃",          pts: 25 },
+      { name: "The Honour Vehement",      nameJa: "烈士の誉れ",            pts: 15 },
+    ],
+  },
+  imperial_fists: {
+    "Gladius Task Force": [
+      { name: "Adept of the Codex",       nameJa: "聖典の習熟者",          pts: 20 },
+      { name: "Artificer Armour",         nameJa: "アーティファイサー・アーマー", pts: 10 },
+      { name: "Fire Discipline",          nameJa: "規律ある射撃",          pts: 25 },
+      { name: "The Honour Vehement",      nameJa: "烈士の誉れ",            pts: 15 },
+    ],
+  },
+  salamanders: {
+    "Gladius Task Force": [
+      { name: "Adept of the Codex",       nameJa: "聖典の習熟者",          pts: 20 },
+      { name: "Artificer Armour",         nameJa: "アーティファイサー・アーマー", pts: 10 },
+      { name: "Fire Discipline",          nameJa: "規律ある射撃",          pts: 25 },
+      { name: "The Honour Vehement",      nameJa: "烈士の誉れ",            pts: 15 },
+    ],
+  },
+  raven_guard: {
+    "Gladius Task Force": [
+      { name: "Adept of the Codex",       nameJa: "聖典の習熟者",          pts: 20 },
+      { name: "Artificer Armour",         nameJa: "アーティファイサー・アーマー", pts: 10 },
+      { name: "Fire Discipline",          nameJa: "規律ある射撃",          pts: 25 },
+      { name: "The Honour Vehement",      nameJa: "烈士の誉れ",            pts: 15 },
+    ],
+  },
+  white_scars: {
+    "Gladius Task Force": [
+      { name: "Adept of the Codex",       nameJa: "聖典の習熟者",          pts: 20 },
+      { name: "Artificer Armour",         nameJa: "アーティファイサー・アーマー", pts: 10 },
+      { name: "Fire Discipline",          nameJa: "規律ある射撃",          pts: 25 },
+      { name: "The Honour Vehement",      nameJa: "烈士の誉れ",            pts: 15 },
+    ],
+  },
+
   // ─── Orks ─────────────────────────────────────────────────────────────────
   orks: {
     "War Horde": [
