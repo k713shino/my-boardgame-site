@@ -135,7 +135,7 @@ function getAllyAgentsLimit(pointsLimit: number): number {
   return 8;                           // Onslaught
 }
 
-// スペースマリーン章ファクションID（baseの space_marines を先頭に、以降は各章）
+// スペースマリーンチャプターファクションID（baseの space_marines を先頭に、以降は各チャプター）
 const SPACE_MARINES_IDS = new Set([
   "space_marines",
   "black_templars",
@@ -1288,7 +1288,7 @@ function FactionPicker({
         const meta = GROUP_META[group];
 
         if (group === "Imperium") {
-          // Space Marines章とその他に分割
+          // Space Marinesチャプターとその他に分割
           const smBase = items.find((f) => f.id === "space_marines");
           const smChapters = items.filter((f) => f.id !== "space_marines" && SPACE_MARINES_IDS.has(f.id));
           const otherImperium = items.filter((f) => !SPACE_MARINES_IDS.has(f.id));
@@ -1309,7 +1309,7 @@ function FactionPicker({
                       onClick={() => setSmExpanded((v) => !v)}
                       className="text-[0.65rem] text-muted hover:text-amber-500 transition"
                     >
-                      {smExpanded ? "▲ 折りたたむ" : `▼ 章を選ぶ (${smChapters.length + (smBase ? 1 : 0)})`}
+                      {smExpanded ? "▲ 折りたたむ" : `▼ チャプターを選ぶ (${smChapters.length + (smBase ? 1 : 0)})`}
                     </button>
                   )}
                 </div>
@@ -1318,7 +1318,7 @@ function FactionPicker({
                   {smBase && (
                     <FactionCard f={smBase} badge={meta.badge} onSelect={onSelect} />
                   )}
-                  {/* 各章は展開時のみ表示 */}
+                  {/* 各チャプターは展開時のみ表示 */}
                   {showSm && smChapters.map((f) => (
                     <FactionCard key={f.id} f={f} badge={meta.badge} onSelect={onSelect} />
                   ))}
@@ -1449,7 +1449,7 @@ export function BuilderClient({
     setBrowseTab("all");
     weaponCache.current.clear();
 
-    // Space Marines章の場合はベースSMユニットも合わせて取得
+    // Space Marinesチャプターの場合はベースSMユニットも合わせて取得
     const isSmChapter =
       selectedFaction.id !== "space_marines" && SPACE_MARINES_IDS.has(selectedFaction.id);
 
@@ -1470,7 +1470,7 @@ export function BuilderClient({
 
     Promise.all([mainFetch, smFetch, agentsFetch, knightsFetch])
       .then(([chapterUnits, smUnits, agentsUnits, knightsUnits]) => {
-        // メインユニット（SM章マージ）
+        // メインユニット（SMチャプターマージ）
         if (smUnits) {
           const seen = new Set(chapterUnits.map((u) => u.id));
           setUnits([...chapterUnits, ...smUnits.filter((u) => !seen.has(u.id))]);
