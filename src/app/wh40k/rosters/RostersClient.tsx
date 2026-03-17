@@ -119,15 +119,6 @@ export function RostersClient({
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-1.5">
                       <h2 className="truncate text-sm font-bold">{roster.name}</h2>
-                      {roster.isPublic ? (
-                        <span className="rounded-full border border-emerald-400/50 bg-emerald-500/10 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-700 dark:text-emerald-300">
-                          公開
-                        </span>
-                      ) : (
-                        <span className="rounded-full border border-slate-300/60 bg-slate-100/50 px-2 py-0.5 text-[0.6rem] font-semibold text-muted dark:border-slate-600/60 dark:bg-slate-800/50">
-                          非公開
-                        </span>
-                      )}
                     </div>
                     <p className="mt-0.5 text-[0.65rem] text-muted">
                       {new Date(roster.savedAt).toLocaleDateString("ja-JP")} ·{" "}

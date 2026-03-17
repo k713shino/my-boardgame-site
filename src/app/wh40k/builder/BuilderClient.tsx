@@ -12,6 +12,7 @@ import {
 } from "@/lib/gtag";
 import type { UnitRole } from "../types";
 import { DETACHMENTS } from "@/data/wh40k-detachments";
+import { getEnhancements } from "@/data/wh40k-enhancements";
 import {
   groupByRole,
   RosterMetaBar,
@@ -51,6 +52,8 @@ export type WeaponOption = {
 export type WeaponGroup = {
   id: string;
   name: string;
+  /** "WEAPON" | "ENHANCEMENT" | "WARGEAR" | "OPTION" */
+  groupType: string;
   minChoices: number;
   maxChoices: number;
   sortOrder: number;
@@ -244,7 +247,7 @@ function WeaponModal({
   onCancel,
 }: {
   state: ModalState;
-  onConfirm: (selections: Map<string, string[]>) => void;
+  onConfirm: (selections: Map<string, string[]>, customDeltas: Map<string, number>) => void;
   onCancel: () => void;
 }) {
   const [selections, setSelections] = useState<Map<string, string[]>>(() => {
@@ -257,6 +260,15 @@ function WeaponModal({
     }
     return init;
   });
+
+  /** optionId → カスタムポイント上書き */
+  const [customDeltas, setCustomDeltas] = useState<Map<string, number>>(new Map());
+
+  const getEffectiveDelta = useCallback(
+    (optId: string, defaultDelta: number) =>
+      customDeltas.has(optId) ? customDeltas.get(optId)! : defaultDelta,
+    [customDeltas]
+  );
 
   const toggle = (group: WeaponGroup, optionName: string) => {
     setSelections((prev) => {
@@ -287,11 +299,12 @@ function WeaponModal({
     for (const g of state.groups) {
       const sel = selections.get(g.id) ?? [];
       for (const optName of sel) {
-        d += g.options.find((o) => o.name === optName)?.pointsDelta ?? 0;
+        const opt = g.options.find((o) => o.name === optName);
+        if (opt) d += getEffectiveDelta(opt.id, opt.pointsDelta);
       }
     }
     return d;
-  }, [selections, state.groups]);
+  }, [selections, state.groups, getEffectiveDelta]);
 
   return (
     <div
@@ -331,63 +344,120 @@ function WeaponModal({
 
         {/* Groups */}
         <div className="flex-1 overflow-y-auto px-5 py-4 space-y-5">
-          {state.groups.map((group) => {
-            const cur = selections.get(group.id) ?? [];
-            const isMulti = group.maxChoices > 1;
+          {(["WEAPON", "ENHANCEMENT", "WARGEAR", "OPTION"] as const).map((sectionType) => {
+            const sectionGroups = state.groups.filter((g) => (g.groupType ?? "WEAPON") === sectionType);
+            if (sectionGroups.length === 0) return null;
+            const sectionLabel: Record<string, string> = {
+              WEAPON: "武器オプション",
+              ENHANCEMENT: "エンハンスメント",
+              WARGEAR: "装備オプション",
+              OPTION: "その他オプション",
+            };
+            const sectionColor: Record<string, string> = {
+              WEAPON:      "text-rose-500 dark:text-rose-400",
+              ENHANCEMENT: "text-violet-500 dark:text-violet-400",
+              WARGEAR:     "text-amber-500 dark:text-amber-400",
+              OPTION:      "text-sky-500 dark:text-sky-400",
+            };
+            const selectedColor: Record<string, { border: string; bg: string; text: string; indicator: string }> = {
+              WEAPON:      { border: "border-rose-400/60",   bg: "bg-rose-500/10",   text: "text-rose-600 dark:text-rose-400",   indicator: "border-rose-500 bg-rose-500" },
+              ENHANCEMENT: { border: "border-violet-400/60", bg: "bg-violet-500/10", text: "text-violet-600 dark:text-violet-400", indicator: "border-violet-500 bg-violet-500" },
+              WARGEAR:     { border: "border-amber-400/60",  bg: "bg-amber-500/10",  text: "text-amber-600 dark:text-amber-400", indicator: "border-amber-500 bg-amber-500" },
+              OPTION:      { border: "border-sky-400/60",    bg: "bg-sky-500/10",    text: "text-sky-600 dark:text-sky-400",     indicator: "border-sky-500 bg-sky-500" },
+            };
+            const sc = selectedColor[sectionType];
             return (
-              <div key={group.id} className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <h4 className="text-xs font-bold text-[color:var(--fg-body)]">
-                    {group.name}
-                  </h4>
-                  <span className="text-[0.6rem] text-muted">
-                    {isMulti
-                      ? `最大${group.maxChoices}つ選択`
-                      : "1つ選択"}
+              <div key={sectionType}>
+                {/* セクションヘッダー */}
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`text-[0.6rem] font-bold uppercase tracking-widest ${sectionColor[sectionType]}`}>
+                    {sectionLabel[sectionType]}
                   </span>
+                  <div className="flex-1 h-px bg-slate-200/60 dark:bg-slate-700/60" />
                 </div>
-                <div className="space-y-1.5">
-                  {group.options.map((opt) => {
-                    const count = cur.filter((n) => n === opt.name).length;
-                    const selected = count > 0;
+                <div className="space-y-4">
+                  {sectionGroups.map((group) => {
+                    const cur = selections.get(group.id) ?? [];
+                    const isMulti = group.maxChoices > 1;
                     return (
-                      <button
-                        key={opt.id}
-                        onClick={() => toggle(group, opt.name)}
-                        className={`w-full flex items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition ${
-                          selected
-                            ? "border-rose-400/60 bg-rose-500/10"
-                            : "border-slate-200/60 hover:border-slate-300 dark:border-slate-700/60"
-                        }`}
-                      >
-                        {/* Radio / Checkbox indicator */}
-                        <span
-                          className={`flex h-4 w-4 shrink-0 items-center justify-center ${
-                            isMulti ? "rounded" : "rounded-full"
-                          } border-2 transition ${
-                            selected
-                              ? "border-rose-500 bg-rose-500"
-                              : "border-slate-300 dark:border-slate-600"
-                          }`}
-                        >
-                          {selected && (
-                            <span className="text-white text-[0.55rem] font-black">
-                              {isMulti ? "✓" : "●"}
-                            </span>
-                          )}
-                        </span>
-                        <span className={`flex-1 text-xs font-medium ${selected ? "text-rose-600 dark:text-rose-400" : ""}`}>
-                          {opt.name}
-                          {count > 1 && (
-                            <span className="ml-1 text-[0.6rem] font-bold">×{count}</span>
-                          )}
-                        </span>
-                        {opt.pointsDelta !== 0 && (
-                          <span className={`shrink-0 text-[0.65rem] font-bold ${opt.pointsDelta > 0 ? "text-rose-500" : "text-emerald-500"}`}>
-                            {opt.pointsDelta > 0 ? `+${opt.pointsDelta}` : opt.pointsDelta}pt
+                      <div key={group.id} className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-xs font-bold text-[color:var(--fg-body)]">
+                            {group.name}
+                          </h4>
+                          <span className="text-[0.6rem] text-muted">
+                            {group.minChoices === 0
+                              ? isMulti ? `最大${group.maxChoices}つ選択（任意）` : "任意"
+                              : isMulti ? `最大${group.maxChoices}つ選択` : "1つ選択"}
                           </span>
-                        )}
-                      </button>
+                        </div>
+                        <div className="space-y-1.5">
+                          {group.options.map((opt) => {
+                            const count = cur.filter((n) => n === opt.name).length;
+                            const selected = count > 0;
+                            return (
+                              <button
+                                key={opt.id}
+                                onClick={() => toggle(group, opt.name)}
+                                className={`w-full flex items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition ${
+                                  selected
+                                    ? `${sc.border} ${sc.bg}`
+                                    : "border-slate-200/60 hover:border-slate-300 dark:border-slate-700/60"
+                                }`}
+                              >
+                                {/* Radio / Checkbox indicator */}
+                                <span
+                                  className={`flex h-4 w-4 shrink-0 items-center justify-center ${
+                                    isMulti ? "rounded" : "rounded-full"
+                                  } border-2 transition ${
+                                    selected ? sc.indicator : "border-slate-300 dark:border-slate-600"
+                                  }`}
+                                >
+                                  {selected && (
+                                    <span className="text-white text-[0.55rem] font-black">
+                                      {isMulti ? "✓" : "●"}
+                                    </span>
+                                  )}
+                                </span>
+                                <span className={`flex-1 text-xs font-medium ${selected ? sc.text : ""}`}>
+                                  {opt.name}
+                                  {count > 1 && (
+                                    <span className="ml-1 text-[0.6rem] font-bold">×{count}</span>
+                                  )}
+                                </span>
+                                {selected ? (
+                                  // 選択中はポイントを直接編集可能
+                                  <div
+                                    className="flex items-center gap-0.5 shrink-0"
+                                    onClick={(e) => e.stopPropagation()}
+                                  >
+                                    <input
+                                      type="number"
+                                      value={getEffectiveDelta(opt.id, opt.pointsDelta)}
+                                      onChange={(e) => {
+                                        const val = parseInt(e.target.value, 10);
+                                        setCustomDeltas((prev) => {
+                                          const next = new Map(prev);
+                                          next.set(opt.id, isNaN(val) ? 0 : val);
+                                          return next;
+                                        });
+                                      }}
+                                      className="w-14 rounded-lg border border-current/30 bg-transparent px-1.5 py-0.5 text-right text-[0.65rem] font-bold outline-none focus:border-current/60"
+                                    />
+                                    <span className="text-[0.65rem] font-bold">pt</span>
+                                  </div>
+                                ) : (
+                                  opt.pointsDelta !== 0 && (
+                                    <span className={`shrink-0 text-[0.65rem] font-bold ${opt.pointsDelta > 0 ? "text-rose-500" : "text-emerald-500"}`}>
+                                      {opt.pointsDelta > 0 ? `+${opt.pointsDelta}` : opt.pointsDelta}pt
+                                    </span>
+                                  )
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
                     );
                   })}
                 </div>
@@ -405,7 +475,7 @@ function WeaponModal({
             キャンセル
           </button>
           <button
-            onClick={() => onConfirm(selections)}
+            onClick={() => onConfirm(selections, customDeltas)}
             className="flex-1 rounded-full bg-rose-500 py-2 text-xs font-bold text-white transition hover:bg-rose-400"
           >
             ロスターに追加 ({state.unit.basePoints + totalDelta}pt)
@@ -462,18 +532,14 @@ function formatRosterText(params: {
 function SaveShareControls({
   disabled,
   saveStatus,
-  publicSaveStatus,
   onSave,
-  onPublicSave,
   onShare,
   onCopyRoster,
   onReset,
 }: {
   disabled: boolean;
-  saveStatus: "idle" | "saved";
-  publicSaveStatus: "idle" | "saving" | "published";
+  saveStatus: "idle" | "saving" | "saved";
   onSave: () => void;
-  onPublicSave: () => void;
   onShare: () => void;
   onCopyRoster: () => void;
   onReset: () => void;
@@ -482,21 +548,10 @@ function SaveShareControls({
     <div className="flex flex-wrap items-center gap-2">
       <button
         onClick={onSave}
-        disabled={disabled}
+        disabled={disabled || saveStatus === "saving"}
         className="rounded-full bg-rose-500 px-4 py-1.5 text-xs font-bold text-white transition hover:bg-rose-400 disabled:opacity-40"
       >
-        {saveStatus === "saved" ? "✅ 保存済み" : "💾 保存"}
-      </button>
-      <button
-        onClick={onPublicSave}
-        disabled={disabled || publicSaveStatus === "saving"}
-        className="rounded-full border border-emerald-400/50 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-500/15 disabled:opacity-40 dark:text-emerald-300"
-      >
-        {publicSaveStatus === "saving"
-          ? "公開中..."
-          : publicSaveStatus === "published"
-            ? "公開済み"
-            : "公開保存"}
+        {saveStatus === "saving" ? "保存中..." : saveStatus === "saved" ? "✅ 保存済み" : "💾 保存"}
       </button>
       <button
         onClick={onShare}
@@ -531,8 +586,7 @@ type BuilderHeaderProps = {
   rosterName: string;
   pointsLimit: number;
   detachment: string;
-  saveStatus: "idle" | "saved";
-  publicSaveStatus: "idle" | "saving" | "published";
+  saveStatus: "idle" | "saving" | "saved";
   rosterCount: number;
   totalPts: number;
   onRosterNameChange: (value: string) => void;
@@ -540,7 +594,6 @@ type BuilderHeaderProps = {
   onDetachmentChange: (value: string) => void;
   onFactionChange: () => void;
   onSave: () => void;
-  onPublicSave: () => void;
   onShare: () => void;
   onCopyRoster: () => void;
   onReset: () => void;
@@ -553,7 +606,6 @@ function BuilderHeader({
   pointsLimit,
   detachment,
   saveStatus,
-  publicSaveStatus,
   rosterCount,
   totalPts,
   onRosterNameChange,
@@ -561,7 +613,6 @@ function BuilderHeader({
   onDetachmentChange,
   onFactionChange,
   onSave,
-  onPublicSave,
   onShare,
   onCopyRoster,
   onReset,
@@ -629,9 +680,7 @@ function BuilderHeader({
               <SaveShareControls
                 disabled={rosterCount === 0}
                 saveStatus={saveStatus}
-                publicSaveStatus={publicSaveStatus}
                 onSave={onSave}
-                onPublicSave={onPublicSave}
                 onShare={onShare}
                 onCopyRoster={onCopyRoster}
                 onReset={onReset}
@@ -1309,7 +1358,7 @@ function FactionPicker({
                       onClick={() => setSmExpanded((v) => !v)}
                       className="text-[0.65rem] text-muted hover:text-amber-500 transition"
                     >
-                      {smExpanded ? "▲ 折りたたむ" : `▼ チャプターを選ぶ (${smChapters.length + (smBase ? 1 : 0)})`}
+                      {smExpanded ? "▲ 閉じる" : `▼ 各チャプターを見る (${smChapters.length + (smBase ? 1 : 0)})`}
                     </button>
                   )}
                 </div>
@@ -1389,8 +1438,7 @@ export function BuilderClient({
   const [sortMode, setSortMode] = useState<SortMode>("points");
   const [browseTab, setBrowseTab] = useState<BrowseTab>("all");
   const [warlordEntryId, setWarlordEntryId] = useState<string | null>(null);
-  const [saveStatus, setSaveStatus] = useState<"idle" | "saved">("idle");
-  const [publicSaveStatus, setPublicSaveStatus] = useState<"idle" | "saving" | "published">("idle");
+  const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved">("idle");
 
   // 武器オプションキャッシュ（unitId → WeaponGroup[]）
   const weaponCache = useRef<Map<string, WeaponGroup[]>>(new Map());
@@ -1598,7 +1646,28 @@ export function BuilderClient({
         const groups: WeaponGroup[] = await res.json();
         weaponCache.current.set(unit.id, groups);
       }
-      const groups = weaponCache.current.get(unit.id)!;
+      const groups = [...weaponCache.current.get(unit.id)!];
+
+      // CHARACTERユニット（HQ）にエンハンスメントを注入
+      if (unit.role === "HQ" && selectedFaction && detachment) {
+        const enhancements = getEnhancements(selectedFaction.id, detachment);
+        if (enhancements.length > 0) {
+          groups.push({
+            id: "__enhancements__",
+            name: "Enhancements",
+            groupType: "ENHANCEMENT",
+            minChoices: 0,
+            maxChoices: 1,
+            sortOrder: 999,
+            options: enhancements.map((e, i) => ({
+              id: `__enh_${i}__`,
+              name: e.name,
+              pointsDelta: e.pts,
+              sortOrder: i,
+            })),
+          });
+        }
+      }
 
       if (groups.length === 0) {
         // 武器オプションなし → 直接追加
@@ -1608,7 +1677,7 @@ export function BuilderClient({
         setWeaponModal({ unit, groups, selections: new Map(), allyFaction });
       }
     },
-    [commitAddUnit]
+    [commitAddUnit, selectedFaction, detachment]
   );
 
   // ユニット読み込み完了後、pendingAddSlug が残っていれば自動追加
@@ -1625,17 +1694,18 @@ export function BuilderClient({
   }, [units]);
 
   const handleModalConfirm = useCallback(
-    (selections: Map<string, string[]>) => {
+    (selections: Map<string, string[]>, customDeltas: Map<string, number>) => {
       if (!weaponModal) return;
       const { unit, groups, allyFaction } = weaponModal;
       const weaponSelections: WeaponSelection[] = [];
       for (const g of groups) {
         const names = selections.get(g.id) ?? [];
         if (names.length === 0) continue;
-        const delta = names.reduce(
-          (s, n) => s + (g.options.find((o) => o.name === n)?.pointsDelta ?? 0),
-          0
-        );
+        const delta = names.reduce((s, n) => {
+          const opt = g.options.find((o) => o.name === n);
+          if (!opt) return s;
+          return s + (customDeltas.has(opt.id) ? customDeltas.get(opt.id)! : opt.pointsDelta);
+        }, 0);
         weaponSelections.push({
           groupId: g.id,
           groupName: g.name,
@@ -1669,36 +1739,13 @@ export function BuilderClient({
       setRoster([]);
       setWarlordEntryId(null);
       setSaveStatus("idle");
-      setPublicSaveStatus("idle");
     }
   };
 
-  const saveRoster = () => {
-    if (!selectedFaction || roster.length === 0) return;
-    const id = `roster_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-    const saved: SavedRoster = {
-      id,
-      name: rosterName || "Unnamed Roster",
-      faction: selectedFaction.id,
-      factionName: selectedFaction.name,
-      detachment: detachment || undefined,
-      pointsLimit,
-      units: roster,
-      warlordEntryId: warlordEntryId ?? undefined,
-      savedAt: new Date().toISOString(),
-      isPublic: false,
-    };
-    const existing: SavedRoster[] = JSON.parse(localStorage.getItem("wh40k_rosters") ?? "[]");
-    localStorage.setItem("wh40k_rosters", JSON.stringify([...existing, saved]));
-    trackRosterSave({ faction: selectedFaction.id, points: totalPts, unit_count: roster.length });
-    setSaveStatus("saved");
-    setTimeout(() => setSaveStatus("idle"), 2500);
-  };
-
-  const savePublicRoster = useCallback(async () => {
+  const saveRoster = useCallback(async () => {
     if (!selectedFaction || roster.length === 0) return;
 
-    setPublicSaveStatus("saving");
+    setSaveStatus("saving");
 
     try {
       const payload = {
@@ -1716,11 +1763,9 @@ export function BuilderClient({
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) {
-        throw new Error("failed_to_save_public_roster");
-      }
+      if (!res.ok) throw new Error("failed");
 
-      const created = (await res.json()) as { id: string; detailUrl: string };
+      const created = (await res.json()) as { id: string };
       const saved: SavedRoster = {
         id: created.id,
         name: rosterName || "Unnamed Roster",
@@ -1729,6 +1774,7 @@ export function BuilderClient({
         detachment: detachment || undefined,
         pointsLimit,
         units: roster,
+        warlordEntryId: warlordEntryId ?? undefined,
         savedAt: new Date().toISOString(),
         isPublic: true,
       };
@@ -1736,17 +1782,18 @@ export function BuilderClient({
       const existing: SavedRoster[] = JSON.parse(localStorage.getItem("wh40k_rosters") ?? "[]");
       localStorage.setItem(
         "wh40k_rosters",
-        JSON.stringify([...existing.filter((entry) => entry.id !== saved.id), saved])
+        JSON.stringify([...existing.filter((e) => e.id !== saved.id), saved])
       );
 
       trackRosterCreate({ faction: selectedFaction.id, points: totalPts, unit_count: roster.length, is_public: true });
-      setPublicSaveStatus("published");
-      window.location.href = `${rosterBasePath}/${created.id}`;
+      trackRosterSave({ faction: selectedFaction.id, points: totalPts, unit_count: roster.length });
+      setSaveStatus("saved");
+      setTimeout(() => setSaveStatus("idle"), 2500);
     } catch {
-      setPublicSaveStatus("idle");
-      alert("公開ロスターの保存に失敗しました。DB 接続を確認してください。");
+      setSaveStatus("idle");
+      alert("ロスターの保存に失敗しました。DB 接続を確認してください。");
     }
-  }, [detachment, pointsLimit, roster, rosterName, selectedFaction]);
+  }, [detachment, pointsLimit, roster, rosterName, selectedFaction, warlordEntryId]);
 
   const shareRoster = () => {
     if (!selectedFaction || roster.length === 0) return;
@@ -1849,7 +1896,6 @@ export function BuilderClient({
         pointsLimit={pointsLimit}
         detachment={detachment}
         saveStatus={saveStatus}
-        publicSaveStatus={publicSaveStatus}
         rosterCount={roster.length}
         totalPts={totalPts}
         onRosterNameChange={setRosterName}
@@ -1857,7 +1903,6 @@ export function BuilderClient({
         onDetachmentChange={handleDetachmentChange}
         onFactionChange={handleFactionChange}
         onSave={saveRoster}
-        onPublicSave={savePublicRoster}
         onShare={shareRoster}
         onCopyRoster={copyRosterText}
         onReset={resetRoster}

@@ -43,6 +43,7 @@ type UnitWeaponRow = {
 type UnitWeaponGroup = {
   id: string;
   name: string;
+  groupType: string;
   minChoices: number;
   maxChoices: number;
   options: { id: string; name: string; pointsDelta: number }[];
@@ -241,42 +242,61 @@ export function UnitWeaponTable({
   );
 }
 
+const WEAPON_SECTION_META: Record<string, { label: string; color: string }> = {
+  WEAPON:      { label: "武器オプション",   color: "text-rose-500" },
+  ENHANCEMENT: { label: "エンハンスメント", color: "text-violet-500" },
+  WARGEAR:     { label: "装備オプション",   color: "text-amber-500" },
+  OPTION:      { label: "その他オプション", color: "text-sky-500" },
+};
+
 export function UnitWeaponOptionsSection({ groups }: { groups: UnitWeaponGroup[] }) {
   if (groups.length === 0) return null;
 
+  const sectionTypes = ["WEAPON", "ENHANCEMENT", "WARGEAR", "OPTION"] as const;
+
   return (
     <section className="surface-card rounded-2xl p-5 space-y-4">
-      <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">武器選択肢</h2>
-      <div className="space-y-3">
-        {groups.map((group) => (
-          <div key={group.id}>
-            <p className="text-xs font-semibold">
-              {group.name}
-              <span className="ml-1.5 text-[0.6rem] font-normal text-muted">
-                {group.minChoices === group.maxChoices
-                  ? `${group.maxChoices}つ選択`
-                  : `${group.minChoices}〜${group.maxChoices}つ選択`}
-              </span>
-            </p>
-            <ul className="mt-1 flex flex-wrap gap-1.5">
-              {group.options.map((option) => (
-                <li
-                  key={option.id}
-                  className="flex items-center gap-1 rounded-full border border-slate-200/80 px-2.5 py-0.5 text-[0.65rem] dark:border-slate-700/80"
-                >
-                  <span>{option.name}</span>
-                  {option.pointsDelta !== 0 && (
-                    <span className={option.pointsDelta > 0 ? "text-amber-500" : "text-emerald-500"}>
-                      ({option.pointsDelta > 0 ? "+" : ""}
-                      {option.pointsDelta}pt)
+      <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">武器・装備選択肢</h2>
+      {sectionTypes.map((sectionType) => {
+        const sectionGroups = groups.filter((g) => (g.groupType ?? "WEAPON") === sectionType);
+        if (sectionGroups.length === 0) return null;
+        const meta = WEAPON_SECTION_META[sectionType];
+        return (
+          <div key={sectionType} className="space-y-2">
+            <p className={`text-[0.6rem] font-bold uppercase tracking-widest ${meta.color}`}>{meta.label}</p>
+            <div className="space-y-2">
+              {sectionGroups.map((group) => (
+                <div key={group.id}>
+                  <p className="text-xs font-semibold">
+                    {group.name}
+                    <span className="ml-1.5 text-[0.6rem] font-normal text-muted">
+                      {group.minChoices === group.maxChoices
+                        ? `${group.maxChoices}つ選択`
+                        : `${group.minChoices}〜${group.maxChoices}つ選択`}
                     </span>
-                  )}
-                </li>
+                  </p>
+                  <ul className="mt-1 flex flex-wrap gap-1.5">
+                    {group.options.map((option) => (
+                      <li
+                        key={option.id}
+                        className="flex items-center gap-1 rounded-full border border-slate-200/80 px-2.5 py-0.5 text-[0.65rem] dark:border-slate-700/80"
+                      >
+                        <span>{option.name}</span>
+                        {option.pointsDelta !== 0 && (
+                          <span className={option.pointsDelta > 0 ? "text-amber-500" : "text-emerald-500"}>
+                            ({option.pointsDelta > 0 ? "+" : ""}
+                            {option.pointsDelta}pt)
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
-        ))}
-      </div>
+        );
+      })}
     </section>
   );
 }

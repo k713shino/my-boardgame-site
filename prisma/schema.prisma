@@ -101,11 +101,13 @@ model UnitAbility {
 }
 
 /// ユニットの武器選択グループ（例：「武器 (1つ選択)」）
+/// groupType: "WEAPON" | "ENHANCEMENT" | "WARGEAR" | "OPTION"
 model UnitWeaponGroup {
   id         String            @id @default(cuid())
   unitId     String
   unit       Unit              @relation(fields: [unitId], references: [id], onDelete: Cascade)
   name       String
+  groupType  String            @default("WEAPON")
   minChoices Int               @default(1)
   maxChoices Int               @default(1)
   sortOrder  Int               @default(0)

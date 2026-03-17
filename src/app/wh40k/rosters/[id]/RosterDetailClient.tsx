@@ -174,15 +174,6 @@ export function RosterDetailClient({
             <p className="text-[0.62rem] font-semibold uppercase tracking-[0.25em] text-rose-500">保存ロスター</p>
             <div className="flex flex-wrap items-center gap-2">
               <h1 className="text-xl font-black sm:text-2xl">{roster.name}</h1>
-              {roster.isPublic ? (
-                <span className="rounded-full border border-emerald-400/50 bg-emerald-500/10 px-2 py-0.5 text-[0.6rem] font-semibold text-emerald-700 dark:text-emerald-300">
-                  公開
-                </span>
-              ) : (
-                <span className="rounded-full border border-slate-300/60 bg-slate-100/50 px-2 py-0.5 text-[0.6rem] font-semibold text-muted dark:border-slate-600/60 dark:bg-slate-800/50">
-                  非公開
-                </span>
-              )}
             </div>
             <p className="text-[0.68rem] text-muted">
               {new Date(roster.savedAt).toLocaleDateString("ja-JP")} · {roster.factionName} · {roster.pointsLimit}pt
