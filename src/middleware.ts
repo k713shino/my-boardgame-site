@@ -3,7 +3,6 @@ import type { NextRequest } from "next/server";
 
 // 認証が必要なパスのプレフィックス
 const RESTRICTED_PREFIXES = [
-  "/wh40k/aeldari",
   "/wh40k/units",
   // 将来追加予定
   "/wh40k/reference",

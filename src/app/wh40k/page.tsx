@@ -25,14 +25,6 @@ const LINKS = [
     highlight: false,
   },
   {
-    href: "/wh40k/aeldari",
-    label: "Aeldari Reference",
-    labelJa: "アエルダリ リファレンス",
-    desc: "Craftworlds 全ユニットのデータシート日本語解説。",
-    icon: "📖",
-    highlight: false,
-  },
-  {
     href: "/wh40k/damage-calc",
     label: "Damage Calculator",
     labelJa: "期待ダメージ計算機",
