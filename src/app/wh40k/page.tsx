@@ -54,7 +54,9 @@ export default function WH40KHubPage() {
           WH40K Hub
         </h1>
         <p className="text-sm text-muted leading-relaxed">
-          10th Edition 対応。ロスター作成・ユニット解説・初心者ガイドを提供する WH40K 情報ハブです。
+          10th Edition 対応。ロスター作成・塗料変換・初心者ガイドを提供する WH40K 情報ハブです。<br />
+          ロスタービルダーのポイントデータなどは GW 公式ルールを参考にしていますが、誤りがある可能性もあるため、<br />
+          必ず公式ルールブックで確認してください。
         </p>
       </div>
 
