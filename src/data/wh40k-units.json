@@ -1392,7 +1392,7 @@
           "Aeldari",
           "Archtormentor"
         ],
-        "nameJa": "アトメントル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "flesh_crafter_crucible",
@@ -1407,7 +1407,7 @@
           "Haemonculus Covens",
           "Flesh Crafter"
         ],
-        "nameJa": "エフ ラテル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "craftworld_warleader_crucible",
@@ -1421,7 +1421,7 @@
           "Craftworld Warleader",
           "Crucible"
         ],
-        "nameJa": "ラヲド ワエアデル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "skyrunner_crucible",
@@ -1436,7 +1436,7 @@
           "Skyrunner",
           "Fly"
         ],
-        "nameJa": "ルンネル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "ghost_warrior_crucible",
@@ -1452,7 +1452,7 @@
           "Ghost Warrior",
           "Wraith Construct"
         ],
-        "nameJa": "ホト ワッリオル ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -2001,7 +2001,7 @@
           "Aeldari",
           "Archtormentor"
         ],
-        "nameJa": "アトメントル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "flesh_crafter_crucible",
@@ -2016,7 +2016,7 @@
           "Haemonculus Covens",
           "Flesh Crafter"
         ],
-        "nameJa": "エフ ラテル ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -3927,7 +3927,7 @@
           "Daemonic Herald",
           "Crucible"
         ],
-        "nameJa": "ダエモニク ヘラド ルイエ"
+        "nameJa": ""
       },
       {
         "id": "daemonic_charioteer_crucible",
@@ -3942,7 +3942,7 @@
           "Mounted",
           "Daemonic Charioteer"
         ],
-        "nameJa": "ダエモニク ハリオテエル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "immortal_champion_crucible",
@@ -3957,7 +3957,7 @@
           "Monster",
           "Immortal Champion"
         ],
-        "nameJa": "イッモタル ハピオン ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -5100,7 +5100,7 @@
           "Chaos",
           "Exalted Champion"
         ],
-        "nameJa": "エサテド ハピオン ルイエ"
+        "nameJa": ""
       },
       {
         "id": "sorcerous_champion_crucible",
@@ -5115,7 +5115,7 @@
           "Psyker",
           "Sorcerous Champion"
         ],
-        "nameJa": "ソセロウス ハピオン ルイエ"
+        "nameJa": ""
       },
       {
         "id": "soul_forge_tyrant_crucible",
@@ -5130,7 +5130,7 @@
           "Helstalker",
           "Soul Forge Tyrant"
         ],
-        "nameJa": "ソウル フォエ ラント ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -5661,7 +5661,7 @@
           "Nurgle",
           "Plague Sorcerer"
         ],
-        "nameJa": "アグエ ソセレル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "plague_lord_crucible",
@@ -5676,7 +5676,7 @@
           "Grenades",
           "Plague Lord"
         ],
-        "nameJa": "アグエ オド ルイエ"
+        "nameJa": ""
       },
       {
         "id": "tri_lobe_vectors_crucible",
@@ -5691,7 +5691,7 @@
           "Nurgle",
           "Tri-lobe Vectors"
         ],
-        "nameJa": "リ・オベ ヴェトス ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -6049,7 +6049,7 @@
           "Excruciator",
           "Crucible"
         ],
-        "nameJa": "エルイアトル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "champion_of_excess_crucible",
@@ -6065,7 +6065,7 @@
           "Crucible",
           "Champion of Excess"
         ],
-        "nameJa": "ハピオン オヴ エッセッス ルイエ"
+        "nameJa": ""
       },
       {
         "id": "flawless_champion_crucible",
@@ -6081,7 +6081,7 @@
           "Crucible",
           "Flawless Champion"
         ],
-        "nameJa": "アエッス ハピオン ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -6649,7 +6649,7 @@
           "Tzeentch",
           "Magister"
         ],
-        "nameJa": "マジテル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "brayherd_chieftain_crucible",
@@ -6664,7 +6664,7 @@
           "Mutant",
           "Brayherd Chieftain"
         ],
-        "nameJa": "ラヘド ヒエタイン ルイエ"
+        "nameJa": ""
       },
       {
         "id": "brayherd_shaman_crucible",
@@ -6680,7 +6680,7 @@
           "Psyker",
           "Brayherd Shaman"
         ],
-        "nameJa": "ラヘド シャマン ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -7152,7 +7152,7 @@
           "Butcherlord",
           "Crucible"
         ],
-        "nameJa": "ブヘオド ルイエ"
+        "nameJa": ""
       },
       {
         "id": "eight_blessed_lord_crucible",
@@ -7167,7 +7167,7 @@
           "Eight-blessed Lord",
           "Crucible"
         ],
-        "nameJa": "エイト・エッセド オド ルイエ"
+        "nameJa": ""
       },
       {
         "id": "bloodcult_champion_crucible",
@@ -7182,7 +7182,7 @@
           "Bloodcult Champion",
           "Crucible"
         ],
-        "nameJa": "オオクト ハピオン ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -7525,7 +7525,7 @@
           "Great Devourer",
           "Cult Insurrectionist"
         ],
-        "nameJa": "クト インスッレショニト ルイエ"
+        "nameJa": ""
       },
       {
         "id": "cult_guerrilla_crucible",
@@ -7540,7 +7540,7 @@
           "Grenades",
           "Cult Guerrilla"
         ],
-        "nameJa": "クト グエッリッア ルイエ"
+        "nameJa": ""
       },
       {
         "id": "voice_of_the_patriarch_crucible",
@@ -7555,7 +7555,7 @@
           "Psyker",
           "Voice of the Patriarch"
         ],
-        "nameJa": "ヴォイセ オヴ ザ パリアフ ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -8022,7 +8022,7 @@
           "Militant Commander",
           "Crucible"
         ],
-        "nameJa": "ミイタント コッマンデル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "inspiring_devotee_crucible",
@@ -8037,7 +8037,7 @@
           "Crucible",
           "Inspiring Devotee"
         ],
-        "nameJa": "インピリング デヴォテエ ルイエ"
+        "nameJa": ""
       },
       {
         "id": "reliquant_knight_crucible",
@@ -8054,7 +8054,7 @@
           "Reliquant Knight",
           "Paragon Warsuits"
         ],
-        "nameJa": "レイワント ニト ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -8496,7 +8496,7 @@
           "Guardian of the Throne",
           "Crucible"
         ],
-        "nameJa": "グアイアン オヴ ザ ロネ ルイエ"
+        "nameJa": ""
       },
       {
         "id": "null_maiden_crucible",
@@ -8511,7 +8511,7 @@
           "Null Maiden",
           "Anathema Psykana"
         ],
-        "nameJa": "ヌッル マイデン ルイエ"
+        "nameJa": ""
       },
       {
         "id": "kataphraktoi_exemplar_crucible",
@@ -8527,7 +8527,7 @@
           "Dawneagle Jetbike",
           "Fly"
         ],
-        "nameJa": "カタラトイ エセアル ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -8972,7 +8972,7 @@
           "Tech-Priest",
           "Crucible"
         ],
-        "nameJa": "マゴス ルイエ"
+        "nameJa": ""
       },
       {
         "id": "cohort_commander_crucible",
@@ -8988,7 +8988,7 @@
           "Marshal",
           "Cohort Commander"
         ],
-        "nameJa": "コホト コッマンデル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "ironstrider_alpha_crucible",
@@ -9004,7 +9004,7 @@
           "Walker",
           "Ironstrider Alpha"
         ],
-        "nameJa": "イロンリデル アファ ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -9468,7 +9468,7 @@
           "Martial Agent",
           "Crucible"
         ],
-        "nameJa": "マイアル アエント ルイエ"
+        "nameJa": ""
       },
       {
         "id": "deathwatch_agent_crucible",
@@ -9485,7 +9485,7 @@
           "Deathwatch",
           "Deathwatch Agent"
         ],
-        "nameJa": "デアワフ アエント ルイエ"
+        "nameJa": ""
       },
       {
         "id": "enthroned_agent_crucible",
@@ -9500,7 +9500,7 @@
           "Walker",
           "Enthroned Agent"
         ],
-        "nameJa": "エンロネド アエント ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -10433,7 +10433,7 @@
           "Officer",
           "Front-line Commander"
         ],
-        "nameJa": "ロント・イネ コッマンデル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "augmented_bone_ead_crucible",
@@ -10450,7 +10450,7 @@
           "Augmented Bone 'Ead",
           "Ogryn"
         ],
-        "nameJa": "アウメンテド ボネ エアド ルイエ"
+        "nameJa": ""
       },
       {
         "id": "sentinel_commander_crucible",
@@ -10466,7 +10466,7 @@
           "Walker",
           "Sentinel Commander"
         ],
-        "nameJa": "センイネル コッマンデル ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -11818,7 +11818,7 @@
           "Imperium",
           "Champion of Titan"
         ],
-        "nameJa": "ハピオン オヴ イタン ルイエ"
+        "nameJa": ""
       },
       {
         "id": "venerable_daemon_slayer_crucible",
@@ -11834,7 +11834,7 @@
           "Walker",
           "Venerable Daemon Slayer"
         ],
-        "nameJa": "ヴェネラエ デーモン アエル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "dreadknight_champion_crucible",
@@ -11850,7 +11850,7 @@
           "Walker",
           "Dreadknight Champion"
         ],
-        "nameJa": "レアニト ハピオン ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -13541,7 +13541,7 @@
           "Tacticus",
           "Crucible"
         ],
-        "nameJa": "ハピオン オヴ ザ ハテル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "librarius_adept_crucible",
@@ -13558,7 +13558,7 @@
           "Librarius Adept",
           "Crucible"
         ],
-        "nameJa": "イラリウス アデト ルイエ"
+        "nameJa": ""
       },
       {
         "id": "venerable_battle_brother_crucible",
@@ -13574,7 +13574,7 @@
           "Walker",
           "Crucible"
         ],
-        "nameJa": "ヴェネラエ バトル・ロセル ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -14347,7 +14347,7 @@
           "Psyker",
           "Living Ancestor"
         ],
-        "nameJa": "イヴィング アンセトル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "kinhost_commander_crucible",
@@ -14360,7 +14360,7 @@
           "Kinhost Commander",
           "Crucible"
         ],
-        "nameJa": "キンホト コッマンデル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "steeljack_elder_crucible",
@@ -14374,7 +14374,7 @@
           "Ironkin Steeljacks",
           "Steeljack Elder"
         ],
-        "nameJa": "テエジャック エデル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "berehk_stornbr_w",
@@ -15045,7 +15045,7 @@
           "Dynastic Conqueror",
           "Crucible"
         ],
-        "nameJa": "ナイク コンエロル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "hyperscientist_crucible",
@@ -15059,7 +15059,7 @@
           "Hyperscientist",
           "Cryptek"
         ],
-        "nameJa": "ペッイエンイト ルイエ"
+        "nameJa": ""
       },
       {
         "id": "triarchal_overseer_crucible",
@@ -15075,7 +15075,7 @@
           "Triarchal Overseer",
           "Stalker"
         ],
-        "nameJa": "リアハル オヴェセエル ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -15783,7 +15783,7 @@
           "Crucible",
           "Grenades"
         ],
-        "nameJa": "ホデボッス ルイエ"
+        "nameJa": ""
       },
       {
         "id": "warphead_crucible",
@@ -15797,7 +15797,7 @@
           "Psyker",
           "Warphead"
         ],
-        "nameJa": "ワフェアド ルイエ"
+        "nameJa": ""
       },
       {
         "id": "upstart_gretchin_crucible",
@@ -15812,7 +15812,7 @@
           "Grots",
           "Upstart Gretchin"
         ],
-        "nameJa": "ウタト グレッチン ルイエ"
+        "nameJa": ""
       }
     ]
   },
@@ -16431,7 +16431,7 @@
           "Grenades",
           "Shas'nel"
         ],
-        "nameJa": "シャネル ルイエ"
+        "nameJa": ""
       },
       {
         "id": "battlesuit_veteran_crucible",
@@ -16446,7 +16446,7 @@
           "Battlesuit",
           "Battlesuit Veteran"
         ],
-        "nameJa": "バトルスーツ ヴェテラン ルイエ"
+        "nameJa": ""
       },
       {
         "id": "kinband_champion_crucible",
@@ -16460,7 +16460,7 @@
           "Kroot",
           "Kinband Champion"
         ],
-        "nameJa": "キンバンド ハピオン ルイエ"
+        "nameJa": ""
       },
       {
         "id": "the_twin_lance",
@@ -17172,7 +17172,7 @@
           "Synapse",
           "Node Organism"
         ],
-        "nameJa": "ノデ オガニム ルイエ"
+        "nameJa": ""
       },
       {
         "id": "prime_organism_crucible",
@@ -17186,7 +17186,7 @@
           "Monster",
           "Prime Organism"
         ],
-        "nameJa": "リメ オガニム ルイエ"
+        "nameJa": ""
       },
       {
         "id": "macro_organism_crucible",
@@ -17200,7 +17200,7 @@
           "Monster",
           "Macro Organism"
         ],
-        "nameJa": "マロ オガニム ルイエ"
+        "nameJa": ""
       }
     ]
   }
