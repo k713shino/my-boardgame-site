@@ -111,8 +111,9 @@ export function RosterDetailClient({
     lines.push(`【${roster.name}】`);
     lines.push(`${roster.factionName}${roster.detachment ? ` / ${roster.detachment}` : ""} | ${roster.pointsLimit}pt制限`);
     lines.push("");
+    const byRoleForCopy = groupByRole(roster.units, roster.faction, roster.detachment);
     for (const role of roleOrder) {
-      const units = roster.units.filter((u) => u.role === role);
+      const units = byRoleForCopy[role];
       if (units.length === 0) continue;
       lines.push(`■ ${roleLabel[role]}`);
       for (const u of units) {

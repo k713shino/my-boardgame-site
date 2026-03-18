@@ -709,7 +709,7 @@ type FilterSidebarProps = {
   className?: string;
   search: string;
   filterRole: UnitRole | "ALL";
-  units: BuilderUnit[];
+  unitRoleCounts: Record<UnitRole, number>;
   availableTags: string[];
   selectedTags: string[];
   quickFilter: QuickFilterId | null;
@@ -726,7 +726,7 @@ function FilterSidebar({
   className,
   search,
   filterRole,
-  units,
+  unitRoleCounts,
   availableTags,
   selectedTags,
   quickFilter,
@@ -764,7 +764,7 @@ function FilterSidebar({
           </button>
           {ROLES.map((role) => {
             const meta = ROLE_META[role];
-            const count = units.filter((u) => u.role === role).length;
+            const count = unitRoleCounts[role] ?? 0;
             return (
               <button
                 key={role}
@@ -1559,8 +1559,17 @@ export function BuilderClient({
   }, [units]);
 
   const baseFilteredUnits = useMemo(() => {
+    const extraBattlelineIds = selectedFaction && detachment
+      ? getDetachmentBattlelineIds(selectedFaction.id, detachment)
+      : new Set<string>();
     return units.filter((u) => {
-      if (filterRole !== "ALL" && u.role !== filterRole) return false;
+      if (filterRole !== "ALL") {
+        const effectiveRole =
+          u.role !== "Battleline" && extraBattlelineIds.has(u.unitCode)
+            ? "Battleline"
+            : u.role;
+        if (effectiveRole !== filterRole) return false;
+      }
       if (selectedTags.length > 0 && !selectedTags.every((tag) => u.categories.includes(tag))) return false;
       if (!quickFilterMatch(u, quickFilter)) return false;
       if (search) {
@@ -1573,7 +1582,7 @@ export function BuilderClient({
       }
       return true;
     });
-  }, [units, search, filterRole, selectedTags, quickFilter]);
+  }, [units, search, filterRole, selectedTags, quickFilter, selectedFaction, detachment]);
 
   const tabCounts = useMemo(() => {
     const ownedCount = baseFilteredUnits.filter((u) => countInRoster(u.id) > 0).length;
@@ -1602,13 +1611,28 @@ export function BuilderClient({
       : new Set<string>();
     for (const u of filteredUnits) {
       const effectiveRole =
-        u.role !== "Battleline" && extraBattlelineIds.has(u.id)
+        u.role !== "Battleline" && extraBattlelineIds.has(u.unitCode)
           ? "Battleline"
           : u.role;
       map[effectiveRole]?.push(u);
     }
     return map;
   }, [filteredUnits, selectedFaction, detachment]);
+
+  const unitRoleCounts = useMemo(() => {
+    const extraBattlelineIds = selectedFaction && detachment
+      ? getDetachmentBattlelineIds(selectedFaction.id, detachment)
+      : new Set<string>();
+    const counts = Object.fromEntries(ROLES.map((r) => [r, 0])) as Record<UnitRole, number>;
+    for (const u of units) {
+      const effectiveRole =
+        u.role !== "Battleline" && extraBattlelineIds.has(u.unitCode)
+          ? "Battleline"
+          : u.role;
+      counts[effectiveRole] = (counts[effectiveRole] ?? 0) + 1;
+    }
+    return counts;
+  }, [units, selectedFaction, detachment]);
 
   const rosterByRole = useMemo(
     () => groupByRole(roster, selectedFaction?.id, detachment || undefined),
@@ -1942,7 +1966,7 @@ export function BuilderClient({
               className="order-2 md:order-1"
               search={search}
               filterRole={filterRole}
-              units={units}
+              unitRoleCounts={unitRoleCounts}
               availableTags={availableTags}
               selectedTags={selectedTags}
               quickFilter={quickFilter}

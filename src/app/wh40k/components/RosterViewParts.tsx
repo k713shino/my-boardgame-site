@@ -72,8 +72,10 @@ export function groupByRole(
       : new Set<string>();
 
   for (const unit of units) {
+    // slug は "{factionSlug}--{unitCode}" 形式なので "--" 以降を unitCode として使う
+    const unitCode = unit.slug?.split("--").pop() ?? "";
     const effectiveRole =
-      unit.role !== "Battleline" && extraBattlelineIds.has(unit.unitId)
+      unit.role !== "Battleline" && unitCode && extraBattlelineIds.has(unitCode)
         ? "Battleline"
         : unit.role;
     map[effectiveRole]?.push(unit);
