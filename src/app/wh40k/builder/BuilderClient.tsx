@@ -13,6 +13,7 @@ import {
 import type { UnitRole } from "../types";
 import { DETACHMENTS } from "@/data/wh40k-detachments";
 import { getEnhancements } from "@/data/wh40k-enhancements";
+import { getDetachmentBattlelineIds } from "@/data/wh40k-detachment-battlelines";
 import {
   groupByRole,
   RosterMetaBar,
@@ -1596,11 +1597,23 @@ export function BuilderClient({
 
   const unitsByRole = useMemo(() => {
     const map = Object.fromEntries(ROLES.map((r) => [r, [] as BuilderUnit[]])) as Record<UnitRole, BuilderUnit[]>;
-    for (const u of filteredUnits) map[u.role]?.push(u);
+    const extraBattlelineIds = selectedFaction && detachment
+      ? getDetachmentBattlelineIds(selectedFaction.id, detachment)
+      : new Set<string>();
+    for (const u of filteredUnits) {
+      const effectiveRole =
+        u.role !== "Battleline" && extraBattlelineIds.has(u.id)
+          ? "Battleline"
+          : u.role;
+      map[effectiveRole]?.push(u);
+    }
     return map;
-  }, [filteredUnits]);
+  }, [filteredUnits, selectedFaction, detachment]);
 
-  const rosterByRole = useMemo(() => groupByRole(roster), [roster]);
+  const rosterByRole = useMemo(
+    () => groupByRole(roster, selectedFaction?.id, detachment || undefined),
+    [roster, selectedFaction?.id, detachment]
+  );
 
   const totalPts = useMemo(() => roster.reduce((s, u) => s + u.pts, 0), [roster]);
 

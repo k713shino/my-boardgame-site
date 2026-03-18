@@ -148,7 +148,7 @@ export function RosterDetailClient({
     );
   }
 
-  const byRole = groupByRole(roster.units);
+  const byRole = groupByRole(roster.units, roster.faction, roster.detachment);
   const total = roster.units.reduce((sum, unit) => sum + unit.pts, 0);
   const summary = ROSTER_ROLES
     .map((role) => ({ role, count: byRole[role].length }))

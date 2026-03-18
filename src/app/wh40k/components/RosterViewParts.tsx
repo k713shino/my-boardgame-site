@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { RosterEntry } from "../builder/BuilderClient";
 import type { UnitRole } from "../types";
+import { getDetachmentBattlelineIds } from "@/data/wh40k-detachment-battlelines";
 
 export const ROSTER_ROLES: UnitRole[] = ["HQ", "Battleline", "Transport", "Other", "Heavy"];
 
@@ -56,13 +57,26 @@ export function resolveUnitDetailUrl(entry: RosterEntry, faction: string): strin
   return `/wh40k/units/${factionSlug}--${unitCode}`;
 }
 
-export function groupByRole(units: RosterEntry[]): Record<UnitRole, RosterEntry[]> {
+export function groupByRole(
+  units: RosterEntry[],
+  factionId?: string,
+  detachmentName?: string
+): Record<UnitRole, RosterEntry[]> {
   const map = Object.fromEntries(
     ROSTER_ROLES.map((role) => [role, [] as RosterEntry[]])
   ) as Record<UnitRole, RosterEntry[]>;
 
+  const extraBattlelineIds =
+    factionId && detachmentName
+      ? getDetachmentBattlelineIds(factionId, detachmentName)
+      : new Set<string>();
+
   for (const unit of units) {
-    map[unit.role]?.push(unit);
+    const effectiveRole =
+      unit.role !== "Battleline" && extraBattlelineIds.has(unit.unitId)
+        ? "Battleline"
+        : unit.role;
+    map[effectiveRole]?.push(unit);
   }
 
   return map;

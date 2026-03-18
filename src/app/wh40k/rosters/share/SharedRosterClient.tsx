@@ -63,7 +63,7 @@ export function SharedRosterClient({
   }
 
   const total = roster.units.reduce((sum, unit) => sum + unit.pts, 0);
-  const byRole = groupByRole(roster.units);
+  const byRole = groupByRole(roster.units, roster.faction, roster.detachment);
   const summary = ROSTER_ROLES
     .map((role) => ({ role, count: byRole[role].length }))
     .filter((row) => row.count > 0);
