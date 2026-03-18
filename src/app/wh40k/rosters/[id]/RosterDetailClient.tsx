@@ -79,24 +79,32 @@ export function RosterDetailClient({
     setLoaded(true);
   }, [id, initialRoster, router]);
 
-  const shareRoster = () => {
+  const shareRoster = async () => {
     if (!roster) return;
-    const data = {
+    const payload = JSON.stringify({
       name: roster.name,
       faction: roster.faction,
+      factionName: roster.factionName,
       detachment: roster.detachment,
       pointsLimit: roster.pointsLimit,
       units: roster.units,
-    };
-    const encoded = btoa(encodeURIComponent(JSON.stringify(data)));
-    const url = `${window.location.origin}${shareBasePath}?d=${encoded}`;
-    navigator.clipboard
-      ?.writeText(url)
-      .then(() => {
-        trackRosterShare({ roster_id: roster.id, faction: roster.faction });
-        alert("✅ 共有URLをクリップボードにコピーしました");
-      })
-      .catch(() => prompt("共有URL:", url));
+    });
+
+    try {
+      const res = await fetch("/api/wh40k/share", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: payload }),
+      });
+      if (!res.ok) throw new Error("api_error");
+      const { id: shareId } = await res.json();
+      const url = `${window.location.origin}${shareBasePath}/${shareId}`;
+      await navigator.clipboard?.writeText(url).catch(() => prompt("共有URL:", url));
+      trackRosterShare({ roster_id: roster.id, faction: roster.faction });
+      alert("✅ 共有URLをクリップボードにコピーしました");
+    } catch {
+      alert("❌ 共有URLの生成に失敗しました。再度お試しください。");
+    }
   };
 
   const copyRosterText = () => {
