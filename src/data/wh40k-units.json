@@ -2,7 +2,7 @@
   "aeldari_craftworlds": {
     "id": "aeldari_craftworlds",
     "name": "Aeldari (Craftworlds)",
-    "nameJa": "アエルダリ (クラフトワールド)",
+    "nameJa": "アエルダリ",
     "group": "Xenos",
     "units": [
       {
@@ -135,7 +135,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "クリムゾン・ハンター"
+        "nameJa": "クリムゾンハンター"
       },
       {
         "id": "dark_reapers",
@@ -271,7 +271,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ファイア・プリズム"
+        "nameJa": "ファイアプリズム"
       },
       {
         "id": "fuegan",
@@ -304,7 +304,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ガーディアン・ティフェンダー"
+        "nameJa": "ガーディアン・ディフェンダー"
       },
       {
         "id": "hemlock_wraithfighter",
@@ -424,7 +424,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "シャイニング・スピアー"
+        "nameJa": "シャイニング・スピア"
       },
       {
         "id": "shroud_runners",
@@ -453,7 +453,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "スカイウィーバー"
+        "nameJa": "スカイウィーヴァー"
       },
       {
         "id": "solitaire",
@@ -517,7 +517,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ストーム・ガーディアン"
+        "nameJa": "ストームガーディアン"
       },
       {
         "id": "striking_scorpions",
@@ -562,7 +562,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "スウィーピング・ホーク"
+        "nameJa": "スゥーピング・ホーク"
       },
       {
         "id": "the_visarch",
@@ -576,7 +576,7 @@
           "Character",
           "Aeldari"
         ],
-        "nameJa": "ヴィスアーク"
+        "nameJa": "[イナーリ] ヴィスアーク"
       },
       {
         "id": "the_yncarne",
@@ -593,7 +593,7 @@
           "Daemon",
           "Aeldari"
         ],
-        "nameJa": "インカーネ"
+        "nameJa": "[イナーリ] インカーネ"
       },
       {
         "id": "troupe",
@@ -608,7 +608,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "トゥループ"
+        "nameJa": "トルゥプ"
       },
       {
         "id": "troupe_master",
@@ -624,7 +624,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "トゥループ・マスター"
+        "nameJa": "トルゥプマスター"
       },
       {
         "id": "voidweaver",
@@ -639,7 +639,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "ヴォイドウィーバー"
+        "nameJa": "ヴォイドウィーヴァー"
       },
       {
         "id": "warlock",
@@ -669,7 +669,7 @@
           "Warlock",
           "Ynnari"
         ],
-        "nameJa": "ウォーロック・コンクラーベ"
+        "nameJa": "ウォーロック評議会"
       },
       {
         "id": "warp_spiders",
@@ -701,7 +701,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ウェイヴ・サーペント"
+        "nameJa": "ウェイヴサーペント"
       },
       {
         "id": "windriders",
@@ -715,7 +715,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ウインドライダー"
+        "nameJa": "ウィンドライダー"
       },
       {
         "id": "wraithknight",
@@ -776,7 +776,7 @@
           "Psyker",
           "Aeldari"
         ],
-        "nameJa": "イヴライネ"
+        "nameJa": "[イナーリ] イヴライネ"
       },
       {
         "id": "wraithblades",
@@ -1093,7 +1093,7 @@
           "Aeldari",
           "Wraith Construct"
         ],
-        "nameJa": "ファントムタイタン"
+        "nameJa": "[FW] ファントム・タイタン"
       },
       {
         "id": "revenant_titan",
@@ -1110,7 +1110,7 @@
           "Wraith Construct",
           "Aeldari"
         ],
-        "nameJa": "レヴェナントタイタン"
+        "nameJa": "[FW] レヴナント・タイタン"
       },
       {
         "id": "warlock_skyrunners",
@@ -1139,7 +1139,7 @@
           "Aeldari",
           "Archon"
         ],
-        "nameJa": "インナーリ・アーコン"
+        "nameJa": "[イナーリ] インナーリ・アーコン"
       },
       {
         "id": "lhykhis",
@@ -1202,7 +1202,7 @@
           "Wraithknight with Ghostglaive",
           "Ynnari"
         ],
-        "nameJa": "レイスナイト（ゴーストグレイブ装備）"
+        "nameJa": "レイスナイト（ゴーストグレイヴ装備）"
       },
       {
         "id": "ynnari_succubus",
@@ -1215,7 +1215,7 @@
           "Character",
           "Infantry"
         ],
-        "nameJa": "インナーリ・サキュバス"
+        "nameJa": "[イナーリ] インナーリ・サキュバス"
       },
       {
         "id": "ynnari_kabalite_warriors",
@@ -1228,7 +1228,7 @@
           "Battleline",
           "Infantry"
         ],
-        "nameJa": "インナーリ・カバライト・ウォリアー"
+        "nameJa": "[イナーリ] インナーリ・カバライト・ウォリアー"
       },
       {
         "id": "ynnari_wyches",
@@ -1242,7 +1242,7 @@
           "Infantry",
           "Grenades"
         ],
-        "nameJa": "インナーリ・ウィッチ"
+        "nameJa": "[イナーリ] インナーリ・ウィッチ"
       },
       {
         "id": "ynnari_incubi",
@@ -1254,7 +1254,7 @@
           "Aeldari",
           "Infantry"
         ],
-        "nameJa": "インナーリ・インキュバス"
+        "nameJa": "[イナーリ] インナーリ・インキュバス"
       },
       {
         "id": "ynnari_reavers",
@@ -1267,7 +1267,7 @@
           "Fly",
           "Mounted"
         ],
-        "nameJa": "インナーリ・リーヴァー"
+        "nameJa": "[イナーリ] インナーリ・リーヴァー"
       },
       {
         "id": "ynnari_raider",
@@ -1282,7 +1282,7 @@
           "Vehicle",
           "Transport"
         ],
-        "nameJa": "インナーリ・レイダー"
+        "nameJa": "[イナーリ] インナーリ・レイダー"
       },
       {
         "id": "ynnari_venom",
@@ -1297,7 +1297,7 @@
           "Transport",
           "Vehicle"
         ],
-        "nameJa": "インナーリ・ヴェノム"
+        "nameJa": "[イナーリ] インナーリ・ヴェノム"
       },
       {
         "id": "lady_malys",
@@ -1345,7 +1345,7 @@
           "Aeldari",
           "Anhrathe"
         ],
-        "nameJa": "プリンス・イリエル"
+        "nameJa": "ユリエルの君"
       },
       {
         "id": "kharseth",
@@ -1361,7 +1361,7 @@
           "Anhrathe",
           "Kharseth"
         ],
-        "nameJa": "カーセス"
+        "nameJa": "カルセス"
       },
       {
         "id": "corsair_skyreavers",
@@ -1392,7 +1392,7 @@
           "Aeldari",
           "Archtormentor"
         ],
-        "nameJa": ""
+        "nameJa": "アトメントル ルイエ"
       },
       {
         "id": "flesh_crafter_crucible",
@@ -1407,7 +1407,7 @@
           "Haemonculus Covens",
           "Flesh Crafter"
         ],
-        "nameJa": ""
+        "nameJa": "エフ ラテル ルイエ"
       },
       {
         "id": "craftworld_warleader_crucible",
@@ -1421,7 +1421,7 @@
           "Craftworld Warleader",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "ラヲド ワエアデル ルイエ"
       },
       {
         "id": "skyrunner_crucible",
@@ -1436,7 +1436,7 @@
           "Skyrunner",
           "Fly"
         ],
-        "nameJa": ""
+        "nameJa": "ルンネル ルイエ"
       },
       {
         "id": "ghost_warrior_crucible",
@@ -1452,7 +1452,7 @@
           "Ghost Warrior",
           "Wraith Construct"
         ],
-        "nameJa": ""
+        "nameJa": "ホト ワッリオル ルイエ"
       }
     ]
   },
@@ -1843,7 +1843,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "スカイウィーバー"
+        "nameJa": "スカイウィーヴァー"
       },
       {
         "id": "starweaver",
@@ -1875,7 +1875,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "ヴォイドウィーバー"
+        "nameJa": "ヴォイドウィーヴァー"
       },
       {
         "id": "troupe",
@@ -1890,7 +1890,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "トゥループ"
+        "nameJa": "トルゥプ"
       },
       {
         "id": "troupe_master",
@@ -1906,7 +1906,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "トゥループ・マスター"
+        "nameJa": "トルゥプマスター"
       },
       {
         "id": "lady_malys",
@@ -1970,7 +1970,7 @@
           "Aeldari",
           "Anhrathe"
         ],
-        "nameJa": "プリンス・イリエル"
+        "nameJa": "ユリエルの君"
       },
       {
         "id": "kharseth",
@@ -1986,7 +1986,7 @@
           "Anhrathe",
           "Kharseth"
         ],
-        "nameJa": "カーセス"
+        "nameJa": "カルセス"
       },
       {
         "id": "archtormentor_crucible",
@@ -2001,7 +2001,7 @@
           "Aeldari",
           "Archtormentor"
         ],
-        "nameJa": ""
+        "nameJa": "アトメントル ルイエ"
       },
       {
         "id": "flesh_crafter_crucible",
@@ -2016,14 +2016,14 @@
           "Haemonculus Covens",
           "Flesh Crafter"
         ],
-        "nameJa": ""
+        "nameJa": "エフ ラテル ルイエ"
       }
     ]
   },
   "ynnari": {
     "id": "ynnari",
     "name": "Ynnari",
-    "nameJa": "インナーリ",
+    "nameJa": "イナーリ",
     "group": "Xenos",
     "units": [
       {
@@ -2039,7 +2039,7 @@
           "Psyker",
           "Aeldari"
         ],
-        "nameJa": "イヴライネ"
+        "nameJa": "[イナーリ] イヴライネ"
       },
       {
         "id": "the_visarch",
@@ -2053,7 +2053,7 @@
           "Character",
           "Aeldari"
         ],
-        "nameJa": "ヴィスアーク"
+        "nameJa": "[イナーリ] ヴィスアーク"
       },
       {
         "id": "the_yncarne",
@@ -2070,7 +2070,7 @@
           "Daemon",
           "Aeldari"
         ],
-        "nameJa": "インカーネ"
+        "nameJa": "[イナーリ] インカーネ"
       },
       {
         "id": "archon",
@@ -2132,7 +2132,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "クリムゾン・ハンター"
+        "nameJa": "クリムゾンハンター"
       },
       {
         "id": "dark_reapers",
@@ -2283,7 +2283,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ファイア・プリズム"
+        "nameJa": "ファイアプリズム"
       },
       {
         "id": "guardian_defenders",
@@ -2299,7 +2299,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ガーディアン・ティフェンダー"
+        "nameJa": "ガーディアン・ディフェンダー"
       },
       {
         "id": "hemlock_wraithfighter",
@@ -2387,7 +2387,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "シャイニング・スピアー"
+        "nameJa": "シャイニング・スピア"
       },
       {
         "id": "shroud_runners",
@@ -2416,7 +2416,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "スカイウィーバー"
+        "nameJa": "スカイウィーヴァー"
       },
       {
         "id": "spiritseer",
@@ -2464,7 +2464,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ストーム・ガーディアン"
+        "nameJa": "ストームガーディアン"
       },
       {
         "id": "d_cannon_platform",
@@ -2495,7 +2495,7 @@
           "Aspect Warrior",
           "Ynnari"
         ],
-        "nameJa": "スウィーピング・ホーク"
+        "nameJa": "スゥーピング・ホーク"
       },
       {
         "id": "troupe",
@@ -2510,7 +2510,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "トゥループ"
+        "nameJa": "トルゥプ"
       },
       {
         "id": "troupe_master",
@@ -2526,7 +2526,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "トゥループ・マスター"
+        "nameJa": "トルゥプマスター"
       },
       {
         "id": "voidweaver",
@@ -2541,7 +2541,7 @@
           "Aeldari",
           "Corsairs and Travelling Players"
         ],
-        "nameJa": "ヴォイドウィーバー"
+        "nameJa": "ヴォイドウィーヴァー"
       },
       {
         "id": "warlock",
@@ -2571,7 +2571,7 @@
           "Warlock",
           "Ynnari"
         ],
-        "nameJa": "ウォーロック・コンクラーベ"
+        "nameJa": "ウォーロック評議会"
       },
       {
         "id": "warlock_skyrunners",
@@ -2619,7 +2619,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ウェイヴ・サーペント"
+        "nameJa": "ウェイヴサーペント"
       },
       {
         "id": "windriders",
@@ -2633,7 +2633,7 @@
           "Aeldari",
           "Ynnari"
         ],
-        "nameJa": "ウインドライダー"
+        "nameJa": "ウィンドライダー"
       },
       {
         "id": "wraithblades",
@@ -2911,7 +2911,7 @@
           "Aeldari",
           "Wraith Construct"
         ],
-        "nameJa": "ファントムタイタン"
+        "nameJa": "[FW] ファントム・タイタン"
       },
       {
         "id": "revenant_titan",
@@ -2928,7 +2928,7 @@
           "Wraith Construct",
           "Aeldari"
         ],
-        "nameJa": "レヴェナントタイタン"
+        "nameJa": "[FW] レヴナント・タイタン"
       },
       {
         "id": "striking_scorpions",
@@ -3000,7 +3000,7 @@
           "Skarbrand",
           "Khorne non-Battleline"
         ],
-        "nameJa": "スカーブランド"
+        "nameJa": "[血の兵団] スカーブランド"
       },
       {
         "id": "bloodthirster",
@@ -3018,7 +3018,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ブラッドサースター"
+        "nameJa": "[血の兵団] ブラッドサースター"
       },
       {
         "id": "skulltaker",
@@ -3120,7 +3120,7 @@
           "Khorne Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ブラッドレター"
+        "nameJa": "[血の兵団] ブラッドレター"
       },
       {
         "id": "bloodcrushers",
@@ -3136,7 +3136,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ブラッドクラッシャー"
+        "nameJa": "[血の兵団] ブラッドクラッシャー"
       },
       {
         "id": "flesh_hounds",
@@ -3152,7 +3152,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "フレッシュハウンド"
+        "nameJa": "[血の兵団] フレッシュハウンド"
       },
       {
         "id": "skull_cannon",
@@ -3220,7 +3220,7 @@
           "Khorne non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "コーン・ソウルグラインダー"
+        "nameJa": "ソウルグラインダー"
       },
       {
         "id": "tzeentch_soul_grinder",
@@ -3237,7 +3237,7 @@
           "Tzeentch non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ティーンチ・ソウルグラインダー"
+        "nameJa": "ソウルグラインダー"
       },
       {
         "id": "nurgle_soul_grinder",
@@ -3254,7 +3254,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ナグール・ソウルグラインダー"
+        "nameJa": "ソウルグラインダー"
       },
       {
         "id": "slaanesh_soul_grinder",
@@ -3271,7 +3271,7 @@
           "Slaanesh non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "スラーネッシュ・ソウルグラインダー"
+        "nameJa": "ソウルグラインダー"
       },
       {
         "id": "daemon_prince_of_chaos",
@@ -3356,7 +3356,7 @@
           "The Changeling",
           "Tzeentch non-Battleline"
         ],
-        "nameJa": "ザ・チェンリング"
+        "nameJa": "チェンジリング"
       },
       {
         "id": "fateskimmer",
@@ -3412,7 +3412,7 @@
           "The Blue Scribes",
           "Tzeentch non-Battleline"
         ],
-        "nameJa": "ザ・ブルー・スクライブ"
+        "nameJa": "ブルースクライブ"
       },
       {
         "id": "changecaster",
@@ -3549,7 +3549,7 @@
           "Rotigus",
           "Nurgle non-Battleline"
         ],
-        "nameJa": "ロッティガス"
+        "nameJa": "[プレーグレギオン] ロッティガス"
       },
       {
         "id": "great_unclean_one",
@@ -3567,7 +3567,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "グレート・アンクリーン・ワン"
+        "nameJa": "[プレーグレギオン] グレイト・アンクリーン・ワン"
       },
       {
         "id": "poxbringer",
@@ -3670,7 +3670,7 @@
           "Nurgle Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "プレーグベアラー"
+        "nameJa": "[プレーグレギオン] プレーグベアラー"
       },
       {
         "id": "nurglings",
@@ -3687,7 +3687,7 @@
           "Nurgle Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "ナーグリング"
+        "nameJa": "[プレーグレギオン] ナーグリング"
       },
       {
         "id": "plague_drones",
@@ -3704,7 +3704,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "プレーグドローン"
+        "nameJa": "[プレーグレギオン] プレーグドローン"
       },
       {
         "id": "feculent_gnarlmaw",
@@ -3720,7 +3720,7 @@
           "Nurgle non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "穢らわしき洞樹？"
+        "nameJa": "穢らわしき洞樹"
       },
       {
         "id": "shalaxi_helbane",
@@ -3791,7 +3791,7 @@
           "The Masque of Slaanesh",
           "Slaanesh non-Battleline"
         ],
-        "nameJa": "ザ・マスク・オヴ・スラーネッシュ"
+        "nameJa": "マスク・オヴ・スラーネッシュ"
       },
       {
         "id": "syll_esske",
@@ -3862,7 +3862,7 @@
           "Slaanesh non-Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "トランウィーヴァー"
+        "nameJa": "トランスウィーヴァー"
       },
       {
         "id": "daemonettes",
@@ -3879,7 +3879,7 @@
           "Slaanesh Battleline",
           "Shadow Legion"
         ],
-        "nameJa": "デーモネット"
+        "nameJa": "デモネット"
       },
       {
         "id": "fiends",
@@ -3927,7 +3927,7 @@
           "Daemonic Herald",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "ダエモニク ヘラド ルイエ"
       },
       {
         "id": "daemonic_charioteer_crucible",
@@ -3942,7 +3942,7 @@
           "Mounted",
           "Daemonic Charioteer"
         ],
-        "nameJa": ""
+        "nameJa": "ダエモニク ハリオテエル ルイエ"
       },
       {
         "id": "immortal_champion_crucible",
@@ -3957,7 +3957,7 @@
           "Monster",
           "Immortal Champion"
         ],
-        "nameJa": ""
+        "nameJa": "イッモタル ハピオン ルイエ"
       }
     ]
   },
@@ -4193,7 +4193,7 @@
           "Knight Castigator",
           "Knight Character"
         ],
-        "nameJa": "ケイオス・セラストゥス・ナイト・キャスティゲイター"
+        "nameJa": "ケイオス・セラストゥス・ナイト・カスティゲイター"
       },
       {
         "id": "chaos_cerastus_knight_acheron",
@@ -4264,7 +4264,7 @@
           "Knight Styrix",
           "Knight Character"
         ],
-        "nameJa": "ケイオス・クエストリス・ナイト・スティリックス"
+        "nameJa": "ケイオス・クエストリス・ナイト・スタイリックス"
       },
       {
         "id": "war_dog_moirax",
@@ -4320,7 +4320,7 @@
           "Chaos",
           "Abaddon the Despoiler"
         ],
-        "nameJa": "アバドン・ザ・デスポイラー"
+        "nameJa": "\"強奪者\"アバドン"
       },
       {
         "id": "haarken_worldclaimer",
@@ -4337,7 +4337,7 @@
           "Chaos Undivided",
           "Haarken Worldclaimer"
         ],
-        "nameJa": "ハーケン・ワールドクレイマー"
+        "nameJa": "ハールケン・ワールドクレイマー"
       },
       {
         "id": "huron_blackheart",
@@ -4366,7 +4366,7 @@
           "Daemon",
           "Daemon Prince"
         ],
-        "nameJa": "ヘレティック・アスタルテス・デーモン・プリンス"
+        "nameJa": "ヘレティック・アスタルテス・ディーモンプリンス"
       },
       {
         "id": "heretic_astartes_daemon_prince_with_wings",
@@ -4382,7 +4382,7 @@
           "Daemon Prince with Wings",
           "Daemon Prince"
         ],
-        "nameJa": "ヘレティック・アスタルテス・デーモン・プリンス 翼付き"
+        "nameJa": "ヘレティック・アスタルテス・ディーモンプリンス（翼装備）"
       },
       {
         "id": "fabius_bile",
@@ -4392,7 +4392,7 @@
         "categories": [
           "Epic Hero"
         ],
-        "nameJa": "ファビウス ビレ"
+        "nameJa": "ファビウス・バイル"
       },
       {
         "id": "cypher",
@@ -4407,7 +4407,7 @@
           "Cypher",
           "Fallen"
         ],
-        "nameJa": "サイファー"
+        "nameJa": "サイフェル"
       },
       {
         "id": "master_of_possession",
@@ -4421,7 +4421,7 @@
           "Chaos",
           "Master of Possession"
         ],
-        "nameJa": "マスター オブ ポセッション"
+        "nameJa": "マスター・オヴ・ポゼッション"
       },
       {
         "id": "chaos_lord",
@@ -4435,7 +4435,7 @@
           "Chaos",
           "Chaos Lord"
         ],
-        "nameJa": "ケイオス ロード"
+        "nameJa": "ケイオスロード"
       },
       {
         "id": "chaos_lord_in_terminator_armour",
@@ -4450,7 +4450,7 @@
           "Chaos Lord in Terminator Armour",
           "Chaos Lord"
         ],
-        "nameJa": "ケイオス ロード ターミネイター・アーマー装備"
+        "nameJa": "ケイオスロード（ターミネイター・アーマー装備）"
       },
       {
         "id": "sorcerer",
@@ -4480,7 +4480,7 @@
           "Terminator",
           "Sorcerer in Terminator Armour"
         ],
-        "nameJa": "ソーサラー ターミネイター・アーマー装備"
+        "nameJa": "ソーサラー（ターミネイター・アーマー装備）"
       },
       {
         "id": "lord_discordant_on_helstalker",
@@ -4494,7 +4494,7 @@
           "Daemon",
           "Lord Discordant"
         ],
-        "nameJa": "ロード ディスコルダント オン ヘルスターカー"
+        "nameJa": "ロード・ディスコーダント（ヘルストーカー騎乗）"
       },
       {
         "id": "warpsmith",
@@ -4520,7 +4520,7 @@
           "Grenades",
           "Chaos"
         ],
-        "nameJa": "ダーク アポストル"
+        "nameJa": "ダークアポスル"
       },
       {
         "id": "dark_commune",
@@ -4535,7 +4535,7 @@
           "Dark Commune",
           "Chaos"
         ],
-        "nameJa": "ダーク コミューン"
+        "nameJa": "ダーク・コミューン"
       },
       {
         "id": "legionaries",
@@ -4549,7 +4549,7 @@
           "Grenades",
           "Legionaries"
         ],
-        "nameJa": "レギオナリーズ"
+        "nameJa": "レギオナリー"
       },
       {
         "id": "cultist_mob",
@@ -4564,7 +4564,7 @@
           "Cultist Mob",
           "Damned"
         ],
-        "nameJa": "カルティスト モブ"
+        "nameJa": "カルティスト・モブ"
       },
       {
         "id": "accursed_cultists",
@@ -4577,7 +4577,7 @@
           "Accursed Cultists",
           "Damned"
         ],
-        "nameJa": "アッカースド カルティスト"
+        "nameJa": "アカースド・カルティスト"
       },
       {
         "id": "chaos_terminator_squad",
@@ -4590,7 +4590,7 @@
           "Terminator",
           "Chaos Terminator Squad"
         ],
-        "nameJa": "ケイオス ターミネイター スカッド"
+        "nameJa": "ケイオス・ターミネイター・スカッド"
       },
       {
         "id": "master_of_executions",
@@ -4604,7 +4604,7 @@
           "Chaos",
           "Master of Executions"
         ],
-        "nameJa": "マスター オブ エグゼキューション"
+        "nameJa": "マスター・オヴ・エクスキューション"
       },
       {
         "id": "possessed",
@@ -4617,7 +4617,7 @@
           "Daemon",
           "Possessed"
         ],
-        "nameJa": "ポゼスト"
+        "nameJa": "ポゼッスド"
       },
       {
         "id": "chosen",
@@ -4644,7 +4644,7 @@
           "Daemon",
           "Venomcrawler"
         ],
-        "nameJa": "ヴェノムクローラー"
+        "nameJa": "ヴェノムクロウラー"
       },
       {
         "id": "chaos_bikers",
@@ -4657,7 +4657,7 @@
           "Chaos",
           "Chaos Bikers"
         ],
-        "nameJa": "ケイオス バイカーズ"
+        "nameJa": "ケイオス・バイカー"
       },
       {
         "id": "raptors",
@@ -4688,7 +4688,7 @@
           "Warp Talons",
           "Grenades"
         ],
-        "nameJa": "ワープ タロンズ"
+        "nameJa": "ワープタロン"
       },
       {
         "id": "havocs",
@@ -4700,7 +4700,7 @@
           "Chaos",
           "Havocs"
         ],
-        "nameJa": "へイヴォクス"
+        "nameJa": "ハヴォック"
       },
       {
         "id": "obliterators",
@@ -4713,7 +4713,7 @@
           "Daemon",
           "Obliterators"
         ],
-        "nameJa": "オブリテイターズ"
+        "nameJa": "オブリタレイター"
       },
       {
         "id": "noctilith_crown",
@@ -4725,7 +4725,7 @@
           "Chaos",
           "Noctilith Crown"
         ],
-        "nameJa": "ノクティリス クラウン"
+        "nameJa": "宵闇の王冠"
       },
       {
         "id": "vashtorr_the_arkifane",
@@ -4741,7 +4741,7 @@
           "Daemon",
           "Vashtorr the Arkifane"
         ],
-        "nameJa": "ヴァシュトール・ザ・アーキフェイン"
+        "nameJa": "\"魔導造主\"ヴァシュトール"
       },
       {
         "id": "traitor_guardsmen_squad",
@@ -4755,7 +4755,7 @@
           "Traitor Guardsmen Squad",
           "Damned"
         ],
-        "nameJa": "トレイター ガーズメン スカッド"
+        "nameJa": "トレイター・ガーズマン・スカッド"
       },
       {
         "id": "fellgor_beastmen",
@@ -4769,7 +4769,7 @@
           "Fellgor Beastmen",
           "Damned"
         ],
-        "nameJa": "フェルゴール ビーストメン"
+        "nameJa": "フェルゴウル・ビーストマン"
       },
       {
         "id": "traitor_enforcer",
@@ -4780,7 +4780,7 @@
           "Character",
           "Damned"
         ],
-        "nameJa": "トレイター エンフォーサー"
+        "nameJa": "トレイター・エンフォーサー"
       },
       {
         "id": "chaos_land_raider",
@@ -4793,7 +4793,7 @@
           "Chaos",
           "Land Raider"
         ],
-        "nameJa": "ケイオス ランド レイダー"
+        "nameJa": "ケイオス・ランドレイダー"
       },
       {
         "id": "chaos_predator_annihilator",
@@ -4805,7 +4805,7 @@
           "Chaos",
           "Predator Annihilator"
         ],
-        "nameJa": "ケイオス プレデター アナイアレイター"
+        "nameJa": "ケイオス・プレデター・アナイアレイター"
       },
       {
         "id": "chaos_predator_destructor",
@@ -4817,7 +4817,7 @@
           "Chaos",
           "Predator Destructor"
         ],
-        "nameJa": "ケイオス プレデター デストラクター"
+        "nameJa": "ケイオス・プレデター・デストラクター"
       },
       {
         "id": "chaos_vindicator",
@@ -4829,7 +4829,7 @@
           "Chaos",
           "Vindicator"
         ],
-        "nameJa": "ケイオス ヴィンディケーター"
+        "nameJa": "ケイオス・ヴィンディケイター"
       },
       {
         "id": "defiler",
@@ -4843,7 +4843,7 @@
           "Daemon",
           "Defiler"
         ],
-        "nameJa": "デファイラー"
+        "nameJa": "ディファイラー"
       },
       {
         "id": "forgefiend",
@@ -4899,7 +4899,7 @@
           "Daemon",
           "Maulerfiend"
         ],
-        "nameJa": "モーラーフィエンド"
+        "nameJa": "モーラーフィーンド"
       },
       {
         "id": "chaos_rhino",
@@ -4913,7 +4913,7 @@
           "Chaos",
           "Rhino"
         ],
-        "nameJa": "ケイオス ライノ"
+        "nameJa": "ケイオス・ライノ"
       },
       {
         "id": "khorne_lord_of_skulls",
@@ -4929,7 +4929,7 @@
           "Daemon",
           "Lord of Skulls"
         ],
-        "nameJa": "コーン ロード オブ スカルス"
+        "nameJa": "コーン・ロード・オヴ・スカル"
       },
       {
         "id": "chaos_spawn",
@@ -4941,7 +4941,7 @@
           "Chaos",
           "Chaos Spawn"
         ],
-        "nameJa": "ケイオス スポーン"
+        "nameJa": "ケイオス・スポーン"
       },
       {
         "id": "khorne_berzerkers",
@@ -4956,7 +4956,7 @@
           "Khorne",
           "Berzerkers"
         ],
-        "nameJa": "コーン バーサーカー"
+        "nameJa": "コーン・バーザーカー"
       },
       {
         "id": "rubric_marines",
@@ -4971,7 +4971,7 @@
           "Rubric Marines",
           "Rubricae"
         ],
-        "nameJa": "ルブリック マリーン"
+        "nameJa": "ルブリックマリーン"
       },
       {
         "id": "plague_marines",
@@ -4986,7 +4986,7 @@
           "Nurgle",
           "Plague Marines"
         ],
-        "nameJa": "プレイグ マリーン"
+        "nameJa": "プレーグマリーン"
       },
       {
         "id": "chaos_lord_with_jump_pack",
@@ -5002,7 +5002,7 @@
           "Grenades",
           "Chaos"
         ],
-        "nameJa": "ケイオス ロード ジャンプパック装備"
+        "nameJa": "ケイオスロード（ジャンプパック装備）"
       },
       {
         "id": "cultist_firebrand",
@@ -5017,7 +5017,7 @@
           "Damned",
           "Cultist Firebrand"
         ],
-        "nameJa": "カルティスト ファイアブランド"
+        "nameJa": "カルティスト・ファイアブランド"
       },
       {
         "id": "nemesis_claw",
@@ -5031,7 +5031,7 @@
           "Nemesis Claw",
           "Chaos"
         ],
-        "nameJa": "ネメシス クロー"
+        "nameJa": "ネメシスクロウ"
       },
       {
         "id": "noise_marines",
@@ -5045,7 +5045,7 @@
           "Noise Marines",
           "Cults of the Dark Gods"
         ],
-        "nameJa": "ノイズ マリーン"
+        "nameJa": "ノイズマリーン"
       },
       {
         "id": "masters_of_the_maelstrom",
@@ -5060,7 +5060,7 @@
           "Chaos Undivided",
           "Masters of the Maelstrom"
         ],
-        "nameJa": "マスターズ オブ ザ ミールストーム"
+        "nameJa": "渦の支配者"
       },
       {
         "id": "red_corsairs_raiders",
@@ -5073,7 +5073,7 @@
           "Red Corsairs Raiders",
           "Chaos"
         ],
-        "nameJa": "レッド コルセア ライダース"
+        "nameJa": "レッドコルセア・レイダー"
       },
       {
         "id": "red_corsairs_reave_captain",
@@ -5086,7 +5086,7 @@
           "Chaos",
           "Red Corsairs Reave-captain"
         ],
-        "nameJa": "レッド コルセア リーブ・キャプテン"
+        "nameJa": "レッドコルセア・リーヴキャプテン"
       },
       {
         "id": "exalted_champion_crucible",
@@ -5100,7 +5100,7 @@
           "Chaos",
           "Exalted Champion"
         ],
-        "nameJa": ""
+        "nameJa": "エサテド ハピオン ルイエ"
       },
       {
         "id": "sorcerous_champion_crucible",
@@ -5115,7 +5115,7 @@
           "Psyker",
           "Sorcerous Champion"
         ],
-        "nameJa": ""
+        "nameJa": "ソセロウス ハピオン ルイエ"
       },
       {
         "id": "soul_forge_tyrant_crucible",
@@ -5130,14 +5130,14 @@
           "Helstalker",
           "Soul Forge Tyrant"
         ],
-        "nameJa": ""
+        "nameJa": "ソウル フォエ ラント ルイエ"
       }
     ]
   },
   "death_guard": {
     "id": "death_guard",
     "name": "Death Guard",
-    "nameJa": "デス ガード",
+    "nameJa": "デスガード",
     "group": "Chaos",
     "units": [
       {
@@ -5153,7 +5153,7 @@
           "Daemon",
           "Daemon Prince"
         ],
-        "nameJa": "デーモン・プリンス オヴ ナグール"
+        "nameJa": "ディーモンプリンス・オヴ・ナーグル"
       },
       {
         "id": "daemon_prince_of_nurgle_with_wings",
@@ -5169,7 +5169,7 @@
           "Fly",
           "Daemon Prince with Wings"
         ],
-        "nameJa": "デーモン・プリンス オヴ ナグール 翼付き"
+        "nameJa": "ディーモンプリンス・オヴ・ナーグル（翼装備）"
       },
       {
         "id": "typhus",
@@ -5186,7 +5186,7 @@
           "Typhus",
           "Terminator"
         ],
-        "nameJa": "タイファス"
+        "nameJa": "ティファウス"
       },
       {
         "id": "lord_of_virulence",
@@ -5201,7 +5201,7 @@
           "Lord of Virulence",
           "Terminator"
         ],
-        "nameJa": "ロード オヴ ヴィルレンス"
+        "nameJa": "ロード・オヴ・ヴィルレンス"
       },
       {
         "id": "lord_of_contagion",
@@ -5217,7 +5217,7 @@
           "Lord of Contagion",
           "Terminator"
         ],
-        "nameJa": "ロード オヴ コンタギオン"
+        "nameJa": "ロード・オヴ・コンタギオン"
       },
       {
         "id": "malignant_plaguecaster",
@@ -5232,7 +5232,7 @@
           "Psyker",
           "Malignant Plaguecaster"
         ],
-        "nameJa": "マリグナント プリーグキャスター"
+        "nameJa": "マリグナント・プレーグキャスター"
       },
       {
         "id": "plague_marines",
@@ -5247,7 +5247,7 @@
           "Battleline",
           "Plague Marines"
         ],
-        "nameJa": "プレイグ マリーン"
+        "nameJa": "プレーグマリーン"
       },
       {
         "id": "poxwalkers",
@@ -5260,7 +5260,7 @@
           "Nurgle",
           "Poxwalkers"
         ],
-        "nameJa": "ポックスウォーカー"
+        "nameJa": "ポクスウォーカー"
       },
       {
         "id": "noxious_blightbringer",
@@ -5274,7 +5274,7 @@
           "Nurgle",
           "Noxious Blightbringer"
         ],
-        "nameJa": "ノクシアス ブライトブリンガー"
+        "nameJa": "ノクシャス・ブライトブリンガー"
       },
       {
         "id": "foul_blightspawn",
@@ -5289,7 +5289,7 @@
           "Grenades",
           "Foul Blightspawn"
         ],
-        "nameJa": "ファウル ブライトスポーン"
+        "nameJa": "ファウル・ブライトスポーン"
       },
       {
         "id": "biologus_putrifier",
@@ -5304,7 +5304,7 @@
           "Grenades",
           "Biologus Putrifier"
         ],
-        "nameJa": "バイオロガス・ピュートリファイアー"
+        "nameJa": "バイオロガス・ピュートリファイヤ"
       },
       {
         "id": "tallyman",
@@ -5332,7 +5332,7 @@
           "Nurgle",
           "Plague Surgeon"
         ],
-        "nameJa": "ナウセオス・ロットボーン プレイグ サージャン"
+        "nameJa": "プレーグサージョン"
       },
       {
         "id": "deathshroud_terminators",
@@ -5346,7 +5346,7 @@
           "Deathshroud Terminators",
           "Terminator"
         ],
-        "nameJa": "デスシュラウド ターミネーター"
+        "nameJa": "デスシュラウド・ターミネイター"
       },
       {
         "id": "helbrute",
@@ -5374,7 +5374,7 @@
           "Blightlord Terminators",
           "Terminator"
         ],
-        "nameJa": "ブライトロード ターミネーター"
+        "nameJa": "ブライトロード・ターミネイター"
       },
       {
         "id": "chaos_spawn",
@@ -5387,7 +5387,7 @@
           "Nurgle",
           "Spawn"
         ],
-        "nameJa": "ケイオス スポーン"
+        "nameJa": "ケイオス・スポーン"
       },
       {
         "id": "foetid_bloat_drone",
@@ -5402,7 +5402,7 @@
           "Daemon",
           "Foetid Bloat-drone"
         ],
-        "nameJa": "フォーテッド・ブロートドローン"
+        "nameJa": "フォーティッド・ブロートドローン"
       },
       {
         "id": "plagueburst_crawler",
@@ -5416,7 +5416,7 @@
           "Daemon",
           "Plagueburst Crawler"
         ],
-        "nameJa": "プレイグバースト・クロウラー"
+        "nameJa": "プレーグバースト・クロウラー"
       },
       {
         "id": "chaos_land_raider",
@@ -5430,7 +5430,7 @@
           "Transport",
           "Land Raider"
         ],
-        "nameJa": "ケイオス ランド レイダー"
+        "nameJa": "ケイオス・ランドレイダー"
       },
       {
         "id": "chaos_predator_annihilator",
@@ -5443,7 +5443,7 @@
           "Nurgle",
           "Predator Annihilator"
         ],
-        "nameJa": "ケイオス プレデター アナイアレイター"
+        "nameJa": "ケイオス・プレデター・アナイアレイター"
       },
       {
         "id": "chaos_predator_destructor",
@@ -5456,7 +5456,7 @@
           "Nurgle",
           "Predator Destructor"
         ],
-        "nameJa": "ケイオス プレデター デストラクター"
+        "nameJa": "ケイオス・プレデター・デストラクター"
       },
       {
         "id": "defiler",
@@ -5471,7 +5471,7 @@
           "Daemon",
           "Defiler"
         ],
-        "nameJa": "デファイラー"
+        "nameJa": "ディファイラー"
       },
       {
         "id": "chaos_rhino",
@@ -5486,7 +5486,7 @@
           "Nurgle",
           "Rhino"
         ],
-        "nameJa": "ケイオス ライノ"
+        "nameJa": "ケイオス・ライノ"
       },
       {
         "id": "mortarion",
@@ -5534,7 +5534,7 @@
           "Nurgle",
           "Miasmic Malignifier"
         ],
-        "nameJa": "ミアスミック・マリグニフィア"
+        "nameJa": "瘴気増幅炉"
       },
       {
         "id": "lord_of_poxes",
@@ -5549,7 +5549,7 @@
           "Nurgle",
           "Lord of Poxes"
         ],
-        "nameJa": "ロード オヴ ポックス"
+        "nameJa": "ロード・オヴ・ポクス"
       },
       {
         "id": "great_unclean_one",
@@ -5566,7 +5566,7 @@
           "Great Unclean One",
           "Summoned"
         ],
-        "nameJa": "グレート・アンクリーン・ワン"
+        "nameJa": "[プレーグレギオン] グレイト・アンクリーン・ワン"
       },
       {
         "id": "rotigus",
@@ -5584,7 +5584,7 @@
           "Rotigus",
           "Summoned"
         ],
-        "nameJa": "ロッティガス"
+        "nameJa": "[プレーグレギオン] ロッティガス"
       },
       {
         "id": "plaguebearers",
@@ -5600,7 +5600,7 @@
           "Plaguebearers",
           "Summoned"
         ],
-        "nameJa": "プレーグベアラー"
+        "nameJa": "[プレーグレギオン] プレーグベアラー"
       },
       {
         "id": "plague_drones",
@@ -5616,7 +5616,7 @@
           "Summoned",
           "Plague Drones"
         ],
-        "nameJa": "プレーグドローン"
+        "nameJa": "[プレーグレギオン] プレーグドローン"
       },
       {
         "id": "nurglings",
@@ -5631,7 +5631,7 @@
           "Summoned",
           "Nurglings"
         ],
-        "nameJa": "ナーグリング"
+        "nameJa": "[プレーグレギオン] ナーグリング"
       },
       {
         "id": "foetid_bloat_drone_with_heavy_blight_launcher",
@@ -5646,7 +5646,7 @@
           "Daemon",
           "Foetid Bloat-drone"
         ],
-        "nameJa": "フォーテッド・ブロートドローン ヘビーブライトランチャー装備"
+        "nameJa": "フォーティッド・ブロートドローン（ヘヴィ・ブライトランチャー装備）"
       },
       {
         "id": "plague_sorcerer_crucible",
@@ -5661,7 +5661,7 @@
           "Nurgle",
           "Plague Sorcerer"
         ],
-        "nameJa": ""
+        "nameJa": "アグエ ソセレル ルイエ"
       },
       {
         "id": "plague_lord_crucible",
@@ -5676,7 +5676,7 @@
           "Grenades",
           "Plague Lord"
         ],
-        "nameJa": ""
+        "nameJa": "アグエ オド ルイエ"
       },
       {
         "id": "tri_lobe_vectors_crucible",
@@ -5691,14 +5691,14 @@
           "Nurgle",
           "Tri-lobe Vectors"
         ],
-        "nameJa": ""
+        "nameJa": "リ・オベ ヴェトス ルイエ"
       }
     ]
   },
   "emperor_s_children": {
     "id": "emperor_s_children",
     "name": "Emperor's Children",
-    "nameJa": "エンペラーズ チルドレン",
+    "nameJa": "エンペラーズ・チルドレン",
     "group": "Chaos",
     "units": [
       {
@@ -5714,7 +5714,7 @@
           "Slaanesh",
           "Lucius the Eternal"
         ],
-        "nameJa": "ルシウス・ザ・エターナル"
+        "nameJa": "\"永劫なる\"ルシウス"
       },
       {
         "id": "fulgrim",
@@ -5747,7 +5747,7 @@
           "Slaanesh",
           "Lord Exultant"
         ],
-        "nameJa": "ロード エクスルタント"
+        "nameJa": "ロード・エグザルタント"
       },
       {
         "id": "lord_kakophonist",
@@ -5762,7 +5762,7 @@
           "Slaanesh",
           "Lord Kakophonist"
         ],
-        "nameJa": "ロード カコフォニスト"
+        "nameJa": "ロード・カコフォニスト"
       },
       {
         "id": "sorcerer",
@@ -5793,7 +5793,7 @@
           "Slaanesh",
           "Daemon Prince"
         ],
-        "nameJa": "デーモン・プリンス オヴ スラーネッシュ"
+        "nameJa": "ディーモンプリンス・オヴ・スラーネッシュ"
       },
       {
         "id": "daemon_prince_of_slaanesh_with_wings",
@@ -5809,7 +5809,7 @@
           "Fly",
           "Daemon Prince with Wings"
         ],
-        "nameJa": "デーモン・プリンス オヴ スラーネッシュ 翼付き"
+        "nameJa": "ディーモンプリンス・オヴ・スラーネッシュ（翼装備）"
       },
       {
         "id": "tormentors",
@@ -5853,7 +5853,7 @@
           "Slaanesh",
           "Flawless Blades"
         ],
-        "nameJa": "フローレス ブレイド"
+        "nameJa": "フロウレス・ブレイド"
       },
       {
         "id": "chaos_terminators",
@@ -5867,7 +5867,7 @@
           "Slaanesh",
           "Terminator Squad"
         ],
-        "nameJa": "ケイオス ターミネーター"
+        "nameJa": "ケイオス・ターミネイター"
       },
       {
         "id": "chaos_spawn",
@@ -5880,7 +5880,7 @@
           "Slaanesh",
           "Chaos Spawn"
         ],
-        "nameJa": "ケイオス スポーン"
+        "nameJa": "ケイオス・スポーン"
       },
       {
         "id": "chaos_land_raider",
@@ -5894,7 +5894,7 @@
           "Slaanesh",
           "Land Raider"
         ],
-        "nameJa": "ケイオス ランド レイダー"
+        "nameJa": "ケイオス・ランドレイダー"
       },
       {
         "id": "noise_marines",
@@ -5907,7 +5907,7 @@
           "Slaanesh",
           "Noise Marines"
         ],
-        "nameJa": "ノイズ マリーン"
+        "nameJa": "ノイズマリーン"
       },
       {
         "id": "heldrake",
@@ -5938,7 +5938,7 @@
           "Slaanesh",
           "Maulerfiend"
         ],
-        "nameJa": "モーラーフィエンド"
+        "nameJa": "モーラーフィーンド"
       },
       {
         "id": "chaos_rhino",
@@ -5953,7 +5953,7 @@
           "Rhino",
           "Slaanesh"
         ],
-        "nameJa": "ケイオス ライノ"
+        "nameJa": "ケイオス・ライノ"
       },
       {
         "id": "shalaxi_helbane",
@@ -6002,7 +6002,7 @@
           "Daemonettes",
           "Summoned"
         ],
-        "nameJa": "デーモネット"
+        "nameJa": "デモネット"
       },
       {
         "id": "fiends",
@@ -6049,7 +6049,7 @@
           "Excruciator",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "エルイアトル ルイエ"
       },
       {
         "id": "champion_of_excess_crucible",
@@ -6065,7 +6065,7 @@
           "Crucible",
           "Champion of Excess"
         ],
-        "nameJa": ""
+        "nameJa": "ハピオン オヴ エッセッス ルイエ"
       },
       {
         "id": "flawless_champion_crucible",
@@ -6081,14 +6081,14 @@
           "Crucible",
           "Flawless Champion"
         ],
-        "nameJa": ""
+        "nameJa": "アエッス ハピオン ルイエ"
       }
     ]
   },
   "thousand_sons": {
     "id": "thousand_sons",
     "name": "Thousand Sons",
-    "nameJa": "サウザンド・サンズ",
+    "nameJa": "サウザンド・サン",
     "group": "Chaos",
     "units": [
       {
@@ -6121,7 +6121,7 @@
           "Tzeentch",
           "Land Raider"
         ],
-        "nameJa": "ケイオス ランド レイダー"
+        "nameJa": "ケイオス・ランドレイダー"
       },
       {
         "id": "chaos_predator_annihilator",
@@ -6134,7 +6134,7 @@
           "Tzeentch",
           "Predator Annihilator"
         ],
-        "nameJa": "ケイオス プレデター アナイアレイター"
+        "nameJa": "ケイオス・プレデター・アナイアレイター"
       },
       {
         "id": "chaos_predator_destructor",
@@ -6147,7 +6147,7 @@
           "Tzeentch",
           "Predator Destructor"
         ],
-        "nameJa": "ケイオス プレデター デストラクター"
+        "nameJa": "ケイオス・プレデター・デストラクター"
       },
       {
         "id": "chaos_rhino",
@@ -6162,7 +6162,7 @@
           "Tzeentch",
           "Rhino"
         ],
-        "nameJa": "ケイオス ライノ"
+        "nameJa": "ケイオス・ライノ"
       },
       {
         "id": "chaos_spawn",
@@ -6176,7 +6176,7 @@
           "Spawn",
           "Mutant"
         ],
-        "nameJa": "ケイオス スポーン"
+        "nameJa": "ケイオス・スポーン"
       },
       {
         "id": "chaos_vindicator",
@@ -6189,7 +6189,7 @@
           "Tzeentch",
           "Vindicator"
         ],
-        "nameJa": "ケイオス ヴィンディケーター"
+        "nameJa": "ケイオス・ヴィンディケイター"
       },
       {
         "id": "defiler",
@@ -6204,7 +6204,7 @@
           "Tzeentch",
           "Defiler"
         ],
-        "nameJa": "デファイラー"
+        "nameJa": "ディファイラー"
       },
       {
         "id": "exalted_sorcerer",
@@ -6238,7 +6238,7 @@
           "Grenades",
           "Mounted"
         ],
-        "nameJa": "エグザルテッド・ソーサラー オン ディスク オヴ ティーンチ"
+        "nameJa": "エグザルティッド・ソーサラー（ディスク・オブ・ティーンチ搭乗）"
       },
       {
         "id": "forgefiend",
@@ -6298,7 +6298,7 @@
           "Tzeentch",
           "Infernal Master"
         ],
-        "nameJa": "インファナル マスター"
+        "nameJa": "インファーナル・マスター"
       },
       {
         "id": "magnus_the_red",
@@ -6317,7 +6317,7 @@
           "Primarch",
           "Magnus the Red"
         ],
-        "nameJa": "マグナス・ザ・レッド"
+        "nameJa": "\"赤き\"マグヌス"
       },
       {
         "id": "maulerfiend",
@@ -6332,7 +6332,7 @@
           "Tzeentch",
           "Maulerfiend"
         ],
-        "nameJa": "モーラーフィエンド"
+        "nameJa": "モーラーフィーンド"
       },
       {
         "id": "mutalith_vortex_beast",
@@ -6346,7 +6346,7 @@
           "Mutalith Vortex Beast",
           "Mutant"
         ],
-        "nameJa": "ミュータリス・ボルテックス・ビースト"
+        "nameJa": "ミュータリス・ヴォーテックスビースト"
       },
       {
         "id": "rubric_marines",
@@ -6361,7 +6361,7 @@
           "Rubric Marines",
           "Rubricae"
         ],
-        "nameJa": "ルブリック マリーン"
+        "nameJa": "ルブリックマリーン"
       },
       {
         "id": "scarab_occult_terminators",
@@ -6376,7 +6376,7 @@
           "Rubricae",
           "Terminator"
         ],
-        "nameJa": "スカラブ・オカルト ターミネーター"
+        "nameJa": "スカラベオカルト・ターミネイター"
       },
       {
         "id": "sorcerer",
@@ -6408,7 +6408,7 @@
           "Sorcerer",
           "Terminator"
         ],
-        "nameJa": "ソーサラー ターミネイター・アーマー装備"
+        "nameJa": "ソーサラー（ターミネイター・アーマー装備）"
       },
       {
         "id": "daemon_prince_of_tzeentch",
@@ -6424,7 +6424,7 @@
           "Tzeentch",
           "Daemon Prince"
         ],
-        "nameJa": "デーモン・プリンス オヴ ティーンチ"
+        "nameJa": "ディーモンプリンス・オヴ・ティーンチ"
       },
       {
         "id": "daemon_prince_of_tzeentch_with_wings",
@@ -6441,7 +6441,7 @@
           "Daemon Prince",
           "Fly"
         ],
-        "nameJa": "デーモン・プリンス オヴ ティーンチ 翼付き"
+        "nameJa": "ディーモンプリンス・オヴ・ティーンチ（翼装備）"
       },
       {
         "id": "tzaangor_enlightened",
@@ -6456,7 +6456,7 @@
           "Tzaangor Enlightened",
           "Mutant"
         ],
-        "nameJa": "ツァンゴール エンリィテンド"
+        "nameJa": "ツァーンゴウル・エンライテンド"
       },
       {
         "id": "tzaangor_shaman",
@@ -6474,7 +6474,7 @@
           "Infantry",
           "Mutant"
         ],
-        "nameJa": "ツァンゴール シャーマン"
+        "nameJa": "ツァーンゴウル・シャーマン"
       },
       {
         "id": "tzaangors",
@@ -6488,7 +6488,7 @@
           "Tzaangors",
           "Mutant"
         ],
-        "nameJa": "ツァンゴール"
+        "nameJa": "ツァーンゴウル"
       },
       {
         "id": "sekhetar_robots",
@@ -6502,7 +6502,7 @@
           "Tzeentch",
           "Sekhetar Robots"
         ],
-        "nameJa": "セケタール ロボット"
+        "nameJa": "セケタール・ロボット"
       },
       {
         "id": "tzaangor_enlightened_with_fatecaster_greatbows",
@@ -6518,7 +6518,7 @@
           "Mutant",
           "Tzaangor Enlightened with Fatecaster greatbows"
         ],
-        "nameJa": "ツァンゴール エンリィテンド ウィズ フェイトキャスター グレートボウ"
+        "nameJa": "ツァーンゴウル・エンライテンド（フェイトキャスター・グレイトボウ装備）"
       },
       {
         "id": "kairos_fateweaver",
@@ -6633,7 +6633,7 @@
           "Spawn",
           "Mutant"
         ],
-        "nameJa": "ケイオス スポーン (フレッシュ チェンジ)"
+        "nameJa": "ケイオス・スポーン"
       },
       {
         "id": "magister_crucible",
@@ -6649,7 +6649,7 @@
           "Tzeentch",
           "Magister"
         ],
-        "nameJa": ""
+        "nameJa": "マジテル ルイエ"
       },
       {
         "id": "brayherd_chieftain_crucible",
@@ -6664,7 +6664,7 @@
           "Mutant",
           "Brayherd Chieftain"
         ],
-        "nameJa": ""
+        "nameJa": "ラヘド ヒエタイン ルイエ"
       },
       {
         "id": "brayherd_shaman_crucible",
@@ -6680,14 +6680,14 @@
           "Psyker",
           "Brayherd Shaman"
         ],
-        "nameJa": ""
+        "nameJa": "ラヘド シャマン ルイエ"
       }
     ]
   },
   "world_eaters": {
     "id": "world_eaters",
     "name": "World Eaters",
-    "nameJa": "ワールド・イーター",
+    "nameJa": "ワールドイーター",
     "group": "Chaos",
     "units": [
       {
@@ -6722,7 +6722,7 @@
           "Khorne",
           "Khârn the Betrayer"
         ],
-        "nameJa": "”裏切者”カーン"
+        "nameJa": "\"裏切者\"カーン"
       },
       {
         "id": "lord_invocatus",
@@ -6737,7 +6737,7 @@
           "Khorne",
           "Lord Invocatus"
         ],
-        "nameJa": "ロード インヴォカトゥス"
+        "nameJa": "ロード・インヴォカートゥス"
       },
       {
         "id": "daemon_prince_of_khorne",
@@ -6752,7 +6752,7 @@
           "Daemon",
           "Daemon Prince"
         ],
-        "nameJa": "デーモン・プリンス オヴ コーン"
+        "nameJa": "ディーモンプリンス・オヴ・コーン"
       },
       {
         "id": "daemon_prince_of_khorne_with_wings",
@@ -6768,7 +6768,7 @@
           "Daemon Prince",
           "Fly"
         ],
-        "nameJa": "デーモン・プリンス オヴ コーン 翼付き"
+        "nameJa": "ディーモンプリンス・オヴ・コーン（翼装備）"
       },
       {
         "id": "lord_on_juggernaut",
@@ -6782,7 +6782,7 @@
           "Khorne",
           "Lord on Juggernaut"
         ],
-        "nameJa": "ロード オン ジャガーノート"
+        "nameJa": "ロード（ジャガーノート騎乗）"
       },
       {
         "id": "master_of_executions",
@@ -6796,7 +6796,7 @@
           "Khorne",
           "Master of Executions"
         ],
-        "nameJa": "マスター オブ エグゼキューション"
+        "nameJa": "マスター・オヴ・エクスキューション"
       },
       {
         "id": "khorne_berzerkers",
@@ -6811,7 +6811,7 @@
           "Khorne",
           "Berzerkers"
         ],
-        "nameJa": "コーン バーサーカー"
+        "nameJa": "コーン・バーザーカー"
       },
       {
         "id": "chaos_terminators",
@@ -6825,7 +6825,7 @@
           "Terminator",
           "Terminator Squad"
         ],
-        "nameJa": "ケイオス ターミネーター"
+        "nameJa": "ケイオス・ターミネイター"
       },
       {
         "id": "jakhals",
@@ -6839,7 +6839,7 @@
           "Jakhals",
           "Grenades"
         ],
-        "nameJa": "ジャッカル"
+        "nameJa": "ジャカール"
       },
       {
         "id": "eightbound",
@@ -6883,7 +6883,7 @@
           "Khorne",
           "Land Raider"
         ],
-        "nameJa": "ケイオス ランド レイダー"
+        "nameJa": "ケイオス・ランドレイダー"
       },
       {
         "id": "chaos_predator_annihilator",
@@ -6896,7 +6896,7 @@
           "Khorne",
           "Predator Annihilator"
         ],
-        "nameJa": "ケイオス プレデター アナイアレイター"
+        "nameJa": "ケイオス・プレデター・アナイアレイター"
       },
       {
         "id": "chaos_predator_destructor",
@@ -6909,7 +6909,7 @@
           "Khorne",
           "Predator Destructor"
         ],
-        "nameJa": "ケイオス プレデター デストラクター"
+        "nameJa": "ケイオス・プレデター・デストラクター"
       },
       {
         "id": "defiler",
@@ -6924,7 +6924,7 @@
           "Daemon",
           "Defiler"
         ],
-        "nameJa": "デファイラー"
+        "nameJa": "ディファイラー"
       },
       {
         "id": "forgefiend",
@@ -6984,7 +6984,7 @@
           "Daemon",
           "Maulerfiend"
         ],
-        "nameJa": "モーラーフィエンド"
+        "nameJa": "モーラーフィーンド"
       },
       {
         "id": "chaos_rhino",
@@ -6999,7 +6999,7 @@
           "Khorne",
           "Rhino"
         ],
-        "nameJa": "ケイオス ライノ"
+        "nameJa": "ケイオス・ライノ"
       },
       {
         "id": "chaos_spawn",
@@ -7012,7 +7012,7 @@
           "Khorne",
           "Spawn"
         ],
-        "nameJa": "ケイオス スポーン"
+        "nameJa": "ケイオス・スポーン"
       },
       {
         "id": "khorne_lord_of_skulls",
@@ -7028,7 +7028,7 @@
           "Daemon",
           "Lord of Skulls"
         ],
-        "nameJa": "コーン ロード オブ スカルス"
+        "nameJa": "コーン・ロード・オヴ・スカル"
       },
       {
         "id": "goremongers",
@@ -7074,7 +7074,7 @@
           "Khorne",
           "Skarbrand"
         ],
-        "nameJa": "スカーブランド"
+        "nameJa": "[血の兵団] スカーブランド"
       },
       {
         "id": "bloodthirster",
@@ -7091,7 +7091,7 @@
           "Summoned",
           "Bloodthirster"
         ],
-        "nameJa": "ブラッドサースター"
+        "nameJa": "[血の兵団] ブラッドサースター"
       },
       {
         "id": "bloodletters",
@@ -7106,7 +7106,7 @@
           "Khorne",
           "Summoned"
         ],
-        "nameJa": "ブラッドレター"
+        "nameJa": "[血の兵団] ブラッドレター"
       },
       {
         "id": "bloodcrushers",
@@ -7121,7 +7121,7 @@
           "Summoned",
           "Bloodcrushers"
         ],
-        "nameJa": "ブラッドクラッシャー"
+        "nameJa": "[血の兵団] ブラッドクラッシャー"
       },
       {
         "id": "flesh_hounds",
@@ -7136,7 +7136,7 @@
           "Summoned",
           "Flesh Hounds"
         ],
-        "nameJa": "フレッシュハウンド"
+        "nameJa": "[血の兵団] フレッシュハウンド"
       },
       {
         "id": "butcherlord_crucible",
@@ -7149,9 +7149,10 @@
           "Grenades",
           "Chaos",
           "Khorne",
-          "Butcherlord"
+          "Butcherlord",
+          "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "ブヘオド ルイエ"
       },
       {
         "id": "eight_blessed_lord_crucible",
@@ -7163,9 +7164,10 @@
           "Chaos",
           "Khorne",
           "Mounted",
-          "Eight-blessed Lord"
+          "Eight-blessed Lord",
+          "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "エイト・エッセド オド ルイエ"
       },
       {
         "id": "bloodcult_champion_crucible",
@@ -7177,9 +7179,10 @@
           "Character",
           "Grenades",
           "Khorne",
-          "Bloodcult Champion"
+          "Bloodcult Champion",
+          "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "オオクト ハピオン ルイエ"
       }
     ]
   },
@@ -7224,7 +7227,7 @@
           "Vehicle",
           "Great Devourer"
         ],
-        "nameJa": "アキレス リッジランナー"
+        "nameJa": "アキレス・リッジランナー"
       },
       {
         "id": "acolyte_hybrids_with_hand_flamers",
@@ -7239,7 +7242,7 @@
           "Battleline",
           "Acolyte Hybrids with Hand Flamers"
         ],
-        "nameJa": "アコライト・ハイブリッド・ウィズ・ハンドフレイマー"
+        "nameJa": "アコライト・ハイブリッド（ハンドフレイマー装備）"
       },
       {
         "id": "acolyte_iconward",
@@ -7279,7 +7282,7 @@
           "Character",
           "Great Devourer"
         ],
-        "nameJa": "バイオファガス"
+        "nameJa": "バイオファーガス"
       },
       {
         "id": "clamavus",
@@ -7359,7 +7362,7 @@
           "Character",
           "Great Devourer"
         ],
-        "nameJa": "ケルモーフ"
+        "nameJa": "ケラーモーフ"
       },
       {
         "id": "locus",
@@ -7466,7 +7469,7 @@
           "Grenades",
           "Great Devourer"
         ],
-        "nameJa": "リダクトゥス・サボチュア"
+        "nameJa": "リダクトゥス・サボター"
       },
       {
         "id": "sanctus",
@@ -7508,7 +7511,7 @@
           "Battleline",
           "Acolyte Hybrids with Autopistols"
         ],
-        "nameJa": "アコライト・ハイブリッド・ウィズ・オートピストル"
+        "nameJa": "アコライト・ハイブリッド（オートピストル装備）"
       },
       {
         "id": "cult_insurrectionist_crucible",
@@ -7522,7 +7525,7 @@
           "Great Devourer",
           "Cult Insurrectionist"
         ],
-        "nameJa": ""
+        "nameJa": "クト インスッレショニト ルイエ"
       },
       {
         "id": "cult_guerrilla_crucible",
@@ -7537,7 +7540,7 @@
           "Grenades",
           "Cult Guerrilla"
         ],
-        "nameJa": ""
+        "nameJa": "クト グエッリッア ルイエ"
       },
       {
         "id": "voice_of_the_patriarch_crucible",
@@ -7552,7 +7555,7 @@
           "Psyker",
           "Voice of the Patriarch"
         ],
-        "nameJa": ""
+        "nameJa": "ヴォイセ オヴ ザ パリアフ ルイエ"
       }
     ]
   },
@@ -7654,7 +7657,7 @@
           "Imperium",
           "Daemonifuge"
         ],
-        "nameJa": "デーモニフュージ"
+        "nameJa": "ディーモニフュージ"
       },
       {
         "id": "dialogus",
@@ -7977,7 +7980,7 @@
           "Fly",
           "Imperium"
         ],
-        "nameJa": "カノネス ジャンプパック装備"
+        "nameJa": "カノネス（ジャンプパック装備）"
       },
       {
         "id": "sanctifiers",
@@ -8003,7 +8006,7 @@
           "Imperium",
           "Celestian Insidiants"
         ],
-        "nameJa": "セレスティアン・インシディアンス"
+        "nameJa": "セレスティアン・インシディアント"
       },
       {
         "id": "militant_commander_crucible",
@@ -8019,7 +8022,7 @@
           "Militant Commander",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "ミイタント コッマンデル ルイエ"
       },
       {
         "id": "inspiring_devotee_crucible",
@@ -8034,7 +8037,7 @@
           "Crucible",
           "Inspiring Devotee"
         ],
-        "nameJa": ""
+        "nameJa": "インピリング デヴォテエ ルイエ"
       },
       {
         "id": "reliquant_knight_crucible",
@@ -8051,7 +8054,7 @@
           "Reliquant Knight",
           "Paragon Warsuits"
         ],
-        "nameJa": ""
+        "nameJa": "レイワント ニト ルイエ"
       }
     ]
   },
@@ -8209,7 +8212,7 @@
           "Fly",
           "Shield-Captain"
         ],
-        "nameJa": "シールドキャプテン（ドーンイーグル・ジェットバイク搭乗）"
+        "nameJa": "シールドキャプテン（ドーンイーグル・ジェットバイク騎乗）"
       },
       {
         "id": "trajann_valoris",
@@ -8316,7 +8319,7 @@
           "Infantry",
           "Imperium"
         ],
-        "nameJa": "カストーディアン・ガード（アドラサイト＆ピュリサイトスピアー装備）"
+        "nameJa": "[FW] カストーディアン・ガード（アドラサイト・スピア＆ピリタイト・スピア）"
       },
       {
         "id": "sagittarum_custodians",
@@ -8328,7 +8331,7 @@
           "Imperium",
           "Sagittarum Custodians"
         ],
-        "nameJa": "サジタルム・カストーディアン"
+        "nameJa": "[FW] サジタルム・カストーディアン"
       },
       {
         "id": "aquilon_custodians",
@@ -8341,7 +8344,7 @@
           "Infantry",
           "Aquilon Custodians"
         ],
-        "nameJa": "アクィロン・カストーディアン"
+        "nameJa": "[FW] アクィロン・カストーディアン"
       },
       {
         "id": "agamatus_custodians",
@@ -8354,7 +8357,7 @@
           "Imperium",
           "Agamatus Custodians"
         ],
-        "nameJa": "アガマトゥス・カストーディアン"
+        "nameJa": "[FW] アガマトゥス・カストーディアン"
       },
       {
         "id": "venatari_custodians",
@@ -8368,7 +8371,7 @@
           "Jump Pack",
           "Venatari Custodians"
         ],
-        "nameJa": "ヴェナタリ・カストーディアン"
+        "nameJa": "[FW] ヴェナタリ・カストーディアン"
       },
       {
         "id": "contemptor_galatus_dreadnought",
@@ -8382,7 +8385,7 @@
           "Imperium",
           "AC Walker"
         ],
-        "nameJa": "コンテンプター・ギャラトゥス・ドレッドノート"
+        "nameJa": "[FW] コンテンプター・ギャラトゥス・ドレッドノート"
       },
       {
         "id": "contemptor_achillus_dreadnought",
@@ -8396,7 +8399,7 @@
           "Contemptor-Achillus Dreadnought",
           "AC Walker"
         ],
-        "nameJa": "コンテンプター・アギルス・ドレッドノート"
+        "nameJa": "[FW] コンテンプター・アキルス・ドレッドノート"
       },
       {
         "id": "pallas_grav_attack",
@@ -8409,7 +8412,7 @@
           "Pallas Grav-attack",
           "Imperium"
         ],
-        "nameJa": "パラス・グラヴアタック"
+        "nameJa": "[FW] パラス・グラヴアタック"
       },
       {
         "id": "caladius_grav_tank",
@@ -8422,7 +8425,7 @@
           "Imperium",
           "Caladius Grav-tank"
         ],
-        "nameJa": "カラディウス・グラヴタンク"
+        "nameJa": "[FW] カラディウス・グラヴタンク"
       },
       {
         "id": "telemon_heavy_dreadnought",
@@ -8436,7 +8439,7 @@
           "Walker",
           "AC Walker"
         ],
-        "nameJa": "テレモン・ヘビードレッドノート"
+        "nameJa": "[FW] テレモン・ヘヴィドレッドノート"
       },
       {
         "id": "coronus_grav_carrier",
@@ -8450,7 +8453,7 @@
           "Imperium",
           "Coronus Grav-carrier"
         ],
-        "nameJa": "コロヌス・グラヴキャリア"
+        "nameJa": "[FW] コロヌス・グラヴキャリア"
       },
       {
         "id": "orion_assault_dropship",
@@ -8465,7 +8468,7 @@
           "Imperium",
           "Orion Assault Dropship"
         ],
-        "nameJa": "オリオン・アサルトドロップシップ"
+        "nameJa": "[FW] オリオン・アサルトドロップシップ"
       },
       {
         "id": "ares_gunship",
@@ -8479,7 +8482,7 @@
           "Imperium",
           "Ares Gunship"
         ],
-        "nameJa": "アレス・ガンシップ"
+        "nameJa": "[FW] アレス・ガンシップ"
       },
       {
         "id": "guardian_of_the_throne_crucible",
@@ -8493,7 +8496,7 @@
           "Guardian of the Throne",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "グアイアン オヴ ザ ロネ ルイエ"
       },
       {
         "id": "null_maiden_crucible",
@@ -8508,7 +8511,7 @@
           "Null Maiden",
           "Anathema Psykana"
         ],
-        "nameJa": ""
+        "nameJa": "ヌッル マイデン ルイエ"
       },
       {
         "id": "kataphraktoi_exemplar_crucible",
@@ -8524,7 +8527,7 @@
           "Dawneagle Jetbike",
           "Fly"
         ],
-        "nameJa": ""
+        "nameJa": "カタラトイ エセアル ルイエ"
       }
     ]
   },
@@ -8622,7 +8625,7 @@
           "Imperium",
           "Cult Mechanicus"
         ],
-        "nameJa": "フィルグライト・エレクトロプリースト"
+        "nameJa": "フルグライト・エレクトロプリースト"
       },
       {
         "id": "kastelan_robots",
@@ -8650,7 +8653,7 @@
           "Imperium",
           "Cult Mechanicus"
         ],
-        "nameJa": "カタフロン・プリーチャー"
+        "nameJa": "カタフロン・ブリーチャー"
       },
       {
         "id": "kataphron_destroyers",
@@ -8678,7 +8681,7 @@
           "Walker",
           "Skitarii"
         ],
-        "nameJa": "オナガー・デューンクローラー"
+        "nameJa": "オナガー・デューンクロウラー"
       },
       {
         "id": "pteraxii_skystalkers",
@@ -8695,7 +8698,7 @@
           "Skitarii",
           "Pteraxii"
         ],
-        "nameJa": "プティラクシィ・スカイストーカー"
+        "nameJa": "プテラクシィ・スカイストーカー"
       },
       {
         "id": "pteraxii_sterylizors",
@@ -8711,7 +8714,7 @@
           "Skitarii",
           "Pteraxii"
         ],
-        "nameJa": "プティラクシィ・スティライザー"
+        "nameJa": "プテラクシィ・ステリライザー"
       },
       {
         "id": "serberys_raiders",
@@ -8820,7 +8823,7 @@
           "Skitarii",
           "Vehicle"
         ],
-        "nameJa": "スコルピウス・ディスインテグレーター"
+        "nameJa": "スコルピウス・ディスインテグレイター"
       },
       {
         "id": "skorpius_dunerider",
@@ -8865,7 +8868,7 @@
           "Infantry",
           "Cult Mechanicus"
         ],
-        "nameJa": "テック・プリースト・エンジニアー"
+        "nameJa": "テックプリースト・エンジンシーア"
       },
       {
         "id": "tech_priest_manipulus",
@@ -8969,7 +8972,7 @@
           "Tech-Priest",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "マゴス ルイエ"
       },
       {
         "id": "cohort_commander_crucible",
@@ -8985,7 +8988,7 @@
           "Marshal",
           "Cohort Commander"
         ],
-        "nameJa": ""
+        "nameJa": "コホト コッマンデル ルイエ"
       },
       {
         "id": "ironstrider_alpha_crucible",
@@ -9001,14 +9004,14 @@
           "Walker",
           "Ironstrider Alpha"
         ],
-        "nameJa": ""
+        "nameJa": "イロンリデル アファ ルイエ"
       }
     ]
   },
   "agents_of_the_imperium": {
     "id": "agents_of_the_imperium",
     "name": "Agents of the Imperium",
-    "nameJa": "インペリアル・エージェント",
+    "nameJa": "エージェント・オヴ・インペリウム",
     "group": "Imperium",
     "units": [
       {
@@ -9024,7 +9027,7 @@
           "Vindicare Assassin",
           "Officio Assassinorum"
         ],
-        "nameJa": "ヴィンディケイア・アサシン"
+        "nameJa": "ヴィンディケア・アサシン"
       },
       {
         "id": "culexus_assassin",
@@ -9087,7 +9090,7 @@
           "Voidfarers",
           "Voidfarer Character"
         ],
-        "nameJa": "ローグ・トレーダー・アントラージュ"
+        "nameJa": "ローグトレーダー側近団"
       },
       {
         "id": "voidsmen_at_arms",
@@ -9118,7 +9121,7 @@
           "Battleline",
           "Voidfarers"
         ],
-        "nameJa": "インペリアル・ネイビー・ブリーチャー"
+        "nameJa": "インペリアル・ネイヴィー・ブリーチャー"
       },
       {
         "id": "subductor_squad",
@@ -9320,7 +9323,7 @@
           "Imperium",
           "Imperial Rhino"
         ],
-        "nameJa": "イペリアル・ライノ"
+        "nameJa": "インペリアル・ライノ"
       },
       {
         "id": "sisters_of_battle_squad",
@@ -9350,7 +9353,7 @@
           "Ordo Hereticus",
           "Sisters of Battle Immolator"
         ],
-        "nameJa": "シスター・オヴ・バトル・イモレーター"
+        "nameJa": "シスター・オヴ・バトル・イモレイター"
       },
       {
         "id": "corvus_blackstar",
@@ -9465,7 +9468,7 @@
           "Martial Agent",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "マイアル アエント ルイエ"
       },
       {
         "id": "deathwatch_agent_crucible",
@@ -9482,7 +9485,7 @@
           "Deathwatch",
           "Deathwatch Agent"
         ],
-        "nameJa": ""
+        "nameJa": "デアワフ アエント ルイエ"
       },
       {
         "id": "enthroned_agent_crucible",
@@ -9497,7 +9500,7 @@
           "Walker",
           "Enthroned Agent"
         ],
-        "nameJa": ""
+        "nameJa": "エンロネド アエント ルイエ"
       }
     ]
   },
@@ -9530,7 +9533,7 @@
           "Grenades",
           "Regiment"
         ],
-        "nameJa": "アティラン・ラフ・ライダー"
+        "nameJa": "アッティラ・ラフライダー"
       },
       {
         "id": "baneblade",
@@ -9598,7 +9601,7 @@
           "Infantry",
           "Grenades"
         ],
-        "nameJa": "バルグリン・スクワッド"
+        "nameJa": "ブルグリン・スカッド"
       },
       {
         "id": "cadian_castellan",
@@ -9613,7 +9616,7 @@
           "Officer",
           "Grenades"
         ],
-        "nameJa": "カディアン・カステラン"
+        "nameJa": "ケイディア・キャステラン"
       },
       {
         "id": "cadian_command_squad",
@@ -9629,7 +9632,7 @@
           "Character",
           "Platoon"
         ],
-        "nameJa": "カディアン・コマンド・スクワッド"
+        "nameJa": "ケイディア・コマンド・スカッド"
       },
       {
         "id": "cadian_shock_troops",
@@ -9646,7 +9649,7 @@
           "Platoon",
           "Cadian"
         ],
-        "nameJa": "カディアン・ショック・トゥループ"
+        "nameJa": "ケイディア・ショックトループ"
       },
       {
         "id": "catachan_jungle_fighters",
@@ -9662,7 +9665,7 @@
           "Regiment",
           "Grenades"
         ],
-        "nameJa": "カタチャン・ジャングル・ファイター"
+        "nameJa": "カタチャン・ジャングルファイター"
       },
       {
         "id": "chimera",
@@ -9707,7 +9710,7 @@
           "Regiment",
           "Platoon"
         ],
-        "nameJa": "デス・コープス・オヴ・クリーグ"
+        "nameJa": "デスコーア・オヴ・クリーグ"
       },
       {
         "id": "deathstrike",
@@ -9764,7 +9767,7 @@
           "Infantry",
           "Grenades"
         ],
-        "nameJa": "ゴーントのゴースト"
+        "nameJa": "ゴーントの亡霊たち"
       },
       {
         "id": "cadian_heavy_weapons_squad",
@@ -9778,7 +9781,7 @@
           "Grenades",
           "Regiment"
         ],
-        "nameJa": "カディアン・ヘヴィ・ウェポン・スクワッド"
+        "nameJa": "ケイディア・ヘヴィウェポン・スカッド"
       },
       {
         "id": "hellhammer",
@@ -9817,7 +9820,7 @@
           "Squadron",
           "Vehicle"
         ],
-        "nameJa": "ヒュドラ"
+        "nameJa": "ヒドラ"
       },
       {
         "id": "kasrkin",
@@ -9831,7 +9834,7 @@
           "Grenades",
           "Infantry"
         ],
-        "nameJa": "カスラーキン"
+        "nameJa": "カサーキン"
       },
       {
         "id": "leman_russ_battle_tank",
@@ -9870,7 +9873,7 @@
           "Vehicle",
           "Squadron"
         ],
-        "nameJa": "レマン・ラス・エラジケーター"
+        "nameJa": "レマン・ラス・エラディケイター"
       },
       {
         "id": "leman_russ_executioner",
@@ -9896,7 +9899,7 @@
           "Squadron",
           "Vehicle"
         ],
-        "nameJa": "レマン・ラス・エクスターミネーター"
+        "nameJa": "レマン・ラス・エクスターミネイター"
       },
       {
         "id": "leman_russ_punisher",
@@ -9922,7 +9925,7 @@
           "Squadron",
           "Vehicle"
         ],
-        "nameJa": "レマン・ラス・ヴァンクィッシャー"
+        "nameJa": "レマン・ラス・ヴァンキッシャー"
       },
       {
         "id": "lord_solar_leontus",
@@ -9937,7 +9940,7 @@
           "Character",
           "Officer"
         ],
-        "nameJa": "ロード・ソーラー・レオントゥス"
+        "nameJa": "太陽卿レオントゥス"
       },
       {
         "id": "manticore",
@@ -9966,7 +9969,7 @@
           "Grenades",
           "Command Squad"
         ],
-        "nameJa": "ミリタルム・テンペストゥス・コマンド・スクワッド"
+        "nameJa": "ミリタルム・テンペストゥス・コマンド・スカッド"
       },
       {
         "id": "nork_deddog",
@@ -9983,7 +9986,7 @@
           "Character",
           "Grenades"
         ],
-        "nameJa": "ノーク・デッドッグ"
+        "nameJa": "ノルク・デッドドッグ"
       },
       {
         "id": "ogryn_bodyguard",
@@ -9999,7 +10002,7 @@
           "Ogryn",
           "Character"
         ],
-        "nameJa": "オーグリン・ボディーガード"
+        "nameJa": "オグリン・ボディガード"
       },
       {
         "id": "ogryn_squad",
@@ -10013,7 +10016,7 @@
           "Grenades",
           "Ogryn"
         ],
-        "nameJa": "オーグリン・スクワッド"
+        "nameJa": "オグリン・スカッド"
       },
       {
         "id": "primaris_psyker",
@@ -10027,7 +10030,7 @@
           "Infantry",
           "Psyker"
         ],
-        "nameJa": "プリマリス・サイカー"
+        "nameJa": "プライマリス・サイカー"
       },
       {
         "id": "tech_priest_enginseer",
@@ -10040,7 +10043,7 @@
           "Infantry",
           "Character"
         ],
-        "nameJa": "テック・プリースト・エンジニアー"
+        "nameJa": "テックプリースト・エンジンシーア"
       },
       {
         "id": "rogal_dorn_battle_tank",
@@ -10053,7 +10056,7 @@
           "Vehicle",
           "Squadron"
         ],
-        "nameJa": "ロガル・ドーン・バトルタンク"
+        "nameJa": "ローガル・ドルン・バトルタンク"
       },
       {
         "id": "shadowsword",
@@ -10213,7 +10216,7 @@
           "Artillery",
           "Squadron"
         ],
-        "nameJa": "ワイバーン"
+        "nameJa": "ワイヴァーン"
       },
       {
         "id": "death_riders",
@@ -10227,7 +10230,7 @@
           "Regiment",
           "Death Riders"
         ],
-        "nameJa": "デス・ライダー"
+        "nameJa": "デスライダー"
       },
       {
         "id": "cyclops_demolition_vehicle",
@@ -10296,7 +10299,7 @@
           "Platoon",
           "Krieg"
         ],
-        "nameJa": "クリーグ・コマンド・スクワッド"
+        "nameJa": "クリーグ・コマンド・スカッド"
       },
       {
         "id": "lord_marshal_dreir",
@@ -10312,7 +10315,7 @@
           "Grenades",
           "Lord Marshal Dreir"
         ],
-        "nameJa": "ロード・マーシャル・ドライアー"
+        "nameJa": "総軍将ドライア"
       },
       {
         "id": "catachan_command_squad",
@@ -10328,7 +10331,7 @@
           "Platoon",
           "Catachan"
         ],
-        "nameJa": "カタチャン・コマンド・スクワッド"
+        "nameJa": "カタチアン・コマンド・スカッド"
       },
       {
         "id": "rogal_dorn_commander",
@@ -10343,7 +10346,7 @@
           "Character",
           "Officer"
         ],
-        "nameJa": "ロガル・ドーン・コマンダー"
+        "nameJa": "ローガル・ドルン・コマンダー"
       },
       {
         "id": "ministorum_priest",
@@ -10371,7 +10374,7 @@
           "Infantry",
           "Krieg Combat Engineers"
         ],
-        "nameJa": "クリーグ・コンバット・エンジニアー"
+        "nameJa": "クリーグ・コンバットエンジニア"
       },
       {
         "id": "catachan_heavy_weapons_squad",
@@ -10385,7 +10388,7 @@
           "Regiment",
           "Catachan Heavy Weapons Squad"
         ],
-        "nameJa": "カタチャン・ヘヴィ・ウェポン・スクワッド"
+        "nameJa": "カタチアン・ヘヴィウェポン・スカッド"
       },
       {
         "id": "krieg_heavy_weapons_squad",
@@ -10399,7 +10402,7 @@
           "Regiment",
           "Krieg Heavy Weapons Squad"
         ],
-        "nameJa": "クリーグ・ヘヴィ・ウェポン・スクワッド"
+        "nameJa": "クリーグ・ヘヴィウェポン・スカッド"
       },
       {
         "id": "artillery_team",
@@ -10430,7 +10433,7 @@
           "Officer",
           "Front-line Commander"
         ],
-        "nameJa": ""
+        "nameJa": "ロント・イネ コッマンデル ルイエ"
       },
       {
         "id": "augmented_bone_ead_crucible",
@@ -10447,7 +10450,7 @@
           "Augmented Bone 'Ead",
           "Ogryn"
         ],
-        "nameJa": ""
+        "nameJa": "アウメンテド ボネ エアド ルイエ"
       },
       {
         "id": "sentinel_commander_crucible",
@@ -10463,14 +10466,14 @@
           "Walker",
           "Sentinel Commander"
         ],
-        "nameJa": ""
+        "nameJa": "センイネル コッマンデル ルイエ"
       }
     ]
   },
   "black_templars": {
     "id": "black_templars",
     "name": "Black Templars",
-    "nameJa": "ブラック・テンプラー",
+    "nameJa": "ブラックテンプラー",
     "group": "Imperium",
     "units": [
       {
@@ -10529,7 +10532,7 @@
           "Tacticus",
           "Primaris Sword Brethren"
         ],
-        "nameJa": "ソードブレザレン・スカッド"
+        "nameJa": "ソードブレザレン"
       },
       {
         "id": "emperor_s_champion",
@@ -10668,7 +10671,7 @@
           "Tacticus",
           "Execrator"
         ],
-        "nameJa": "エグゼキューター"
+        "nameJa": "エクセクレイター"
       },
       {
         "id": "crusade_ancient",
@@ -10684,7 +10687,7 @@
           "Imperium",
           "Crusade Ancient"
         ],
-        "nameJa": "クルセイド・エンシェント"
+        "nameJa": "クルセイド・エインシェント"
       },
       {
         "id": "land_raider_crusader",
@@ -10741,14 +10744,14 @@
           "Tacticus",
           "Emperor's Champion"
         ],
-        "nameJa": "エンペラーズ・チャンピオン（アノインテッド）"
+        "nameJa": "エンペラーズ・チャンピオン"
       }
     ]
   },
   "blood_angels": {
     "id": "blood_angels",
     "name": "Blood Angels",
-    "nameJa": "ブラッド・エンジェル",
+    "nameJa": "ブラッドエンジェル",
     "group": "Imperium",
     "units": [
       {
@@ -10831,7 +10834,7 @@
           "Jump Pack",
           "Death Company"
         ],
-        "nameJa": "デスカンパニー・マリーンズ（ジャンプパック装備）"
+        "nameJa": "デスカンパニー・マリーン（ジャンプパック装備）"
       },
       {
         "id": "lemartes",
@@ -10959,7 +10962,7 @@
           "Tacticus",
           "Death Company"
         ],
-        "nameJa": "デスカンパニー・マリーンズ（ボルトライフル装備）"
+        "nameJa": "デスカンパニー・マリーン（ボルトライフル装備）"
       },
       {
         "id": "death_company_marines",
@@ -10996,7 +10999,7 @@
   "dark_angels": {
     "id": "dark_angels",
     "name": "Dark Angels",
-    "nameJa": "ダーク・エンジェル",
+    "nameJa": "ダークエンジェル",
     "group": "Imperium",
     "units": [
       {
@@ -11101,7 +11104,7 @@
           "Primarch",
           "Lion El'Jonson"
         ],
-        "nameJa": "ライオン・エル・ジョンソン"
+        "nameJa": "ライオン・エル＝ジョンソン"
       },
       {
         "id": "lazarus",
@@ -11149,7 +11152,7 @@
           "Dark Talon",
           "Ravenwing"
         ],
-        "nameJa": "レイヴンウイング・ダークタロン"
+        "nameJa": "レイヴンウィング・ダークタロン"
       },
       {
         "id": "land_speeder_vengeance",
@@ -11177,7 +11180,7 @@
           "Vehicle",
           "Ravenwing"
         ],
-        "nameJa": "レイヴンウイング・ダークシュラウド"
+        "nameJa": "レイヴンウィング・ダークシュラウド"
       },
       {
         "id": "ravenwing_black_knights",
@@ -11191,7 +11194,7 @@
           "Ravenwing Black Knights",
           "Ravenwing"
         ],
-        "nameJa": "レイヴンウイング・ブラックナイト"
+        "nameJa": "レイヴンウィング・ブラックナイト"
       },
       {
         "id": "ravenwing_command_squad",
@@ -11206,7 +11209,7 @@
           "Ravenwing",
           "Character"
         ],
-        "nameJa": "レイヴンウイング・コマンド・スカッド"
+        "nameJa": "レイヴンウィング・コマンド・スカッド"
       },
       {
         "id": "deathwing_knights",
@@ -11316,7 +11319,7 @@
           "Terminator",
           "Kill Team"
         ],
-        "nameJa": "デスウィッチ・ターミネイター・スカッド"
+        "nameJa": "デスウォッチ・ターミネイター・スカッド"
       },
       {
         "id": "fortis_kill_team",
@@ -11377,7 +11380,7 @@
           "Retinue",
           "Deathwatch Kill Team"
         ],
-        "nameJa": "デスウィッチ・べテラン"
+        "nameJa": "デスウォッチ・ベテラン"
       },
       {
         "id": "talonstrike_kill_team",
@@ -11416,7 +11419,7 @@
   "grey_knights": {
     "id": "grey_knights",
     "name": "Grey Knights",
-    "nameJa": "グレイ・ナイト",
+    "nameJa": "グレイナイト",
     "group": "Imperium",
     "units": [
       {
@@ -11609,7 +11612,7 @@
           "Vehicle",
           "Transport"
         ],
-        "nameJa": "ランドレイダー・リティーマー"
+        "nameJa": "ランドレイダー・リディーマー"
       },
       {
         "id": "razorback",
@@ -11768,7 +11771,7 @@
           "Grenades",
           "Infantry"
         ],
-        "nameJa": "ピュリファイア・スカッド"
+        "nameJa": "ピュリファイヤー・スカッド"
       },
       {
         "id": "strike_squad",
@@ -11799,7 +11802,7 @@
           "Aircraft",
           "Imperium"
         ],
-        "nameJa": "グレイ・ナイト・サンダーホーク・ガンシップ"
+        "nameJa": "[FW] サンダーホーク・ガンシップ"
       },
       {
         "id": "champion_of_titan_crucible",
@@ -11815,7 +11818,7 @@
           "Imperium",
           "Champion of Titan"
         ],
-        "nameJa": ""
+        "nameJa": "ハピオン オヴ イタン ルイエ"
       },
       {
         "id": "venerable_daemon_slayer_crucible",
@@ -11831,7 +11834,7 @@
           "Walker",
           "Venerable Daemon Slayer"
         ],
-        "nameJa": ""
+        "nameJa": "ヴェネラエ デーモン アエル ルイエ"
       },
       {
         "id": "dreadknight_champion_crucible",
@@ -11847,14 +11850,14 @@
           "Walker",
           "Dreadknight Champion"
         ],
-        "nameJa": ""
+        "nameJa": "レアニト ハピオン ルイエ"
       }
     ]
   },
   "imperial_fists": {
     "id": "imperial_fists",
     "name": "Imperial Fists",
-    "nameJa": "インペリアルフィスト",
+    "nameJa": "インペリアル・フィスツ",
     "group": "Imperium",
     "units": [
       {
@@ -12070,7 +12073,7 @@
           "Knight Castellan",
           "Dominus"
         ],
-        "nameJa": "ナイト・キャスティラン"
+        "nameJa": "ナイト・キャステラン"
       },
       {
         "id": "knight_valiant",
@@ -12153,7 +12156,7 @@
           "Cerastus",
           "Knight Castigator"
         ],
-        "nameJa": "セラストゥス・ナイト・キャスティゲイター"
+        "nameJa": "セラストゥス・ナイト・カスティゲイター"
       },
       {
         "id": "cerastus_knight_acheron",
@@ -12204,7 +12207,7 @@
           "Questoris",
           "Knight Magaera"
         ],
-        "nameJa": "エトリス・ナイト・マガエラ"
+        "nameJa": "クエストリス・ナイト・マガエラ"
       },
       {
         "id": "questoris_knight_styrix",
@@ -12221,7 +12224,7 @@
           "Questoris",
           "Knight Styrix"
         ],
-        "nameJa": "クエストリス・ナイト・スティリックス"
+        "nameJa": "クエストリス・ナイト・スタイリックス"
       },
       {
         "id": "armiger_moirax",
@@ -12235,7 +12238,7 @@
           "Armiger",
           "Moirax"
         ],
-        "nameJa": "アーミジャー・モイラックス"
+        "nameJa": "アーミガー・モイラックス"
       },
       {
         "id": "knight_defender",
@@ -12252,14 +12255,14 @@
           "Questoris",
           "Knight Defender"
         ],
-        "nameJa": "ナイト・デフェンダー"
+        "nameJa": "ナイト・ディフェンダー"
       }
     ]
   },
   "iron_hands": {
     "id": "iron_hands",
     "name": "Iron Hands",
-    "nameJa": "アイアンハンド",
+    "nameJa": "アイアン・ハンズ",
     "group": "Imperium",
     "units": [
       {
@@ -12275,7 +12278,7 @@
           "Gravis",
           "Iron Father Ferrios"
         ],
-        "nameJa": "鋼鉄の父フェイロス"
+        "nameJa": "鉄父フェイロス"
       },
       {
         "id": "caanok_var",
@@ -12298,7 +12301,7 @@
   "raven_guard": {
     "id": "raven_guard",
     "name": "Raven Guard",
-    "nameJa": "レイヴンガード",
+    "nameJa": "レイヴン・ガード",
     "group": "Imperium",
     "units": [
       {
@@ -12335,14 +12338,14 @@
           "Chapter Master",
           "Aethon Shaan"
         ],
-        "nameJa": "アーソン・シャーン"
+        "nameJa": "イーソン・シャーン"
       }
     ]
   },
   "salamanders": {
     "id": "salamanders",
     "name": "Salamanders",
-    "nameJa": "サラマンダー",
+    "nameJa": "サラマンダーズ",
     "group": "Imperium",
     "units": [
       {
@@ -12359,7 +12362,7 @@
           "Imperium",
           "Tacticus"
         ],
-        "nameJa": "アドラックス・アガトーン"
+        "nameJa": "アドラックス・アガトン"
       },
       {
         "id": "vulkan_he_stan",
@@ -12681,7 +12684,7 @@
           "Centurion Devastator Squad",
           "Centurion"
         ],
-        "nameJa": "センチュリオン・デヴァステイター・スカッド"
+        "nameJa": "センチュリオン・ディヴァステイター・スカッド"
       },
       {
         "id": "invictor_tactical_warsuit",
@@ -12763,7 +12766,7 @@
           "Imperium",
           "Invader ATV"
         ],
-        "nameJa": "インヴェイダーATV"
+        "nameJa": "インヴェイダー ATV"
       },
       {
         "id": "outrider_squad",
@@ -12950,7 +12953,7 @@
           "Imperium",
           "Predator Annihilator"
         ],
-        "nameJa": "プレデター・アンニヒレーター"
+        "nameJa": "プレデター・アナイアレイター"
       },
       {
         "id": "gladiator_lancer",
@@ -12998,7 +13001,7 @@
           "Imperium",
           "Vindicator"
         ],
-        "nameJa": "ヴィンディケーター"
+        "nameJa": "ヴィンディケイター"
       },
       {
         "id": "land_raider",
@@ -13041,7 +13044,7 @@
           "Transport",
           "Land Raider"
         ],
-        "nameJa": "ランドレイダー・リティーマー"
+        "nameJa": "ランドレイダー・リディーマー"
       },
       {
         "id": "repulsor",
@@ -13178,7 +13181,7 @@
           "Imperium",
           "Hammerfall Bunker"
         ],
-        "nameJa": "ハンマーフォール・バンカー"
+        "nameJa": "ハンマーフォール型バンカー"
       },
       {
         "id": "lieutenant",
@@ -13314,7 +13317,7 @@
           "Grenades",
           "Chaplain"
         ],
-        "nameJa": "チャプレイン （バイク騎乗）"
+        "nameJa": "チャプレイン（バイク騎乗）"
       },
       {
         "id": "chaplain_with_jump_pack",
@@ -13329,7 +13332,7 @@
           "Fly",
           "Jump Pack"
         ],
-        "nameJa": "チャプレイン （ジャンプパック装備）"
+        "nameJa": "チャプレイン（ジャンプパック装備）"
       },
       {
         "id": "techmarine",
@@ -13477,7 +13480,7 @@
           "Imperium",
           "Astraeus"
         ],
-        "nameJa": "アストライオス"
+        "nameJa": "[FW] アストラエウス"
       },
       {
         "id": "thunderhawk_gunship",
@@ -13493,7 +13496,7 @@
           "Imperium",
           "Thunderhawk Gunship"
         ],
-        "nameJa": "サンダーホーク・ガンシップ"
+        "nameJa": "[FW] サンダーホーク・ガンシップ"
       },
       {
         "id": "assault_intercessors_with_jump_packs",
@@ -13508,7 +13511,7 @@
           "Tacticus",
           "Jump Pack"
         ],
-        "nameJa": "アサルト・インターセッサー（ジャンプパック装備）"
+        "nameJa": "アサルト・インターセッサー・スカッド（ジャンプパック装備）"
       },
       {
         "id": "company_heroes",
@@ -13522,7 +13525,7 @@
           "Tacticus",
           "Company Heroes"
         ],
-        "nameJa": "カンパニー・ヒーローズ"
+        "nameJa": "カンパニー・ヒーロー"
       },
       {
         "id": "champion_of_the_chapter_crucible",
@@ -13538,7 +13541,7 @@
           "Tacticus",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "ハピオン オヴ ザ ハテル ルイエ"
       },
       {
         "id": "librarius_adept_crucible",
@@ -13555,7 +13558,7 @@
           "Librarius Adept",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "イラリウス アデト ルイエ"
       },
       {
         "id": "venerable_battle_brother_crucible",
@@ -13571,7 +13574,7 @@
           "Walker",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "ヴェネラエ バトル・ロセル ルイエ"
       }
     ]
   },
@@ -13627,7 +13630,7 @@
           "Bjorn the Fell-Handed",
           "Dreadnought"
         ],
-        "nameJa": "“兇手” ビョルン"
+        "nameJa": "\"兇手\"ビョルン"
       },
       {
         "id": "arjac_rockfist",
@@ -13658,7 +13661,7 @@
           "Ulrik the Slayer",
           "Wolf Priest"
         ],
-        "nameJa": "“屠る者” ウルリック"
+        "nameJa": "\"屠る者\"ウルリック"
       },
       {
         "id": "ragnar_blackmane",
@@ -13888,7 +13891,7 @@
   "ultramarines": {
     "id": "ultramarines",
     "name": "Ultramarines",
-    "nameJa": "ウルトラマリーン",
+    "nameJa": "ウルトラマリーンズ",
     "group": "Imperium",
     "units": [
       {
@@ -13904,7 +13907,7 @@
           "Psyker",
           "Chief Librarian Tigurius"
         ],
-        "nameJa": "チーフライブラリアン・ティグリウス"
+        "nameJa": "主席司書官ティグリウス"
       },
       {
         "id": "roboute_guilliman",
@@ -13952,7 +13955,7 @@
           "Titus",
           "Tacticus"
         ],
-        "nameJa": "レフテナント・タイタス"
+        "nameJa": "中隊長タイタス"
       },
       {
         "id": "marneus_calgar_in_armour_of_antilochus",
@@ -13968,7 +13971,7 @@
           "Chapter Master",
           "Marneus Calgar"
         ],
-        "nameJa": "マルネウス・カルガー（アンティロクスの鎧装備）"
+        "nameJa": "マルネウス・カルガー（アンティロカスの鎧装備）"
       },
       {
         "id": "cato_sicarius",
@@ -14016,7 +14019,7 @@
           "Grenades",
           "Captain"
         ],
-        "nameJa": "キャプテン・タイタス"
+        "nameJa": "中隊長タイタス"
       },
       {
         "id": "wardens_of_ultramar",
@@ -14031,14 +14034,14 @@
           "Tacticus",
           "Wardens of Ultramar"
         ],
-        "nameJa": "ウルトラマリーン・ウォーデン"
+        "nameJa": "ウルトラマールの番人"
       }
     ]
   },
   "white_scars": {
     "id": "white_scars",
     "name": "White Scars",
-    "nameJa": "ホワイトスカー",
+    "nameJa": "ホワイト・スカーズ",
     "group": "Imperium",
     "units": [
       {
@@ -14055,7 +14058,7 @@
           "Kor'sarro Khan",
           "Tacticus"
         ],
-        "nameJa": "狩猟長 コルッサーロ・ハーン"
+        "nameJa": "コルッサーロ・ハーン"
       },
       {
         "id": "suboden_khan",
@@ -14092,7 +14095,7 @@
           "Epic Hero",
           "Ûthar the Destined"
         ],
-        "nameJa": "“定められし者” ユザール"
+        "nameJa": "\"定められし者\"ユザール"
       },
       {
         "id": "hearthkyn_warriors",
@@ -14277,7 +14280,7 @@
           "Infantry",
           "Arkanyst Evaluator"
         ],
-        "nameJa": "ーカニスト・エヴァリュエイター"
+        "nameJa": "アーカニスト・エヴァリュエイター"
       },
       {
         "id": "kapricus_carrier",
@@ -14305,7 +14308,7 @@
           "Ironkin Steeljacks",
           "Ironkin Steeljacks with Heavy Volkanite Disintegrators"
         ],
-        "nameJa": "アイアンキン・スティールジャック（ヘヴィボルカナイト・ディスインテグレイター装備）"
+        "nameJa": "アイアンキン・スティールジャック（ヘヴィ・ヴォルカナイト・ディスインテグレイター装備）"
       },
       {
         "id": "ironkin_steeljacks_with_melee_weapons",
@@ -14317,7 +14320,7 @@
           "Ironkin Steeljacks",
           "Ironkin Steeljacks with Melee Weapons"
         ],
-        "nameJa": "アイアンキン・スティールジャック（メレーウェポン装備）"
+        "nameJa": "アイアンキン・スティールジャック（白兵戦武器装備）"
       },
       {
         "id": "cthonian_earthshakers",
@@ -14344,7 +14347,7 @@
           "Psyker",
           "Living Ancestor"
         ],
-        "nameJa": ""
+        "nameJa": "イヴィング アンセトル ルイエ"
       },
       {
         "id": "kinhost_commander_crucible",
@@ -14357,7 +14360,7 @@
           "Kinhost Commander",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "キンホト コッマンデル ルイエ"
       },
       {
         "id": "steeljack_elder_crucible",
@@ -14371,7 +14374,7 @@
           "Ironkin Steeljacks",
           "Steeljack Elder"
         ],
-        "nameJa": ""
+        "nameJa": "テエジャック エデル ルイエ"
       },
       {
         "id": "berehk_stornbr_w",
@@ -14385,7 +14388,7 @@
           "Cthonian",
           "Berehk Stornbröw"
         ],
-        "nameJa": ""
+        "nameJa": "ベレーク・ストーンブロウ"
       }
     ]
   },
@@ -14408,7 +14411,7 @@
           "Chronomancer",
           "Orikan the Diviner"
         ],
-        "nameJa": "予言者オリカン"
+        "nameJa": "\"予言者\"オリカン"
       },
       {
         "id": "imotekh_the_stormlord",
@@ -14422,7 +14425,7 @@
           "Noble",
           "Imotekh the Stormlord"
         ],
-        "nameJa": "嵐の王イモーテク"
+        "nameJa": "\"嵐の王\"イモーテク"
       },
       {
         "id": "illuminor_szeras",
@@ -14450,7 +14453,7 @@
           "Noble",
           "Trazyn the Infinite"
         ],
-        "nameJa": "無限なるトラザイン"
+        "nameJa": "\"無限なる\"トラザイン"
       },
       {
         "id": "royal_warden",
@@ -14515,7 +14518,7 @@
           "Noble",
           "Overlord"
         ],
-        "nameJa": "オーバーロード"
+        "nameJa": "オーヴァーロード"
       },
       {
         "id": "technomancer",
@@ -14605,7 +14608,7 @@
           "Canoptek",
           "Reanimator"
         ],
-        "nameJa": "カノプテック・リアニメーター"
+        "nameJa": "カノプテック・リアニメイター"
       },
       {
         "id": "hexmark_destroyer",
@@ -14629,7 +14632,7 @@
           "Infantry",
           "Lychguard"
         ],
-        "nameJa": "リッチガード"
+        "nameJa": "リッチーガード"
       },
       {
         "id": "deathmarks",
@@ -14651,7 +14654,7 @@
           "Infantry",
           "Flayed Ones"
         ],
-        "nameJa": "フレイドワン"
+        "nameJa": "フレイド・ワン"
       },
       {
         "id": "cryptothralls",
@@ -14662,7 +14665,7 @@
           "Infantry",
           "Cryptothralls"
         ],
-        "nameJa": "クリプトスラール"
+        "nameJa": "クリプトスロール"
       },
       {
         "id": "skorpekh_destroyers",
@@ -14700,7 +14703,7 @@
           "Fly",
           "C'tan Shard of the Deceiver"
         ],
-        "nameJa": "ディシーバー ク＝タン・シャード"
+        "nameJa": "\"欺くもの\" のク＝タン・シャード"
       },
       {
         "id": "c_tan_shard_of_the_nightbringer",
@@ -14714,7 +14717,7 @@
           "Fly",
           "C'tan Shard of the Nightbringer"
         ],
-        "nameJa": "“夜をもたらすもの”ク＝タン・シャード"
+        "nameJa": "\"夜をもたらすもの\" のク＝タン・シャード"
       },
       {
         "id": "c_tan_shard_of_the_void_dragon",
@@ -14728,7 +14731,7 @@
           "Fly",
           "C'tan Shard of the Void Dragon"
         ],
-        "nameJa": "“虚ろの竜” ク＝タン・シャード"
+        "nameJa": "\"虚ろの竜\" のク＝タン・シャード"
       },
       {
         "id": "transcendent_c_tan",
@@ -14741,7 +14744,7 @@
           "Fly",
           "Transcendent C'tan"
         ],
-        "nameJa": "トランセンデント ク＝タン"
+        "nameJa": "トランセンデント・ク＝タン"
       },
       {
         "id": "canoptek_scarab_swarms",
@@ -14754,7 +14757,7 @@
           "Canoptek",
           "Scarab Swarms"
         ],
-        "nameJa": "カノプテック・スカラブスウォーム"
+        "nameJa": "カノプテック・スカラベ・スウォーム"
       },
       {
         "id": "ophydian_destroyers",
@@ -14778,7 +14781,7 @@
           "Fly",
           "Tomb Blades"
         ],
-        "nameJa": "トゥーム・ブレイド"
+        "nameJa": "トゥームブレイド"
       },
       {
         "id": "triarch_praetorians",
@@ -14790,7 +14793,7 @@
           "Fly",
           "Triarch Praetorians"
         ],
-        "nameJa": "トライアーク・プラエトリアンス"
+        "nameJa": "トライアーク・プラエトリアン"
       },
       {
         "id": "canoptek_wraiths",
@@ -14815,7 +14818,7 @@
           "Fly",
           "Annihilation Barge"
         ],
-        "nameJa": "アナイアレイション・バージ"
+        "nameJa": "アナイアレーション・バージ"
       },
       {
         "id": "doomsday_ark",
@@ -14894,7 +14897,7 @@
           "Fly",
           "Doom Scythe"
         ],
-        "nameJa": "ドゥーム・サイズ"
+        "nameJa": "ドゥームサイズ"
       },
       {
         "id": "obelisk",
@@ -14948,7 +14951,7 @@
           "Epic Hero",
           "Triarch"
         ],
-        "nameJa": "❝沈黙の王❞ スザーレク"
+        "nameJa": "沈黙の王"
       },
       {
         "id": "seraptek_heavy_construct",
@@ -14962,7 +14965,7 @@
           "Towering",
           "Seraptek Heavy Construct"
         ],
-        "nameJa": "セラプテク・ヘヴィ・コンストラクト"
+        "nameJa": "[FW] セラプテク・ヘヴィコンストラクト"
       },
       {
         "id": "overlord_with_translocation_shroud",
@@ -14976,7 +14979,7 @@
           "Overlord",
           "Overlord with Translocation Shroud"
         ],
-        "nameJa": "オーバーロード（トランスロケーション・シュラウド装備）"
+        "nameJa": "オーヴァーロード（転移の屍衣装備）"
       },
       {
         "id": "canoptek_macrocytes",
@@ -15001,7 +15004,7 @@
           "Canoptek",
           "Tomb Crawlers"
         ],
-        "nameJa": "カノプテック・トゥーム・クローラー"
+        "nameJa": "カノプテック・トゥームクロウラー"
       },
       {
         "id": "geomancer",
@@ -15028,7 +15031,7 @@
           "Destroyer Cult",
           "Nekrosor Ammentar"
         ],
-        "nameJa": "ネクロソー・アメンタール"
+        "nameJa": "ネクロソール・アメンター"
       },
       {
         "id": "dynastic_conqueror_crucible",
@@ -15042,7 +15045,7 @@
           "Dynastic Conqueror",
           "Crucible"
         ],
-        "nameJa": ""
+        "nameJa": "ナイク コンエロル ルイエ"
       },
       {
         "id": "hyperscientist_crucible",
@@ -15056,7 +15059,7 @@
           "Hyperscientist",
           "Cryptek"
         ],
-        "nameJa": ""
+        "nameJa": "ペッイエンイト ルイエ"
       },
       {
         "id": "triarchal_overseer_crucible",
@@ -15072,7 +15075,7 @@
           "Triarchal Overseer",
           "Stalker"
         ],
-        "nameJa": ""
+        "nameJa": "リアハル オヴェセエル ルイエ"
       }
     ]
   },
@@ -15106,7 +15109,7 @@
           "Beast Snagga",
           "Beast Snagga Boyz"
         ],
-        "nameJa": "ビーストスナッガボーイ"
+        "nameJa": "ビーストスナッガボゥイ"
       },
       {
         "id": "beastboss",
@@ -15134,7 +15137,7 @@
           "Warboss",
           "Mounted"
         ],
-        "nameJa": "ビーストボス（スキゴサウル騎乗）"
+        "nameJa": "ビーストボス（スクイッグザウルス騎乗）"
       },
       {
         "id": "big_mek_in_mega_armour",
@@ -15148,7 +15151,7 @@
           "Mega Armour",
           "Mek"
         ],
-        "nameJa": "ビッグメック（メガアーマー装備）"
+        "nameJa": "ビッグメク（メガアーマー装備）"
       },
       {
         "id": "big_mek_with_shokk_attack_gun",
@@ -15162,7 +15165,7 @@
           "Big Mek with Shokk Attack Gun",
           "Mek"
         ],
-        "nameJa": "ビッグメック（ショックアタックガン装備）"
+        "nameJa": "ビッグメク（ショックアタックガン装備）"
       },
       {
         "id": "big_ed_bossbunka",
@@ -15175,7 +15178,7 @@
           "Transport",
           "Big'ed Bossbunka"
         ],
-        "nameJa": "ビッグヘッドボスバンカ"
+        "nameJa": "デカアタマ型親分バンカー"
       },
       {
         "id": "blitza_bommer",
@@ -15189,7 +15192,7 @@
           "Blitza-bommer",
           "Speed Freeks"
         ],
-        "nameJa": "ブリッツァ・ボマー"
+        "nameJa": "ブリッツァボマー"
       },
       {
         "id": "boomdakka_snazzwagon",
@@ -15216,7 +15219,7 @@
           "Grenades",
           "Boss Snikrot"
         ],
-        "nameJa": "ボス・スニクロット"
+        "nameJa": "スニックロット隊長"
       },
       {
         "id": "boyz",
@@ -15241,7 +15244,7 @@
           "Infantry",
           "Burna Boyz"
         ],
-        "nameJa": "バーナ・ボゥイ"
+        "nameJa": "バーナボゥイ"
       },
       {
         "id": "burna_bommer",
@@ -15255,7 +15258,7 @@
           "Burna-bommer",
           "Speed Freeks"
         ],
-        "nameJa": "バーナ・ボマー"
+        "nameJa": "バーナボマー"
       },
       {
         "id": "dakkajet",
@@ -15281,7 +15284,7 @@
           "Walker",
           "Deff Dread"
         ],
-        "nameJa": "デフ・ドレッド"
+        "nameJa": "デフドレッド"
       },
       {
         "id": "deffkilla_wartrike",
@@ -15321,7 +15324,7 @@
           "Grenades",
           "Flash Gitz"
         ],
-        "nameJa": "フラッシュ・ギット"
+        "nameJa": "フラッシュギット"
       },
       {
         "id": "ghazghkull_thraka",
@@ -15333,7 +15336,7 @@
           "Epic Hero",
           "Character"
         ],
-        "nameJa": "ガッズグル・ザラカ"
+        "nameJa": "ガズグッカル・ザラカ"
       },
       {
         "id": "gorkanaut",
@@ -15412,7 +15415,7 @@
           "Grenades",
           "Kommandos"
         ],
-        "nameJa": "コマンドス"
+        "nameJa": "コマンド"
       },
       {
         "id": "kustom_boosta_blasta",
@@ -15552,7 +15555,7 @@
           "Rukkatrukk Squigbuggy",
           "Speed Freeks"
         ],
-        "nameJa": "ルッカトラック・スクイッグバギー"
+        "nameJa": "ラッカトラック・スクイッグバギー"
       },
       {
         "id": "shokkjump_dragsta",
@@ -15577,7 +15580,7 @@
           "Grenades",
           "Squighog Boyz"
         ],
-        "nameJa": "スクイッグホッグ・ボゥイ"
+        "nameJa": "スクイッグホッグボゥイ"
       },
       {
         "id": "stompa",
@@ -15699,7 +15702,7 @@
           "Infantry",
           "Psyker"
         ],
-        "nameJa": "ウィアードボーイズ"
+        "nameJa": "ウィアードボゥイ"
       },
       {
         "id": "wurrboy",
@@ -15713,7 +15716,7 @@
           "Psyker",
           "Beast Snagga"
         ],
-        "nameJa": "ワーボーイズ"
+        "nameJa": "ウールボゥイ"
       },
       {
         "id": "zodgrod_wortsnagga",
@@ -15740,7 +15743,7 @@
           "Transport",
           "Gargantuan Squiggoth"
         ],
-        "nameJa": "ガーガンチュアン・スクイゴス"
+        "nameJa": "[FW] ガルガンチュアン・スクイゴス"
       },
       {
         "id": "big_mek",
@@ -15766,7 +15769,7 @@
           "Grenades",
           "Breaka Boyz"
         ],
-        "nameJa": "バキンカ・ボゥイ？"
+        "nameJa": "ブレイカボゥイ"
       },
       {
         "id": "hordeboss_crucible",
@@ -15780,7 +15783,7 @@
           "Crucible",
           "Grenades"
         ],
-        "nameJa": ""
+        "nameJa": "ホデボッス ルイエ"
       },
       {
         "id": "warphead_crucible",
@@ -15794,7 +15797,7 @@
           "Psyker",
           "Warphead"
         ],
-        "nameJa": ""
+        "nameJa": "ワフェアド ルイエ"
       },
       {
         "id": "upstart_gretchin_crucible",
@@ -15809,14 +15812,14 @@
           "Grots",
           "Upstart Gretchin"
         ],
-        "nameJa": ""
+        "nameJa": "ウタト グレッチン ルイエ"
       }
     ]
   },
   "t_au_empire": {
     "id": "t_au_empire",
     "name": "T'au Empire",
-    "nameJa": "タウ エンパイア",
+    "nameJa": "タウ・エンパイア",
     "group": "Xenos",
     "units": [
       {
@@ -15833,7 +15836,7 @@
           "Commander Shadowsun",
           "Non-Kroot"
         ],
-        "nameJa": "コマンダー シャドウサン"
+        "nameJa": "コマンダー・シャドウサン"
       },
       {
         "id": "commander_farsight",
@@ -15866,7 +15869,7 @@
           "Commander in Enforcer Battlesuit",
           "Non-Kroot"
         ],
-        "nameJa": "コマンダー（エンフォーサー・バトルスーツ装備）"
+        "nameJa": "コマンダー（エンフォーサー・バトルスーツ装着）"
       },
       {
         "id": "commander_in_coldstar_battlesuit",
@@ -15882,7 +15885,7 @@
           "Commander in Coldstar Battlesuit",
           "Non-Kroot"
         ],
-        "nameJa": "コマンダー（コールドスター・バトルスーツ装備）"
+        "nameJa": "コマンダー（コールドスター・バトルスーツ装着）"
       },
       {
         "id": "cadre_fireblade",
@@ -15940,7 +15943,7 @@
           "Strike Team",
           "Non-Kroot"
         ],
-        "nameJa": "ストライクチーム"
+        "nameJa": "ストライク・チーム"
       },
       {
         "id": "breacher_team",
@@ -15956,7 +15959,7 @@
           "Breacher Team",
           "Non-Kroot"
         ],
-        "nameJa": "ブリーチャーチーム"
+        "nameJa": "ブリーチャー・チーム"
       },
       {
         "id": "kroot_carnivores",
@@ -16066,7 +16069,7 @@
           "Kroot",
           "Hounds"
         ],
-        "nameJa": "クルート・ハウンズ"
+        "nameJa": "クルートハウンド"
       },
       {
         "id": "broadside_battlesuits",
@@ -16165,7 +16168,7 @@
           "Sun Shark Bomber",
           "Non-Kroot"
         ],
-        "nameJa": "サンシャーク・ボンバー"
+        "nameJa": "サンシャーク・ボマー"
       },
       {
         "id": "tidewall_shieldline",
@@ -16253,7 +16256,7 @@
           "Ta'unar Supremacy Armour",
           "Non-Kroot"
         ],
-        "nameJa": "タウナー・シュプレマシー・アーマー"
+        "nameJa": "[FW] タウナール・スプレマシーアーマー"
       },
       {
         "id": "tiger_shark",
@@ -16267,7 +16270,7 @@
           "Tiger Shark",
           "Non-Kroot"
         ],
-        "nameJa": "タイガーシャーク"
+        "nameJa": "[FW] タイガーシャーク"
       },
       {
         "id": "ax_1_0_tiger_shark",
@@ -16281,7 +16284,7 @@
           "AX-1-0 Tiger Shark",
           "Non-Kroot"
         ],
-        "nameJa": "AX-1-0 タイガーシャーク"
+        "nameJa": "[FW] AX-1-0 タイガーシャーク"
       },
       {
         "id": "manta",
@@ -16298,7 +16301,7 @@
           "Manta",
           "Non-Kroot"
         ],
-        "nameJa": "マンタ"
+        "nameJa": "[FW] マンタ"
       },
       {
         "id": "crisis_sunforge_battlesuits",
@@ -16314,7 +16317,7 @@
           "Sunforge",
           "Non-Kroot"
         ],
-        "nameJa": "クライシス・サンフォージ・バトルスーツ"
+        "nameJa": "クライリス・サンフォージ・バトルスーツ"
       },
       {
         "id": "crisis_fireknife_battlesuits",
@@ -16330,7 +16333,7 @@
           "Fireknife",
           "Non-Kroot"
         ],
-        "nameJa": "クライシス・ファイアナイフ・バトルスーツ"
+        "nameJa": "クライシス・ファイアストライク・バトルスーツ"
       },
       {
         "id": "crisis_starscythe_battlesuits",
@@ -16428,7 +16431,7 @@
           "Grenades",
           "Shas'nel"
         ],
-        "nameJa": ""
+        "nameJa": "シャネル ルイエ"
       },
       {
         "id": "battlesuit_veteran_crucible",
@@ -16443,7 +16446,7 @@
           "Battlesuit",
           "Battlesuit Veteran"
         ],
-        "nameJa": ""
+        "nameJa": "バトルスーツ ヴェテラン ルイエ"
       },
       {
         "id": "kinband_champion_crucible",
@@ -16457,7 +16460,7 @@
           "Kroot",
           "Kinband Champion"
         ],
-        "nameJa": ""
+        "nameJa": "キンバンド ハピオン ルイエ"
       },
       {
         "id": "the_twin_lance",
@@ -16474,7 +16477,7 @@
           "Non-Kroot",
           "The Twin Lance"
         ],
-        "nameJa": ""
+        "nameJa": "\"双槍\""
       }
     ]
   },
@@ -16557,7 +16560,7 @@
           "Synapse",
           "Great Devourer"
         ],
-        "nameJa": "ティラニッド・ウォーリアー（射撃用バイオウェポン装備）"
+        "nameJa": "ティラニッド・ウォリアー（射撃用バイオウェポン装備）"
       },
       {
         "id": "tyranid_warriors_with_melee_bio_weapons",
@@ -16571,7 +16574,7 @@
           "Synapse",
           "Tyranid Warriors"
         ],
-        "nameJa": "ティラニッド・ウォーリアー（白兵戦用バイオウェポン装備）"
+        "nameJa": "ティラニッド・ウォリアー（白兵戦用バイオウェポン装備）"
       },
       {
         "id": "termagants",
@@ -16585,7 +16588,7 @@
           "Endless Multitude",
           "Termagants"
         ],
-        "nameJa": "ターマゴント"
+        "nameJa": "ターマガント"
       },
       {
         "id": "hormagaunts",
@@ -16599,7 +16602,7 @@
           "Endless Multitude",
           "Hormagaunts"
         ],
-        "nameJa": "ホーマゴント"
+        "nameJa": "ホーマゴーント"
       },
       {
         "id": "toxicrene",
@@ -16796,7 +16799,7 @@
           "Hive Crone",
           "Vanguard Invader"
         ],
-        "nameJa": "ハイブクロン"
+        "nameJa": "ハイヴクロン"
       },
       {
         "id": "harpy",
@@ -16848,7 +16851,7 @@
           "Infantry",
           "Great Devourer"
         ],
-        "nameJa": "バーブゴント"
+        "nameJa": "バーブゴーント"
       },
       {
         "id": "harridan",
@@ -16864,7 +16867,7 @@
           "Great Devourer",
           "Harridan"
         ],
-        "nameJa": "ハリダン"
+        "nameJa": "[FW] ハリダン"
       },
       {
         "id": "hierophant",
@@ -16879,7 +16882,7 @@
           "Great Devourer",
           "Hierophant"
         ],
-        "nameJa": "ハイエロファント"
+        "nameJa": "[FW] ハイエロファント"
       },
       {
         "id": "genestealers",
@@ -16949,7 +16952,7 @@
           "Synapse",
           "Tyranid Prime with Lash Whip"
         ],
-        "nameJa": "ティラニッド・プライム（ラッシュ・ウィップ）"
+        "nameJa": "ティラニッド・プライム（ラッシュウィップ装備）"
       },
       {
         "id": "winged_hive_tyrant",
@@ -16967,7 +16970,7 @@
           "Vanguard Invader",
           "Hive Tyrant"
         ],
-        "nameJa": "ウィングド・ハイブ・タイラント"
+        "nameJa": "ハイヴタイラント有翼種"
       },
       {
         "id": "gargoyles",
@@ -16999,7 +17002,7 @@
           "Synapse",
           "Vanguard Invader"
         ],
-        "nameJa": "ウィングド・ティラニッド・プライム"
+        "nameJa": "ティラニッド・プライム有翼種"
       },
       {
         "id": "lictor",
@@ -17040,7 +17043,20 @@
           "Von Ryan's Leapers",
           "Vanguard Invader"
         ],
-        "nameJa": "フォン・ライアンズ・リーパーズ"
+        "nameJa": "フォン・ライアンズ・リーパー"
+      },
+      {
+        "id": "ripper_swarms",
+        "name": "Ripper Swarms",
+        "pts": 25,
+        "role": "Other",
+        "categories": [
+          "Ripper Swarm",
+          "Swarm",
+          "Great Devourer",
+          "Harvester"
+        ],
+        "nameJa": "リッパー・スウォーム"
       },
       {
         "id": "parasite_of_mortrex",
@@ -17056,7 +17072,7 @@
           "Vanguard Invader",
           "Synapse"
         ],
-        "nameJa": "パラサイト・オブ・モルトレックス"
+        "nameJa": "モルトレックス寄生体"
       },
       {
         "id": "mawloc",
@@ -17112,7 +17128,7 @@
           "Vanguard Invader",
           "Burrowers"
         ],
-        "nameJa": "レイヴナー"
+        "nameJa": "ラヴェナー"
       },
       {
         "id": "neurolictor",
@@ -17141,7 +17157,7 @@
           "Hyperadapted Raveners",
           "Character"
         ],
-        "nameJa": "ハイパーアダプテッド・レイヴナー"
+        "nameJa": "ハイパーアダプテッド・ラヴェナー"
       },
       {
         "id": "node_organism_crucible",
@@ -17156,7 +17172,7 @@
           "Synapse",
           "Node Organism"
         ],
-        "nameJa": "ノード・オーガニズム〔クルーシブル〕"
+        "nameJa": "ノデ オガニム ルイエ"
       },
       {
         "id": "prime_organism_crucible",
@@ -17170,7 +17186,7 @@
           "Monster",
           "Prime Organism"
         ],
-        "nameJa": "プライム・オーガニズム〔クルーシブル〕"
+        "nameJa": "リメ オガニム ルイエ"
       },
       {
         "id": "macro_organism_crucible",
@@ -17184,7 +17200,7 @@
           "Monster",
           "Macro Organism"
         ],
-        "nameJa": "マクロ・オーガニズム〔クルーシブル〕"
+        "nameJa": "マロ オガニム ルイエ"
       }
     ]
   }
