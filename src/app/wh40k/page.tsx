@@ -7,6 +7,29 @@ export const metadata: Metadata = {
     "Warhammer 40,000 情報ハブ。Aeldari ロスタービルダー、ユニットリファレンス、初心者ガイド。",
 };
 
+const NEWS = [
+  {
+    date: "2026-03-19",
+    title: "保存ロスターをどのブラウザ・端末でも共有可能に",
+    body: "ロスターをサーバーに保存するよう変更しました。別のブラウザや端末からでも「保存ロスター」ページで同じロスターを確認・編集できます。(更新の際、過去データが消えてしまった可能性があります。)",
+  },
+  {
+    date: "2026-03-18",
+    title: "デタッチメント別バトルライン・日本語名対応",
+    body: "デタッチメントによってバトルライン扱いになるユニットをビルダー・ロスター詳細ページに反映。エンハンスメント・デタッチメントの日本語名を追加しました。",
+  },
+  {
+    date: "2026-03-17",
+    title: "全陣営のデタッチメント名・エンハンスメントを公式 PDF に基づき修正",
+    body: "Munitorum Field Manual v4.0 をもとに、デタッチメント名とエンハンスメントのポイントを更新しました。",
+  },
+  {
+    date: "2026-03-12",
+    title: "共有 URL の短縮対応",
+    body: "ロスターの共有 URL が短縮されました。SNS などで貼りやすくなっています。",
+  },
+];
+
 const LINKS = [
   {
     href: "/wh40k/builder",
@@ -87,6 +110,29 @@ export default function WH40KHubPage() {
           </Link>
         ))}
       </div>
+
+      {/* News */}
+      <section className="space-y-3">
+        <h2 className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">
+          News
+        </h2>
+        <div className="space-y-2">
+          {NEWS.map((item, i) => (
+            <div
+              key={i}
+              className="surface-card rounded-2xl px-5 py-4 space-y-1"
+            >
+              <div className="flex flex-wrap items-center gap-2">
+                <time className="text-[0.62rem] font-semibold tabular-nums text-rose-500">
+                  {item.date}
+                </time>
+                <p className="text-xs font-bold">{item.title}</p>
+              </div>
+              <p className="text-[0.68rem] text-muted leading-relaxed">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Note */}
       <p className="rounded-xl border border-amber-300/40 bg-amber-50/50 px-4 py-3 text-[0.65rem] leading-relaxed text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/5 dark:text-amber-400">
