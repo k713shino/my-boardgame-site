@@ -13,20 +13,25 @@
  */
 
 import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { XMLParser } from "fast-xml-parser";
 import { existsSync, readFileSync } from "fs";
 import { join, resolve } from "path";
 
-// .env.local が存在すれば読み込み、DATABASE_URL を上書き（Next.js と同じ優先順位にする）
-const envLocalPath = resolve(process.cwd(), ".env.local");
-if (existsSync(envLocalPath)) {
-  for (const line of readFileSync(envLocalPath, "utf-8").split("\n")) {
-    const match = line.match(/^([^#=]+)=(.*)$/);
-    if (match) process.env[match[1].trim()] = match[2].trim().replace(/^["']|["']$/g, "");
+// .env → .env.local の順で読み込み（Next.js と同じ優先順位）
+for (const envFile of [".env", ".env.local"]) {
+  const envPath = resolve(process.cwd(), envFile);
+  if (existsSync(envPath)) {
+    for (const line of readFileSync(envPath, "utf-8").split("\n")) {
+      const match = line.match(/^([^#=]+)=(.*)$/);
+      if (match) process.env[match[1].trim()] = match[2].trim().replace(/^["']|["']$/g, "");
+    }
   }
 }
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL! }),
+});
 const BSDATA_DIR = resolve(process.cwd(), "..", "wh40k-10e");
 
 // faction id → .cat ファイル名のマッピング（seed-weapons.ts と同じ）

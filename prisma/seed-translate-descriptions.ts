@@ -17,17 +17,22 @@
 import fs from "fs";
 import path from "path";
 import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 
-// .env.local が存在すれば読み込み、DATABASE_URL を上書き（Next.js と同じ優先順位にする）
-const envLocalPath = path.resolve(process.cwd(), ".env.local");
-if (fs.existsSync(envLocalPath)) {
-  for (const line of fs.readFileSync(envLocalPath, "utf-8").split("\n")) {
-    const match = line.match(/^([^#=]+)=(.*)$/);
-    if (match) process.env[match[1].trim()] = match[2].trim().replace(/^["']|["']$/g, "");
+// .env → .env.local の順で読み込み（Next.js と同じ優先順位）
+for (const envFile of [".env", ".env.local"]) {
+  const envPath = path.resolve(process.cwd(), envFile);
+  if (fs.existsSync(envPath)) {
+    for (const line of fs.readFileSync(envPath, "utf-8").split("\n")) {
+      const match = line.match(/^([^#=]+)=(.*)$/);
+      if (match) process.env[match[1].trim()] = match[2].trim().replace(/^["']|["']$/g, "");
+    }
   }
 }
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL! }),
+});
 
 const DRY_RUN          = process.argv.includes("--dry-run");
 const RESET            = process.argv.includes("--reset");

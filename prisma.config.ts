@@ -12,4 +12,7 @@ export default defineConfig({
     url,
     adapter: new PrismaPg({ connectionString: url }),
   },
+  migrations: {
+    seed: "npx tsx prisma/seed.ts",
+  },
 });
