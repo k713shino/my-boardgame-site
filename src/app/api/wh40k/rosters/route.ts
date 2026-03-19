@@ -17,22 +17,58 @@ type CreateRosterUnitInput = {
 type CreateRosterBody = {
   name?: unknown;
   faction?: unknown;
+  detachment?: unknown;
   pointsLimit?: unknown;
   isPublic?: unknown;
   units?: unknown;
 };
 
-/** DB上の全公開ロスターIDを返す（クライアント側のクリーンアップ用） */
+/** DB上の全公開ロスターを返す */
 export async function GET() {
   try {
     const rosters = await prisma.roster.findMany({
       where: { isPublic: true } as { isPublic: boolean },
-      select: { id: true },
+      select: {
+        id: true,
+        title: true,
+        factionId: true,
+        faction: { select: { name: true, nameJa: true } },
+        detachment: true,
+        pointsLimit: true,
+        totalPoints: true,
+        updatedAt: true,
+        rosterUnits: {
+          select: {
+            points: true,
+            unit: { select: { role: true } },
+          },
+        },
+      },
+      orderBy: { updatedAt: "desc" },
     });
-    return NextResponse.json({ ids: rosters.map((r) => r.id) });
+
+    return NextResponse.json({
+      rosters: rosters.map((r) => ({
+        id: r.id,
+        name: r.title,
+        faction: r.factionId,
+        factionName: (r.faction as { nameJa?: string | null; name: string }).nameJa ?? (r.faction as { name: string }).name,
+        detachment: (r as { detachment?: string | null }).detachment ?? undefined,
+        pointsLimit: r.pointsLimit,
+        savedAt: r.updatedAt.toISOString(),
+        units: r.rosterUnits.map((u) => ({
+          entryId: "",
+          unitId: "",
+          name: "",
+          nameJa: null,
+          role: u.unit.role,
+          pts: u.points,
+          weaponSelections: [],
+        })),
+      })),
+    });
   } catch {
-    // isPublic 未対応環境では空配列を返す
-    return NextResponse.json({ ids: [] });
+    return NextResponse.json({ rosters: [], ids: [] });
   }
 }
 
@@ -45,8 +81,8 @@ export async function POST(req: Request) {
 
   const title = typeof body.name === "string" && body.name.trim() ? body.name.trim() : "Unnamed Roster";
   const factionId = typeof body.faction === "string" ? body.faction : "";
+  const detachment = typeof body.detachment === "string" && body.detachment.trim() ? body.detachment.trim() : null;
   const pointsLimit = typeof body.pointsLimit === "number" ? body.pointsLimit : Number(body.pointsLimit);
-  const isPublic = body.isPublic === true;
   const rawUnits = Array.isArray(body.units) ? body.units : [];
 
   const units = rawUnits
@@ -92,9 +128,10 @@ export async function POST(req: Request) {
       data: {
         title,
         factionId,
+        detachment,
         pointsLimit,
         totalPoints,
-        isPublic,
+        isPublic: true,
         rosterUnits: {
           create: units.map((unit) => ({
             unitId: unit.unitId,
@@ -102,7 +139,7 @@ export async function POST(req: Request) {
             ...(withWeapons ? { weaponSelectionsJson: unit.weaponSelections } : {}),
           })),
         },
-      },
+      } as Parameters<typeof prisma.roster.create>[0]["data"],
       select: { id: true, isPublic: true },
     });
 

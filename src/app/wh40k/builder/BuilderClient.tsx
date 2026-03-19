@@ -1457,17 +1457,13 @@ export function BuilderClient({
   // ユニットページからの「Builderで追加」: ユニット読込後に追加するslugを保持
   const pendingAddSlug = useRef<string | null>(addUnitSlug ?? null);
 
-  // 編集モード: localStorage から既存ロスターをロード
+  // 編集モード: localStorage → APIの順でロスターをロード
   useEffect(() => {
     if (!editId) return;
-    const raw = localStorage.getItem("wh40k_rosters");
-    if (!raw) return;
-    try {
-      const saved: SavedRoster[] = JSON.parse(raw);
-      const target = saved.find((r) => r.id === editId);
-      if (!target) return;
+
+    const applyRoster = (target: SavedRoster) => {
       const faction = factions.find((f) => f.id === target.faction);
-      if (!faction) return;
+      if (!faction) return false;
       skipRosterClear.current = true;
       setSelectedFaction(faction);
       setRosterName(target.name);
@@ -1475,9 +1471,28 @@ export function BuilderClient({
       setDetachment(target.detachment ?? "");
       setRoster(target.units);
       setWarlordEntryId(target.warlordEntryId ?? null);
+      return true;
+    };
+
+    // まずlocalStorageを試す
+    try {
+      const raw = localStorage.getItem("wh40k_rosters");
+      if (raw) {
+        const saved: SavedRoster[] = JSON.parse(raw);
+        const target = saved.find((r) => r.id === editId);
+        if (target && applyRoster(target)) return;
+      }
     } catch {
       // no-op
     }
+
+    // localStorageになければAPIから取得
+    fetch(`/api/wh40k/rosters/${editId}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((target: SavedRoster | null) => {
+        if (target) applyRoster(target);
+      })
+      .catch(() => {});
   // editId と factions は初回のみ参照。factions はサーバーから渡す静的データ
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editId]);

@@ -18,39 +18,32 @@ export function RostersClient({
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    const raw = localStorage.getItem("wh40k_rosters");
-    let localRosters: SavedRoster[] = [];
-    if (raw) {
-      try {
-        localRosters = JSON.parse(raw);
-      } catch {
-        localRosters = [];
-      }
-    }
-    setRosters(localRosters);
-    setLoaded(true);
-
-    // localStorageにないDB公開ロスターを自動削除（過去の削除漏れをクリーンアップ）
-    const localPublicIds = new Set(localRosters.filter((r) => r.isPublic).map((r) => r.id));
     fetch("/api/wh40k/rosters")
       .then((res) => res.json())
-      .then(({ ids }: { ids: string[] }) => {
-        const staleIds = ids.filter((id) => !localPublicIds.has(id));
-        staleIds.forEach((id) => {
-          fetch(`/api/wh40k/rosters/${id}`, { method: "DELETE" }).catch(() => {});
-        });
+      .then(({ rosters: data }: { rosters: SavedRoster[] }) => {
+        setRosters(Array.isArray(data) ? data : []);
       })
-      .catch(() => {});
+      .catch(() => {
+        setRosters([]);
+      })
+      .finally(() => {
+        setLoaded(true);
+      });
   }, []);
 
   const deleteRoster = async (id: string) => {
     if (!confirm("このロスターを削除しますか？")) return;
-    const target = rosters.find((r) => r.id === id);
-    const updated = rosters.filter((r) => r.id !== id);
-    setRosters(updated);
-    localStorage.setItem("wh40k_rosters", JSON.stringify(updated));
-    if (target?.isPublic) {
-      await fetch(`/api/wh40k/rosters/${id}`, { method: "DELETE" }).catch(() => {});
+    setRosters((prev) => prev.filter((r) => r.id !== id));
+    await fetch(`/api/wh40k/rosters/${id}`, { method: "DELETE" }).catch(() => {});
+    // localStorageからも削除
+    try {
+      const raw = localStorage.getItem("wh40k_rosters");
+      if (raw) {
+        const saved: SavedRoster[] = JSON.parse(raw);
+        localStorage.setItem("wh40k_rosters", JSON.stringify(saved.filter((r) => r.id !== id)));
+      }
+    } catch {
+      // no-op
     }
   };
 
@@ -105,7 +98,7 @@ export function RostersClient({
         </div>
       ) : (
         <div className="space-y-3">
-          {[...rosters].reverse().filter((r) =>
+          {rosters.filter((r) =>
             search === "" || r.name.toLowerCase().includes(search.toLowerCase())
           ).map((roster) => {
             const total = roster.units.reduce((s, u) => s + u.pts, 0);
@@ -175,7 +168,7 @@ export function RostersClient({
               </div>
             );
           })}
-          {search !== "" && [...rosters].filter((r) =>
+          {search !== "" && rosters.filter((r) =>
             r.name.toLowerCase().includes(search.toLowerCase())
           ).length === 0 && (
             <div className="surface-card rounded-2xl px-6 py-12 text-center text-sm text-muted">

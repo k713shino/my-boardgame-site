@@ -147,6 +147,7 @@ model Roster {
   title        String
   factionId    String
   faction      Faction      @relation(fields: [factionId], references: [id])
+  detachment   String?
   pointsLimit  Int
   totalPoints  Int          @default(0)
   isPublic     Boolean      @default(false)
