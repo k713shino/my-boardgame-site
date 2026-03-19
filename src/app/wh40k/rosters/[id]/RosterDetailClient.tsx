@@ -36,6 +36,23 @@ export function RosterDetailClient({
   useEffect(() => {
     if (initialRoster) {
       // DBから取得済み（武器選択含む）
+      // detachmentがDBになければlocalStorageから補完（旧データ互換）
+      if (!initialRoster.detachment) {
+        try {
+          const raw = localStorage.getItem("wh40k_rosters");
+          if (raw) {
+            const saved: SavedRoster[] = JSON.parse(raw);
+            const local = saved.find((r) => r.id === id);
+            if (local?.detachment) {
+              setRoster({ ...initialRoster, detachment: local.detachment });
+              setLoaded(true);
+              return;
+            }
+          }
+        } catch {
+          // no-op
+        }
+      }
       setRoster(initialRoster);
       setLoaded(true);
       return;

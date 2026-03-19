@@ -49,6 +49,7 @@ export default async function RosterDetailPage({
         name: roster.title,
         faction: roster.factionId,
         factionName: roster.faction.nameJa ?? roster.faction.name,
+        detachment: (roster as { detachment?: string | null }).detachment ?? undefined,
         pointsLimit: roster.pointsLimit,
         units: roster.rosterUnits.map((entry) => ({
           entryId: entry.id,
