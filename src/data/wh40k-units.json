@@ -576,7 +576,7 @@
           "Character",
           "Aeldari"
         ],
-        "nameJa": "[イナーリ] ヴィスアーク"
+        "nameJa": "[インナーリ] ヴィスアーク"
       },
       {
         "id": "the_yncarne",
@@ -593,7 +593,7 @@
           "Daemon",
           "Aeldari"
         ],
-        "nameJa": "[イナーリ] インカーネ"
+        "nameJa": "[インナーリ] インカーネ"
       },
       {
         "id": "troupe",
@@ -776,7 +776,7 @@
           "Psyker",
           "Aeldari"
         ],
-        "nameJa": "[イナーリ] イヴライネ"
+        "nameJa": "[インナーリ] イヴライネ"
       },
       {
         "id": "wraithblades",
@@ -1139,7 +1139,7 @@
           "Aeldari",
           "Archon"
         ],
-        "nameJa": "[イナーリ] インナーリ・アーコン"
+        "nameJa": "[インナーリ] インナーリ・アーコン"
       },
       {
         "id": "lhykhis",
@@ -1215,7 +1215,7 @@
           "Character",
           "Infantry"
         ],
-        "nameJa": "[イナーリ] インナーリ・サキュバス"
+        "nameJa": "[インナーリ] インナーリ・サキュバス"
       },
       {
         "id": "ynnari_kabalite_warriors",
@@ -1228,7 +1228,7 @@
           "Battleline",
           "Infantry"
         ],
-        "nameJa": "[イナーリ] インナーリ・カバライト・ウォリアー"
+        "nameJa": "[インナーリ] インナーリ・カバライト・ウォリアー"
       },
       {
         "id": "ynnari_wyches",
@@ -1242,7 +1242,7 @@
           "Infantry",
           "Grenades"
         ],
-        "nameJa": "[イナーリ] インナーリ・ウィッチ"
+        "nameJa": "[インナーリ] インナーリ・ウィッチ"
       },
       {
         "id": "ynnari_incubi",
@@ -1254,7 +1254,7 @@
           "Aeldari",
           "Infantry"
         ],
-        "nameJa": "[イナーリ] インナーリ・インキュバス"
+        "nameJa": "[インナーリ] インナーリ・インキュバス"
       },
       {
         "id": "ynnari_reavers",
@@ -1267,7 +1267,7 @@
           "Fly",
           "Mounted"
         ],
-        "nameJa": "[イナーリ] インナーリ・リーヴァー"
+        "nameJa": "[インナーリ] インナーリ・リーヴァー"
       },
       {
         "id": "ynnari_raider",
@@ -1282,7 +1282,7 @@
           "Vehicle",
           "Transport"
         ],
-        "nameJa": "[イナーリ] インナーリ・レイダー"
+        "nameJa": "[インナーリ] インナーリ・レイダー"
       },
       {
         "id": "ynnari_venom",
@@ -1297,7 +1297,7 @@
           "Transport",
           "Vehicle"
         ],
-        "nameJa": "[イナーリ] インナーリ・ヴェノム"
+        "nameJa": "[インナーリ] インナーリ・ヴェノム"
       },
       {
         "id": "lady_malys",
@@ -2023,7 +2023,7 @@
   "ynnari": {
     "id": "ynnari",
     "name": "Ynnari",
-    "nameJa": "イナーリ",
+    "nameJa": "インナーリ",
     "group": "Xenos",
     "units": [
       {
@@ -2039,7 +2039,7 @@
           "Psyker",
           "Aeldari"
         ],
-        "nameJa": "[イナーリ] イヴライネ"
+        "nameJa": "[インナーリ] イヴライネ"
       },
       {
         "id": "the_visarch",
@@ -2053,7 +2053,7 @@
           "Character",
           "Aeldari"
         ],
-        "nameJa": "[イナーリ] ヴィスアーク"
+        "nameJa": "[インナーリ] ヴィスアーク"
       },
       {
         "id": "the_yncarne",
@@ -2070,7 +2070,7 @@
           "Daemon",
           "Aeldari"
         ],
-        "nameJa": "[イナーリ] インカーネ"
+        "nameJa": "[インナーリ] インカーネ"
       },
       {
         "id": "archon",
