@@ -4832,20 +4832,6 @@
         "nameJa": "ケイオス・ヴィンディケイター"
       },
       {
-        "id": "defiler",
-        "name": "Defiler",
-        "pts": 190,
-        "role": "Heavy",
-        "categories": [
-          "Vehicle",
-          "Walker",
-          "Chaos",
-          "Daemon",
-          "Defiler"
-        ],
-        "nameJa": "ディファイラー"
-      },
-      {
         "id": "forgefiend",
         "name": "Forgefiend",
         "pts": 170,
@@ -4987,6 +4973,19 @@
           "Plague Marines"
         ],
         "nameJa": "プレーグマリーン"
+      },
+      {
+        "id": "mutilators",
+        "name": "Mutilators",
+        "pts": 200,
+        "role": "Other",
+        "categories": [
+          "Infantry",
+          "Chaos",
+          "Daemon",
+          "Mutilators"
+        ],
+        "nameJa": ""
       },
       {
         "id": "chaos_lord_with_jump_pack",
@@ -5131,6 +5130,20 @@
           "Soul Forge Tyrant"
         ],
         "nameJa": ""
+      },
+      {
+        "id": "defiler",
+        "name": "Defiler",
+        "pts": 250,
+        "role": "Heavy",
+        "categories": [
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "Daemon",
+          "Defiler"
+        ],
+        "nameJa": "ディファイラー"
       }
     ]
   },
@@ -5459,21 +5472,6 @@
         "nameJa": "ケイオス・プレデター・デストラクター"
       },
       {
-        "id": "defiler",
-        "name": "Defiler",
-        "pts": 165,
-        "role": "Heavy",
-        "categories": [
-          "Vehicle",
-          "Walker",
-          "Chaos",
-          "Nurgle",
-          "Daemon",
-          "Defiler"
-        ],
-        "nameJa": "ディファイラー"
-      },
-      {
         "id": "chaos_rhino",
         "name": "Chaos Rhino",
         "pts": 85,
@@ -5692,6 +5690,21 @@
           "Tri-lobe Vectors"
         ],
         "nameJa": ""
+      },
+      {
+        "id": "defiler",
+        "name": "Defiler",
+        "pts": 250,
+        "role": "Heavy",
+        "categories": [
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "Daemon",
+          "Nurgle",
+          "Defiler"
+        ],
+        "nameJa": "ディファイラー"
       }
     ]
   },
@@ -6082,6 +6095,21 @@
           "Flawless Champion"
         ],
         "nameJa": ""
+      },
+      {
+        "id": "defiler",
+        "name": "Defiler",
+        "pts": 250,
+        "role": "Heavy",
+        "categories": [
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "Daemon",
+          "Slaanesh",
+          "Defiler"
+        ],
+        "nameJa": "ディファイラー"
       }
     ]
   },
@@ -6190,21 +6218,6 @@
           "Vindicator"
         ],
         "nameJa": "ケイオス・ヴィンディケイター"
-      },
-      {
-        "id": "defiler",
-        "name": "Defiler",
-        "pts": 165,
-        "role": "Heavy",
-        "categories": [
-          "Vehicle",
-          "Walker",
-          "Daemon",
-          "Chaos",
-          "Tzeentch",
-          "Defiler"
-        ],
-        "nameJa": "ディファイラー"
       },
       {
         "id": "exalted_sorcerer",
@@ -6681,6 +6694,21 @@
           "Brayherd Shaman"
         ],
         "nameJa": ""
+      },
+      {
+        "id": "defiler",
+        "name": "Defiler",
+        "pts": 250,
+        "role": "Heavy",
+        "categories": [
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "Daemon",
+          "Defiler",
+          "Tzeentch"
+        ],
+        "nameJa": "ディファイラー"
       }
     ]
   },
@@ -6914,7 +6942,7 @@
       {
         "id": "defiler",
         "name": "Defiler",
-        "pts": 180,
+        "pts": 250,
         "role": "Heavy",
         "categories": [
           "Vehicle",
@@ -9003,6 +9031,50 @@
           "Vehicle",
           "Walker",
           "Ironstrider Alpha"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "thulia_ghuld",
+        "name": "Thulia Ghuld",
+        "pts": 210,
+        "role": "HQ",
+        "categories": [
+          "Epic Hero",
+          "Monster",
+          "Character",
+          "Tech-Priest",
+          "Imperium",
+          "Cult Mechanicus",
+          "Thulia Ghuld"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "hastarii_exterminators",
+        "name": "Hastarii Exterminators",
+        "pts": 135,
+        "role": "Other",
+        "categories": [
+          "Imperium",
+          "Infantry",
+          "Skitarii",
+          "Hastarii",
+          "Exterminators"
+        ],
+        "nameJa": ""
+      },
+      {
+        "id": "hastarii_fusiliers",
+        "name": "Hastarii Fusiliers",
+        "pts": 145,
+        "role": "Other",
+        "categories": [
+          "Imperium",
+          "Infantry",
+          "Skitarii",
+          "Hastarii",
+          "Fusiliers"
         ],
         "nameJa": ""
       }
@@ -12256,6 +12328,23 @@
           "Knight Defender"
         ],
         "nameJa": "ナイト・ディフェンダー"
+      },
+      {
+        "id": "knight_destrier",
+        "name": "Knight Destrier",
+        "pts": 250,
+        "role": "HQ",
+        "categories": [
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Character",
+          "Imperium",
+          "Bellatus",
+          "Knight Destrier"
+        ],
+        "nameJa": ""
       }
     ]
   },
@@ -14379,7 +14468,7 @@
       {
         "id": "berehk_stornbr_w",
         "name": "Berehk Stornbröw",
-        "pts": 110,
+        "pts": 95,
         "role": "HQ",
         "categories": [
           "Epic Hero",
@@ -14694,7 +14783,7 @@
       {
         "id": "c_tan_shard_of_the_deceiver",
         "name": "C'tan Shard of the Deceiver",
-        "pts": 295,
+        "pts": 310,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -14708,7 +14797,7 @@
       {
         "id": "c_tan_shard_of_the_nightbringer",
         "name": "C'tan Shard of the Nightbringer",
-        "pts": 325,
+        "pts": 340,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -14722,7 +14811,7 @@
       {
         "id": "c_tan_shard_of_the_void_dragon",
         "name": "C'tan Shard of the Void Dragon",
-        "pts": 320,
+        "pts": 330,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -14736,7 +14825,7 @@
       {
         "id": "transcendent_c_tan",
         "name": "Transcendent C'tan",
-        "pts": 315,
+        "pts": 325,
         "role": "HQ",
         "categories": [
           "Monster",
@@ -16465,7 +16554,7 @@
       {
         "id": "the_twin_lance",
         "name": "The Twin Lance",
-        "pts": 160,
+        "pts": 185,
         "role": "HQ",
         "categories": [
           "Epic Hero",
@@ -16943,7 +17032,7 @@
       {
         "id": "tyranid_prime_with_lash_whip",
         "name": "Tyranid Prime with Lash Whip",
-        "pts": 85,
+        "pts": 65,
         "role": "HQ",
         "categories": [
           "Infantry",
