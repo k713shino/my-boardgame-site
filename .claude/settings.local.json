@@ -24,6 +24,9 @@
       "Bash(npx prisma:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "/home/k713shino/my-boardgame-site/src/app/games/gv"
+    ]
   }
 }

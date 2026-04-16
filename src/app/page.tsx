@@ -1,6 +1,8 @@
 import Link from "next/link";
-import { getAllPosts, getAllPlays, getAllGames } from "@/lib/content";
+import { getAllPosts, getAllPlays } from "@/lib/content";
 import { fetchRemotePlays } from "@/lib/remote";
+import { fetchAllGVGames } from "@/lib/gamevault";
+import HomeCollectionSection from "@/components/HomeCollectionSection";
 
 function formatDate(iso: string) {
   const date = new Date(iso);
@@ -30,7 +32,6 @@ type PlayListItem = {
 
 export default async function Home() {
   const posts = getAllPosts().slice(0, 3);
-  const games = getAllGames().slice(0, 6);
   const localPlays = getAllPlays().map<PlayListItem>(({ id, date, gameId, location, tags }) => ({
     id,
     date,
@@ -52,6 +53,8 @@ export default async function Home() {
   } catch (err) {
     console.warn("Failed to fetch remote plays for home", err);
   }
+
+  const gvGames = await fetchAllGVGames();
 
   const mergedMap = new Map<string, PlayListItem>();
   [...localPlays, ...remotePlays].forEach((play) => {
@@ -192,28 +195,7 @@ export default async function Home() {
             すべて表示
           </Link>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {games.map((g) => (
-            <Link
-              key={g.id}
-              href={`/games/${g.id}`}
-              className="group surface-card flex flex-col gap-3 rounded-2xl px-6 py-6 text-left transition hover:-translate-y-1 hover:border-teal-400/70 hover:shadow-[0_30px_80px_-50px_rgba(45,212,191,0.45)]"
-            >
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted">
-                {g.tags?.length ? g.tags[0] : "Featured"}
-              </span>
-              <span className="text-xl font-black tracking-tight text-[color:var(--fg-body)] transition group-hover:text-teal-500">
-                {g.title}
-              </span>
-              {g.designer ? (
-                <span className="text-xs uppercase tracking-[0.3em] text-muted">Designer: {g.designer}</span>
-              ) : null}
-              {g.tags?.length ? (
-                <span className="text-xs uppercase tracking-[0.28em] sm:tracking-[0.35em] text-teal-400">#{g.tags.slice(0, 3).join(" #")}</span>
-              ) : null}
-            </Link>
-          ))}
-        </div>
+        <HomeCollectionSection games={gvGames} />
       </section>
     </div>
   );
