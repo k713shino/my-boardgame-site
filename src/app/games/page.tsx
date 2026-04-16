@@ -1,14 +1,6 @@
-type GVGame = {
-  id: string;
-  title: string;
-  image_url: string | null;
-  player_count_min: number | null;
-  player_count_max: number | null;
-  play_time: number | null;
-  category: string | null;
-  status: "owned" | "wishlist" | "lent";
-  play_status: "played" | "interested" | "favorite" | null;
-};
+import Link from "next/link";
+import Image from "next/image";
+import { fetchAllGVGames } from "@/lib/gamevault";
 
 const STATUS_LABEL: Record<string, string> = {
   owned: "所持",
@@ -28,33 +20,20 @@ const PLAY_STATUS_LABEL: Record<string, string> = {
   favorite: "お気に入り",
 };
 
-async function getGameVaultGames(): Promise<GVGame[]> {
-  const url = process.env.GAMEVAULT_API_URL;
-  if (!url) return [];
-  try {
-    const res = await fetch(url, { next: { revalidate: 60 } });
-    if (!res.ok) return [];
-    const json = await res.json();
-    return Array.isArray(json.games) ? json.games : [];
-  } catch {
-    return [];
-  }
-}
-
 function formatPlayers(min?: number | null, max?: number | null) {
-  if (min && max) return min + "–" + max + "人";
-  if (min) return String(min) + "人";
-  if (max) return String(max) + "人";
+  if (min && max) return `${min}–${max}人`;
+  if (min) return `${min}人`;
+  if (max) return `${max}人`;
   return "人数不明";
 }
 
 function formatPlayTime(minutes?: number | null) {
   if (!minutes) return "時間不明";
-  return String(minutes) + "分";
+  return `${minutes}分`;
 }
 
 export default async function GamesPage() {
-  const games = await getGameVaultGames();
+  const games = await fetchAllGVGames();
 
   return (
     <div className="space-y-8">
@@ -66,23 +45,29 @@ export default async function GamesPage() {
           ゲームコレクション
         </h1>
         <p className="max-w-2xl text-sm text-muted sm:text-base">
-          所持・プレイしているボードゲームの概要です。気になるタイトルはGameVaultで詳細をチェック。
+          所持・プレイしているボードゲームの概要です。タイトルをクリックして詳細をチェック。
         </p>
       </header>
       <ul className="grid gap-4 sm:grid-cols-2">
         {games.map((g) => (
           <li key={g.id}>
-            <div className="group surface-card flex h-full flex-col gap-4 rounded-2xl px-5 py-5 sm:px-6 sm:py-6">
+            <Link
+              href={`/games/gv/${g.id}`}
+              className="group surface-card flex h-full flex-col gap-4 rounded-2xl px-5 py-5 sm:px-6 sm:py-6 transition hover:-translate-y-1 hover:border-teal-400/70 hover:shadow-[0_30px_80px_-50px_rgba(45,212,191,0.45)]"
+            >
               <div className="flex items-start gap-4">
                 {g.image_url ? (
-                  <img
+                  <Image
                     src={g.image_url}
                     alt={g.title}
+                    width={64}
+                    height={64}
                     className="h-16 w-16 shrink-0 rounded-xl object-cover"
+                    unoptimized={!g.image_url.startsWith("https://mzlzlvsbrfudpxqfhgtx.supabase.co")}
                   />
                 ) : null}
                 <div className="flex min-w-0 flex-1 flex-col gap-1">
-                  <h2 className="text-xl font-bold tracking-tight text-(--fg-body) sm:text-2xl">
+                  <h2 className="text-xl font-bold tracking-tight text-(--fg-body) transition group-hover:text-teal-500 sm:text-2xl">
                     {g.title}
                   </h2>
                   {g.category ? (
@@ -97,9 +82,7 @@ export default async function GamesPage() {
                 <span className="rounded-full border border-indigo-300/60 px-2 py-1 text-indigo-500 dark:border-indigo-500/40">
                   {formatPlayTime(g.play_time)}
                 </span>
-                <span
-                  className={`rounded-full border px-2 py-1 ${STATUS_COLOR[g.status] ?? ""}`}
-                >
+                <span className={`rounded-full border px-2 py-1 ${STATUS_COLOR[g.status] ?? ""}`}>
                   {STATUS_LABEL[g.status] ?? g.status}
                 </span>
                 {g.play_status ? (
@@ -108,7 +91,7 @@ export default async function GamesPage() {
                   </span>
                 ) : null}
               </div>
-            </div>
+            </Link>
           </li>
         ))}
       </ul>
