@@ -16,7 +16,7 @@ const BASE = process.env.GAMEVAULT_API_URL?.replace(/\/+$/, "") ??
 
 export async function fetchAllGVGames(): Promise<GVGame[]> {
   try {
-    const res = await fetch(BASE, { next: { revalidate: 60 } });
+    const res = await fetch(BASE, { cache: "no-store" });
     if (!res.ok) return [];
     const json = await res.json();
     return Array.isArray(json.games) ? json.games : [];
@@ -27,7 +27,7 @@ export async function fetchAllGVGames(): Promise<GVGame[]> {
 
 export async function fetchGVGameById(id: string): Promise<GVGame | null> {
   try {
-    const res = await fetch(`${BASE}/${id}`, { next: { revalidate: 60 } });
+    const res = await fetch(`${BASE}/${id}`, { cache: "no-store" });
     if (!res.ok) return null;
     const json = await res.json();
     return json.game ?? null;
