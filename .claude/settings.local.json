@@ -21,7 +21,8 @@
       "Bash(node -e \"const d = require\\(''/home/k713shino/my-boardgame-site/src/data/wh40k-units.json''\\); const imperiumFactions = Object.values\\(d\\).filter\\(f => f.group === ''Imperium''\\).map\\(f => \\({id:f.id, name:f.name, nameJa:f.nameJa}\\)\\); console.log\\(JSON.stringify\\(imperiumFactions, null, 2\\)\\)\")",
       "Bash(npx tsc:*)",
       "WebFetch(domain:wahapedia.ru)",
-      "Bash(npx prisma:*)"
+      "Bash(npx prisma:*)",
+      "Bash(curl -s http://localhost:3001/wh40k/match-tracker -o /dev/null -w \"%{http_code}\")"
     ],
     "deny": [],
     "ask": [],

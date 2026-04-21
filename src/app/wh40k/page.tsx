@@ -30,6 +30,13 @@ const TOOLS = [
     desc: "Citadel → Vallejo / ガンダムアッセンブルカラー 対応表。あくまで主観なので参考程度に。",
     icon: "🎨",
   },
+  {
+    href: "/wh40k/match-tracker",
+    label: "Match Tracker",
+    labelJa: "マッチトラッカー",
+    desc: "VP・CP・ターンをひとつにまとめたゲーム中サポートUI。スマホ縦持ちで向かい合わせ表示。",
+    icon: "⚔️",
+  },
 ];
 
 export default function WH40KHubPage() {

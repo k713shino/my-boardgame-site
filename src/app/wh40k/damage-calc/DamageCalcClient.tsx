@@ -122,6 +122,7 @@ function SelectField({
         value={value}
         onChange={(e) => onChange(parseInt(e.target.value))}
         className={fieldCls}
+        aria-label={label}
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>{o.label}</option>
@@ -145,6 +146,7 @@ function NumField({
         min={min}
         max={max}
         className={fieldCls}
+        aria-label={label}
       />
     </Field>
   );
@@ -244,7 +246,7 @@ export function DamageCalcClient() {
       <nav className="flex flex-wrap items-center gap-2 text-xs text-muted">
         <a href="/wh40k" className="transition hover:text-rose-500">WH40K</a>
         <span>/</span>
-        <span className="text-[color:var(--fg-body)]">Damage Calculator</span>
+        <span className="text-(--fg-body)">Damage Calculator</span>
       </nav>
 
       <header className="space-y-1">

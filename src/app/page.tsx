@@ -69,15 +69,15 @@ export default async function Home() {
 
   return (
     <div className="w-full space-y-12 sm:space-y-16">
-      <section className="surface-card relative isolate flex flex-col items-center gap-8 justify-center overflow-hidden rounded-[24px] px-6 py-12 sm:px-10 sm:py-16 text-center ring-1 ring-slate-200/40 dark:ring-slate-800/40">
+      <section className="surface-card relative isolate flex flex-col items-center gap-8 justify-center overflow-hidden rounded-3xl px-6 py-12 sm:px-10 sm:py-16 text-center ring-1 ring-slate-200/40 dark:ring-slate-800/40">
         <div className="pointer-events-none absolute -top-32 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-rose-400/30 blur-[120px] dark:bg-rose-500/40" aria-hidden />
         <div className="pointer-events-none absolute bottom-[-30%] right-[-10%] h-72 w-72 rounded-full bg-indigo-400/25 blur-[120px] dark:bg-indigo-500/30" aria-hidden />
-        <div className="pointer-events-none absolute inset-x-16 top-10 h-px bg-gradient-to-r from-transparent via-slate-300/50 to-transparent dark:via-slate-600/50" aria-hidden />
+        <div className="pointer-events-none absolute inset-x-16 top-10 h-px bg-linear-to-r from-transparent via-slate-300/50 to-transparent dark:via-slate-600/50" aria-hidden />
         <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-8 text-center">
           <span className="text-[0.7rem] font-semibold uppercase tracking-[0.45em] text-muted">
             Special Issue Vol.01
           </span>
-          <h1 className="text-4xl font-black uppercase leading-tight tracking-tight text-[color:var(--fg-body)] sm:text-6xl">
+          <h1 className="text-4xl font-black uppercase leading-tight tracking-tight text-(--fg-body) sm:text-6xl">
             Sound of Strategy
             <span className="text-rose-500">.</span>
           </h1>
@@ -121,7 +121,7 @@ export default async function Home() {
           <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-rose-500">
             Latest Stories
           </span>
-          <h2 className="text-3xl font-black uppercase tracking-tight text-[color:var(--fg-body)]">
+          <h2 className="text-3xl font-black uppercase tracking-tight text-(--fg-body)">
             最新記事
           </h2>
           <Link href="/posts" className="text-xs font-semibold uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted underline decoration-dotted underline-offset-4">
@@ -138,7 +138,7 @@ export default async function Home() {
               <span className="text-xs font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-muted">
                 {formatDate(p.date)}{p.category ? ` ・ ${p.category}` : ""}
               </span>
-              <span className="text-xl font-black tracking-tight sm:text-2xl text-[color:var(--fg-body)] transition group-hover:text-rose-500">
+              <span className="text-xl font-black tracking-tight sm:text-2xl text-(--fg-body) transition group-hover:text-rose-500">
                 {p.title}
               </span>
               {p.excerpt ? <span className="text-sm leading-relaxed text-muted">{p.excerpt}</span> : null}
@@ -155,7 +155,7 @@ export default async function Home() {
           <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-indigo-500">
             Live Session Log
           </span>
-          <h2 className="text-3xl font-black uppercase tracking-tight text-[color:var(--fg-body)]">
+          <h2 className="text-3xl font-black uppercase tracking-tight text-(--fg-body)">
             最近のプレイ
           </h2>
           <Link href="/plays" className="text-xs font-semibold uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted underline decoration-dotted underline-offset-4">
@@ -172,7 +172,7 @@ export default async function Home() {
               <span className="text-xs font-semibold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-muted">
                 {formatDate(pl.date)}{pl.location ? ` ・ ${pl.location}` : ""}
               </span>
-              <span className="text-xl font-black tracking-tight text-[color:var(--fg-body)] transition group-hover:text-indigo-500">
+              <span className="text-xl font-black tracking-tight text-(--fg-body) transition group-hover:text-indigo-500">
                 {pl.gameId}
               </span>
               {pl.tags?.length ? (
@@ -188,7 +188,7 @@ export default async function Home() {
           <span className="text-[0.75rem] font-semibold uppercase tracking-[0.45em] text-teal-500">
             Collection Gallery
           </span>
-          <h2 className="text-3xl font-black uppercase tracking-tight text-[color:var(--fg-body)]">
+          <h2 className="text-3xl font-black uppercase tracking-tight text-(--fg-body)">
             コレクション
           </h2>
           <Link href="/games" className="text-xs font-semibold uppercase tracking-[0.28em] sm:tracking-[0.35em] text-muted underline decoration-dotted underline-offset-4">
