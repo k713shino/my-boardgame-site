@@ -9,6 +9,11 @@ export const metadata: Metadata = {
 
 const NEWS = [
   {
+    date: "2026-04-21",
+    title: "マッチトラッカーを追加しました",
+    body: "VP・CP・バトルラウンドをまとめて管理できる Match Tracker を追加しました。スマホ1台で2人向かい合って使える対面レイアウト対応です。",
+  },
+  {
     date: "2026-04-16",
     title: "ロスタービルダー・保存ロスター機能を終了しました",
     body: "著作権および海賊版に関する懸念から、Army Builder（ロスタービルダー）および Rosters（保存ロスター）機能を削除しました。ご利用いただいていた方にはご不便をおかけし申し訳ありません。引き続き Damage Calculator・Paint Conversion はご利用いただけます。",
