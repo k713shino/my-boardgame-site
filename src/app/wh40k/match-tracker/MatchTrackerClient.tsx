@@ -423,12 +423,16 @@ export default function MatchTrackerClient() {
       const filename = `wh40k_${p1Name}_vs_${p2Name}_round${turn}.png`;
       const file = new File([blob], filename, { type: "image/png" });
 
-      if (navigator.share && navigator.canShare({ files: [file] })) {
+      // iOS Chrome など一部ブラウザは canShare({ files }) が例外をスローする
+      let canWebShare = false;
+      try {
+        canWebShare = !!navigator.share && navigator.canShare({ files: [file] });
+      } catch { /* unsupported — fall through to modal */ }
+
+      if (canWebShare) {
         await navigator.share({ files: [file], title: "WH40K Battle Result" });
       } else {
-        // iOS Chrome や PC など Web Share File 非対応: モーダルで画像を表示
-        const url = URL.createObjectURL(blob);
-        setShareModal({ url, filename });
+        setShareModal({ url: URL.createObjectURL(blob), filename });
       }
     } finally {
       setIsSharing(false);
