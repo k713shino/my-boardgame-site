@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
-import html2canvas from "html2canvas";
+import { useState, useCallback } from "react";
 
 // ── types ──────────────────────────────────────────────────────────────────────
 
@@ -14,6 +13,129 @@ interface PlayerState {
 const MAX_TURN = 5;
 
 const INITIAL_PLAYER: PlayerState = { name: "", vp: 0, cp: 0 };
+
+// ── canvas share card (no html2canvas — uses standard Canvas 2D API) ───────────
+
+function roundRect(
+  ctx: CanvasRenderingContext2D,
+  x: number, y: number, w: number, h: number, r: number
+) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+async function generateMatchCard(
+  p1: PlayerState,
+  p2: PlayerState,
+  turn: number
+): Promise<{ blob: Blob; filename: string }> {
+  const W = 1200, H = 720;
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d")!;
+
+  const p1Name = p1.name || "Player 1";
+  const p2Name = p2.name || "Player 2";
+  const winner = p1.vp > p2.vp ? p1Name : p2.vp > p1.vp ? p2Name : null;
+
+  // Background
+  ctx.fillStyle = "#0d0d0d";
+  ctx.fillRect(0, 0, W, H);
+
+  // Header bar
+  ctx.fillStyle = "#b91c1c";
+  ctx.fillRect(0, 0, W, 110);
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "900 38px Arial, sans-serif";
+  ctx.textAlign = "left";
+  ctx.fillText("WARHAMMER 40,000", 48, 72);
+  ctx.fillStyle = "rgba(255,255,255,0.65)";
+  ctx.font = "700 26px Arial, sans-serif";
+  ctx.textAlign = "right";
+  ctx.fillText(`BATTLE ROUND  ${turn} / ${MAX_TURN}`, W - 48, 72);
+
+  // Center divider
+  ctx.strokeStyle = "#222222";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(W / 2, 130);
+  ctx.lineTo(W / 2, 630);
+  ctx.stroke();
+
+  // Player panels
+  const drawPlayer = (cx: number, name: string, vp: number, cp: number) => {
+    const label = name.length > 16 ? name.slice(0, 15) + "…" : name;
+    ctx.fillStyle = "#888888";
+    ctx.font = "700 26px Arial, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(label.toUpperCase(), cx, 200);
+
+    ctx.fillStyle = "#f43f5e";
+    ctx.font = "900 180px Arial, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(String(vp), cx, 450);
+
+    ctx.fillStyle = "#444444";
+    ctx.font = "700 30px Arial, sans-serif";
+    ctx.fillText("VP", cx, 502);
+
+    ctx.fillStyle = "#555555";
+    ctx.font = "700 28px Arial, sans-serif";
+    ctx.fillText(`CP  ${cp}`, cx, 558);
+  };
+
+  drawPlayer(W / 4, p1Name, p1.vp, p1.cp);
+  drawPlayer((W * 3) / 4, p2Name, p2.vp, p2.cp);
+
+  // VS label
+  ctx.fillStyle = "#333333";
+  ctx.font = "900 44px Arial, sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("VS", W / 2, 360);
+
+  // Result badge
+  const badgeLabel = winner ? `${winner}  WIN` : "DRAW";
+  ctx.fillStyle = winner ? "#b91c1c" : "#374151";
+  roundRect(ctx, W / 2 - 140, 382, 280, 58, 10);
+  ctx.fill();
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "900 22px Arial, sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText(badgeLabel.toUpperCase(), W / 2, 421);
+
+  // Footer
+  ctx.strokeStyle = "#1a1a1a";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(0, 640);
+  ctx.lineTo(W, 640);
+  ctx.stroke();
+  ctx.fillStyle = "#2a2a2a";
+  ctx.font = "600 22px Arial, sans-serif";
+  ctx.textAlign = "left";
+  ctx.fillText("#ウォーハンマー40k  #Warhammer40K", 48, 685);
+  ctx.textAlign = "right";
+  ctx.fillText("k713shino.vercel.app", W - 48, 685);
+
+  const blob = await new Promise<Blob>((resolve, reject) =>
+    canvas.toBlob((b) => (b ? resolve(b) : reject()), "image/png")
+  );
+  const safe = (s: string) => s.replace(/[^\w぀-鿿]/g, "_").slice(0, 20);
+  return {
+    blob,
+    filename: `wh40k_${safe(p1.name || "P1")}_vs_${safe(p2.name || "P2")}_r${turn}.png`,
+  };
+}
 
 // ── sub-components ─────────────────────────────────────────────────────────────
 
@@ -42,6 +164,7 @@ function CounterButton({
       </span>
       <div className="flex items-center gap-2">
         <button
+          type="button"
           onClick={onMinus}
           disabled={value <= minValue}
           className="counter-btn"
@@ -60,6 +183,7 @@ function CounterButton({
           {value}
         </span>
         <button
+          type="button"
           onClick={onPlus}
           className="counter-btn counter-btn--plus"
           aria-label={`${label} +1`}
@@ -143,16 +267,17 @@ function TurnBar({
           <span className="text-xs font-semibold" style={{ color: "var(--fg-muted)" }}>
             リセットしますか？
           </span>
-          <button onClick={onConfirmReset} className="confirm-btn confirm-btn--danger">
+          <button type="button" onClick={onConfirmReset} className="confirm-btn confirm-btn--danger">
             はい
           </button>
-          <button onClick={onCancelReset} className="confirm-btn">
+          <button type="button" onClick={onCancelReset} className="confirm-btn">
             いいえ
           </button>
         </div>
       ) : (
         <>
           <button
+            type="button"
             onClick={onPrev}
             disabled={turn <= 1}
             className="turn-nav-btn"
@@ -184,6 +309,7 @@ function TurnBar({
 
           <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={onNext}
               disabled={turn >= MAX_TURN}
               className="turn-nav-btn turn-nav-btn--next"
@@ -192,6 +318,7 @@ function TurnBar({
               ▶
             </button>
             <button
+              type="button"
               onClick={onShare}
               disabled={isSharing}
               className="share-btn"
@@ -201,6 +328,7 @@ function TurnBar({
               {isSharing ? "…" : "📷"}
             </button>
             <button
+              type="button"
               onClick={onReset}
               className="reset-btn"
               aria-label="リセット"
@@ -214,152 +342,6 @@ function TurnBar({
   );
 }
 
-// ── share card (rendered off-screen, captured by html2canvas) ──────────────────
-// html2canvas requires inline styles — external CSS is not captured off-screen
-/* eslint-disable react/forbid-component-props */
-
-function ShareCard({
-  cardRef,
-  p1,
-  p2,
-  turn,
-}: {
-  cardRef: React.RefObject<HTMLDivElement | null>;
-  p1: PlayerState;
-  p2: PlayerState;
-  turn: number;
-}) {
-  const p1Name = p1.name || "Player 1";
-  const p2Name = p2.name || "Player 2";
-  const winner =
-    p1.vp > p2.vp ? p1Name : p2.vp > p1.vp ? p2Name : "DRAW";
-  const isDrawn = p1.vp === p2.vp;
-
-  return (
-    <div
-      ref={cardRef}
-      style={{
-        position: "fixed",
-        left: "-9999px",
-        top: 0,
-        width: "600px",
-        height: "360px",
-        background: "#0d0d0d",
-        display: "flex",
-        flexDirection: "column",
-        fontFamily: "'Segoe UI', Arial, sans-serif",
-        overflow: "hidden",
-      }}
-    >
-      {/* header */}
-      <div style={{
-        background: "#b91c1c",
-        padding: "10px 24px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}>
-        <span style={{ color: "#fff", fontWeight: 900, fontSize: "13px", letterSpacing: "0.18em", textTransform: "uppercase" }}>
-          Warhammer 40,000
-        </span>
-        <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em" }}>
-          Battle Round {turn} / {MAX_TURN}
-        </span>
-      </div>
-
-      {/* scores */}
-      <div style={{ flex: 1, display: "flex", alignItems: "stretch" }}>
-        {/* p1 */}
-        <div style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "16px",
-          borderRight: "1px solid #222",
-        }}>
-          <span style={{ color: "#888", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px" }}>
-            {p1Name}
-          </span>
-          <span style={{ color: "#f43f5e", fontSize: "72px", fontWeight: 900, lineHeight: 1, fontVariantNumeric: "tabular-nums" }}>
-            {p1.vp}
-          </span>
-          <span style={{ color: "#555", fontSize: "11px", fontWeight: 600, marginTop: "4px" }}>
-            VP
-          </span>
-          <span style={{ color: "#666", fontSize: "13px", fontWeight: 700, marginTop: "8px" }}>
-            CP {p1.cp}
-          </span>
-        </div>
-
-        {/* center */}
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "0 24px",
-          gap: "8px",
-        }}>
-          <span style={{ color: "#555", fontSize: "22px", fontWeight: 900 }}>VS</span>
-          <div style={{
-            background: isDrawn ? "#374151" : "#b91c1c",
-            borderRadius: "6px",
-            padding: "4px 12px",
-          }}>
-            <span style={{ color: "#fff", fontSize: "10px", fontWeight: 900, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-              {isDrawn ? "DRAW" : `${winner} WIN`}
-            </span>
-          </div>
-        </div>
-
-        {/* p2 */}
-        <div style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "16px",
-          borderLeft: "1px solid #222",
-        }}>
-          <span style={{ color: "#888", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px" }}>
-            {p2Name}
-          </span>
-          <span style={{ color: "#f43f5e", fontSize: "72px", fontWeight: 900, lineHeight: 1, fontVariantNumeric: "tabular-nums" }}>
-            {p2.vp}
-          </span>
-          <span style={{ color: "#555", fontSize: "11px", fontWeight: 600, marginTop: "4px" }}>
-            VP
-          </span>
-          <span style={{ color: "#666", fontSize: "13px", fontWeight: 700, marginTop: "8px" }}>
-            CP {p2.cp}
-          </span>
-        </div>
-      </div>
-
-      {/* footer */}
-      <div style={{
-        borderTop: "1px solid #1e1e1e",
-        padding: "8px 24px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}>
-        <span style={{ color: "#333", fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em" }}>
-          #ウォーハンマー40k　#Warhammer40K
-        </span>
-        <span style={{ color: "#333", fontSize: "10px", fontWeight: 600 }}>
-          k713shino.vercel.app
-        </span>
-      </div>
-    </div>
-  );
-}
-
-/* eslint-enable react/forbid-component-props */
-
 // ── main ───────────────────────────────────────────────────────────────────────
 
 export default function MatchTrackerClient() {
@@ -369,7 +351,6 @@ export default function MatchTrackerClient() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
   const [shareModal, setShareModal] = useState<{ url: string; filename: string } | null>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
 
   const updateP1 = useCallback(
     (field: keyof PlayerState, delta: number | string) => {
@@ -406,28 +387,16 @@ export default function MatchTrackerClient() {
   };
 
   const handleShare = useCallback(async () => {
-    if (!cardRef.current || isSharing) return;
+    if (isSharing) return;
     setIsSharing(true);
     try {
-      const canvas = await html2canvas(cardRef.current, {
-        backgroundColor: "#0d0d0d",
-        scale: 2,
-        useCORS: true,
-        logging: false,
-      });
-      const blob = await new Promise<Blob>((resolve, reject) =>
-        canvas.toBlob((b) => (b ? resolve(b) : reject()), "image/png")
-      );
-      const p1Name = p1.name || "Player1";
-      const p2Name = p2.name || "Player2";
-      const filename = `wh40k_${p1Name}_vs_${p2Name}_round${turn}.png`;
+      const { blob, filename } = await generateMatchCard(p1, p2, turn);
       const file = new File([blob], filename, { type: "image/png" });
 
-      // iOS Chrome など一部ブラウザは canShare({ files }) が例外をスローする
       let canWebShare = false;
       try {
         canWebShare = !!navigator.share && navigator.canShare({ files: [file] });
-      } catch { /* unsupported — fall through to modal */ }
+      } catch { /* browser throws instead of returning false */ }
 
       if (canWebShare) {
         await navigator.share({ files: [file], title: "WH40K Battle Result" });
@@ -634,6 +603,7 @@ export default function MatchTrackerClient() {
           text-align: center;
           font-size: 0.75rem;
           color: var(--fg-muted);
+          margin: 0;
         }
         .share-modal-actions {
           display: flex;
@@ -663,10 +633,6 @@ export default function MatchTrackerClient() {
         }
       `}</style>
 
-      {/* hidden share card – captured by html2canvas */}
-      <ShareCard cardRef={cardRef} p1={p1} p2={p2} turn={turn} />
-
-      {/* share result modal – shown when Web Share File API is unavailable (e.g. iOS Chrome) */}
       {shareModal && (
         <div className="share-modal-overlay" onClick={closeShareModal}>
           <div className="share-modal" onClick={(e) => e.stopPropagation()}>
@@ -700,7 +666,6 @@ export default function MatchTrackerClient() {
           margin: "0 auto",
         }}
       >
-        {/* Player 2 – rotated 180° for face-to-face viewing */}
         <PlayerPanel
           player={p2}
           onVpChange={(d) => updateP2("vp", d)}
@@ -709,7 +674,6 @@ export default function MatchTrackerClient() {
           flipped
         />
 
-        {/* Center: turn bar */}
         <TurnBar
           turn={turn}
           onPrev={() => setTurn((t) => Math.max(1, t - 1))}
@@ -722,7 +686,6 @@ export default function MatchTrackerClient() {
           onCancelReset={() => setShowConfirm(false)}
         />
 
-        {/* Player 1 */}
         <PlayerPanel
           player={p1}
           onVpChange={(d) => updateP1("vp", d)}
