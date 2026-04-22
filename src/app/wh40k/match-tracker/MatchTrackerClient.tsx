@@ -368,6 +368,7 @@ export default function MatchTrackerClient() {
   const [p2, setP2] = useState<PlayerState>({ ...INITIAL_PLAYER });
   const [showConfirm, setShowConfirm] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
+  const [shareModal, setShareModal] = useState<{ url: string; filename: string } | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const updateP1 = useCallback(
@@ -420,24 +421,26 @@ export default function MatchTrackerClient() {
       const p1Name = p1.name || "Player1";
       const p2Name = p2.name || "Player2";
       const filename = `wh40k_${p1Name}_vs_${p2Name}_round${turn}.png`;
+      const file = new File([blob], filename, { type: "image/png" });
 
-      if (navigator.share && navigator.canShare({ files: [new File([blob], filename, { type: "image/png" })] })) {
-        await navigator.share({
-          files: [new File([blob], filename, { type: "image/png" })],
-          title: "WH40K Battle Result",
-        });
+      if (navigator.share && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: "WH40K Battle Result" });
       } else {
+        // iOS Chrome や PC など Web Share File 非対応: モーダルで画像を表示
         const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        a.click();
-        URL.revokeObjectURL(url);
+        setShareModal({ url, filename });
       }
     } finally {
       setIsSharing(false);
     }
   }, [isSharing, p1, p2, turn]);
+
+  const closeShareModal = useCallback(() => {
+    setShareModal((prev) => {
+      if (prev) URL.revokeObjectURL(prev.url);
+      return null;
+    });
+  }, []);
 
   return (
     <>
@@ -598,10 +601,88 @@ export default function MatchTrackerClient() {
           color: #fff;
           letter-spacing: 0.04em;
         }
+        .share-modal-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.8);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          padding: 1.5rem;
+        }
+        .share-modal {
+          background: var(--surface-primary);
+          border-radius: 1rem;
+          padding: 1.25rem;
+          width: 100%;
+          max-width: 360px;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        .share-modal img {
+          width: 100%;
+          border-radius: 0.5rem;
+          display: block;
+        }
+        .share-modal-hint {
+          text-align: center;
+          font-size: 0.75rem;
+          color: var(--fg-muted);
+        }
+        .share-modal-actions {
+          display: flex;
+          gap: 0.5rem;
+        }
+        .share-modal-download {
+          flex: 1;
+          padding: 0.55rem;
+          border-radius: 0.5rem;
+          background: var(--accent-primary);
+          color: #fff;
+          font-size: 0.8rem;
+          font-weight: 700;
+          text-align: center;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        .share-modal-close {
+          padding: 0.55rem 1rem;
+          border-radius: 0.5rem;
+          border: 1.5px solid var(--surface-border);
+          background: transparent;
+          color: var(--fg-body);
+          font-size: 0.8rem;
+          font-weight: 700;
+          cursor: pointer;
+        }
       `}</style>
 
       {/* hidden share card – captured by html2canvas */}
       <ShareCard cardRef={cardRef} p1={p1} p2={p2} turn={turn} />
+
+      {/* share result modal – shown when Web Share File API is unavailable (e.g. iOS Chrome) */}
+      {shareModal && (
+        <div className="share-modal-overlay" onClick={closeShareModal}>
+          <div className="share-modal" onClick={(e) => e.stopPropagation()}>
+            <img src={shareModal.url} alt="Battle Result" />
+            <p className="share-modal-hint">長押し（または右クリック）で画像を保存</p>
+            <div className="share-modal-actions">
+              <a
+                className="share-modal-download"
+                href={shareModal.url}
+                download={shareModal.filename}
+              >
+                ダウンロード
+              </a>
+              <button type="button" className="share-modal-close" onClick={closeShareModal}>
+                閉じる
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div
         className="tracker-root"
