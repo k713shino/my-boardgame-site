@@ -49,6 +49,13 @@ const TOOLS = [
     desc: "コアストラテジェームをフェーズ別に絞り込み。試合中にスマホでサッと確認。",
     icon: "📋",
   },
+  {
+    href: "/wh40k/wound-roll",
+    label: "Wound Roll Chart",
+    labelJa: "ウーンズロール早見表",
+    desc: "強度(S)vs耐久力(T)の対応表。行・列タップで即座に必要な出目を確認。",
+    icon: "🎯",
+  },
 ];
 
 export default function WH40KHubPage() {
