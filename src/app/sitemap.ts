@@ -1,12 +1,14 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts, getAllGames, getAllPlays } from "@/lib/content";
+import { fetchAllGVGames } from "@/lib/gamevault";
 
 const BASE_URL = "https://my-boardgame-site.vercel.app";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = getAllPosts();
   const games = getAllGames();
   const plays = getAllPlays();
+  const gvGames = await fetchAllGVGames();
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -62,5 +64,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.4,
   }));
 
-  return [...staticPages, ...postPages, ...gamePages, ...playPages];
+  const gvGamePages: MetadataRoute.Sitemap = gvGames.map((game) => ({
+    url: `${BASE_URL}/games/gv/${game.id}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...postPages, ...gamePages, ...gvGamePages, ...playPages];
 }
