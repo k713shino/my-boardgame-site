@@ -72,7 +72,7 @@ export default async function GameDetail({ params }: { params: Promise<{ slug: s
           <span className="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-500 sm:tracking-[0.35em]">
             Game Profile
           </span>
-          <h1 className="text-3xl font-black tracking-tight text-[color:var(--fg-body)] sm:text-4xl">
+          <h1 className="text-3xl font-black tracking-tight text-(--fg-body) sm:text-4xl">
             {game.title}
           </h1>
           <div className="flex flex-wrap justify-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.2em] sm:justify-start">
@@ -114,15 +114,15 @@ export default async function GameDetail({ params }: { params: Promise<{ slug: s
       <dl className="surface-card grid gap-4 rounded-2xl px-5 py-5 sm:grid-cols-2 sm:px-6 sm:py-6">
         <div>
           <dt className="text-xs font-semibold uppercase tracking-[0.28em] text-muted sm:tracking-[0.35em]">人数</dt>
-          <dd className="text-lg font-semibold text-[color:var(--fg-body)]">{formatPlayers(game.minPlayers, game.maxPlayers)}</dd>
+          <dd className="text-lg font-semibold text-(--fg-body)">{formatPlayers(game.minPlayers, game.maxPlayers)}</dd>
         </div>
         <div>
           <dt className="text-xs font-semibold uppercase tracking-[0.28em] text-muted sm:tracking-[0.35em]">時間</dt>
-          <dd className="text-lg font-semibold text-[color:var(--fg-body)]">{formatPlayTime(game.playTime)}</dd>
+          <dd className="text-lg font-semibold text-(--fg-body)">{formatPlayTime(game.playTime)}</dd>
         </div>
         <div>
           <dt className="text-xs font-semibold uppercase tracking-[0.28em] text-muted sm:tracking-[0.35em]">重さ</dt>
-          <dd className="text-lg font-semibold text-[color:var(--fg-body)]">{formatWeight(game.weight)}</dd>
+          <dd className="text-lg font-semibold text-(--fg-body)">{formatWeight(game.weight)}</dd>
         </div>
         <div>
           <dt className="text-xs font-semibold uppercase tracking-[0.28em] text-muted sm:tracking-[0.35em]">タグ</dt>

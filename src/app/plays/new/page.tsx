@@ -124,7 +124,7 @@ export default function NewPlayPage() {
     <div className="space-y-6">
       <div className="space-y-3 text-center sm:text-left">
         <span className="text-xs font-semibold uppercase tracking-[0.28em] text-teal-500 sm:tracking-[0.35em]">Session Entry</span>
-        <h1 className="text-3xl font-black tracking-tight text-[color:var(--fg-body)]">プレイ記録の追加</h1>
+        <h1 className="text-3xl font-black tracking-tight text-(--fg-body)">プレイ記録の追加</h1>
         <p className="text-sm text-muted sm:text-base">プレイ内容を記録してコミュニティと共有しましょう。</p>
       </div>
       <form onSubmit={handleSubmit} className="surface-card mx-auto max-w-2xl space-y-6 rounded-2xl px-5 py-5 sm:px-6 sm:py-6">

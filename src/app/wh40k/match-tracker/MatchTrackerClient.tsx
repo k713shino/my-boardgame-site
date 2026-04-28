@@ -156,10 +156,7 @@ function CounterButton({
 }) {
   return (
     <div className="flex flex-col items-center gap-1">
-      <span
-        className="text-[0.6rem] font-bold uppercase tracking-widest"
-        style={{ color: "var(--fg-muted)" }}
-      >
+      <span className="text-[0.6rem] font-bold uppercase tracking-widest text-(--fg-muted)">
         {label}
       </span>
       <div className="flex items-center gap-2">
@@ -173,12 +170,7 @@ function CounterButton({
           −
         </button>
         <span
-          className="w-14 text-center tabular-nums font-black"
-          style={{
-            fontSize: "2.4rem",
-            lineHeight: 1,
-            color: accent ? "var(--accent-primary)" : "var(--fg-body)",
-          }}
+          className={`w-14 text-center tabular-nums font-black text-[2.4rem] leading-none ${accent ? "text-(--accent-primary)" : "text-(--fg-body)"}`}
         >
           {value}
         </span>
@@ -209,10 +201,7 @@ function PlayerPanel({
   flipped?: boolean;
 }) {
   return (
-    <div
-      className="player-panel"
-      style={{ transform: flipped ? "rotate(180deg)" : undefined }}
-    >
+    <div className={`player-panel${flipped ? " rotate-180" : ""}`}>
       <input
         className="player-name-input"
         value={player.name}
@@ -264,7 +253,7 @@ function TurnBar({
     <div className="turn-bar">
       {showConfirm ? (
         <div className="flex items-center gap-3">
-          <span className="text-xs font-semibold" style={{ color: "var(--fg-muted)" }}>
+          <span className="text-xs font-semibold text-(--fg-muted)">
             リセットしますか？
           </span>
           <button type="button" onClick={onConfirmReset} className="confirm-btn confirm-btn--danger">
@@ -287,7 +276,7 @@ function TurnBar({
           </button>
 
           <div className="flex flex-col items-center">
-            <span className="text-[0.55rem] font-bold uppercase tracking-[0.35em]" style={{ color: "var(--fg-muted)" }}>
+            <span className="text-[0.55rem] font-bold uppercase tracking-[0.35em] text-(--fg-muted)">
               Battle Round
             </span>
             <div className="flex items-center gap-1.5 mt-0.5">
@@ -299,10 +288,7 @@ function TurnBar({
                 />
               ))}
             </div>
-            <span
-              className="tabular-nums font-black mt-0.5"
-              style={{ fontSize: "1.6rem", lineHeight: 1, color: "var(--accent-primary)" }}
-            >
+            <span className="tabular-nums font-black mt-0.5 text-[1.6rem] leading-none text-(--accent-primary)">
               {turn} / {MAX_TURN}
             </span>
           </div>
@@ -654,18 +640,7 @@ export default function MatchTrackerClient() {
         </div>
       )}
 
-      <div
-        className="tracker-root"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100dvh",
-          overflow: "hidden",
-          background: "var(--bg-body)",
-          maxWidth: "480px",
-          margin: "0 auto",
-        }}
-      >
+      <div className="tracker-root flex flex-col h-dvh overflow-hidden bg-(--bg-body) max-w-120 mx-auto">
         <PlayerPanel
           player={p2}
           onVpChange={(d) => updateP2("vp", d)}
