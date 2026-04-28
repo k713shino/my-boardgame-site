@@ -67,7 +67,7 @@ export default function WoundRollClient() {
                 結果
               </p>
               <p className="text-xs text-muted mt-0.5">
-                S{selS} vs T{selT} — {ROLL_LABELS[activeRoll]}
+                攻{selS} vs 耐{selT} — {ROLL_LABELS[activeRoll]}
               </p>
             </div>
             <span
@@ -105,7 +105,7 @@ export default function WoundRollClient() {
           <thead>
             <tr>
               <th className="w-7 text-[0.5rem] font-bold text-muted pr-0.5 align-bottom pb-1 text-right leading-tight">
-                S↓<br />T→
+                攻(S)↓<br />耐(T)→
               </th>
               {RANGE.map((t) => (
                 <th key={t} className="w-7 p-0">
@@ -173,7 +173,7 @@ export default function WoundRollClient() {
       </div>
 
       <p className="text-center text-[0.6rem] text-muted">
-        S=強度 / T=耐久力。値は 1〜12 を掲載。それ以上も同じルールで計算。
+        攻(S)=強度 / 耐(T)=耐久力。値は 1〜12 を掲載。それ以上も同じルールで計算。
       </p>
     </div>
   );

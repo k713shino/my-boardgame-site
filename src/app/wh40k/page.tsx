@@ -53,8 +53,15 @@ const TOOLS = [
     href: "/wh40k/wound-roll",
     label: "Wound Roll Chart",
     labelJa: "ウーンズロール早見表",
-    desc: "強度(S)vs耐久力(T)の対応表。行・列タップで即座に必要な出目を確認。",
+    desc: "攻(S)vs耐(T)の対応表。行・列タップで即座に必要な出目を確認。",
     icon: "🎯",
+  },
+  {
+    href: "/wh40k/saving-throw",
+    label: "Saving Throw Chart",
+    labelJa: "セービング早見表",
+    desc: "基本セーヴ値(Sv)とAP値から実質セーヴ値を確認。不滅セーヴ・カバーの補足付き。",
+    icon: "🛡️",
   },
 ];
 
