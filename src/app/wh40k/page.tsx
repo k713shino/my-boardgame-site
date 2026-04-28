@@ -63,6 +63,13 @@ const TOOLS = [
     desc: "基本セーヴ値(Sv)とAP値から実質セーヴ値を確認。不滅セーヴ・カバーの補足付き。",
     icon: "🛡️",
   },
+  {
+    href: "/wh40k/keywords",
+    label: "Keyword Reference",
+    labelJa: "キーワード辞典",
+    desc: "武器アビリティ・ユニットアビリティのキーワードを日本語で検索・確認。全25種掲載。",
+    icon: "📖",
+  },
 ];
 
 export default function WH40KHubPage() {

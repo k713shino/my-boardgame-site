@@ -22,7 +22,11 @@
       "Bash(npx tsc:*)",
       "WebFetch(domain:wahapedia.ru)",
       "Bash(npx prisma:*)",
-      "Bash(curl -s http://localhost:3001/wh40k/match-tracker -o /dev/null -w \"%{http_code}\")"
+      "Bash(curl -s http://localhost:3001/wh40k/match-tracker -o /dev/null -w \"%{http_code}\")",
+      "Bash(pdftotext /home/k713shino/my-boardgame-site/docs/warhammer40000.pdf -)",
+      "Bash(node -e ' *)",
+      "Bash(grep -E '[ぁ-ん|ァ-ン|一-龥]{3,}')",
+      "Bash(node --experimental-vm-modules -e ' *)"
     ],
     "deny": [],
     "ask": [],
