@@ -42,6 +42,13 @@ const TOOLS = [
     desc: "VP・CP・ターンをひとつにまとめたゲーム中サポートUI。スマホ縦持ちで向かい合わせ表示。",
     icon: "⚔️",
   },
+  {
+    href: "/wh40k/stratagems",
+    label: "Stratagem Reference",
+    labelJa: "CP早見表",
+    desc: "コアストラテジェームをフェーズ別に絞り込み。試合中にスマホでサッと確認。",
+    icon: "📋",
+  },
 ];
 
 export default function WH40KHubPage() {
