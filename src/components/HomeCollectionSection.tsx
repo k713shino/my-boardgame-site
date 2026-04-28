@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { GVGame } from "@/lib/gamevault";
@@ -24,23 +23,12 @@ function formatPlayers(min?: number | null, max?: number | null) {
   return null;
 }
 
-function shuffle<T>(arr: T[]): T[] {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
 export default function HomeCollectionSection({ games }: { games: GVGame[] }) {
-  const picked = useMemo(() => shuffle(games).slice(0, 6), [games]);
-
-  if (picked.length === 0) return null;
+  if (games.length === 0) return null;
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      {picked.map((g) => (
+      {games.map((g) => (
         <Link
           key={g.id}
           href={`/games/gv/${g.id}`}

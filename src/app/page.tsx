@@ -55,6 +55,11 @@ export default async function Home() {
   }
 
   const gvGames = await fetchAllGVGames();
+  const featuredGames = gvGames
+    .map((g) => ({ g, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .slice(0, 6)
+    .map(({ g }) => g);
 
   const mergedMap = new Map<string, PlayListItem>();
   [...localPlays, ...remotePlays].forEach((play) => {
@@ -195,7 +200,7 @@ export default async function Home() {
             すべて表示
           </Link>
         </div>
-        <HomeCollectionSection games={gvGames} />
+        <HomeCollectionSection games={featuredGames} />
       </section>
     </div>
   );
