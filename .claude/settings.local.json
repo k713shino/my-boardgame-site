@@ -26,12 +26,16 @@
       "Bash(pdftotext /home/k713shino/my-boardgame-site/docs/warhammer40000.pdf -)",
       "Bash(node -e ' *)",
       "Bash(grep -E '[ぁ-ん|ァ-ン|一-龥]{3,}')",
-      "Bash(node --experimental-vm-modules -e ' *)"
+      "Bash(node --experimental-vm-modules -e ' *)",
+      "Bash(node extract_pdf.mjs)",
+      "Bash(npm list *)",
+      "Bash(sed -n '/=== PAGE 60 ===/,/=== PAGE 88 ===/p' /tmp/wh40k_text_full.txt | head -300)"
     ],
     "deny": [],
     "ask": [],
     "additionalDirectories": [
-      "/home/k713shino/my-boardgame-site/src/app/games/gv"
+      "/home/k713shino/my-boardgame-site/src/app/games/gv",
+      "/tmp"
     ]
   }
 }
