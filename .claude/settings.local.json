@@ -29,7 +29,14 @@
       "Bash(node --experimental-vm-modules -e ' *)",
       "Bash(node extract_pdf.mjs)",
       "Bash(npm list *)",
-      "Bash(sed -n '/=== PAGE 60 ===/,/=== PAGE 88 ===/p' /tmp/wh40k_text_full.txt | head -300)"
+      "Bash(sed -n '/=== PAGE 60 ===/,/=== PAGE 88 ===/p' /tmp/wh40k_text_full.txt | head -300)",
+      "Bash(ls /home/k713shino; find /home/k713shino /mnt/c/Users -maxdepth 4 -type d -name \"vrc-memory-album\" 2>/dev/null | head)",
+      "Read(//mnt/c/Users/**)",
+      "Bash(npx eslint *)",
+      "Bash(npx tsc *)",
+      "Read(//mnt/d/Works/vrc-memory-album/**)",
+      "Read(//mnt/d/Works/vrc-memory-album/docs/**)",
+      "Bash(cd /mnt/d/Works/vrc-memory-album && sed -n 1,80p src/lib/shareText.ts; file docs/screenshot-mock.png; ls -la docs/screenshot-mock.png)"
     ],
     "deny": [],
     "ask": [],
