@@ -15,6 +15,7 @@ const VERSION = "0.1.0";
 const TOC = [
   { id: "about", label: "どんなアプリか" },
   { id: "install", label: "動作環境・インストール" },
+  { id: "log-setting", label: "ログの出力を「完全」に" },
   { id: "usage", label: "使い方" },
   { id: "friends", label: "フレンドの登録" },
   { id: "data", label: "データの保存先と削除" },
@@ -254,7 +255,41 @@ export default function VRCMemoryAlbumManualPage() {
             </Card>
           </Section>
 
-          <Section id="usage" no={3} title="使い方">
+          <Section id="log-setting" no={3} title="事前準備：ログの出力を「完全」にする">
+            <Note tone="warn">
+              <strong>
+                VRChat の「ログの出力」が「完全」になっていないと、アルバムの機能は正しく動きません。
+              </strong>
+              ワールドや一緒にいた人はログから読み取っているため、使い始める前に必ず設定してください。
+            </Note>
+            <Card>
+              <div className="grid items-center gap-5 sm:grid-cols-[1fr_15rem]">
+                <Steps
+                  items={[
+                    <>VRChat でメニューを開き、下の歯車アイコンから<strong>「設定」</strong>を開きます。</>,
+                    <>下までスクロールして<strong>「デバッグ」</strong>の項目を表示します。</>,
+                    <>
+                      <strong>「ログの出力」</strong>を左右の矢印で<strong>「完全」</strong>にします。
+                    </>,
+                  ]}
+                />
+                <figure className="space-y-1.5">
+                  <Image
+                    src="/images/vrchat/vrc-log-output-setting.jpg"
+                    alt="VRChat の設定画面。デバッグ項目の「ログの出力」が「完全」になっている部分を赤枠で囲んでいる。"
+                    width={728}
+                    height={776}
+                    className="w-full rounded-xl ring-1 ring-slate-900/10 dark:ring-white/10"
+                  />
+                  <figcaption className="text-center text-[0.6rem] text-muted">
+                    設定 → デバッグ →「ログの出力：完全」
+                  </figcaption>
+                </figure>
+              </div>
+            </Card>
+          </Section>
+
+          <Section id="usage" no={4} title="使い方">
             <Card className="space-y-5">
               <div className="space-y-2">
                 <SubHeading>起動する</SubHeading>
@@ -312,7 +347,7 @@ https://vrchat.com/home/world/wrld_xxxx
             </Card>
           </Section>
 
-          <Section id="friends" no={4} title="フレンドの登録">
+          <Section id="friends" no={5} title="フレンドの登録">
             <Card>
               <p>
                 VRChat のログにはフレンドかどうかの情報が無いため、「一緒にいた人」の <strong>♡</strong>{" "}
@@ -321,7 +356,7 @@ https://vrchat.com/home/world/wrld_xxxx
             </Card>
           </Section>
 
-          <Section id="data" no={5} title="データの保存先と削除">
+          <Section id="data" no={6} title="データの保存先と削除">
             <Card>
               <Bullets
                 items={[
@@ -341,7 +376,7 @@ https://vrchat.com/home/world/wrld_xxxx
             </Card>
           </Section>
 
-          <Section id="notes" no={6} title="注意">
+          <Section id="notes" no={7} title="注意">
             <div className="space-y-3">
               <Note tone="warn">
                 <strong>投稿に名前を載せるのは、写っている本人が了承している人だけにしましょう。</strong>
@@ -353,6 +388,13 @@ https://vrchat.com/home/world/wrld_xxxx
                       「誰といたか」は VRChat のログから読み取ります。VRChat は古いログを自動で削除するため、アプリを入れる前の古い写真はワールドや同席者が分からない場合があります（写真自体は表示されます）。
                       <strong>普段からアプリを起動しておくと記録が残り続けます。</strong>
                     </>,
+                    <>
+                      VRChat の「ログの出力」が「完全」になっていない間に撮った写真は、ワールドや同席者を記録できません（
+                      <a href="#log-setting" className="text-cyan-600 underline-offset-2 hover:underline dark:text-cyan-400">
+                        設定方法
+                      </a>
+                      ）。
+                    </>,
                     "このアプリは VRChat のファイルを読むだけで、VRChat 本体の改変や外部への通信は行いません。",
                   ]}
                 />
@@ -360,7 +402,7 @@ https://vrchat.com/home/world/wrld_xxxx
             </div>
           </Section>
 
-          <Section id="uninstall" no={7} title="アップデート・アンインストール">
+          <Section id="uninstall" no={8} title="アップデート・アンインストール">
             <div className="grid gap-3 sm:grid-cols-2">
               <Card>
                 <SubHeading>アップデート</SubHeading>
@@ -379,7 +421,7 @@ https://vrchat.com/home/world/wrld_xxxx
             </Note>
           </Section>
 
-          <Section id="contact" no={8} title="お問い合わせ">
+          <Section id="contact" no={9} title="お問い合わせ">
             <Card>
               <p>BOOTH のメッセージ機能からお願いします。</p>
             </Card>
