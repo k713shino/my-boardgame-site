@@ -77,7 +77,7 @@ const TOOLS = [
     labelJa: "思い出アルバム",
     desc: "VRChat で撮った写真を「いつ・どのワールドで・誰といた時か」で自動整理し、X 用の投稿文をワンクリックで作る Windows アプリ。",
     icon: "📸",
-    status: "準備中",
+    status: "無料",
   },
 ];
 
@@ -90,6 +90,11 @@ const WORLDS: { name: string; author: string; comment: string; url: string }[] =
 const EVENTS: { name: string; schedule: string; comment: string; url: string }[] = [];
 
 const NEWS = [
+  {
+    date: "2026-10-19",
+    title: "VRC Memory Album を BOOTH で公開しました",
+    body: "VRChat の写真をワールド・一緒にいた人で自動整理する Windows アプリを無料で公開しました。説明書ページから BOOTH へ移動できます。",
+  },
   {
     date: "2026-10-16",
     title: "VRChat ページを公開しました",

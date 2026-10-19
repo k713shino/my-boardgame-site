@@ -8,8 +8,8 @@ export const metadata: Metadata = {
     "VRChat で撮った写真を「いつ・どのワールドで・誰といた時か」で自動整理し、X 用の投稿文をワンクリックで作る Windows アプリ「VRC Memory Album」の使い方。",
 };
 
-// BOOTH で公開したら URL を入れてください（空のあいだは「配布準備中」表示）
-const BOOTH_URL = "";
+// 空にすると「配布準備中」表示になります
+const BOOTH_URL = "https://k713shino.booth.pm/items/8997138";
 const VERSION = "0.1.0";
 
 const TOC = [
@@ -168,7 +168,7 @@ export default function VRCMemoryAlbumManualPage() {
                 Windows 10 / 11
               </span>
               <span className="rounded-full border border-slate-300/70 px-3 py-1.5 text-[0.65rem] font-semibold text-muted dark:border-slate-600/70">
-                完全ローカル動作
+                無料・完全ローカル動作
               </span>
             </div>
           </div>
@@ -396,6 +396,7 @@ https://vrchat.com/home/world/wrld_xxxx
                       ）。
                     </>,
                     "このアプリは VRChat のファイルを読むだけで、VRChat 本体の改変や外部への通信は行いません。",
+                    "VRChat 公式とは関係のない、個人制作の非公式ツールです。",
                   ]}
                 />
               </Card>
